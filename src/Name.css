@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Righteous');
+
+/* General link styles */
+.link {
+    outline: none;
+    text-decoration: none;
+    position: relative;
+    font-size: 5em;
+    line-height: 1;
+    color: #9e9ba4;
+    display: inline-block;
+}
+
+/* Name */
+.link--name {
+    font-weight: 800;
+    color: #fff;
+    font-family: 'Righteous', cursive;
+    -webkit-transition: color 0.5s 0.25s;
+    transition: color 0.5s 0.25s;
+    overflow: hidden;
+}
+
+.link--name:hover {
+    -webkit-transition: none;
+    transition: none;
+    color: transparent;
+}
+
+.link--name::before {
+    content: '';
+    width: 100%;
+    height: 6px;
+    margin: -3px 0 0 0;
+    background: #9b0aff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translate3d(-100%,0,0);
+    transform: translate3d(-100%,0,0);
+    -webkit-transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
+    -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.link--name:hover::before {
+    -webkit-transform: translate3d(100%,0,0);
+    transform: translate3d(100%,0,0);
+}
+
+.link--name span {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.link--name span::before {
+    content: attr(data-letters);
+    color: red;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: #14ff89;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.link--name span:nth-child(2) {
+    top: 50%;
+}
+
+.link--name span:first-child::before {
+    top: 0;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+}
+
+.link--name span:nth-child(2)::before {
+    bottom: 0;
+    -webkit-transform: translate3d(0,-100%,0);
+    transform: translate3d(0,-100%,0);
+}
+
+.link--name:hover span::before {
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+    transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+}
+
+/* Media Queries */
+@media screen and (max-width: 42em) {
+    .link--name { font-size: 3em; }
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffd8ec;
+    font-family: 'Raleway', sans-serif;
+}
