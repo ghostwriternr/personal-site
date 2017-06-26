@@ -45,4 +45,5 @@
 .Navigation-position {
     position: fixed;
     bottom: 10px;
+    padding-right: 100px;
 }

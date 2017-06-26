@@ -29,14 +29,14 @@ class Navigation extends Component {
     render() {
         return (
             <div className="Navigation-position">
-                <section className="section section--nav" id="Ubax">
+                <div className="section section--nav" id="Ubax">
                     <nav className="nav nav--ubax">
                         <button className="nav__item nav__item--current" aria-label="Home"><span className="nav__item-title">Home</span></button>
                         <button className="nav__item" aria-label="Experience"><span className="nav__item-title">Experience</span></button>
                         <button className="nav__item" aria-label="Experience"><span className="nav__item-title">Projects</span></button>
                         <button className="nav__item" aria-label="Experience"><span className="nav__item-title">About Me</span></button>
                     </nav>
-                </section>
+                </div>
             </div>
         );
     }
