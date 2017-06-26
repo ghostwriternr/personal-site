@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import Name from './Name';
+import Experience from './Experience';
+import Navigation from './Navigation';
 import './App.css';
 
 class App extends Component {
@@ -10,6 +12,8 @@ class App extends Component {
         <div className="App-header Aligner">
           <Name />
         </div>
+        <Navigation />
+        <Experience />
       </div>
     );
   }

@@ -1,0 +1,127 @@
+.experience-container {
+    min-height: 100vh;
+    background-color: #c70064;
+}
+
+.experience-title {
+    font-weight: 800;
+    font-size: 10vh;
+    font-family: 'Righteous', cursive;
+    padding: 10px;
+    color: #ff9dce;
+}
+
+.organisations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px 4vw 0 4vw;
+}
+
+.org-tab {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.org-logo {
+    padding: 10px;
+    max-height: 8vh;
+}
+
+.vertical-line {
+    width: 1px;
+    background-color: white;
+    min-height: 100%;
+    display: inline-block;
+    opacity: 0.4
+}
+
+.org-position {
+    color: #fff;
+    font-size: 2vh;
+    padding: 0 1vw 0 1vw;
+}
+
+.org-duration {
+    color: #ff9dce;
+    font-weight: bold;
+    font-size: 1.75vh;
+}
+
+.org-description {
+    text-align: justify;
+    padding: 0 3vw 0 3vw;
+    color: #fff;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.org-description a {
+    font-weight: bold;
+}
+
+/* Section */
+
+section {
+    position: relative;
+    z-index: 1; /* needed for setting pseudo-element z-index */
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+section a {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    color: #ffff14;
+    vertical-align: bottom;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+section a::before,
+section a::after {
+    pointer-events: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+/* Scale up bounce */
+.link-scaleupbounce {
+    color: #fff;
+}
+
+.link-scaleupbounce a {
+    vertical-align: bottom;
+    font-weight: 500;
+}
+
+.link-scaleupbounce a::before {
+    position: absolute;
+    top: 0;
+    left: -5px;
+    z-index: -1;
+    box-sizing: content-box;
+    padding: 0 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #6300c7;
+    content: '';
+    opacity: 0;
+    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
+    -webkit-transition-timing-function: cubic-bezier(0.25,0.25,0.325,1.39);
+    transition-timing-function: cubic-bezier(0.25,0.25,0.325,1.39);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+.link-scaleupbounce a:hover::before,
+.link-scaleupbounce a:focus::before {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}

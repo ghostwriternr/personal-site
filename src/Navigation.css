@@ -1,0 +1,91 @@
+/* General styles */
+
+.nav {
+    position: relative;
+    width: 5vw;
+    margin: 0 0 0 1em;
+    color: #ffd8ec;
+}
+
+.nav__item {
+    line-height: 1;
+    position: relative;
+    display: block;
+    margin: 10px;
+    padding: 0;
+    letter-spacing: 0;
+    color: currentColor;
+    border: 0;
+    background: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.nav__item:focus {
+    outline: none;
+}
+
+/* Individual styles */
+
+/*** Ubax ***/
+
+.nav--ubax .nav__item {
+    width: 3vh;
+    height: 3vh;
+}
+
+.nav--ubax .nav__item::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border: 2px solid transparent;
+    background: #111;
+    opacity: 0.4;
+}
+
+.nav--ubax .nav__item--current::after {
+    z-index: 10;
+    border-color: #31312f;
+    background: #e9eae5;
+    -webkit-transform: scale3d(1.5,1.5,1);
+    transform: scale3d(1.5,1.5,1);
+    -webkit-transition: -webkit-transform 0.3s, background-color 0.3s, border-color 0.3s;
+    transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+}
+
+.nav--ubax .nav__item:not(.nav__item--current):focus::after,
+.nav--ubax .nav__item:not(.nav__item--current):hover::after {
+    background: #31312f;
+    -webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.nav--ubax .nav__item-title {
+    line-height: 1.3;
+    display: block;
+    padding: 0 0 0 2em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    font-weight: bold;
+    font-size: 2.5vh;
+    -webkit-transform: translate3d(-20px,0,0);
+    transform: translate3d(-20px,0,0);
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav--ubax .nav__item:not(.nav__item--current):focus .nav__item-title,
+.nav--ubax .nav__item:not(.nav__item--current):hover .nav__item-title {
+    opacity: 0.75;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.nav--ubax .nav__item--current .nav__item-title {
+    opacity: 0;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}

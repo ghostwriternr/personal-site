@@ -1,5 +1,6 @@
 .App {
     text-align: center;
+    font-family: 'Raleway', sans-serif;
 }
 
 .App-logo {
@@ -8,12 +9,12 @@
 }
 
 .App-header {
-    background: #ff0000;
-    background: -webkit-linear-gradient(left top, #ff0000, #ff148a);
-    background: -moz-linear-gradient(left top, #ff0000, #ff148a);
-    background: -ms-linear-gradient(left top, #ff0000, #ff148a);
-    background: -o-linear-gradient(left top, #ff0000, #ff148a);
-    background: linear-gradient(to bottom right, #ff0000, #ff148a);
+    background: #bb0000;
+    background: -webkit-linear-gradient(top, #bb0000, #c70064);
+    background: -moz-linear-gradient(top, #bb0000, #c70064);
+    background: -ms-linear-gradient(top, #bb0000, #c70064);
+    background: -o-linear-gradient(top, #bb0000, #c70064);
+    background: linear-gradient(to bottom, #bb0000, #c70064);
     height: 100vh;
     /*padding: 20px;*/
 }
@@ -39,4 +40,9 @@
 
 .Aligner-item {
   max-width: 50%;
+}
+
+.Navigation-position {
+    position: fixed;
+    bottom: 10px;
 }
