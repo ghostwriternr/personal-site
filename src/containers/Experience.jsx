@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import './Experience.css';
+import '../styles/App.css';
+import '../styles/Experience.css';
 
 class Experience extends Component {
     render() {
@@ -10,7 +10,7 @@ class Experience extends Component {
                 <div className="organisations row">
                     <div className="col-xs-12 col-md-4">
                         <div className="org-tab">
-                            <img className="org-logo" src={require('./intuit.png')} alt="Intuit IDC"/>
+                            <img className="org-logo" src={require('../images/intuit.png')} alt="Intuit IDC"/>
                             <p className="org-position">Software Engineering Intern - Intuit IDC</p>
                             <p className="org-duration">Bangalore, Current</p>
                             <br />
@@ -21,7 +21,7 @@ class Experience extends Component {
                     </div>
                     <div className="col-xs-12 col-md-4">
                         <div className="org-tab org-tab-mid">
-                            <img className="org-logo" src={require('./EzDI.png')} alt="EzDI"/>
+                            <img className="org-logo" src={require('../images/EzDI.png')} alt="EzDI"/>
                             <p className="org-position">Software Engineering Intern - ezDI India</p>
                             <p className="org-duration">Ahmedabad, May '16 - June '16</p>
                             <br />
@@ -32,7 +32,7 @@ class Experience extends Component {
                     </div>
                     <div className="col-xs-12 col-md-4">
                         <div className="org-tab">
-                            <img className="org-logo" src={require('./auv.png')} alt="AUV"/>
+                            <img className="org-logo" src={require('../images/auv.png')} alt="AUV"/>
                             <p className="org-position">Image Processing Core Team Member - AUV IITKGP</p>
                             <p className="org-duration">Kharagpur, Feb '15 - April '16</p>
                             <br />
@@ -43,7 +43,7 @@ class Experience extends Component {
                     </div>
               </div>
               <div className="row other-experience">
-                <p>As maintainer at MetaKGP and Executive Editor at Technology Litewrary Society, IITKGP, I also take on organisational roles and blah blah blah. In the past, I have also worked with Google Students Club and CodeClub, IITKGP.</p>
+                <p>As maintainer at MetaKGP and Executive Editor at Technology Literary Society, IITKGP, I also take on organisational roles and blah blah blah. In the past, I have also worked with Google Students Club and CodeClub, IITKGP.</p>
               </div>
             </div>
         );

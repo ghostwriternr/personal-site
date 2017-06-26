@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import './Name.css';
+import '../styles/App.css';
+import '../styles/Name.css';
 import Particles from 'react-particles-js';
 
 class Name extends Component {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import Name from './Name';
+import Name from '../components/Name';
 import Experience from './Experience';
-import Navigation from './Navigation';
-import './App.css';
+import Navigation from '../components/Navigation';
+import '../styles/App.css';
 
 class App extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import './Navigation.css';
+import '../styles/App.css';
+import '../styles/Navigation.css';
 
 class Navigation extends Component {
     componentDidMount() {
