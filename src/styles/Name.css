@@ -30,7 +30,7 @@
     width: 100%;
     height: 6px;
     margin: -3px 0 0 0;
-    background: #9b0aff;
+    background: #e10e43;
     position: absolute;
     left: 0;
     top: 50%;
@@ -62,7 +62,7 @@
     position: absolute;
     left: 0;
     width: 100%;
-    color: #14ff89;
+    color: #e1ac0e;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
 }
