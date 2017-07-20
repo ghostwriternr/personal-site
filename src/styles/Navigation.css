@@ -24,6 +24,12 @@
     outline: none;
 }
 
+@media screen and (max-width: 1024px) {
+    .nav {
+        display: none;
+    }
+}
+
 /* Individual styles */
 
 /*** Ubax ***/

@@ -10,7 +10,7 @@ class Name extends Component {
             params: {
                   particles: {
                     number: {
-                      value: 75,
+                      value: 150,
                       density: {
                         enable: true,
                         value_area: 800

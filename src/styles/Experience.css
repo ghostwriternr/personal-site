@@ -1,7 +1,7 @@
 .experience-container {
-    min-height: 90vh;
+    min-height: 80vh;
     background-color: #c2001c;
-    padding-top: 10vh;
+    /*padding-top: 10vh;*/
 }
 
 .experience-title {
