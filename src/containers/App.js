@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Name from '../components/Name';
 import Experience from './Experience';
 import '../styles/App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   render() {

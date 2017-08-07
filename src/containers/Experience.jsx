@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import '../styles/Experience.css';
-import * as ScrollMagic from 'scrollmagic';
 
 class Experience extends Component {
-    componentDidMount() {
-        var scrollController = new ScrollMagic.Controller();
-        var ScrollScene = new ScrollMagic.Scene({
-        triggerElement: "#experience-title"
-        })
-        .on('start', function() {
-        console.log("passed trigger");
-        })
-        .addTo(scrollController);
-    }
-
     render() {
         return (
             <div className="experience-container">
-              <span className="experience-title" id="experience-title">Experience</span>
+              <span className="experience-title">Experience</span>
                 <div className="organisations row">
                     <div className="col-xs-12 col-md-4">
                         <div className="org-tab">

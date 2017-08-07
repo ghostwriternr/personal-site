@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import '../styles/Name.css';
+import '../styles/Navigation.css';
 import Particles from 'react-particles-js';
 import anime from 'animejs';
+import { Link } from 'react-router-dom';
 
 class Name extends Component {
     constructor(props) {
@@ -46,7 +48,7 @@ class Name extends Component {
                       }
                     },
                     size: {
-                      value: 6,
+                      value: 4,
                       random: true,
                       anim: {
                         enable: false,
@@ -132,12 +134,13 @@ class Name extends Component {
       var ctx = c.getContext("2d");
       var cH;
       var cW;
-      var bgColor = "#FF6138";
+      var bgColor = "#002e63";
       var animations = [];
       var circles = [];
+      console.log(circles);
 
       var colorPicker = (function() {
-        var colors = ["#FF6138", "#FFBE53", "#2980B9", "#282741"];
+        var colors = ["#002e63", "#e52b50", "#ff9500", "#873260", "#009973", "#9900ff"];
         var index = 0;
         function next() {
           index = index++ < colors.length-1 ? index : 0;
@@ -285,6 +288,8 @@ class Name extends Component {
         }
       });
 
+      console.log(animate);
+
       var resizeCanvas = function() {
         cW = window.innerWidth;
         cH = window.innerHeight;
@@ -351,6 +356,13 @@ class Name extends Component {
                   <p className="subtitle">Hi, I am</p>
                   <a className="link link--name">Naresh R<span data-letters="Naresh R"></span><span data-letters="Naresh R"></span></a>
                   <p className="subtitle">I study Computer Science at IIT Kharagpur</p>
+                  <nav class="cl-effect-6">
+                    <Link to="/">About Me</Link>
+                    <Link to="/experience">Experience</Link>
+                    <Link to="/">Projects</Link>
+                    <Link to="/">Resume</Link>
+                    <Link to="/">Contact</Link>
+				          </nav>
               </div>
             </div>
         );
