@@ -128,16 +128,18 @@ class Name extends Component {
     }
     render() {
         return (
-            <div>
-                <Particles
-                    params={this.state.params}
-                    width={this.state.width}
-                    height={this.state.height}
-                    style={this.state.style}
-                />
-                <p className="subtitle">Hi, I am</p>
-                <a className="link link--name">Naresh R<span data-letters="Naresh R"></span><span data-letters="Naresh R"></span></a>
-                <p className="subtitle">I study Computer Science at IIT Kharagpur</p>
+            <div className="App-header Aligner">
+              <div>
+                  <Particles
+                      params={this.state.params}
+                      width={this.state.width}
+                      height={this.state.height}
+                      style={this.state.style}
+                  />
+                  <p className="subtitle">Hi, I am</p>
+                  <a className="link link--name">Naresh R<span data-letters="Naresh R"></span><span data-letters="Naresh R"></span></a>
+                  <p className="subtitle">I study Computer Science at IIT Kharagpur</p>
+              </div>
             </div>
         );
     }
