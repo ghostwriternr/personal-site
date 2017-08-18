@@ -62,7 +62,8 @@
     position: absolute;
     left: 0;
     width: 100%;
-    color: #ff5a36;
+    color: #888;
+    text-shadow: 2px 2px #111;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
 }
@@ -96,7 +97,8 @@
 .subtitle {
     font-size: 3vh;
     font-weight: bold;
-    color: #ffd8ec;
+    color: #fff;
+    opacity: 0.8;
     font-family: 'Raleway', sans-serif;
     position: relative;
 }

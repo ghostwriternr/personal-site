@@ -10,10 +10,10 @@
 	font-family: 'Raleway', sans-serif;
 } */
 
-nav a {
+.navbuttons a {
 	position: relative;
 	display: inline-block;
-	margin: 15px 25px;
+	margin: 1.5vh;
 	outline: none;
 	color: #fff;
 	text-decoration: none;
@@ -21,50 +21,42 @@ nav a {
 	letter-spacing: 1px;
 	font-weight: 400;
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
-	font-size: 1.35em;
+	font-size: 2.25vh;
 }
 
-nav a:hover,
-nav a:focus {
+.navbuttons a:hover,
+.navbuttons a:focus {
 	outline: none;
 }
 
-.cl-effect-6 a {
-	margin: 0 10px;
-	padding: 10px 20px;
+.cl-effect-5 a {
+	overflow: hidden;
+	padding: 0 1vh;
+	height: 1em;
 }
 
-.cl-effect-6 a::before {
+.cl-effect-5 a span {
+	position: relative;
+	display: inline-block;
+	-webkit-transition: -webkit-transform 0.3s;
+	-moz-transition: -moz-transform 0.3s;
+	transition: transform 0.3s;
+	white-space: pre;
+}
+
+.cl-effect-5 a span::before {
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 2px;
-	background: #fff;
-	content: '';
-	-webkit-transition: top 0.3s;
-	-moz-transition: top 0.3s;
-	transition: top 0.3s;
-}
-
-.cl-effect-6 a::after {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 2px;
-	height: 2px;
-	background: #fff;
-	content: '';
-	-webkit-transition: height 0.3s;
-	-moz-transition: height 0.3s;
-	transition: height 0.3s;
-}
-
-.cl-effect-6 a:hover::before {
 	top: 100%;
-	opacity: 1;
+	content: attr(data-hover);
+	font-weight: 700;
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	left: -5%;
 }
 
-.cl-effect-6 a:hover::after {
-	height: 100%;
+.cl-effect-5 a:hover span{
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	transform: translateY(-100%); 
 }
