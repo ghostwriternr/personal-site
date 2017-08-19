@@ -9,12 +9,7 @@
 }
 
 .App-header {
-    background: #ff8500;
-    background: -webkit-linear-gradient(top, #ff8500, #c2001c);
-    background: -moz-linear-gradient(top, #ff8500, #c2001c);
-    background: -ms-linear-gradient(top, #ff8500, #c2001c);
-    background: -o-linear-gradient(top, #ff8500, #c2001c);
-    background: linear-gradient(to bottom, #ff8500, #c2001c);
+    background: #fff;
     height: 100vh;
     /*padding: 20px;*/
 }

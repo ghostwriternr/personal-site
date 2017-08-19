@@ -1,0 +1,18 @@
+.about-container {
+    height: 100vh;
+    background: url(../images/dlanham-Cardinal.jpg) no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.back-arrow {
+    color: #111;
+    font-size: 8vh;
+}
+
+.back-arrow-mobile {
+    color: #111;
+    font-size: 8vh;
+}

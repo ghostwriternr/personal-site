@@ -262,13 +262,13 @@ class Name extends Component {
       var ctx = c.getContext("2d");
       var cH;
       var cW;
-      var bgColor = "#002e63";
+      var bgColor = "#e5632b";
       var animations = [];
       var circles = [];
       console.log(circles);
 
       var colorPicker = (function() {
-        var colors = ["#002e63", "#e52b50", "#873260"];
+        var colors = ["#e5632b", "#873260", "#883e9b", "#b65063"];
         var index = 0;
         function next() {
           index = index++ < colors.length-1 ? index : 0;
@@ -400,7 +400,10 @@ class Name extends Component {
           ctx.stroke();
         }
         if (this.fill) {
-          ctx.fillStyle = this.fill;
+          var newGradient = ctx.createLinearGradient(0, 0, cW, cH);
+          newGradient.addColorStop(0, this.fill);
+          newGradient.addColorStop(1, "#e52b50");
+          ctx.fillStyle = newGradient;
           ctx.fill();
         }
         ctx.closePath();
@@ -410,7 +413,10 @@ class Name extends Component {
       var animate = anime({
         duration: Infinity,
         update: function() {
-          ctx.fillStyle = bgColor;
+          var newGradient = ctx.createLinearGradient(0, 0, cW, cH);
+          newGradient.addColorStop(0, bgColor);
+          newGradient.addColorStop(1, "#e52b50");
+          ctx.fillStyle = newGradient;
           ctx.fillRect(0, 0, cW, cH);
           animations.forEach(function(anim) {
             anim.animatables.forEach(function(animatable) {
@@ -497,7 +503,7 @@ class Name extends Component {
                   <p className="subtitle">I study Computer Science at IIT Kharagpur</p>
                   <div className="row navbuttons cl-effect-5">
                     <div className="col-xs-12 col-md-3">
-                      <Link to="/"><span data-hover="About Me">About Me</span></Link>
+                      <Link to="/about"><span data-hover="About Me">About Me</span></Link>
                     </div>
                     <div className="col-xs-4 col-md-3">
                       <Link to="/experience"><span data-hover="Experience">Experience</span></Link>
