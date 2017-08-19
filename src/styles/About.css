@@ -5,6 +5,7 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    padding-top: 3vh;
 }
 
 .back-arrow {
@@ -12,7 +13,51 @@
     font-size: 8vh;
 }
 
-.back-arrow-mobile {
+.back-arrow-desktop {
+    padding: 6vh 2vh 0 6vh;
+}
+
+#namaste text {
     color: #111;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
     font-size: 8vh;
+}
+
+@media screen and (min-width: 1024px) {
+    .desktop-invisible {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .mobile-invisible {
+        display: none;
+    }
+}
+
+
+#intro text {
+    color: #111;
+    font-family: 'Fjalla One', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#about-hi {
+    font-size: 8vh;
+}
+
+#aboutdescdesk {
+    position: relative;
+    margin-top: 2vh;
+    left: 0;
+    right: 0;
+    font-size: 3vh;
+}
+#aboutdescmob {
+    position: relative;
+    margin-top: 32vh;
+    left: 0;
+    right: 0;
+    font-size: 2.5vh;
 }
