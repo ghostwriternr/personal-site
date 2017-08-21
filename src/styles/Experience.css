@@ -1,6 +1,7 @@
 .experience-container {
     min-height: 100vh;
     width: 100vw;
+    padding-top: 2vh;
 }
 
 .box {
@@ -83,4 +84,9 @@
 
 #tls-box .org-logo {
     max-width: 85%;
+}
+
+.experience-desc {
+    text-align: center;
+    font-size: 3vh;
 }

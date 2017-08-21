@@ -5,38 +5,10 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    padding-top: 3vh;
+    padding-top: 2vh;
     position: relative;
     overflow-x: hidden;
     overflow-y: hidden;
-}
-
-.back-arrow {
-    color: #111;
-    font-size: 6vh;
-}
-
-.back-arrow-desktop {
-    padding: 2.5vh 2vh 0 6vh;
-}
-
-#namaste text {
-    color: #111;
-    font-family: 'Poppins', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 8vh;
-}
-
-@media screen and (min-width: 1024px) {
-    .desktop-invisible {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 1023px) {
-    .mobile-invisible {
-        display: none;
-    }
 }
 
 

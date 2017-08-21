@@ -42,3 +42,31 @@
     bottom: 10px;
     padding-right: 100px;
 }
+
+.back-arrow {
+    color: #111;
+    font-size: 6vh;
+}
+
+.back-arrow-desktop {
+    padding: 2.5vh 0 0 6vh;
+}
+
+#header-text text {
+    color: #111;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 8vh;
+}
+
+@media screen and (min-width: 1024px) {
+    .desktop-invisible {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .mobile-invisible {
+        display: none;
+    }
+}
