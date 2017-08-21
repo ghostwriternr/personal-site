@@ -10,13 +10,13 @@ class About extends Component {
                 <div className="namaste-container">
                     <div className="row desktop-invisible">
                         <div className="col-xs-12">
-                            <Link to="/"><i className="back-arrow icon ion-ios-arrow-up"></i></Link>
+                            <Link to="/"><i className="back-arrow fa fa-chevron-up"></i></Link>
                         </div>
                     </div>
                     <div className="row">
                         <div className="mobile-invisible">
                             <div className="col-xs-12">
-                                <Link to="/"><i className="back-arrow back-arrow-desktop icon ion-ios-arrow-up"></i></Link>
+                                <Link to="/"><i className="back-arrow back-arrow-desktop fa fa-chevron-up"></i></Link>
                             </div>
                         </div>
                         <div className="col-xs-12 col-md-2 text-center" id="namaste">
@@ -36,7 +36,7 @@ class About extends Component {
                 </div>
                 <div className="row mobile-invisible text-center" id="aboutimg">
                     <div className="col-xs-12 col-md-offset-7 col-md-4 text-center" id="profileimg">
-                        <img className="about-image img-thumbnail" src={require('../images/about-bw.jpeg')} alt="Me!" />
+                        <img className="about-image img-thumbnail" src={require('../images/about.JPG')} alt="Me!" />
                     </div>
                 </div>
                 <div className="stick-bottom">
@@ -47,12 +47,12 @@ class About extends Component {
                 </div>
                 <div className="row" id="iconlinks">
                     <div className="col-xs-12 col-md-offset-7 col-md-4 text-center">
-                        <a href='https://github.com/ghostwriternr/' target="_blank" rel="noopener noreferrer"><i id="githubicon" className="icon ion-social-github link-icons"></i></a>
-                        <a href='https://www.linkedin.com/in/naresh-r-464a8b8b' target="_blank" rel="noopener noreferrer"><i id="linkedinicon" className="icon ion-social-linkedin link-icons"></i></a>
-                        <a href='https://www.facebook.com/naresh.ramesh' target="_blank" rel="noopener noreferrer"><i id="facebookicon" className="icon ion-social-facebook link-icons"></i></a>
-                        <a href='http://blog.ghostwriternr.me/' target="_blank" rel="noopener noreferrer"><i id="blogicon" className="icon ion-edit link-icons"></i></a>
-                        <a href='https://www.instagram.com/naresh_r/' target="_blank" rel="noopener noreferrer"><i id="instaicon" className="icon ion-social-instagram-outline link-icons"></i></a>
-                        <a href='mailto:nareshmdu@gmail.com' target="_blank" rel="noopener noreferrer"><i id="mailicon" className="icon ion-ios-email link-icons"></i></a>
+                        <a href='https://github.com/ghostwriternr/' target="_blank" rel="noopener noreferrer"><i id="githubicon" className="fa fa-github link-icons"></i></a>
+                        <a href='https://www.linkedin.com/in/naresh-r-464a8b8b' target="_blank" rel="noopener noreferrer"><i id="linkedinicon" className="fa fa-linkedin link-icons"></i></a>
+                        <a href='https://www.facebook.com/naresh.ramesh' target="_blank" rel="noopener noreferrer"><i id="facebookicon" className="fa fa-facebook-square link-icons"></i></a>
+                        <a href='http://blog.ghostwriternr.me/' target="_blank" rel="noopener noreferrer"><i id="blogicon" className="fa fa-pencil link-icons"></i></a>
+                        <a href='https://www.instagram.com/naresh_r/' target="_blank" rel="noopener noreferrer"><i id="instaicon" className="fa fa-instagram link-icons"></i></a>
+                        <a href='mailto:nareshmdu@gmail.com' target="_blank" rel="noopener noreferrer"><i id="mailicon" className="fa fa-envelope link-icons"></i></a>
                     </div>
                 </div>
                 </div>

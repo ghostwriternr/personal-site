@@ -512,7 +512,7 @@ class Name extends Component {
                       <Link to="/"><span data-hover="Projects">Projects</span></Link>
                     </div>
                     <div className="col-xs-4 col-md-3">
-                      <Link to="/"><span data-hover="Resume">Resume</span></Link>
+                      <Link to="http://ghostwriternr.me/resume/" target="_blank"><span data-hover="Resume">Resume</span></Link>
                     </div>
 				          </div>
               </div>

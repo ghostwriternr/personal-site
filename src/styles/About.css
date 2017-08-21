@@ -13,11 +13,11 @@
 
 .back-arrow {
     color: #111;
-    font-size: 8vh;
+    font-size: 6vh;
 }
 
 .back-arrow-desktop {
-    padding: 6vh 2vh 0 6vh;
+    padding: 2.5vh 2vh 0 6vh;
 }
 
 #namaste text {
@@ -72,6 +72,17 @@
     margin-top: 5vh;
     left: 0;
     right: 0;
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1) contrast(1.25); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1) contrast(1.25); /* Microsoft Edge and Firefox 35+ */
+    transition: all .6s ease;
+    -webkit-transition: all .6s ease;
+}
+
+.about-image:hover {
+  -webkit-filter: grayscale(0) contrast(1.25);
+  filter: none;
+  opacity: 1;
 }
 
 .link-icons {
@@ -93,21 +104,33 @@ i:hover {
 }
 #githubicon {
     color: #111;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 #linkedinicon {
     color: #111;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 #facebookicon{
     color: #111;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 #blogicon{
     color: #111;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 #instaicon{
     color: #111;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 #mailicon{
     color: #111;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
 #githubicon:hover {
     color: #6e5494;

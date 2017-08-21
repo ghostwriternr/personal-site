@@ -17,7 +17,6 @@
     -webkit-transition: color 0.5s 0.25s;
     transition: color 0.5s 0.25s;
     overflow: hidden;
-    opacity: 0.75;
 }
 
 .link--name:hover {
