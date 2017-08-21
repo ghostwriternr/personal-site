@@ -90,3 +90,7 @@
     text-align: center;
     font-size: 3vh;
 }
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}

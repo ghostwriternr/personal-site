@@ -3,8 +3,59 @@ import '../styles/App.css';
 import '../styles/Experience.css';
 import '../styles/Arrows.css';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
+
+const customStyles = {
+    overlay : {
+        position          : 'fixed',
+        top               : 0,
+        left              : 0,
+        right             : 0,
+        bottom            : 0,
+        backgroundColor   : 'rgba(255, 255, 255, 0.75)'
+    },
+    content : {
+        position                   : 'absolute',
+        top                        : '20px',
+        left                       : '20px',
+        right                      : '20px',
+        bottom                     : '20px',
+        border                     : '1px solid #ccc',
+        background                 : '#fff',
+        overflow                   : 'auto',
+        WebkitOverflowScrolling    : 'touch',
+        borderRadius               : '4px',
+        outline                    : 'none',
+        padding                    : '20px'
+    
+    }
+};
 
 class Experience extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modalIsOpen: false
+        };
+
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    openModal() {
+        this.setState({modalIsOpen: true});
+    }
+
+    afterOpenModal() {
+        this.subtitle.style.color = '#f00';
+    }
+
+    closeModal() {
+        this.setState({modalIsOpen: false});
+    }
+
     render() {
         return (
             <div className="experience-container">
@@ -39,37 +90,37 @@ class Experience extends Component {
                     <div className="col-xs-12 col-md-offset-2 col-md-8">
                         <div className="row exp-grid">
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="intuit-box" className="box-bg">
+                                <div id="intuit-box" className="box-bg" onClick={this.openModal}>
                                     <img className="org-logo" src={require('../images/intuit.png')} alt="Intuit"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="ezdi-box" className="box-bg">
+                                <div id="ezdi-box" className="box-bg" onClick={this.openModal}>
                                     <img className="org-logo" src={require('../images/ezdi.png')} alt="EzDI"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="auv-box" className="box-bg">
+                                <div id="auv-box" className="box-bg" onClick={this.openModal}>
                                     <img className="org-logo" src={require('../images/auv.png')} alt="AUV, IIT Kharagpur"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="metakgp-box" className="box-bg">
+                                <div id="metakgp-box" className="box-bg" onClick={this.openModal}>
                                     <img className="org-logo" src={require('../images/metakgp.jpg')} alt="MetaKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="iitkgp-box" className="box-bg">
+                                <div id="iitkgp-box" className="box-bg" onClick={this.openModal}>
                                     <img className="org-logo" src={require('../images/iitkgp.png')} alt="IITKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="tls-box" className="box-bg">
+                                <div id="tls-box" className="box-bg" onClick={this.openModal}>
                                     <img className="org-logo" src={require('../images/tls.jpg')} alt="TLS"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
@@ -87,6 +138,18 @@ class Experience extends Component {
                         <h3><strong>Projects</strong></h3>
                     </Link>
                 </nav>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Experience modal"
+                >
+        
+                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                    <button onClick={this.closeModal}>close</button>
+                    <div>I am a modal</div>
+                </Modal>
             </div>
         );
     }

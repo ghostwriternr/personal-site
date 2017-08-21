@@ -4,7 +4,7 @@ nav a {
 	display: block;
 	outline: none;
 	text-align: left;
-	z-index: 1000;
+	/* z-index: 1000; */
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
