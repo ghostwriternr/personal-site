@@ -48,11 +48,11 @@ class About extends Component {
                     <div className="row" id="iconlinks">
                         <div className="col-xs-12 col-md-offset-7 col-md-4 text-center">
                             <a href='https://github.com/ghostwriternr/' target="_blank" rel="noopener noreferrer"><i id="githubicon" className="fa fa-github link-icons"></i></a>
-                            <a href='https://www.linkedin.com/in/naresh-r-464a8b8b' target="_blank" rel="noopener noreferrer"><i id="linkedinicon" className="fa fa-linkedin link-icons"></i></a>
+                            <a href='https://www.linkedin.com/in/naresh-ramesh/' target="_blank" rel="noopener noreferrer"><i id="linkedinicon" className="fa fa-linkedin link-icons"></i></a>
                             <a href='https://www.facebook.com/naresh.ramesh' target="_blank" rel="noopener noreferrer"><i id="facebookicon" className="fa fa-facebook-square link-icons"></i></a>
                             <a href='http://blog.ghostwriternr.me/' target="_blank" rel="noopener noreferrer"><i id="blogicon" className="fa fa-pencil link-icons"></i></a>
-                            <a href='https://www.instagram.com/naresh_r/' target="_blank" rel="noopener noreferrer"><i id="instaicon" className="fa fa-instagram link-icons"></i></a>
-                            <a href='mailto:nareshmdu@gmail.com' target="_blank" rel="noopener noreferrer"><i id="mailicon" className="fa fa-envelope link-icons"></i></a>
+                            <a href='https://www.instagram.com/noresh.romesh/' target="_blank" rel="noopener noreferrer"><i id="instaicon" className="fa fa-instagram link-icons"></i></a>
+                            <a href='mailto:ghostwriternr@gmail.com' target="_blank" rel="noopener noreferrer"><i id="mailicon" className="fa fa-envelope link-icons"></i></a>
                         </div>
                     </div>
                 </div>
