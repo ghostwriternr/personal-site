@@ -30,6 +30,30 @@
     font-size: 5vh;
 }
 
+.header-title-intuit {
+    color: #0077c5;
+}
+
+.header-title-ezdi {
+    color: #66D1FF;
+}
+
+.header-title-auv {
+    color: #b31b1b;
+}
+
+.header-title-metakgp {
+    color: #282b2b;
+}
+
+.header-title-iitkgp {
+    color: #002147;
+}
+
+.header-title-tls {
+    color: #000;
+}
+
 .header-subtitle {
     font-size: 3vh;
 }
@@ -50,7 +74,7 @@
 .modal-close {
     position: fixed;
     top: 5vh;
-    right: 5vh;
+    right: 3vw;
     color: #000;
     font-size: 5vh;
     z-index: 1000;

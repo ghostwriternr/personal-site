@@ -23,6 +23,7 @@
     justify-content: center;
     box-sizing: border-box;
     position: relative;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1024px) {

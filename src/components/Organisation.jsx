@@ -30,6 +30,122 @@ const customStyles = {
     }
 };
 
+const experienceInfo = {
+    orgs: [
+        {
+            "key": "intuit",
+            "name": "Intuit IDC",
+            "role": "Software Engineer Intern",
+            "headerImage": require('../images/organisations/intuit/one-crop.jpg'),
+            "description": [
+                "After my summer at Intuit IDC this summer, blah blah blah.1",
+                "After my summer at Intuit IDC this summer, blah blah blah.2",
+                "After my summer at Intuit IDC this summer, blah blah blah.3"
+            ],
+            "images": [
+                require('../images/organisations/intuit/bull.jpg'),
+                require('../images/organisations/intuit/code.jpg'),
+                require('../images/organisations/intuit/glasses.jpg'),
+                require('../images/organisations/intuit/hackathon.JPG'),
+                require('../images/organisations/intuit/last.JPG'),
+                require('../images/organisations/intuit/office.JPG'),
+                require('../images/organisations/intuit/seminar.jpg'),
+                require('../images/organisations/intuit/social.jpg')
+            ]
+        },
+        {
+            "key": "ezdi",
+            "name": "ezDI, India",
+            "role": "Software Engineer Intern",
+            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "description": [
+                "After my summer at ezDI this summer, blah blah blah.1",
+                "After my summer at ezDI this summer, blah blah blah.2",
+                "After my summer at ezDI this summer, blah blah blah.3"
+            ],
+            "images": [
+                require('../images/organisations/ezdi/office.jpg'),
+                require('../images/organisations/ezdi/bombay.jpg'),
+                require('../images/organisations/ezdi/desk.jpg'),
+                require('../images/organisations/ezdi/diu.png'),
+                require('../images/organisations/ezdi/treat.jpg')
+            ]
+        },
+        {
+            "key": "auv",
+            "name": "AUV, IIT Kharagpur",
+            "role": "Image Processing Developer",
+            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "description": [
+                "After my summer at AUV this summer, blah blah blah.1",
+                "After my summer at AUV this summer, blah blah blah.2",
+                "After my summer at AUV this summer, blah blah blah.3"
+            ],
+            "images": [
+                require('../images/organisations/ezdi/office.jpg'),
+                require('../images/organisations/ezdi/bombay.jpg'),
+                require('../images/organisations/ezdi/desk.jpg'),
+                require('../images/organisations/ezdi/diu.png'),
+                require('../images/organisations/ezdi/treat.jpg')
+            ]
+        },
+        {
+            "key": "metakgp",
+            "name": "ezDI, India",
+            "role": "Software Engineer Intern",
+            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "description": [
+                "After my summer at ezDI this summer, blah blah blah.1",
+                "After my summer at ezDI this summer, blah blah blah.2",
+                "After my summer at ezDI this summer, blah blah blah.3"
+            ],
+            "images": [
+                require('../images/organisations/ezdi/office.jpg'),
+                require('../images/organisations/ezdi/bombay.jpg'),
+                require('../images/organisations/ezdi/desk.jpg'),
+                require('../images/organisations/ezdi/diu.png'),
+                require('../images/organisations/ezdi/treat.jpg')
+            ]
+        },
+        {
+            "key": "iitkgp",
+            "name": "ezDI, India",
+            "role": "Software Engineer Intern",
+            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "description": [
+                "After my summer at ezDI this summer, blah blah blah.1",
+                "After my summer at ezDI this summer, blah blah blah.2",
+                "After my summer at ezDI this summer, blah blah blah.3"
+            ],
+            "images": [
+                require('../images/organisations/ezdi/office.jpg'),
+                require('../images/organisations/ezdi/bombay.jpg'),
+                require('../images/organisations/ezdi/desk.jpg'),
+                require('../images/organisations/ezdi/diu.png'),
+                require('../images/organisations/ezdi/treat.jpg')
+            ]
+        },
+        {
+            "key": "tls",
+            "name": "ezDI, India",
+            "role": "Software Engineer Intern",
+            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "description": [
+                "After my summer at ezDI this summer, blah blah blah.1",
+                "After my summer at ezDI this summer, blah blah blah.2",
+                "After my summer at ezDI this summer, blah blah blah.3"
+            ],
+            "images": [
+                require('../images/organisations/ezdi/office.jpg'),
+                require('../images/organisations/ezdi/bombay.jpg'),
+                require('../images/organisations/ezdi/desk.jpg'),
+                require('../images/organisations/ezdi/diu.png'),
+                require('../images/organisations/ezdi/treat.jpg')
+            ]
+        }
+    ]
+}
+
 class Organisation extends Component {
     constructor(props) {
         super(props);
@@ -55,35 +171,31 @@ class Organisation extends Component {
                 <div className="modal-content">
                     {/* <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2> */}
                     <div className="modal-header-container">
-                        <img src={require('../images/organisations/intuit/one-crop.jpg')} className="modal-header-image" alt="Header"/>
+                        <img src={experienceInfo.orgs[this.props.selectedOrganisation].headerImage} className="modal-header-image" alt="Header"/>
                         <div className="modal-header-title mobile-invisible">
-                            <h1 className="header-title">Intuit IDC</h1>
-                            <h2 className="header-subtitle">Software Engineer Intern</h2>
+                            <h1 className={'header-title header-title-' + experienceInfo.orgs[this.props.selectedOrganisation].key}>{experienceInfo.orgs[this.props.selectedOrganisation].name}</h1>
+                            <h2 className="header-subtitle">{experienceInfo.orgs[this.props.selectedOrganisation].role}</h2>
                         </div>
                     </div>
                     <div className="modal-text">
                         <i className="modal-close fa fa-close" onClick={this.props.closeModal}></i>
-                        {/* <div>{this.props.selectedOrganisation}</div> */}
                         <div className="row">
                             <div className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
-                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
-                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
-                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
-                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
+                                {
+                                    experienceInfo.orgs[this.props.selectedOrganisation].description.map(function(paragraph, index){
+                                        return <p key={index}>{paragraph}</p>
+                                    })
+                                }
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-xs-12 col-md-offset-1 col-md-10">
                                 <section id="photos">
-                                    <img src={require('../images/organisations/intuit/bull.jpg')} alt="yolo"/>
-                                    <img src={require('../images/organisations/intuit/code.jpg')} alt="yolo"/>
-                                    <img src={require('../images/organisations/intuit/glasses.jpg')} alt="yolo"/>
-                                    <img src={require('../images/organisations/intuit/hackathon.JPG')} alt="yolo"/>
-                                    <img src={require('../images/organisations/intuit/last.JPG')} alt="yolo"/>
-                                    <img src={require('../images/organisations/intuit/office.JPG')} alt="yolo"/>
-                                    <img src={require('../images/organisations/intuit/seminar.jpg')} alt="yolo"/>
-                                    <img src={require('../images/organisations/intuit/social.jpg')} alt="yolo"/>
+                                    {
+                                        experienceInfo.orgs[this.props.selectedOrganisation].images.map(function(image, index){
+                                            return <img key={index} src={image} alt="grid"/>
+                                        })
+                                    }
                                 </section>
                             </div>
                         </div>
