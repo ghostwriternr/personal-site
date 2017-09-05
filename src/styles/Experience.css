@@ -29,6 +29,10 @@
     .box-bg {
         margin: 0.5vw 0.25vw;
     }
+
+    .experience-container {
+        background: url(../images/suntopy.png) no-repeat right top fixed;
+    }
 }
 
 .link-logo {

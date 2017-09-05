@@ -31,7 +31,7 @@ class About extends Component {
                 </div>
                 <div className="row mobile-invisible text-center" id="aboutdescdesk">
                     <div className="col-xs-12 col-md-offset-7 col-md-4 text-center" id="intro">
-                        <text>I am a developer, writer and designer, aiming to bring the best of these 3 worlds together through Computer Science. I enjoy programming and listening to music.</text>
+                        <p>I am a developer, writer and designer, aiming to bring the best of these 3 worlds together through Computer Science. I enjoy programming and listening to music.</p>
                     </div>
                 </div>
                 <div className="row mobile-invisible text-center" id="aboutimg">
@@ -42,7 +42,7 @@ class About extends Component {
                 <div className="stick-bottom">
                     <div className="row desktop-invisible" id="aboutdescmob">
                         <div className="col-xs-12 col-md-offset-6 col-md-6 text-center" id="intro">
-                            <text>I am a developer, writer and designer, aiming to bring the best of these 3 worlds together through Computer Science. I enjoy programming and listening to music.</text>
+                            <p>I am a developer, writer and designer, aiming to bring the best of these 3 worlds together through Computer Science. I enjoy programming and listening to music.</p>
                         </div>
                     </div>
                     <div className="row" id="iconlinks">

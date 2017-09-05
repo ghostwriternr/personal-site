@@ -49,6 +49,7 @@ nav a svg {
 	transition: transform 0.3s;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
+	border-radius: 10px;
 }
 
 .nav-fillpath .icon-wrap::before,
@@ -101,7 +102,7 @@ nav a svg {
 	color: #666;
 	/* text-transform: uppercase; */
 	font-weight: 300;
-	font-size: 2vh;
+	font-size: 3vh;
 	opacity: 0;
 	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
 	transition: transform 0.3s, opacity 0.3s;
