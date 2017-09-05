@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import '../styles/Organisation.css';
+import '../styles/PhotoGrid.css';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -70,6 +71,20 @@ class Organisation extends Component {
                                 <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
                                 <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
                                 <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12 col-md-offset-1 col-md-10">
+                                <section id="photos">
+                                    <img src={require('../images/organisations/intuit/bull.jpg')} alt="yolo"/>
+                                    <img src={require('../images/organisations/intuit/code.jpg')} alt="yolo"/>
+                                    <img src={require('../images/organisations/intuit/glasses.jpg')} alt="yolo"/>
+                                    <img src={require('../images/organisations/intuit/hackathon.JPG')} alt="yolo"/>
+                                    <img src={require('../images/organisations/intuit/last.JPG')} alt="yolo"/>
+                                    <img src={require('../images/organisations/intuit/office.JPG')} alt="yolo"/>
+                                    <img src={require('../images/organisations/intuit/seminar.jpg')} alt="yolo"/>
+                                    <img src={require('../images/organisations/intuit/social.jpg')} alt="yolo"/>
+                                </section>
                             </div>
                         </div>
                     </div>
