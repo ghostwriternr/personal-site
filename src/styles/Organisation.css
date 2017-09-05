@@ -36,6 +36,7 @@
 
 .modal-text {
     font-size: 2.5vh;
+    margin-bottom: 2.5vh;
 }
 
 .modal-text p:first-child:first-letter {
@@ -47,10 +48,21 @@
 }
 
 .modal-close {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    top: 5vh;
+    right: 5vh;
     color: #000;
     font-size: 5vh;
     z-index: 1000;
+}
+
+@media screen and (max-width: 1023px) {
+    .modal-text {
+        margin-bottom: 0;
+    }
+
+    .modal-close {
+        top: 1vh;
+        right: 1vh;
+    }
 }
