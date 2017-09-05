@@ -69,37 +69,37 @@ class Experience extends Component {
                         <div className="row exp-grid">
                             <div className="col-xs-12 col-md-4 box">
                                 <div id="intuit-box" className="box-bg" onClick={() => this.openModal(0)}>
-                                    <img className="org-logo" src={require('../images/intuit.png')} alt="Intuit"/>
+                                    <img className="org-logo" src={require('../images/logos/intuit.png')} alt="Intuit"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
                                 <div id="ezdi-box" className="box-bg" onClick={() => this.openModal(1)}>
-                                    <img className="org-logo" src={require('../images/ezdi.png')} alt="EzDI"/>
+                                    <img className="org-logo" src={require('../images/logos/ezdi.png')} alt="EzDI"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
                                 <div id="auv-box" className="box-bg" onClick={() => this.openModal(2)}>
-                                    <img className="org-logo" src={require('../images/auv.png')} alt="AUV, IIT Kharagpur"/>
+                                    <img className="org-logo" src={require('../images/logos/auv.png')} alt="AUV, IIT Kharagpur"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
                                 <div id="metakgp-box" className="box-bg" onClick={() => this.openModal(3)}>
-                                    <img className="org-logo" src={require('../images/metakgp.jpg')} alt="MetaKGP"/>
+                                    <img className="org-logo" src={require('../images/logos/metakgp.jpg')} alt="MetaKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
                                 <div id="iitkgp-box" className="box-bg" onClick={() => this.openModal(4)}>
-                                    <img className="org-logo" src={require('../images/iitkgp.png')} alt="IITKGP"/>
+                                    <img className="org-logo" src={require('../images/logos/iitkgp.png')} alt="IITKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
                                 <div id="tls-box" className="box-bg" onClick={() => this.openModal(5)}>
-                                    <img className="org-logo" src={require('../images/tls.jpg')} alt="TLS"/>
+                                    <img className="org-logo" src={require('../images/logos/tls.jpg')} alt="TLS"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
                             </div>                                                                                

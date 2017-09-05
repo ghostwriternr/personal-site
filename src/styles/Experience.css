@@ -31,7 +31,7 @@
     }
 
     .experience-container {
-        background: url(../images/suntopy.png) no-repeat right top fixed;
+        background: url(../images/backgrounds/suntopy.png) no-repeat right top fixed;
     }
 }
 
@@ -93,8 +93,4 @@
 .experience-desc {
     text-align: center;
     font-size: 3vh;
-}
-
-.ReactModal__Body--open {
-    overflow: hidden;
 }

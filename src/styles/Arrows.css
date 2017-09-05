@@ -1,5 +1,5 @@
 nav a {
-	position: absolute;
+	position: fixed;
 	top: 50%;
 	display: block;
 	outline: none;

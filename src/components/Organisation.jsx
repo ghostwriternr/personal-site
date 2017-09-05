@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
-import '../styles/Experience.css';
+import '../styles/Organisation.css';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -14,17 +14,17 @@ const customStyles = {
     },
     content : {
         position                   : 'absolute',
-        top                        : '20px',
-        left                       : '20px',
-        right                      : '20px',
-        bottom                     : '20px',
+        top                        : '2vw',
+        left                       : '2vw',
+        right                      : '2vw',
+        bottom                     : '2vw',
         border                     : '1px solid #ccc',
         background                 : '#fff',
         overflow                   : 'auto',
         WebkitOverflowScrolling    : 'touch',
         borderRadius               : '4px',
         outline                    : 'none',
-        padding                    : '20px'
+        padding                    : '0px'
     
     }
 };
@@ -51,10 +51,29 @@ class Organisation extends Component {
                 style={customStyles}
                 contentLabel="Experience modal"
             >
-
-                {/* <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2> */}
-                <button onClick={this.props.closeModal}>close</button>
-                <div>{this.props.selectedOrganisation}</div>
+                <div className="modal-content">
+                    {/* <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2> */}
+                    <div className="modal-header-container">
+                        <img src={require('../images/organisations/intuit/one-crop.jpg')} className="modal-header-image" alt="Header"/>
+                        <div className="modal-header-title mobile-invisible">
+                            <h1 className="header-title">Intuit IDC</h1>
+                            <h2 className="header-subtitle">Software Engineer Intern</h2>
+                        </div>
+                    </div>
+                    <div className="modal-text">
+                        <i className="modal-close fa fa-close" onClick={this.props.closeModal}></i>
+                        {/* <div>{this.props.selectedOrganisation}</div> */}
+                        <div className="row">
+                            <div className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
+                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
+                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
+                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
+                                <p>After my summer at Intuit IDC this summer, blah blah blah.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </Modal>
         )
     }

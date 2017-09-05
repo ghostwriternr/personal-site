@@ -1,0 +1,56 @@
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+.modal-content {
+    overflow-x: hidden;
+}
+
+.modal-header-container {
+    position: relative;
+}
+
+.modal-header-image {
+    position: relative;
+    width: 100%;
+    -webkit-mask-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1)), color-stop(0.5, rgba(0, 0, 0, 1)))
+}
+
+.modal-header-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.header-title {
+    color: #0077C5;
+    font-size: 5vh;
+}
+
+.header-subtitle {
+    font-size: 3vh;
+}
+
+.modal-text {
+    font-size: 2.5vh;
+}
+
+.modal-text p:first-child:first-letter {
+    color: #0077C5;
+    float: left;
+    font-size: 10vh;
+    line-height: 8vh;
+    padding: 1vh 1vh 0 1vh;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #000;
+    font-size: 5vh;
+    z-index: 1000;
+}
