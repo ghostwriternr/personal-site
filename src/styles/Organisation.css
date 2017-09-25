@@ -13,7 +13,11 @@
 .modal-header-image {
     position: relative;
     width: 100%;
-    -webkit-mask-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1)), color-stop(0.5, rgba(0, 0, 0, 1)))
+    -webkit-mask-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1)), color-stop(0.3, rgba(0, 0, 0, 1)));
+    -webkit-filter: grayscale;
+    -webkit-filter: brightness(50%); 
+    filter: grayscale;
+    filter: brightness(50%); 
 }
 
 .modal-header-title {
@@ -25,32 +29,37 @@
     text-align: center;
 }
 
+.modal-mobile-header-title {
+    text-align: center;
+    color: #000;
+}
+
 .header-title {
     color: #0077C5;
     font-size: 5vh;
 }
 
-.header-title-intuit {
+.intuit-color {
     color: #0077c5;
 }
 
-.header-title-ezdi {
+.ezdi-color {
     color: #66D1FF;
 }
 
-.header-title-auv {
+.auv-color {
     color: #b31b1b;
 }
 
-.header-title-metakgp {
+.metakgp-color {
     color: #282b2b;
 }
 
-.header-title-iitkgp {
+.iitkgp-color {
     color: #002147;
 }
 
-.header-title-tls {
+.tls-color {
     color: #000;
 }
 
@@ -64,11 +73,34 @@
 }
 
 .modal-text p:first-child:first-letter {
-    color: #0077C5;
     float: left;
     font-size: 10vh;
     line-height: 8vh;
     padding: 1vh 1vh 0 1vh;
+}
+
+.intuit-text p:first-child:first-letter {
+    color: #0077C5;
+}
+
+.ezdi-text p:first-child:first-letter {
+    color: #66D1FF;
+}
+
+.auv-text p:first-child:first-letter {
+    color: #b31b1b;
+}
+
+.metakgp-text p:first-child:first-letter {
+    color: #282b2b;
+}
+
+.iitkgp-text p:first-child:first-letter {
+    color: #002147;
+}
+
+.tls-text p:first-child:first-letter {
+    color: #000;
 }
 
 .modal-close {

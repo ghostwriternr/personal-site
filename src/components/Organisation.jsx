@@ -173,13 +173,17 @@ class Organisation extends Component {
                     <div className="modal-header-container">
                         <img src={experienceInfo.orgs[this.props.selectedOrganisation].headerImage} className="modal-header-image" alt="Header"/>
                         <div className="modal-header-title mobile-invisible">
-                            <h1 className={'header-title header-title-' + experienceInfo.orgs[this.props.selectedOrganisation].key}>{experienceInfo.orgs[this.props.selectedOrganisation].name}</h1>
+                            <h1 className={'header-title ' + experienceInfo.orgs[this.props.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.props.selectedOrganisation].name}</h1>
                             <h2 className="header-subtitle">{experienceInfo.orgs[this.props.selectedOrganisation].role}</h2>
                         </div>
                     </div>
                     <div className="modal-text">
+                        <div className="modal-mobile-header-title desktop-invisible">
+                            <h1 className={'header-title ' + experienceInfo.orgs[this.props.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.props.selectedOrganisation].name}</h1>
+                            <h2 className="header-subtitle">{experienceInfo.orgs[this.props.selectedOrganisation].role}</h2>
+                        </div>                        
                         <i className="modal-close fa fa-close" onClick={this.props.closeModal}></i>
-                        <div className="row">
+                        <div className={'row ' + experienceInfo.orgs[this.props.selectedOrganisation].key + '-text'}>
                             <div className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
                                 {
                                     experienceInfo.orgs[this.props.selectedOrganisation].description.map(function(paragraph, index){
