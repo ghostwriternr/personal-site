@@ -270,6 +270,36 @@ class Name extends Component {
       var circles = [];
       console.log(circles);
 
+      var vis = (function () {
+        var stateKey, eventKey, keys = {
+          hidden: "visibilitychange",
+          webkitHidden: "webkitvisibilitychange",
+          mozHidden: "mozvisibilitychange",
+          msHidden: "msvisibilitychange"
+        };
+        for (stateKey in keys) {
+          if (stateKey in document) {
+            eventKey = keys[stateKey];
+            break;
+          }
+        }
+        return function (c) {
+          if (c) document.addEventListener(eventKey, c);
+          return !document[stateKey];
+        }
+      })();
+
+      vis(function () {
+        if (vis()) {
+          clearAllTimeouts();
+          setInterval(function () {
+            fauxClick(cW / 2, cH / 2);
+          }, 6000);
+        } else {
+          clearAllTimeouts();
+        }
+      });
+
       var colorPicker = (function() {
         var colors = ["#e5632b", "#873260", "#883e9b", "#b65063"];
         var index = 0;
@@ -518,10 +548,10 @@ class Name extends Component {
                       <Link to="/experience"><span data-hover="Experience">Experience</span></Link>
                     </div>
                     <div className="col-xs-4 col-md-3">
-                      <Link to="/"><span data-hover="Projects">Projects</span></Link>
+                      <Link to="/projects"><span data-hover="Projects">Projects</span></Link>
                     </div>
                     <div className="col-xs-4 col-md-3">
-                      <Link to="http://ghostwriternr.me/resume/" target="_blank"><span data-hover="Resume">Resume</span></Link>
+                    <Link to="/resume"><span data-hover="Resume">Resume</span></Link>
                     </div>
 				          </div>
               </div>
