@@ -44,7 +44,7 @@
 }
 
 .ezdi-color {
-    color: #66D1FF;
+    color: #92C13D;
 }
 
 .auv-color {
@@ -84,7 +84,7 @@
 }
 
 .ezdi-text p:first-child:first-letter {
-    color: #66D1FF;
+    color: #92C13D;
 }
 
 .auv-text p:first-child:first-letter {
@@ -107,7 +107,7 @@
     position: fixed;
     top: 5vh;
     right: 3vw;
-    color: #000;
+    color: #888;
     font-size: 5vh;
     z-index: 1000;
 }

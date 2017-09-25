@@ -75,72 +75,70 @@ const experienceInfo = {
             "key": "auv",
             "name": "AUV, IIT Kharagpur",
             "role": "Image Processing Developer",
-            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "headerImage": require('../images/organisations/auv/team.jpg'),
             "description": [
                 "After my summer at AUV this summer, blah blah blah.1",
                 "After my summer at AUV this summer, blah blah blah.2",
                 "After my summer at AUV this summer, blah blah blah.3"
             ],
             "images": [
-                require('../images/organisations/ezdi/office.jpg'),
-                require('../images/organisations/ezdi/bombay.jpg'),
-                require('../images/organisations/ezdi/desk.jpg'),
-                require('../images/organisations/ezdi/diu.png'),
-                require('../images/organisations/ezdi/treat.jpg')
+                require('../images/organisations/auv/bot3.jpg'),
+                require('../images/organisations/auv/bot2.jpg'),
+                require('../images/organisations/auv/demo.jpg'),
+                require('../images/organisations/auv/pool.jpg'),
+                require('../images/organisations/auv/sparton.jpg')
             ]
         },
         {
             "key": "metakgp",
-            "name": "ezDI, India",
-            "role": "Software Engineer Intern",
-            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "name": "MetaKGP",
+            "role": "Organisation Maintainer",
+            "headerImage": require('../images/organisations/metakgp/aaron.jpg'),
             "description": [
                 "After my summer at ezDI this summer, blah blah blah.1",
                 "After my summer at ezDI this summer, blah blah blah.2",
                 "After my summer at ezDI this summer, blah blah blah.3"
             ],
-            "images": [
-                require('../images/organisations/ezdi/office.jpg'),
-                require('../images/organisations/ezdi/bombay.jpg'),
-                require('../images/organisations/ezdi/desk.jpg'),
-                require('../images/organisations/ezdi/diu.png'),
-                require('../images/organisations/ezdi/treat.jpg')
-            ]
+            "images": []
         },
         {
             "key": "iitkgp",
-            "name": "ezDI, India",
-            "role": "Software Engineer Intern",
-            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "name": "Indian Institute of Technology, Kharagpur",
+            "role": "",
+            "headerImage": require('../images/organisations/iitkgp/illu.jpg'),
             "description": [
                 "After my summer at ezDI this summer, blah blah blah.1",
                 "After my summer at ezDI this summer, blah blah blah.2",
                 "After my summer at ezDI this summer, blah blah blah.3"
             ],
             "images": [
-                require('../images/organisations/ezdi/office.jpg'),
-                require('../images/organisations/ezdi/bombay.jpg'),
-                require('../images/organisations/ezdi/desk.jpg'),
-                require('../images/organisations/ezdi/diu.png'),
-                require('../images/organisations/ezdi/treat.jpg')
+                require('../images/organisations/iitkgp/interiit.jpg'),
+                require('../images/organisations/iitkgp/prize.jpg'),
+                require('../images/organisations/iitkgp/bitwise.png'),
+                require('../images/organisations/iitkgp/drams.jpg'),
+                require('../images/organisations/iitkgp/robotix.jpg')
             ]
         },
         {
             "key": "tls",
-            "name": "ezDI, India",
-            "role": "Software Engineer Intern",
-            "headerImage": require('../images/organisations/ezdi/jump.png'),
+            "name": "Technology Literary Society, IITKGP",
+            "role": "Executive editor",
+            "headerImage": require('../images/organisations/tls/sf.jpg'),
             "description": [
                 "After my summer at ezDI this summer, blah blah blah.1",
                 "After my summer at ezDI this summer, blah blah blah.2",
                 "After my summer at ezDI this summer, blah blah blah.3"
             ],
             "images": [
-                require('../images/organisations/ezdi/office.jpg'),
-                require('../images/organisations/ezdi/bombay.jpg'),
-                require('../images/organisations/ezdi/desk.jpg'),
-                require('../images/organisations/ezdi/diu.png'),
-                require('../images/organisations/ezdi/treat.jpg')
+                require('../images/organisations/tls/sfgroup.jpg'),
+                require('../images/organisations/tls/shivani.jpg'),
+                require('../images/organisations/tls/host.jpg'),
+                require('../images/organisations/tls/flavors.jpg'),
+                require('../images/organisations/tls/kalidas.jpg'),
+                require('../images/organisations/tls/govs.png'),
+                require('../images/organisations/tls/tp.jpg'),
+                require('../images/organisations/tls/duddu.png'),
+                require('../images/organisations/tls/shibani.png')
             ]
         }
     ]

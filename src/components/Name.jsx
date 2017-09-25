@@ -10,7 +10,7 @@ class Name extends Component {
     constructor(props) {
       super(props);
       this.mobileAndTabletcheck = this.mobileAndTabletcheck.bind(this);
-      if (this.mobileAndTabletcheck === true) {
+      if (this.mobileAndTabletcheck() === true) {
         this.state = {
           params: {
                 particles: {
@@ -454,6 +454,10 @@ class Name extends Component {
           }
           handleInactiveUser();
         })();
+      } else {
+        (function init() {
+          resizeCanvas();
+        })();        
       }
 
       function clearAllTimeouts() {

@@ -92,17 +92,17 @@ class Experience extends Component {
                                 </div>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="iitkgp-box" className="box-bg" onClick={() => this.openModal(4)}>
-                                    <img className="org-logo" src={require('../images/logos/iitkgp.png')} alt="IITKGP"/>
-                                    <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
-                                </div>
-                            </div>
-                            <div className="col-xs-12 col-md-4 box">
                                 <div id="tls-box" className="box-bg" onClick={() => this.openModal(5)}>
                                     <img className="org-logo" src={require('../images/logos/tls.jpg')} alt="TLS"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
-                            </div>                                                                                
+                            </div>                              
+                            <div className="col-xs-12 col-md-4 box">
+                                <div id="iitkgp-box" className="box-bg" onClick={() => this.openModal(4)}>
+                                    <img className="org-logo" src={require('../images/logos/iitkgp.png')} alt="IITKGP"/>
+                                    <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
+                                </div>
+                            </div>                                                                              
                         </div>
                     </div>
                 </div>
