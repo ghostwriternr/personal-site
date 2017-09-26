@@ -29,12 +29,20 @@ const AppRoutes = props =>
           y: 50,
           autoAlpha: 0
         });
-        TweenLite.to(node, 0.5, {
+        TweenLite.to(node, 0.8, {
           autoAlpha: 1,
           y: 0,
           onComplete: completeCall,
           onCompleteParams: [node]
         });
+      }}
+      onExit={node => {
+        TweenMax.killTweensOf(node);
+        TweenLite.to(node, 0.4, {
+          autoAlpha: 0,
+          onComplete: completeCall,
+          onCompleteParams: [node]
+        })
       }}
     >
       <Switch location={props.location}>

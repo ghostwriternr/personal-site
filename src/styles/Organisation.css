@@ -1,6 +1,7 @@
 .modal-content {
     overflow-x: hidden;
     background-color: #fff;
+    width: 100vw;
 }
 
 .modal-header-container {

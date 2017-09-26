@@ -5,7 +5,7 @@
     background-color: #fff;
     position: relative;
     z-index: 5;
-    margin: 1.4vh 0.7vw;
+    margin: 1.4vh 0.7vw;    
 }
 
 @media screen and (max-width: 1023px) {
@@ -14,4 +14,14 @@
         min-width: 100vw;
         margin: 0;
     }
+}
+
+.resume-desc {
+    text-align: center;
+    font-size: 3vh;
+}
+
+.resume-img img {
+    max-width: 100%;
+    padding: 30px 0 30px 0;
 }

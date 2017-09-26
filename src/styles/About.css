@@ -1,5 +1,6 @@
 .about-container {
     min-height: 97vh;
+    min-width: 98.6vw;
     background: url(../images/backgrounds/dlanham-Cardinal.jpg) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
@@ -17,6 +18,7 @@
 @media screen and (max-width: 1023px) {
     .about-container {
         min-height: 100vh;
+        min-width: 100vw;
         margin: 0;
     }
 }

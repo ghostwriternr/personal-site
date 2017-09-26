@@ -1,13 +1,11 @@
 .experience-container {
     min-height: 97vh;
-    min-width: 97vw;
+    min-width: 98.6vw;
     padding-top: 2vh;
     background-color: #fff;
     position: relative;
     z-index: 5;
     margin: 1.4vh 0.7vw;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 @media screen and (max-width: 1023px) {

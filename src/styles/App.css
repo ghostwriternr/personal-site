@@ -2,7 +2,12 @@
     text-align: center;
     font-family: 'Raleway', sans-serif;
     overflow-x: hidden;
-    background-color: #fff;
+    background: #e5632b;
+    background: -webkit-linear-gradient(top left, #e5632b, #e52b50);
+    background:    -moz-linear-gradient(top left, #e5632b, #e52b50);
+    background:     -ms-linear-gradient(top left, #e5632b, #e52b50);
+    background:      -o-linear-gradient(top left, #e5632b, #e52b50);
+    background:         linear-gradient(to bottom right, #e5632b, #e52b50);
 }
 
 ::-webkit-scrollbar {
@@ -17,12 +22,34 @@
 
 @media screen and (max-width: 1023px) {
     .App-header {
-        background: #e5632b;
-        background: -webkit-linear-gradient(top left, #e5632b, #e52b50);
-        background:    -moz-linear-gradient(top left, #e5632b, #e52b50);
-        background:     -ms-linear-gradient(top left, #e5632b, #e52b50);
-        background:      -o-linear-gradient(top left, #e5632b, #e52b50);
-        background:         linear-gradient(to bottom right, #e5632b, #e52b50);
+        animation: fade 0s forwards;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+        background-color: rgba(229, 99, 43, 1);
+        background: -webkit-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+        background:    -moz-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+        background:     -ms-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+        background:      -o-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+        background:         linear-gradient(to bottom right, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+    }
+
+    @keyframes fade {
+        from {
+            background-color: rgba(229, 99, 43, 1);
+            background: -webkit-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+            background:    -moz-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+            background:     -ms-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+            background:      -o-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+            background:         linear-gradient(to bottom right, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
+        }
+        to {
+            background-color: rgba(229, 99, 43, 0);
+            background: -webkit-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
+            background:    -moz-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
+            background:     -ms-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
+            background:      -o-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
+            background:         linear-gradient(to bottom right, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
+        }
     }
 }
 
