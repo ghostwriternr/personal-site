@@ -529,7 +529,6 @@ class Name extends Component {
     render() {
         return (
             <div className="App-header Aligner">
-              <canvas id="c" className="mobile-invisible"></canvas>
               <div>
                   <Particles
                       params={this.state.params}
@@ -544,13 +543,13 @@ class Name extends Component {
                     <div className="col-xs-12 col-md-3">
                       <Link to="/about"><span data-hover="About Me">About Me</span></Link>
                     </div>
-                    <div className="col-xs-4 col-md-3">
+                    <div className="col-xs-12 col-md-3">
                       <Link to="/experience"><span data-hover="Experience">Experience</span></Link>
                     </div>
-                    <div className="col-xs-4 col-md-3">
+                    <div className="col-xs-12 col-md-3">
                       <Link to="/projects"><span data-hover="Projects">Projects</span></Link>
                     </div>
-                    <div className="col-xs-4 col-md-3">
+                    <div className="col-xs-12 col-md-3">
                     <Link to="/resume"><span data-hover="Resume">Resume</span></Link>
                     </div>
 				          </div>

@@ -1,6 +1,6 @@
 nav a {
 	position: fixed;
-	top: 50%;
+	top: 50vh;
 	display: block;
 	outline: none;
 	text-align: left;
