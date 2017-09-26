@@ -2,37 +2,12 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import '../styles/Experience.css';
 import '../styles/Arrows.css';
-import Organisation from '../components/Organisation'
 import { Link } from 'react-router-dom';
 
 class Experience extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            selectedOrganisation: 0,
-            modalIsOpen: false
-        }
-
-        this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
-    }
-
-    setSelectedOrganisation(id) {
-        this.setState({selectedOrganisation: id});
-    }
-
-    openModal(index) {
-        this.setState({selectedOrganisation: index, modalIsOpen: true});
-    }
-
-    afterOpenModal() {
-        // this.subtitle.style.color = '#f00';
-    }
-
-    closeModal() {
-        this.setState({modalIsOpen: false});
     }
 
     handleKeyPress(e) {
@@ -48,7 +23,7 @@ class Experience extends Component {
                 break;
             case '4':
                 this.props.history.push('/resume');
-                break;              
+                break;
             case 'ArrowLeft':
                 this.props.history.push('/about');
                 break;
@@ -58,6 +33,24 @@ class Experience extends Component {
             case 'Escape':
                 this.props.history.push('/');
                 break;
+            case '!':
+                this.props.history.push('/experience/intuit');
+                break;   
+            case '@':
+                this.props.history.push('/experience/ezdi');
+                break;   
+            case '#':
+                this.props.history.push('/experience/auv');
+                break;   
+            case '$':
+                this.props.history.push('/experience/metakgp');
+                break;   
+            case '%':
+                this.props.history.push('/experience/tls');
+                break;   
+            case '^':
+                this.props.history.push('/experience/iitkgp');
+                break;                                                                                                
             default:
                 break;
         }
@@ -105,40 +98,40 @@ class Experience extends Component {
                     <div className="col-xs-12 col-md-offset-2 col-md-8">
                         <div className="row exp-grid">
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="intuit-box" className="box-bg" onClick={() => this.openModal(0)}>
+                                <Link id="intuit-box" className="box-bg" to={`${this.props.match.url}/intuit`}>
                                     <img className="org-logo" src={require('../images/logos/intuit.png')} alt="Intuit"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
-                                </div>
+                                </Link>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="ezdi-box" className="box-bg" onClick={() => this.openModal(1)}>
+                                <Link id="ezdi-box" className="box-bg" to={`${this.props.match.url}/ezdi`}>
                                     <img className="org-logo" src={require('../images/logos/ezdi.png')} alt="EzDI"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
-                                </div>
+                                </Link>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="auv-box" className="box-bg" onClick={() => this.openModal(2)}>
+                                <Link id="auv-box" className="box-bg" to={`${this.props.match.url}/auv`}>
                                     <img className="org-logo" src={require('../images/logos/auv.png')} alt="AUV, IIT Kharagpur"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
-                                </div>
+                                </Link>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="metakgp-box" className="box-bg" onClick={() => this.openModal(3)}>
+                                <Link id="metakgp-box" className="box-bg" to={`${this.props.match.url}/metakgp`}>
                                     <img className="org-logo" src={require('../images/logos/metakgp.jpg')} alt="MetaKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
-                                </div>
+                                </Link>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="tls-box" className="box-bg" onClick={() => this.openModal(5)}>
+                                <Link id="tls-box" className="box-bg" to={`${this.props.match.url}/tls`}>
                                     <img className="org-logo" src={require('../images/logos/tls.jpg')} alt="TLS"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
-                                </div>
+                                </Link>
                             </div>
                             <div className="col-xs-12 col-md-4 box">
-                                <div id="iitkgp-box" className="box-bg" onClick={() => this.openModal(4)}>
+                                <Link id="iitkgp-box" className="box-bg" to={`${this.props.match.url}/iitkgp`}>
                                     <img className="org-logo" src={require('../images/logos/iitkgp.png')} alt="IITKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
-                                </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -153,13 +146,6 @@ class Experience extends Component {
                         <h3><strong>Projects</strong></h3>
                     </Link>
                 </nav>
-                <Organisation
-                    selectedOrganisation={this.state.selectedOrganisation}
-                    modalIsOpen={this.state.modalIsOpen}
-                    openModal={this.openModal}
-                    afterOpenModal={this.afterOpenModal}
-                    closeModal={this.closeModal}
-                />
             </div>
         );
     }

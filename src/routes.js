@@ -8,6 +8,7 @@ import About from "./containers/About";
 import Experience from "./containers/Experience";
 import Projects from "./containers/Projects";
 import Resume from "./containers/Resume";
+import Organisation from "./components/Organisation";
 
 const completeCall = target => {
   TweenLite.set(target, { clearProps: "position, width" });
@@ -37,9 +38,10 @@ const AppRoutes = props =>
       }}
     >
       <Switch location={props.location}>
-        <Route exact path="/" component={Name}/>
+        <Route exact path="/" component={Name}/>>
         <Route exact path="/about" component={About}/>
         <Route exact path="/experience" component={Experience}/>
+        <Route exact path="/experience/:orgId" component={Organisation}/>
         <Route exact path="/projects" component={Projects}/>
         <Route exact path="/resume" component={Resume}/>
       </Switch>
