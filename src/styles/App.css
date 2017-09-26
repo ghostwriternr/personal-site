@@ -5,20 +5,25 @@
     background-color: #fff;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
     height: 80px;
 }
 
-.App-header {
-    background: #e5632b;
-    background: -webkit-linear-gradient(top left, #e5632b, #e52b50);
-    background:    -moz-linear-gradient(top left, #e5632b, #e52b50);
-    background:     -ms-linear-gradient(top left, #e5632b, #e52b50);
-    background:      -o-linear-gradient(top left, #e5632b, #e52b50);
-    background:         linear-gradient(to bottom right, #e5632b, #e52b50);
-    height: 100vh;
-    /*padding: 20px;*/
+@media screen and (max-width: 1023px) {
+    .App-header {
+        background: #e5632b;
+        background: -webkit-linear-gradient(top left, #e5632b, #e52b50);
+        background:    -moz-linear-gradient(top left, #e5632b, #e52b50);
+        background:     -ms-linear-gradient(top left, #e5632b, #e52b50);
+        background:      -o-linear-gradient(top left, #e5632b, #e52b50);
+        background:         linear-gradient(to bottom right, #e5632b, #e52b50);
+    }
 }
 
 .App-intro {
@@ -32,16 +37,6 @@
     to {
         transform: rotate(360deg);
     }
-}
-
-.Aligner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.Aligner-item {
-  max-width: 50%;
 }
 
 .Navigation-position {
@@ -83,5 +78,5 @@ canvas {
     width: 100vw;
     height: 100vh;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
 }

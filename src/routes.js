@@ -29,7 +29,7 @@ const AppRoutes = props =>
           y: 50,
           autoAlpha: 0
         });
-        TweenLite.to(node, 0.3, {
+        TweenLite.to(node, 0.5, {
           autoAlpha: 1,
           y: 0,
           onComplete: completeCall,
@@ -38,7 +38,7 @@ const AppRoutes = props =>
       }}
     >
       <Switch location={props.location}>
-        <Route exact path="/" component={Name}/>>
+        <Route exact path="/" component={Name}/>
         <Route exact path="/about" component={About}/>
         <Route exact path="/experience" component={Experience}/>
         <Route exact path="/experience/:orgId" component={Organisation}/>
