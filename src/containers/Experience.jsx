@@ -16,6 +16,7 @@ class Experience extends Component {
         this.openModal = this.openModal.bind(this);
         this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     setSelectedOrganisation(id) {
@@ -32,6 +33,42 @@ class Experience extends Component {
 
     closeModal() {
         this.setState({modalIsOpen: false});
+    }
+
+    handleKeyPress(e) {
+        switch (e.key) {
+            case '1':
+                this.props.history.push('/about');
+                break;
+            case '2':
+                this.props.history.push('/experience');
+                break;
+            case '3':
+                this.props.history.push('/projects');
+                break;
+            case '4':
+                this.props.history.push('/resume');
+                break;              
+            case 'ArrowLeft':
+                this.props.history.push('/about');
+                break;
+            case 'ArrowRight':
+                this.props.history.push('/projects');
+                break;
+            case 'Escape':
+                this.props.history.push('/');
+                break;
+            default:
+                break;
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
     }
 
     render() {
@@ -96,13 +133,13 @@ class Experience extends Component {
                                     <img className="org-logo" src={require('../images/logos/tls.jpg')} alt="TLS"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
-                            </div>                              
+                            </div>
                             <div className="col-xs-12 col-md-4 box">
                                 <div id="iitkgp-box" className="box-bg" onClick={() => this.openModal(4)}>
                                     <img className="org-logo" src={require('../images/logos/iitkgp.png')} alt="IITKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
                                 </div>
-                            </div>                                                                              
+                            </div>
                         </div>
                     </div>
                 </div>

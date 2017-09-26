@@ -5,6 +5,44 @@ import '../styles/Arrows.css';
 import { Link } from 'react-router-dom';
 
 class Resume extends Component {
+    constructor(props) {
+        super(props);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
+
+    handleKeyPress(e) {
+        switch (e.key) {
+            case '1':
+                this.props.history.push('/about');
+                break;
+            case '2':
+                this.props.history.push('/experience');
+                break;
+            case '3':
+                this.props.history.push('/projects');
+                break;
+            case '4':
+                this.props.history.push('/resume');
+                break;              
+            case 'ArrowLeft':
+                this.props.history.push('/projects');
+                break;
+            case 'Escape':
+                this.props.history.push('/');
+                break;
+            default:
+                break;
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
+    }
+
     render() {
         return (
             <div className="resume-container">

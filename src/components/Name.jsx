@@ -10,6 +10,7 @@ class Name extends Component {
     constructor(props) {
       super(props);
       this.mobileAndTabletcheck = this.mobileAndTabletcheck.bind(this);
+      this.handleKeyPress = this.handleKeyPress.bind(this);
       if (this.mobileAndTabletcheck() === true) {
         this.state = {
           params: {
@@ -260,7 +261,28 @@ class Name extends Component {
       return check;
     };
 
+    handleKeyPress(e) {
+        switch (e.key) {
+            case '1':
+                this.props.history.push('/about');
+                break;
+            case '2':
+                this.props.history.push('/experience');
+                break;
+            case '3':
+                this.props.history.push('/projects');
+                break;
+            case '4':
+                this.props.history.push('/resume');
+                break;                      
+            default:
+                break;
+        }
+    }
+
     componentDidMount() {
+      document.addEventListener("keydown", this.handleKeyPress);
+
       var c = document.getElementById("c");
       var ctx = c.getContext("2d");
       var cH;
@@ -526,6 +548,11 @@ class Name extends Component {
         document.dispatchEvent(fauxClick);
       }
     }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
+    }
+
     render() {
         return (
             <div className="App-header Aligner">
