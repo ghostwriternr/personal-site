@@ -29,7 +29,7 @@ const AppRoutes = props =>
           y: 50,
           autoAlpha: 0
         });
-        TweenLite.to(node, 0.8, {
+        TweenLite.to(node, 0.6, {
           autoAlpha: 1,
           y: 0,
           onComplete: completeCall,

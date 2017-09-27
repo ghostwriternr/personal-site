@@ -6,7 +6,6 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    padding-top: 2vh;
     position: relative;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -42,7 +41,6 @@
 }
 #aboutdescmob {
     position: relative;
-    margin-top: 32vh;
     left: 0;
     right: 0;
     font-size: 2.5vh;
@@ -74,9 +72,14 @@
 
 #iconlinks {
     position: relative;
-    margin-top: 5vh;
     left: 0;
     right: 0;
+}
+
+@media screen and (min-width: 1024px) {
+    #iconlinks {
+        margin-top: 20px;
+    }
 }
 
 i {
@@ -137,7 +140,7 @@ i:hover {
 @media screen and (max-width: 1023px) {
     .stick-bottom {
         position: absolute;
-        bottom: 2vh;
+        bottom: 0;
         width: 100vw;
     }
 }

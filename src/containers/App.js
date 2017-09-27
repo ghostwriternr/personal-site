@@ -93,7 +93,7 @@ class App extends Component {
                     mode: "grab"
                   },
                   onclick: {
-                    enable: true,
+                    enable: false,
                     mode: "push"
                   },
                   resize: true
@@ -213,7 +213,7 @@ class App extends Component {
                       mode: "grab"
                     },
                     onclick: {
-                      enable: true,
+                      enable: false,
                       mode: "push"
                     },
                     resize: true

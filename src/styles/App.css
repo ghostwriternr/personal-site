@@ -24,7 +24,7 @@
     .App-header {
         animation: fade 0s forwards;
         -webkit-animation-delay: 0.8s;
-        animation-delay: 0.8s;
+        animation-delay: 0.6s;
         background-color: rgba(229, 99, 43, 1);
         background: -webkit-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
         background:    -moz-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
@@ -104,6 +104,6 @@ canvas {
     display: block;
     width: 100vw;
     height: 100vh;
-    cursor: pointer;
+    /* cursor: pointer; */
     position: fixed;
 }

@@ -21,7 +21,16 @@
     font-size: 3vh;
 }
 
+.resume-img {
+    align-items: center;
+}
+
 .resume-img img {
     max-width: 100%;
-    padding: 30px 0 30px 0;
+}
+
+@media screen and (min-width: 1024px) {
+    .resume-img {
+        padding: 30px 100px 30px 100px;
+    }
 }
