@@ -4,6 +4,14 @@ import '../styles/Projects.css';
 import '../styles/Arrows.css';
 import { Link } from 'react-router-dom';
 
+const projects = [
+    {"title": "test1"},
+    {"title": "test2"},
+    {"title": "test3"},
+    {"title": "test4"},
+    {"title": "test5"}
+]
+
 class Projects extends Component {
     constructor(props) {
         super(props);
@@ -52,13 +60,13 @@ class Projects extends Component {
                 <div className="header-container">
                     <div className="row desktop-invisible">
                         <div className="col-xs-12">
-                            <Link to="/"><i className="back-arrow fa fa-chevron-up"></i></Link>
+                            <Link to="/"><i className="back-arrow fa fa-angle-up"></i></Link>
                         </div>
                     </div>
                     <div className="row">
                         <div className="mobile-invisible">
                             <div className="col-xs-12">
-                                <Link to="/"><i className="back-arrow back-arrow-desktop fa fa-chevron-up"></i></Link>
+                                <Link to="/"><i className="back-arrow back-arrow-desktop fa fa-angle-up"></i></Link>
                             </div>
                         </div>
                         <div className="col-xs-12 col-md-2 text-center" id="header-text">
@@ -66,6 +74,24 @@ class Projects extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-xs-offset-1 col-xs-10">
+                        <div className="row">
+                            {
+                                projects.map(function(project) {
+                                    return (
+                                        <div className="project-box col-xs-12 col-md-6">
+                                            <div className="project-type" />
+                                            <div className="project-contents">
+                                                <h2>{project.title}</h2>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+                </div>                
                 <nav className="nav-fillpath mobile-invisible">
                     <Link className="prev" to="/experience">
                         <span className="icon-wrap"><svg className="icon" width="24" height="24" viewBox="0 0 16 16"><path id="arrow-left-1" d="M46.077 55.738c0.858 0.867 0.858 2.266 0 3.133s-2.243 0.867-3.101 0l-25.056-25.302c-0.858-0.867-0.858-2.269 0-3.133l25.056-25.306c0.858-0.867 2.243-0.867 3.101 0s0.858 2.266 0 3.133l-22.848 23.738 22.848 23.738z" /></svg></span>

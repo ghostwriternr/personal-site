@@ -49,13 +49,13 @@ class Resume extends Component {
                 <div className="header-container">
                     <div className="row desktop-invisible">
                         <div className="col-xs-12">
-                            <Link to="/"><i className="back-arrow fa fa-chevron-up"></i></Link>
+                            <Link to="/"><i className="back-arrow fa fa-angle-up"></i></Link>
                         </div>
                     </div>
                     <div className="row">
                         <div className="mobile-invisible">
                             <div className="col-xs-12">
-                                <Link to="/"><i className="back-arrow back-arrow-desktop fa fa-chevron-up"></i></Link>
+                                <Link to="/"><i className="back-arrow back-arrow-desktop fa fa-angle-up"></i></Link>
                             </div>
                         </div>
                         <div className="col-xs-12 col-md-2 text-center" id="header-text">

@@ -160,8 +160,8 @@ class Organisation extends Component {
                         <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
                         <h2 className="header-subtitle">{experienceInfo.orgs[this.state.selectedOrganisation].role}</h2>
                     </div>
-                    <Link to="/experience">
-                        <i className="modal-close fa fa-close"></i>
+                    <Link to="/experience" className="modal-close">
+                        <i className="fa fa-close"></i>
                     </Link>
                     <div className={'row ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-text'}>
                         <div className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">

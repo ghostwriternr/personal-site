@@ -11,7 +11,7 @@ import Resume from "./containers/Resume";
 import Organisation from "./components/Organisation";
 
 const completeCall = target => {
-  TweenLite.set(target, { clearProps: "position, width" });
+  TweenLite.set(target, { clearProps: "position" });
 };
 
 const AppRoutes = props =>
@@ -27,7 +27,7 @@ const AppRoutes = props =>
         TweenLite.set(node, {
           position: "fixed",
           y: 50,
-          autoAlpha: 0
+          autoAlpha: 0.6
         });
         TweenLite.to(node, 0.6, {
           autoAlpha: 1,
@@ -35,14 +35,6 @@ const AppRoutes = props =>
           onComplete: completeCall,
           onCompleteParams: [node]
         });
-      }}
-      onExit={node => {
-        TweenMax.killTweensOf(node);
-        TweenLite.to(node, 0.4, {
-          autoAlpha: 0,
-          onComplete: completeCall,
-          onCompleteParams: [node]
-        })
       }}
     >
       <Switch location={props.location}>
