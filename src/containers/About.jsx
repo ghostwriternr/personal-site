@@ -74,7 +74,7 @@ class About extends Component {
                 </div>
                 <div className="row mobile-invisible text-center" id="aboutimg">
                     <div className="col-xs-12 col-md-offset-7 col-md-4 text-center" id="profileimg">
-                        <img className="about-image img-thumbnail" src={require('../images/about.JPG')} alt="Me!" />
+                        <img className="about-image img-thumbnail" src={require('../images/about.jpg')} alt="Me!" />
                     </div>
                 </div>
                 <div className="stick-bottom">

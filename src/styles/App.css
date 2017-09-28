@@ -8,7 +8,38 @@
     background:     -ms-linear-gradient(top left, #e5632b, #e52b50);
     background:      -o-linear-gradient(top left, #e5632b, #e52b50);
     background:         linear-gradient(to bottom right, #e5632b, #e52b50);
+    /* background: linear-gradient(315deg, #e5632b, #873260, #883e9b, #b65063);
+    background-size: 800% 800%;
+    
+    -webkit-animation: DynamicGradient 19s ease infinite;
+    -moz-animation: DynamicGradient 19s ease infinite;
+    -o-animation: DynamicGradient 19s ease infinite;
+    animation: DynamicGradient 19s ease infinite; */
 }
+
+/* @-webkit-keyframes DynamicGradient {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+@-moz-keyframes DynamicGradient {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+@-o-keyframes DynamicGradient {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+@keyframes DynamicGradient {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+} */
 
 ::-webkit-scrollbar {
     width: 0px;
@@ -86,11 +117,16 @@
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: 8vh;
+    padding: 0 30px;
 }
 
 @media screen and (min-width: 1024px) {
     .desktop-invisible {
         display: none;
+    }
+
+    .header-container {
+        text-align: left;
     }
 }
 
@@ -104,6 +140,5 @@ canvas {
     display: block;
     width: 100vw;
     height: 100vh;
-    /* cursor: pointer; */
     position: fixed;
 }

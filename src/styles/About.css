@@ -60,6 +60,7 @@
     -webkit-transition: all .6s ease;
 }
 
+
 .about-image:hover {
   -webkit-filter: grayscale(0) contrast(1.25);
   filter: none;
@@ -85,54 +86,67 @@
 i {
     padding: 2vh;
 }
+
 i:hover {
     cursor: pointer;
 }
+
 #githubicon {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
+
 #linkedinicon {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
+
 #facebookicon{
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
+
 #blogicon{
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
+
 #instaicon{
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
+
 #mailicon{
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
+
 #githubicon:hover {
     color: #6e5494;
 }
+
 #linkedinicon:hover {
     color: #283e4a;
 }
+
 #facebookicon:hover{
     color: #3b5998;
 }
+
 #blogicon:hover{
     color: #666666;
 }
+
 #instaicon:hover{
     color: #df326a;
 }
+
 #mailicon:hover{
     color: #dd4d40;
 }

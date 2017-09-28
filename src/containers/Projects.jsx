@@ -5,11 +5,31 @@ import '../styles/Arrows.css';
 import { Link } from 'react-router-dom';
 
 const projects = [
-    {"title": "test1"},
-    {"title": "test2"},
-    {"title": "test3"},
-    {"title": "test4"},
-    {"title": "test5"}
+    {
+        "title": "test1",
+        "gist": "gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 ",
+        "category": "category1"
+    },
+    {
+        "title": "test2",
+        "gist": "gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 ",
+        "category": "category2"
+    },
+    {
+        "title": "test3",
+        "gist": "gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 ",
+        "category": "category3"
+    },
+    {
+        "title": "test4",
+        "gist": "gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 ",
+        "category": "category4"
+    },
+    {
+        "title": "test5",
+        "gist": "gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 ",
+        "category": "category5"
+    }
 ]
 
 class Projects extends Component {
@@ -78,12 +98,16 @@ class Projects extends Component {
                     <div className="col-xs-offset-1 col-xs-10">
                         <div className="row">
                             {
-                                projects.map(function(project) {
+                                projects.map(function(project, index) {
                                     return (
-                                        <div className="project-box col-xs-12 col-md-6">
-                                            <div className="project-type" />
-                                            <div className="project-contents">
-                                                <h2>{project.title}</h2>
+                                        <div className="col-xs-12 col-md-4" key={index}>
+                                            <div className="project-box">
+                                                <div className="project-type" />
+                                                <div className="project-contents">
+                                                    <h2>{project.title}</h2>
+                                                    <h5 className="project-category">{project.category}</h5>
+                                                    <p>{project.gist}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     );

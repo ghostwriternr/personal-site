@@ -2,7 +2,7 @@
     min-height: 97vh;
     min-width: 98.6vw;
     padding-top: 2vh;
-    background-color: #fff;
+    background-color: #f8f8f8;
     position: relative;
     z-index: 5;
     margin: 1.4vh 0.7vw;
@@ -17,7 +17,10 @@
 }
 
 .project-box {
-    height: 100px;
+    height: 200px;
+    margin: 10px 0;
+    background-color: #fff;
+    text-align: left;
 }
 
 .project-type {
@@ -30,4 +33,16 @@
     background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
     background-image: linear-gradient(to right, #cc208e 0%, #6713d2 100%);
     height: 10px;
+}
+
+.project-contents {
+    padding: 0 20px;
+}
+
+.project-contents h5 {
+    margin-top: -20px;
+    background: linear-gradient(#cc208e 0%, #6713d2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

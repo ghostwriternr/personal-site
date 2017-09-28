@@ -36,6 +36,14 @@ const AppRoutes = props =>
           onCompleteParams: [node]
         });
       }}
+      onExit={node => {
+        TweenMax.killTweensOf(node);
+        TweenLite.to(node, 0.6, {
+          autoAlpha: 0,
+          onComplete: completeCall,
+          onCompleteParams: [node]
+        });
+      }}
     >
       <Switch location={props.location}>
         <Route exact path="/" component={Name}/>
