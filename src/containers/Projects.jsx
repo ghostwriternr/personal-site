@@ -6,29 +6,34 @@ import { Link } from 'react-router-dom';
 
 const projects = [
     {
-        "title": "test1",
-        "gist": "gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 gist1 ",
-        "category": "category1"
+        "title": "Automated Entity Comparison for Wikipedia text corpora",
+        "gist": "A novel comparative text mining task using relational tuples to model and measure semantic commonality for two given documents and tabulating them.",
+        "category": "Natural Language Processing",
+        "categorykey": "nlp"
     },
     {
-        "title": "test2",
-        "gist": "gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 gist2 ",
-        "category": "category2"
+        "title": "Lyrics generator using neural networks",
+        "gist": "Lyrics generator that generates a new song in an artists' style using Long Short Term Memory (LSTM) Neural Networks",
+        "category": "Machine Learning",
+        "categorykey": "ml"
     },
     {
-        "title": "test3",
-        "gist": "gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 gist3 ",
-        "category": "category3"
+        "title": "Selene",
+        "gist": "Social music-recommendation Android app based on YouTube that analyzes usage data from friends and nearby users and recommends the most popular tracks.",
+        "category": "Android",
+        "categorykey": "android"
     },
     {
-        "title": "test4",
-        "gist": "gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 gist4 ",
-        "category": "category4"
+        "title": "Retrieving salient sentences from Reddit AMAs",
+        "gist": "A summariser that provides summaries from /r/iAMA clustered by topics, using Lexrank and Alchemy API.",
+        "category": "Natural Language Processing",
+        "categorykey": "nlp"
     },
     {
-        "title": "test5",
-        "gist": "gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 gist5 ",
-        "category": "category5"
+        "title": "Studious",
+        "gist": "Course management system that supported authentication & authorization, User Access Control for 4 different types of users, real-time messaging with notifications (using socket.io), calendar support, etc.",
+        "category": "Software Engineering",
+        "categorykey": "se"
     }
 ]
 
@@ -105,7 +110,7 @@ class Projects extends Component {
                                                 <div className="project-type" />
                                                 <div className="project-contents">
                                                     <h2>{project.title}</h2>
-                                                    <h5 className="project-category">{project.category}</h5>
+                                                    <h5 className={'project-category project-' + project.categorykey}>{project.category}</h5>
                                                     <p>{project.gist}</p>
                                                 </div>
                                             </div>
