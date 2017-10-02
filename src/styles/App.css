@@ -9,38 +9,7 @@
     background:     -ms-linear-gradient(top left, #e5632b, #e52b50);
     background:      -o-linear-gradient(top left, #e5632b, #e52b50);
     background:         linear-gradient(to bottom right, #e5632b, #e52b50);
-    /* background: linear-gradient(315deg, #e5632b, #873260, #883e9b, #b65063);
-    background-size: 800% 800%;
-    
-    -webkit-animation: DynamicGradient 19s ease infinite;
-    -moz-animation: DynamicGradient 19s ease infinite;
-    -o-animation: DynamicGradient 19s ease infinite;
-    animation: DynamicGradient 19s ease infinite; */
 }
-
-/* @-webkit-keyframes DynamicGradient {
-    0%{background-position:0% 9%}
-    50%{background-position:100% 92%}
-    100%{background-position:0% 9%}
-}
-
-@-moz-keyframes DynamicGradient {
-    0%{background-position:0% 9%}
-    50%{background-position:100% 92%}
-    100%{background-position:0% 9%}
-}
-
-@-o-keyframes DynamicGradient {
-    0%{background-position:0% 9%}
-    50%{background-position:100% 92%}
-    100%{background-position:0% 9%}
-}
-
-@keyframes DynamicGradient {
-    0%{background-position:0% 9%}
-    50%{background-position:100% 92%}
-    100%{background-position:0% 9%}
-} */
 
 ::-webkit-scrollbar {
     width: 0px;
@@ -50,39 +19,6 @@
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
     height: 80px;
-}
-
-@media screen and (max-width: 1023px) {
-    .App-header {
-        animation: fade 0s forwards;
-        -webkit-animation-delay: 0.8s;
-        animation-delay: 0.6s;
-        background-color: rgba(229, 99, 43, 1);
-        background: -webkit-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-        background:    -moz-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-        background:     -ms-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-        background:      -o-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-        background:         linear-gradient(to bottom right, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-    }
-
-    @keyframes fade {
-        from {
-            background-color: rgba(229, 99, 43, 1);
-            background: -webkit-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-            background:    -moz-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-            background:     -ms-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-            background:      -o-linear-gradient(top left, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-            background:         linear-gradient(to bottom right, rgba(229, 99, 43, 1), rgba(229, 43, 80, 1));
-        }
-        to {
-            background-color: rgba(229, 99, 43, 0);
-            background: -webkit-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
-            background:    -moz-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
-            background:     -ms-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
-            background:      -o-linear-gradient(top left, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
-            background:         linear-gradient(to bottom right, rgba(229, 99, 43, 0), rgba(229, 43, 80, 0));
-        }
-    }
 }
 
 .App-intro {

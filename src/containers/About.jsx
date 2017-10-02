@@ -64,7 +64,7 @@ class About extends Component {
                 </div>
                 <div className="row" id="abouttitle">
                     <div className="col-xs-12 col-md-offset-7 col-md-4 text-center" id="intro">
-                        <text id="about-hi">Hi, I'm Naresh</text>
+                        <text id="about-hi">Hi, I'm <span className="name-gradient">Naresh</span></text>
                     </div>
                 </div>
                 <div className="row mobile-invisible text-center" id="aboutdescdesk">

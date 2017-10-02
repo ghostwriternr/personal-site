@@ -16,7 +16,6 @@
     }
 }
 
-
 .box {
     display: flex;
     align-items: center;
@@ -37,6 +36,8 @@
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
+    animation-name: fadein;
+    animation-duration: 0.75s;
 }
 
 @media screen and (min-width: 1024px) {

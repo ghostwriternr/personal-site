@@ -22,7 +22,7 @@
     background-color: #fff;
     text-align: left;
     animation-name: fadeInBottom;
-    animation-duration: 1s;
+    animation-duration: 0.75s;
 }
 
 @keyframes fadeInBottom {

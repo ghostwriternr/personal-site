@@ -40,7 +40,7 @@ class Name extends Component {
     render() {
         return (
             <div className="App-header Aligner">
-              <div>
+                <div className="name-bg">
                   <p className="subtitle">Hi, I am</p>
                   <a className="link link--name">Naresh R<span data-letters="Naresh R"></span><span data-letters="Naresh R"></span></a>
                   <p className="subtitle">I study Computer Science at IIT Kharagpur</p>
@@ -57,7 +57,7 @@ class Name extends Component {
                     <div className="col-xs-12 col-md-3">
                       <Link to="/resume"><span data-hover="Resume">Resume</span></Link>
                     </div>
-				          </div>
+                </div>
               </div>
             </div>
         );

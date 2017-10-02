@@ -24,7 +24,7 @@
 
 #intro text {
     color: #111;
-    font-family: 'Fjalla One', sans-serif;
+    /* font-family: 'Fjalla One', sans-serif; */
     -webkit-font-smoothing: antialiased;
 }
 
@@ -157,4 +157,15 @@ i:hover {
         bottom: 0;
         width: 100vw;
     }
+}
+
+.name-gradient {
+    background-image: -webkit-linear-gradient(left, #fe8c00, #f83600); /* For Chrome and Safari */
+    background-image:    -moz-linear-gradient(left, #fe8c00, #f83600); /* For old Fx (3.6 to 15) */
+    background-image:     -ms-linear-gradient(left, #fe8c00, #f83600); /* For pre-releases of IE 10*/
+    background-image:      -o-linear-gradient(left, #fe8c00, #f83600); /* For old Opera (11.1 to 12.0) */
+    background-image:         linear-gradient(to right, #fe8c00, #f83600); /* Standard syntax; must be last */
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }

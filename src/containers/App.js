@@ -246,7 +246,7 @@ class App extends Component {
             width: "100vw",
             height: "100vh",
             style: {
-                position: "absolute",
+                position: "fixed",
                 left: "0",
                 top: "0"
             }
@@ -305,7 +305,7 @@ class App extends Component {
     });
 
     var colorPicker = (function() {
-      var colors = ["#e5632b", "#873260", "#883e9b", "#b65063"];
+      var colors = ["#e5632b", "#c8257f", "#9725b4", "#ba2780", "#dc2a4b", "#e1463b"];
       var index = 0;
       function next() {
         index = index++ < colors.length-1 ? index : 0;
@@ -478,6 +478,7 @@ class App extends Component {
       ctx.scale(devicePixelRatio, devicePixelRatio);
     };
 
+    console.log(this.mobileAndTabletcheck());
     if (this.mobileAndTabletcheck() === false) {
       (function init() {
         resizeCanvas();
@@ -546,7 +547,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <canvas id="c" className="particle-canvas mobile-invisible"></canvas>
+        <canvas id="c" className="particle-canvas"></canvas>
         <Shortcuts
             history={this.props.history}
         />
