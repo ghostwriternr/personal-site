@@ -3,6 +3,7 @@ import '../styles/App.css';
 import '../styles/Organisation.css';
 import '../styles/PhotoGrid.css';
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 
 const experienceInfo = {
     orgs: {
@@ -177,7 +178,11 @@ class Organisation extends Component {
                             <section id="photos">
                                 {
                                     experienceInfo.orgs[this.state.selectedOrganisation].images.map(function(image, index){
-                                        return <img key={index} src={image} alt="grid"/>
+                                        return(
+                                            <LazyLoad key={index} resize height={300} offset={-50}>
+                                                <img src={image} alt="grid" className="orgImage"/>
+                                            </LazyLoad>
+                                        )
                                     })
                                 }
                             </section>

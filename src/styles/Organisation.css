@@ -3,6 +3,7 @@
     background-color: #fff;
     width: 100vw;
     text-align: left;
+    position: relative;
 }
 
 .modal-header-container {
@@ -14,9 +15,9 @@
     width: 100%;
     -webkit-mask-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 1)), color-stop(0.3, rgba(0, 0, 0, 1)));
     -webkit-filter: grayscale;
-    -webkit-filter: brightness(50%); 
+    -webkit-filter: brightness(50%);
     filter: grayscale;
-    filter: brightness(50%); 
+    filter: brightness(50%);
 }
 
 .modal-header-title {
@@ -115,9 +116,16 @@
     .modal-text {
         margin-bottom: 0;
     }
-
     .modal-close {
         top: 1vh;
         right: 1vh;
     }
+}
+
+.orgImage {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
 }
