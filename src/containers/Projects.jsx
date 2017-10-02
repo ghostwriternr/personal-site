@@ -3,6 +3,7 @@ import '../styles/App.css';
 import '../styles/Projects.css';
 import '../styles/Arrows.css';
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 
 const projects = [
     {
@@ -101,19 +102,21 @@ class Projects extends Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-offset-1 col-xs-10">
-                        <div className="row">
+                        <div className="row project-boxes">
                             {
                                 projects.map(function(project, index) {
                                     return (
-                                        <div className="col-xs-12 col-md-4" key={index}>
-                                            <div className="project-box">
-                                                <div className="project-type" />
-                                                <div className="project-contents">
-                                                    <h2>{project.title}</h2>
-                                                    <h5 className={'project-category project-' + project.categorykey}>{project.category}</h5>
-                                                    <p>{project.gist}</p>
+                                        <div key={index} className="col-xs-12 col-md-4">
+                                            <LazyLoad height={200} once>
+                                                <div className="project-box">
+                                                    <div className="project-type" />
+                                                    <div className="project-contents">
+                                                        <h2>{project.title}</h2>
+                                                        <h5 className={'project-category project-' + project.categorykey}>{project.category}</h5>
+                                                        <p>{project.gist}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </LazyLoad>
                                         </div>
                                     );
                                 })

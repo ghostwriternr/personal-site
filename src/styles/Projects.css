@@ -21,6 +21,19 @@
     margin: 10px 0;
     background-color: #fff;
     text-align: left;
+    animation-name: fadeInBottom;
+    animation-duration: 1s;
+}
+
+@keyframes fadeInBottom {
+    0% {
+        margin-top: 15px;
+        opacity: 0;
+    }
+    100% {
+        margin-top: 10px;
+        opacity: 1;
+    }
 }
 
 .project-type {
