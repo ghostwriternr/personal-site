@@ -4,6 +4,7 @@ import { Route, withRouter } from 'react-router-dom';
 import AppRoutes from '../routes';
 import Particles from 'react-particles-js';
 import anime from 'animejs';
+import Shortcuts from '../components/Shortcuts'
 
 class App extends Component {
   constructor(props) {
@@ -546,6 +547,9 @@ class App extends Component {
     return (
       <div className="App">
         <canvas id="c" className="particle-canvas mobile-invisible"></canvas>
+        <Shortcuts
+            history={this.props.history}
+        />
         <Particles
             params={this.state.params}
             width={this.state.width}

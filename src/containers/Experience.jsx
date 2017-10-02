@@ -86,12 +86,12 @@ class Experience extends Component {
                 </div>
                 <div className="experience-desc row">
                     <div className="col-xs-offset-1 col-xs-10 desktop-invisible">
-                        <p>I have done 2 internships during my undergraduate studies, and personally consider myself a software developer blah blah blah no Machine Learning basically. Duh. I have also worked on several organisations duh duh duh. Blah Blah Blah placeholder text. yolo. lots of love.</p>
+                        <p>I have done 2 internships during my undergraduate studies and have taken up several other technical and managerial roles.</p>
                     </div>
                 </div>
                 <div className="experience-desc row">
                     <div className="col-md-offset-2 col-md-8 mobile-invisible">
-                        <p>I have done 2 internships during my undergraduate studies, and personally consider myself a software developer blah blah blah no Machine Learning basically. Duh. I have also worked on several organisations duh duh duh. Blah Blah Blah placeholder text. yolo. lots of love.</p>
+                        <p>I have done 2 internships during my undergraduate studies and have taken up several other technical and managerial roles.</p>
                     </div>
                 </div>
                 <div className="row">

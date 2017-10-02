@@ -2,6 +2,7 @@
     text-align: center;
     font-family: 'Raleway', sans-serif;
     overflow-x: hidden;
+    position: relative;
     background: #e5632b;
     background: -webkit-linear-gradient(top left, #e5632b, #e52b50);
     background:    -moz-linear-gradient(top left, #e5632b, #e52b50);

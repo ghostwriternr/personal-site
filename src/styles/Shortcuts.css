@@ -1,0 +1,39 @@
+.shortcuts {
+    position: fixed;
+    bottom: 2.1vh;
+    left: 1.05vw;
+    z-index: 10;
+}
+
+.shortcut {
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 2px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 3px;
+    background: white;
+    text-decoration: none;
+}
+
+#actual-buttons.shortcut {
+    cursor: pointer;
+}
+
+.shortcut-light {
+    color: #fff;
+    border: 1px solid #fff;
+    background: transparent;
+}
+
+#actual-buttons {
+    padding-left: 100px;
+    padding-right: 10px;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+#actual-buttons:hover {
+    opacity: 1;
+    transition: opacity 0.25s;
+}
