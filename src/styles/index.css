@@ -1,8 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway|Righteous');
-
 body {
   margin: 0;
   padding: 0;
   font-family: 'Raleway', sans-serif;
   overflow-x: hidden;
+}
+
+html {
+  font-size: 10px;
+}
+
+
+/* Small devices (tablet portrait, 600px and up) */
+
+@media (min-width: 600px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+
+/* Medium devices (tablet landscape, 900px and up) */
+
+@media (min-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+
+/* Large devices (desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
 }

@@ -1,6 +1,8 @@
 .about-container {
     min-height: 97vh;
     min-width: 98.6vw;
+    margin: 1.4vh 0.7vw;
+    padding-top: 2vh;
     background: url(../images/backgrounds/dlanham-Cardinal.jpg) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
@@ -11,15 +13,6 @@
     overflow-y: hidden;
     background-color: #fff;
     z-index: 5;
-    margin: 1.4vh 0.7vw;
-}
-
-@media screen and (max-width: 1023px) {
-    .about-container {
-        min-height: 100vh;
-        min-width: 100vw;
-        margin: 0;
-    }
 }
 
 #intro text {
@@ -29,47 +22,50 @@
 }
 
 #about-hi {
-    font-size: 8vh;
+    font-size: 4rem;
 }
 
 #aboutdescdesk {
     position: relative;
-    margin-top: 2vh;
+    margin-top: 2rem;
     left: 0;
     right: 0;
-    font-size: 3vh;
+    font-size: 1.5rem;
 }
+
 #aboutdescmob {
     position: relative;
     left: 0;
     right: 0;
-    font-size: 2.5vh;
+    font-size: 1.4rem;
     padding: 0 3vw;
 }
 
 .about-image {
-    max-height: 30vh;
+    max-height: 18rem;
     width: auto;
     position: relative;
-    margin-top: 5vh;
+    margin-top: 1.5rem;
     left: 0;
     right: 0;
-    filter: gray; /* IE6-9 */
-    -webkit-filter: grayscale(1) contrast(1.25); /* Google Chrome, Safari 6+ & Opera 15+ */
-    filter: grayscale(1) contrast(1.25); /* Microsoft Edge and Firefox 35+ */
+    filter: gray;
+    /* IE6-9 */
+    -webkit-filter: grayscale(1) contrast(1.25);
+    /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1) contrast(1.25);
+    /* Microsoft Edge and Firefox 35+ */
     transition: all .6s ease;
     -webkit-transition: all .6s ease;
 }
 
-
 .about-image:hover {
-  -webkit-filter: grayscale(0) contrast(1.25);
-  filter: none;
-  opacity: 1;
+    -webkit-filter: grayscale(0) contrast(1.25);
+    filter: none;
+    opacity: 1;
 }
 
 .link-icons {
-     font-size: 5vh;
+    font-size: 3rem;
 }
 
 #iconlinks {
@@ -78,14 +74,8 @@
     right: 0;
 }
 
-@media screen and (min-width: 1024px) {
-    #iconlinks {
-        margin-top: 20px;
-    }
-}
-
 i {
-    padding: 2vh;
+    padding: 1rem;
 }
 
 i:hover {
@@ -104,25 +94,25 @@ i:hover {
     -webkit-transition: all .4s ease;
 }
 
-#facebookicon{
+#facebookicon {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
 
-#blogicon{
+#blogicon {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
 
-#instaicon{
+#instaicon {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
 }
 
-#mailicon{
+#mailicon {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -136,37 +126,103 @@ i:hover {
     color: #283e4a;
 }
 
-#facebookicon:hover{
+#facebookicon:hover {
     color: #3b5998;
 }
 
-#blogicon:hover{
+#blogicon:hover {
     color: #666666;
 }
 
-#instaicon:hover{
+#instaicon:hover {
     color: #df326a;
 }
 
-#mailicon:hover{
+#mailicon:hover {
     color: #dd4d40;
 }
 
-@media screen and (max-width: 1023px) {
-    .stick-bottom {
-        position: absolute;
-        bottom: 0;
-        width: 100vw;
+.name-gradient {
+    background-image: -webkit-linear-gradient(left, #fe8c00, #f83600);
+    /* For Chrome and Safari */
+    background-image: -moz-linear-gradient(left, #fe8c00, #f83600);
+    /* For old Fx (3.6 to 15) */
+    background-image: -ms-linear-gradient(left, #fe8c00, #f83600);
+    /* For pre-releases of IE 10*/
+    background-image: -o-linear-gradient(left, #fe8c00, #f83600);
+    /* For old Opera (11.1 to 12.0) */
+    background-image: linear-gradient(to right, #fe8c00, #f83600);
+    /* Standard syntax; must be last */
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+
+/* Responsive stuff */
+
+.stick-bottom {
+    position: absolute;
+    bottom: 0;
+    /* width: 100vw; */
+}
+
+
+/* Small devices (tablet portrait, 600px and up) */
+
+@media (min-width: 600px) and (max-width: 899px) {
+    #intro text {
+        font-size: 6rem;
+    }
+    #aboutdescmob {
+        font-size: 2rem;
+    }
+    .link-icons {
+        font-size: 4rem;
     }
 }
 
-.name-gradient {
-    background-image: -webkit-linear-gradient(left, #fe8c00, #f83600); /* For Chrome and Safari */
-    background-image:    -moz-linear-gradient(left, #fe8c00, #f83600); /* For old Fx (3.6 to 15) */
-    background-image:     -ms-linear-gradient(left, #fe8c00, #f83600); /* For pre-releases of IE 10*/
-    background-image:      -o-linear-gradient(left, #fe8c00, #f83600); /* For old Opera (11.1 to 12.0) */
-    background-image:         linear-gradient(to right, #fe8c00, #f83600); /* Standard syntax; must be last */
-    color:transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
+
+/* Medium devices (tablet landscape, 900px and up) */
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    #intro text {
+        font-size: 3rem;
+    }
+    #aboutdescdesk {
+        margin-top: 0;
+        font-size: 1.25rem;
+    }
+    .about-image {
+        max-height: 12rem;
+        margin-top: 2rem;
+    }
+    .link-icons {
+        font-size: 2rem;
+    }
+    .stick-bottom {
+        position: relative;
+    }
+}
+
+@media (max-width: 1199px) {
+    .about-container {
+        min-height: 100vh;
+        min-width: 100vw;
+        margin: 0;
+    }
+}
+
+
+/* Large devices (desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .stick-bottom {
+        position: relative;
+    }
+    .about-container {
+        min-height: 97vh;
+        min-width: 98.6vw;
+        margin: 1.4vh 0.7vw;
+    }
 }

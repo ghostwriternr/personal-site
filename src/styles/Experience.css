@@ -1,27 +1,11 @@
 .experience-container {
     min-height: 97vh;
     min-width: 98.6vw;
+    margin: 1.4vh 0.7vw;
     padding-top: 2vh;
     background-color: #fff;
     position: relative;
     z-index: 5;
-    margin: 1.4vh 0.7vw;
-}
-
-.exp-grid {
-    margin-bottom: 2vh;
-}
-
-@media screen and (max-width: 1023px) {
-    .experience-container {
-        min-height: 100vh;
-        min-width: 100vw;
-        margin: 0;
-    }
-
-    .exp-grid {
-        margin-bottom: 0;
-    }
 }
 
 .box {
@@ -29,6 +13,7 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    margin: 0px;
 }
 
 .box:before {
@@ -46,17 +31,6 @@
     cursor: pointer;
     animation-name: fadein;
     animation-duration: 0.75s;
-}
-
-@media screen and (min-width: 1024px) {
-    .box-bg {
-        margin: 0.5vw 0.25vw;
-    }
-
-    .experience-container {
-        background: url(../images/backgrounds/suntopy.png) no-repeat right top fixed;
-        background-color: #fff;
-    }
 }
 
 .link-logo {
@@ -105,7 +79,7 @@
 }
 
 #iitkgp-box .org-logo {
-    max-width: 65%; 
+    max-width: 65%;
     filter: invert(1) sepia(100%) grayscale(100%) brightness(1.5);
     -webkit-filter: invert(1) sepia(100%) grayscale(100%) brightness(1.5);
 }
@@ -120,5 +94,59 @@
 
 .experience-desc {
     text-align: center;
-    font-size: 3vh;
+    font-size: 1.5rem;
+}
+
+
+/* Responsive stuff */
+
+.exp-grid {
+    margin-bottom: 0;
+}
+
+
+/* Small devices (tablet portrait, 600px and up) */
+
+@media (min-width: 600px) {
+    .exp-grid {
+        margin: 0 0.5rem;
+    }
+    .box-bg {
+        margin: 0.5rem 0;
+    }
+}
+
+
+/* Medium devices (tablet landscape, 900px and up) */
+
+@media (min-width: 900px) {
+    .experience-container {
+        background: url(../images/backgrounds/suntopy.png) no-repeat right top fixed;
+        background-color: #fff;
+    }
+    .box-bg {
+        margin: 0.5vw 0.25vw;
+    }
+    .exp-grid {
+        margin-bottom: 2vh;
+    }
+}
+
+@media (max-width: 1199px) {
+    .experience-container {
+        min-height: 100vh;
+        min-width: 100vw;
+        margin: 0;
+    }
+}
+
+
+/* Large devices (desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .experience-container {
+        min-height: 97vh;
+        min-width: 98.6vw;
+        margin: 1.4vh 0.7vw;
+    }
 }

@@ -1,52 +1,54 @@
 .projects-container {
     min-height: 97vh;
     min-width: 98.6vw;
+    margin: 1.4vh 0.7vw;
     padding-top: 2vh;
     background-color: #f8f8f8;
     position: relative;
     z-index: 5;
-    margin: 1.4vh 0.7vw;
-}
-
-@media screen and (max-width: 1023px) {
-    .projects-container {
-        min-height: 100vh;
-        min-width: 100vw;
-        margin: 0;
-    }
 }
 
 .project-box {
-    min-height: 200px;
-    margin: 10px 0;
+    height: 100%;
     background-color: #fff;
     text-align: left;
     animation-name: fadeInBottom;
     animation-duration: 0.75s;
 }
 
+.row {
+    overflow: hidden;
+}
+
+[class*="col-"] {
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.box-container {
+    padding-top: 1rem;
+}
+
 @keyframes fadeInBottom {
     0% {
-        /* margin-top: 15px; */
         opacity: 0;
     }
     100% {
-        /* margin-top: 10px; */
         opacity: 1;
     }
 }
 
 .project-type {
-    height: 10px;
+    height: 0.75rem;
     background-image: linear-gradient(to right, #cc208e 0%, #6713d2 100%);
 }
 
 .project-contents {
-    padding: 0 20px;
+    padding: 0 2rem 1rem 2rem;
 }
 
 .project-contents h5 {
-    margin-top: -20px;
+    margin-top: -1rem;
 }
 
 .project-category {
@@ -73,4 +75,36 @@
 
 .project-se {
     background-image: linear-gradient(#0ba360 0%, #3cba92 100%);
+}
+
+
+/* Responsive stuff */
+
+
+/* Small devices (tablet portrait, 600px and up) */
+
+@media (min-width: 600px) {}
+
+
+/* Medium devices (tablet landscape, 900px and up) */
+
+@media (min-width: 900px) {}
+
+@media (max-width: 1199px) {
+    .projects-container {
+        min-height: 100vh;
+        min-width: 100vw;
+        margin: 0;
+    }
+}
+
+
+/* Large devices (desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .projects-container {
+        min-height: 97vh;
+        min-width: 98.6vw;
+        margin: 1.4vh 0.7vw;
+    }
 }

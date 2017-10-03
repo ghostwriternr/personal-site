@@ -122,12 +122,12 @@ class Shortcuts extends Component {
     render() {
         return (
             <div>
-                <div id="placeholder-buttons" className="shortcuts mobile-invisible">
+                <div id="placeholder-buttons" className="shortcuts mobile-invisible tablet-invisible tablet-landscape-invisible">
                     <div className={'shortcut ' + this.isRoot() + ' placeholder-button'}>
                         Shortcuts
                     </div>
                 </div>
-                <div id="actual-buttons" className="shortcuts mobile-invisible">
+                <div id="actual-buttons" className="shortcuts mobile-invisible tablet-invisible tablet-landscape-invisible">
                     {
                         this.state.keys.map(function(key, index) {
                             return (
