@@ -111,9 +111,9 @@ class Projects extends Component {
                                                 <div className="project-box">
                                                     <div className="project-type" />
                                                     <div className="project-contents">
-                                                        <h2>{project.title}</h2>
+                                                        <h2 className="project-title">{project.title}</h2>
                                                         <h5 className={'project-category project-' + project.categorykey}>{project.category}</h5>
-                                                        <p>{project.gist}</p>
+                                                        <p classname="project-gist">{project.gist}</p>
                                                     </div>
                                                 </div>
                                             </LazyLoad>

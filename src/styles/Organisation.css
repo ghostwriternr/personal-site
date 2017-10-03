@@ -37,7 +37,7 @@
 
 .header-title {
     color: #0077C5;
-    font-size: 5vh;
+    font-size: 3.5rem;
 }
 
 .intuit-color {
@@ -65,19 +65,18 @@
 }
 
 .header-subtitle {
-    font-size: 3vh;
+    font-size: 2rem;
 }
 
 .modal-text {
-    font-size: 2.5vh;
-    margin-bottom: 2.5vh;
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .modal-text p:first-child:first-letter {
     float: left;
-    font-size: 10vh;
-    line-height: 8vh;
-    padding: 1vh 1vh 0 1vh;
+    font-size: 6rem;
+    padding: 0.5rem 1rem;
 }
 
 .intuit-text p:first-child:first-letter {
@@ -109,8 +108,13 @@
     top: 5vh;
     right: 3vw;
     color: #888;
-    font-size: 5vh;
+    font-size: 4rem;
     z-index: 1000;
+}
+
+.placeholder-element {
+    height: 300px;
+    background: #fff;
 }
 
 @media screen and (max-width: 1023px) {

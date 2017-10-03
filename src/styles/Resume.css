@@ -1,19 +1,11 @@
 .resume-container {
     min-height: 97vh;
     min-width: 98.6vw;
+    margin: 1.4vh 0.7vw;
     padding-top: 2vh;
     background-color: #fff;
     position: relative;
     z-index: 5;
-    margin: 1.4vh 0.7vw;    
-}
-
-@media screen and (max-width: 1023px) {
-    .resume-container {
-        min-height: 100vh;
-        min-width: 100vw;
-        margin: 0;
-    }
 }
 
 .resume-desc {
@@ -29,8 +21,38 @@
     max-width: 100%;
 }
 
-@media screen and (min-width: 1024px) {
+
+/* Responsive stuff */
+
+
+/* Small devices (tablet portrait, 600px and up) */
+
+@media (min-width: 600px) {}
+
+
+/* Medium devices (tablet landscape, 900px and up) */
+
+@media (min-width: 900px) {
     .resume-img {
         padding: 30px 100px 30px 100px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .resume-container {
+        min-height: 100vh;
+        min-width: 100vw;
+        margin: 0;
+    }
+}
+
+
+/* Large devices (desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .resume-container {
+        min-height: 97vh;
+        min-width: 98.6vw;
+        margin: 1.4vh 0.7vw;
     }
 }

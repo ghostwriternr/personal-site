@@ -117,6 +117,8 @@ const experienceInfo = {
     }
 }
 
+const PlaceholderComponent = () => (<div className="placeholder-element"></div>);
+
 class Organisation extends Component {
     constructor(props) {
         super(props);
@@ -150,14 +152,14 @@ class Organisation extends Component {
                 <LazyLoad resize once height={500}>
                     <div className="modal-header-container">
                         <img src={experienceInfo.orgs[this.state.selectedOrganisation].headerImage} className="modal-header-image" alt="Header"/>
-                        <div className="modal-header-title mobile-invisible">
+                        <div className="modal-header-title mobile-invisible tablet-invisible">
                             <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
                             <h2 className="header-subtitle">{experienceInfo.orgs[this.state.selectedOrganisation].role}</h2>
                         </div>
                     </div>
                 </LazyLoad>
                 <div className="modal-text">
-                    <div className="modal-mobile-header-title desktop-invisible">
+                    <div className="modal-mobile-header-title tablet-landscape-invisible desktop-invisible">
                         <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
                         <h2 className="header-subtitle">{experienceInfo.orgs[this.state.selectedOrganisation].role}</h2>
                     </div>
@@ -179,7 +181,7 @@ class Organisation extends Component {
                                 {
                                     experienceInfo.orgs[this.state.selectedOrganisation].images.map(function(image, index){
                                         return(
-                                            <LazyLoad key={index} resize once height={300}>
+                                            <LazyLoad key={index} resize once height={300} placeholder={<PlaceholderComponent />}>
                                                 <div className="brick">
                                                     <img src={image} alt="grid" className="orgImage"/>
                                                 </div>
