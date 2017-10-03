@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import '../styles/Organisation.css';
-import '../styles/PhotoGrid.css';
+import '../styles/Masonry.css';
 import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 
@@ -40,10 +40,8 @@ const experienceInfo = {
             ],
             "images": [
                 require('../images/organisations/ezdi/office.jpg'),
-                require('../images/organisations/ezdi/bombay.jpg'),
                 require('../images/organisations/ezdi/desk.jpg'),
-                require('../images/organisations/ezdi/diu.png'),
-                require('../images/organisations/ezdi/treat.jpg')
+                require('../images/organisations/ezdi/diu.png')
             ]
         },
         "auv": {
@@ -149,13 +147,15 @@ class Organisation extends Component {
     render() {
         return (
             <div className="modal-content">
-                <div className="modal-header-container">
-                    <img src={experienceInfo.orgs[this.state.selectedOrganisation].headerImage} className="modal-header-image" alt="Header"/>
-                    <div className="modal-header-title mobile-invisible">
-                        <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
-                        <h2 className="header-subtitle">{experienceInfo.orgs[this.state.selectedOrganisation].role}</h2>
+                <LazyLoad resize once height={500}>
+                    <div className="modal-header-container">
+                        <img src={experienceInfo.orgs[this.state.selectedOrganisation].headerImage} className="modal-header-image" alt="Header"/>
+                        <div className="modal-header-title mobile-invisible">
+                            <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
+                            <h2 className="header-subtitle">{experienceInfo.orgs[this.state.selectedOrganisation].role}</h2>
+                        </div>
                     </div>
-                </div>
+                </LazyLoad>
                 <div className="modal-text">
                     <div className="modal-mobile-header-title desktop-invisible">
                         <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
@@ -175,17 +175,19 @@ class Organisation extends Component {
                     </div>
                     <div className="row">
                         <div className="col-xs-12 col-md-offset-1 col-md-10">
-                            <section id="photos">
+                            <div className="masonry gutterless">
                                 {
                                     experienceInfo.orgs[this.state.selectedOrganisation].images.map(function(image, index){
                                         return(
-                                            <LazyLoad key={index} resize height={300} offset={-50}>
-                                                <img src={image} alt="grid" className="orgImage"/>
+                                            <LazyLoad key={index} resize once height={300}>
+                                                <div className="brick">
+                                                    <img src={image} alt="grid" className="orgImage"/>
+                                                </div>
                                             </LazyLoad>
                                         )
                                     })
                                 }
-                            </section>
+                            </div>
                         </div>
                     </div>
                 </div>

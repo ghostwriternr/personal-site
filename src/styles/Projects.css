@@ -27,11 +27,11 @@
 
 @keyframes fadeInBottom {
     0% {
-        margin-top: 15px;
+        /* margin-top: 15px; */
         opacity: 0;
     }
     100% {
-        margin-top: 10px;
+        /* margin-top: 10px; */
         opacity: 1;
     }
 }

@@ -8,11 +8,19 @@
     margin: 1.4vh 0.7vw;
 }
 
+.exp-grid {
+    margin-bottom: 2vh;
+}
+
 @media screen and (max-width: 1023px) {
     .experience-container {
         min-height: 100vh;
         min-width: 100vw;
         margin: 0;
+    }
+
+    .exp-grid {
+        margin-bottom: 0;
     }
 }
 
@@ -48,12 +56,6 @@
     .experience-container {
         background: url(../images/backgrounds/suntopy.png) no-repeat right top fixed;
         background-color: #fff;
-    }
-}
-
-@media screen and (max-width: 1023px) {
-    .experience-container {
-        padding: 0 3px 0 3px;
     }
 }
 
@@ -119,8 +121,4 @@
 .experience-desc {
     text-align: center;
     font-size: 3vh;
-}
-
-.exp-grid {
-    margin-bottom: 2vh;
 }

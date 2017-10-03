@@ -47,6 +47,7 @@ class Shortcuts extends Component {
             case "/experience":
                 this.setState({keys: [
                     {"Esc": "/"},
+                    {"Shift + ": "/experience"},
                     {"1": "/about"},
                     {"2": "/experience"},
                     {"3": "/projects"},

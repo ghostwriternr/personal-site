@@ -2,6 +2,7 @@
     overflow-x: hidden;
     background-color: #fff;
     width: 100vw;
+    min-height: 100vh;
     text-align: left;
     position: relative;
 }
@@ -48,19 +49,19 @@
 }
 
 .auv-color {
-    color: #b31b1b;
+    color: #de2323;
 }
 
 .metakgp-color {
-    color: #282b2b;
+    color: #a6acac;
 }
 
 .iitkgp-color {
-    color: #002147;
+    color: #0c7dff;
 }
 
 .tls-color {
-    color: #000;
+    color: #999;
 }
 
 .header-subtitle {
@@ -88,19 +89,19 @@
 }
 
 .auv-text p:first-child:first-letter {
-    color: #b31b1b;
+    color: #de2323;
 }
 
 .metakgp-text p:first-child:first-letter {
-    color: #282b2b;
+    color: #a6acac;
 }
 
 .iitkgp-text p:first-child:first-letter {
-    color: #002147;
+    color: #0c7dff;
 }
 
 .tls-text p:first-child:first-letter {
-    color: #000;
+    color: #999;
 }
 
 .modal-close {
