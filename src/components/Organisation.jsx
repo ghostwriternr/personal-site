@@ -95,7 +95,7 @@ const experienceInfo = {
         "tls": {
             "key": "tls",
             "name": "Technology Literary Society, IITKGP",
-            "role": "Executive editor",
+            "role": "Executive Editor",
             "headerImage": require('../images/organisations/tls/sf.jpg'),
             "description": [
                 "After my summer at ezDI this summer, blah blah blah.1",

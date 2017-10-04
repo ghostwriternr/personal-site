@@ -40,6 +40,22 @@
     width: 10%;
 }
 
+.org-position {
+    position: absolute;
+    bottom: 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+}
+
+#ezdi-box .org-position {
+    color: black;
+}
+
+#tls-box .org-position {
+    color: black;
+}
+
 .box-bg:before {
     content: '';
     display: table;
@@ -130,6 +146,9 @@
     .exp-grid {
         margin-bottom: 2vh;
     }
+    .org-position {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 1199px) {
@@ -148,5 +167,8 @@
         min-height: 97vh;
         min-width: 98.6vw;
         margin: 1.4vh 0.7vw;
+    }
+    .org-position {
+        font-size: 1rem;
     }
 }

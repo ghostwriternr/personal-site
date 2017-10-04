@@ -269,7 +269,7 @@ class App extends Component {
     var ctx = c.getContext("2d");
     var cH;
     var cW;
-    var bgColor = "#e5632b";
+    var bgColor = "#9725b4";
     var animations = [];
     var circles = [];
     console.log(circles);
@@ -305,7 +305,7 @@ class App extends Component {
     });
 
     var colorPicker = (function() {
-      var colors = ["#e5632b", "#c8257f", "#9725b4", "#ba2780", "#dc2a4b", "#e1463b"];
+      var colors = ["#9725b4", "#dc2a4b", "#e5632b", "#c8257f"];
       var index = 0;
       function next() {
         index = index++ < colors.length-1 ? index : 0;

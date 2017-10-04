@@ -64,12 +64,12 @@ class About extends Component {
                 </div>
                 <div className="row" id="abouttitle">
                     <div className="col-xs-12 col-md-offset-7 col-md-4 text-center" id="intro">
-                        <text id="about-hi">Hi, I'm <span className="name-gradient">Naresh</span></text>
+                        <text id="about-hi">Hi, I am <span className="name-gradient">Naresh</span></text>
                     </div>
                 </div>
                 <div className="row mobile-invisible tablet-invisible text-center" id="aboutdescdesk">
                     <div className="col-xs-12 col-md-offset-7 col-md-4 text-center" id="intro">
-                        <p>I am a developer, writer and designer, aiming to bring the best of these 3 worlds together through Computer Science. I enjoy programming and listening to music.</p>
+                        <p>I study Computer Science at IIT Kharagpur, India. I am madly passionate about working on large scale systems and love solving challenging problems.</p>
                     </div>
                 </div>
                 <div className="row mobile-invisible tablet-invisible text-center" id="aboutimg">
@@ -80,7 +80,7 @@ class About extends Component {
                 <div className="stick-bottom">
                     <div className="row tablet-landscape-invisible desktop-invisible" id="aboutdescmob">
                         <div className="col-xs-12 col-md-offset-6 col-md-6 text-center" id="intro">
-                            <p>I am a developer, writer and designer, aiming to bring the best of these 3 worlds together through Computer Science. I enjoy programming and listening to music.</p>
+                            <p>I study Computer Science at IIT Kharagpur, India. I am madly passionate about working on large scale systems and love solving challenging problems.</p>
                         </div>
                     </div>
                     <div className="row" id="iconlinks">

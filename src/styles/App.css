@@ -3,12 +3,6 @@
     font-family: 'Raleway', sans-serif;
     overflow-x: hidden;
     position: relative;
-    background: #e5632b;
-    background: -webkit-linear-gradient(top left, #e5632b, #e52b50);
-    background: -moz-linear-gradient(top left, #e5632b, #e52b50);
-    background: -ms-linear-gradient(top left, #e5632b, #e52b50);
-    background: -o-linear-gradient(top left, #e5632b, #e52b50);
-    background: linear-gradient(to bottom right, #e5632b, #e52b50);
 }
 
 ::-webkit-scrollbar {

@@ -86,12 +86,12 @@ class Experience extends Component {
                 </div>
                 <div className="experience-desc row">
                     <div className="col-xs-offset-1 col-xs-10 tablet-landscape-invisible desktop-invisible">
-                        <p>I have done 2 internships during my undergraduate studies and have taken up several other technical and managerial roles.</p>
+                        <p>I will be graduating in 2018 with a Masters degree in Computer Science. During my stay at IIT Kharagpur, I've taken up several technical as well as directorial roles. I spent my summer this year at Intuit IDC writing complex APIs and training neural networks.</p>
                     </div>
                 </div>
                 <div className="experience-desc row">
                     <div className="col-md-offset-2 col-md-8 mobile-invisible tablet-invisible">
-                        <p>I have done 2 internships during my undergraduate studies and have taken up several other technical and managerial roles.</p>
+                        <p>I will be graduating in 2018 with a Masters degree in Computer Science. During my stay at IIT Kharagpur, I've taken up several technical as well as directorial roles. I spent my summer this year at Intuit IDC writing complex APIs and training neural networks.</p>
                     </div>
                 </div>
                 <div className="row">
@@ -101,36 +101,42 @@ class Experience extends Component {
                                 <Link id="intuit-box" className="box-bg" to={`${this.props.match.url}/intuit`}>
                                     <img className="org-logo" src={require('../images/logos/intuit.png')} alt="Intuit"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
+                                    <p className="org-position">Software Engineer Intern</p>
                                 </Link>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-4 box">
                                 <Link id="ezdi-box" className="box-bg" to={`${this.props.match.url}/ezdi`}>
                                     <img className="org-logo" src={require('../images/logos/ezdi.png')} alt="EzDI"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
+                                    <p className="org-position">Software Engineer Intern</p>
                                 </Link>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-4 box">
                                 <Link id="auv-box" className="box-bg" to={`${this.props.match.url}/auv`}>
                                     <img className="org-logo" src={require('../images/logos/auv.png')} alt="AUV, IIT Kharagpur"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
+                                    <p className="org-position">Image Processing Developer</p>
                                 </Link>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-4 box">
                                 <Link id="metakgp-box" className="box-bg" to={`${this.props.match.url}/metakgp`}>
                                     <img className="org-logo" src={require('../images/logos/metakgp.jpg')} alt="MetaKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
+                                    <p className="org-position">Organisation Maintainer</p>
                                 </Link>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-4 box">
                                 <Link id="tls-box" className="box-bg" to={`${this.props.match.url}/tls`}>
                                     <img className="org-logo" src={require('../images/logos/tls.jpg')} alt="TLS"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
+                                    <p className="org-position">Executive Editor</p>
                                 </Link>
                             </div>
                             <div className="col-xs-12 col-sm-6 col-md-4 box">
                                 <Link id="iitkgp-box" className="box-bg" to={`${this.props.match.url}/iitkgp`}>
                                     <img className="org-logo" src={require('../images/logos/iitkgp.png')} alt="IITKGP"/>
                                     <img className="link-logo" src={require('../images/link.svg')} alt="link"/>
+                                    <p className="org-position">Various positions</p>
                                 </Link>
                             </div>
                         </div>

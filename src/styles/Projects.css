@@ -3,7 +3,7 @@
     min-width: 98.6vw;
     margin: 1.4vh 0.7vw;
     padding-top: 2vh;
-    background-color: #f8f8f8;
+    background-color: #fafafa;
     position: relative;
     z-index: 5;
 }
@@ -43,7 +43,7 @@
 }
 
 .project-type {
-    height: 0.75rem;
+    height: 0.5rem;
     background-image: linear-gradient(to right, #cc208e 0%, #6713d2 100%);
 }
 
@@ -60,14 +60,12 @@
 }
 
 .project-category {
-    background-image: linear-gradient(#fa709a 0%, #fee140 100%);
     background-image: linear-gradient(#43e97b 0%, #38f9d7 100%);
-    background-image: linear-gradient(#0fd850 0%, #f9f047 100%);
-    background-image: linear-gradient(#cc208e 0%, #6713d2 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 1.4rem;
+    margin-bottom: 0;
 }
 
 .project-nlp {
@@ -84,6 +82,18 @@
 
 .project-se {
     background-image: linear-gradient(#0ba360 0%, #3cba92 100%);
+}
+
+.project-ip {
+    background-image: linear-gradient(#fa709a 0%, #fee140 100%);
+}
+
+.project-blockchain {
+    background-image: linear-gradient(#0fd850 0%, #f9f047 100%);
+}
+
+.project-android {
+    background-image: linear-gradient(#2DE66A 0%, #38f9d7 100%);
 }
 
 
