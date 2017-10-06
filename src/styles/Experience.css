@@ -137,7 +137,7 @@
 
 @media (min-width: 900px) {
     .experience-container {
-        background: url(../images/backgrounds/suntopy.png) no-repeat right top fixed;
+        background: url(../images/backgrounds/suntopy.png) no-repeat right top;
         background-color: #fff;
     }
     .box-bg {

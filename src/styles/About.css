@@ -185,7 +185,7 @@ i:hover {
 
 /* Medium devices (tablet landscape, 900px and up) */
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 900px) and (max-width: 1299px) {
     #intro text {
         font-size: 3rem;
     }
