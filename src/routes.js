@@ -1,6 +1,6 @@
 import React from "react";
 import { TransitionGroup, Transition } from "react-transition-group";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { TweenLite, TweenMax } from "gsap";
 // import components
 import Name from "./components/Name";
@@ -44,6 +44,7 @@ const AppRoutes = props =>
         <Route exact path="/experience/:orgId" component={Organisation}/>
         <Route exact path="/projects" component={Projects}/>
         <Route exact path="/resume" component={Resume}/>
+        <Redirect from="*" to="/"/>
       </Switch>
     </Transition>
   </TransitionGroup>;
