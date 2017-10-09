@@ -9,7 +9,7 @@
   <meta property="og:title" content="Naresh R">
   <meta property="og:type" content="website">
   <meta property="og:description" content="Computer science student at IIT Kharagpur. Software engineer. Follow my blog at blog.ghostwriternr.me">
-  <meta property="og:image" content="http://ghostwriternr.me/static/media/about.56cb6ed3.jpg">
+  <meta property="og:image" content="%PUBLIC_URL%/bio.jpg">
   <script type="application/ld+json">
   {
       "@context": "http://schema.org",
@@ -27,7 +27,7 @@
       ],
       "gender": "male",
       "birthDate": "1995-10-26",
-      "image": "http://ghostwriternr.me/static/media/about.56cb6ed3.jpg"
+      "image": process.env.PUBLIC_URL + "/bio.jpg"
   }
   </script>
   <script type="application/ld+json">
@@ -36,7 +36,7 @@
       "@type": "WebSite",
       "url": "http://ghostwriternr.me/",
       "name": "Naresh R",
-      "image": "http://ghostwriternr.me/static/media/about.56cb6ed3.jpg",
+      "image": process.env.PUBLIC_URL + "/bio.jpg",
       "author": {
           "@type": "Person",
           "name": "Naresh R"
