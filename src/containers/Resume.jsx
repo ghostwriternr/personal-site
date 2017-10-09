@@ -65,12 +65,12 @@ class Resume extends Component {
                 </div>
                 <div className="resume-desc row">
                     <div className="col-xs-offset-1 col-xs-10 tablet-landscape-invisible desktop-invisible">
-                        <p>The PDF version of my resume can be downloaded <a href="https://github.com/ghostwriternr/resume/raw/master/O/Resume.pdf">from here</a></p>
+                        <p>The PDF version of my resume can be downloaded <a href="https://github.com/ghostwriternr/resume/raw/master/naresh_latest.pdf">from here</a></p>
                     </div>
                 </div>
                 <div className="resume-desc row">
                     <div className="col-md-offset-2 col-md-8 mobile-invisible tablet-invisible">
-                        <p>The PDF version of my resume can be downloaded <a href="https://github.com/ghostwriternr/resume/raw/master/O/Resume.pdf">from here</a></p>
+                        <p>The PDF version of my resume can be downloaded <a href="https://github.com/ghostwriternr/resume/raw/master/naresh_latest.pdf">from here</a></p>
                     </div>
                 </div>
                 <div className="resume-img">
