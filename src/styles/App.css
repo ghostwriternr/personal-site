@@ -3,6 +3,60 @@
     font-family: 'Raleway', sans-serif;
     overflow-x: hidden;
     position: relative;
+    background: linear-gradient(135deg, #9725b4, #e52b50, #dc2a4b, #e5632b, #c8257f);
+    background-size: 1000% 1000%;
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    -o-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-o-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
 }
 
 ::-webkit-scrollbar {
@@ -56,6 +110,13 @@ canvas {
     width: 100vw;
     height: 100vh;
     position: fixed;
+    background: linear-gradient(135deg, #9725b4, #e52b50, #dc2a4b, #e5632b, #c8257f);
+    background-size: 1000% 1000%;
+    
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    -o-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
 }
 
 @keyframes fadein {
@@ -66,7 +127,6 @@ canvas {
         opacity: 1;
     }
 }
-
 
 /* Firefox < 16 */
 
@@ -79,7 +139,6 @@ canvas {
     }
 }
 
-
 /* Safari, Chrome and Opera > 12.1 */
 
 @-webkit-keyframes fadein {
@@ -90,7 +149,6 @@ canvas {
         opacity: 1;
     }
 }
-
 
 /* Internet Explorer */
 
@@ -103,7 +161,6 @@ canvas {
     }
 }
 
-
 /* Opera < 12.1 */
 
 @-o-keyframes fadein {
@@ -115,13 +172,11 @@ canvas {
     }
 }
 
-
 /* Responsive stuff */
 
 .mobile-invisible {
     display: none;
 }
-
 
 /* Small devices (tablet portrait, 600px and up) */
 
@@ -133,7 +188,6 @@ canvas {
         display: none;
     }
 }
-
 
 /* Medium devices (tablet landscape, 900px and up) */
 
@@ -148,7 +202,6 @@ canvas {
         text-align: left;
     }
 }
-
 
 /* Large devices (desktops, 1200px and up) */
 
