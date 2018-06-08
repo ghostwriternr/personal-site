@@ -3,11 +3,6 @@
     min-width: 98.6vw;
     margin: 1.4vh 0.7vw;
     padding-top: 2vh;
-    background: url(../images/backgrounds/dlanham-Cardinal.jpg) no-repeat center center fixed;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     position: relative;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -22,7 +17,7 @@
 }
 
 #about-hi {
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 #aboutdescdesk {
@@ -31,6 +26,7 @@
     left: 0;
     right: 0;
     font-size: 1.5rem;
+    padding: 0 2rem 0 2rem;
 }
 
 #aboutdescmob {
@@ -42,20 +38,12 @@
 }
 
 .about-image {
-    max-height: 18rem;
+    max-height: 40rem;
     width: auto;
     position: relative;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 1.5rem 0;
     left: 0;
     right: 0;
-    filter: gray;
-    /* IE6-9 */
-    -webkit-filter: grayscale(1) contrast(1.25);
-    /* Google Chrome, Safari 6+ & Opera 15+ */
-    filter: grayscale(1) contrast(1.25);
-    /* Microsoft Edge and Firefox 35+ */
-    transition: all .6s ease;
-    -webkit-transition: all .6s ease;
 }
 
 .about-image:hover {
@@ -82,7 +70,7 @@ i:hover {
     cursor: pointer;
 }
 
-#githubicon {
+/* #githubicon {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
@@ -116,29 +104,29 @@ i:hover {
     color: #111;
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
+} */
+
+#githubicon {
+    color: #4a3863;
 }
 
-#githubicon:hover {
-    color: #6e5494;
+#linkedinicon {
+    color: #0077b5;
 }
 
-#linkedinicon:hover {
-    color: #283e4a;
-}
-
-#facebookicon:hover {
+#facebookicon {
     color: #3b5998;
 }
 
-#blogicon:hover {
-    color: #666666;
+#blogicon {
+    color: #111;
 }
 
-#instaicon:hover {
+#instaicon {
     color: #df326a;
 }
 
-#mailicon:hover {
+#mailicon {
     color: #dd4d40;
 }
 

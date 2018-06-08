@@ -3,60 +3,21 @@
     font-family: 'Raleway', sans-serif;
     overflow-x: hidden;
     position: relative;
-    background: linear-gradient(135deg, #9725b4, #e52b50, #dc2a4b, #e5632b, #c8257f);
-    background-size: 1000% 1000%;
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
-    -o-animation: AnimationName 30s ease infinite;
-    animation: AnimationName 30s ease infinite;
+    /* background: linear-gradient(135deg, #e52b50, #dc2a4b, #e5632b, #c8257f); */
+    background: #e52b50;
+    background: -webkit-linear-gradient(top left, #e52b50, #c8257f);
+    background:    -moz-linear-gradient(top left, #e52b50, #c8257f);
+    background:     -ms-linear-gradient(top left, #e52b50, #c8257f);
+    background:      -o-linear-gradient(top left, #e52b50, #c8257f);
+    background:         linear-gradient(to bottom right, #e52b50, #c8257f);						
 }
 
-@-webkit-keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
+::selection {
+    background: #ffbf00; /* WebKit/Blink Browsers */
 }
 
-@-moz-keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-o-keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
+::-moz-selection {
+    background: #ffbf00; /* Gecko Browsers */
 }
 
 ::-webkit-scrollbar {
@@ -110,13 +71,12 @@ canvas {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background: linear-gradient(135deg, #9725b4, #e52b50, #dc2a4b, #e5632b, #c8257f);
-    background-size: 1000% 1000%;
-    
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
-    -o-animation: AnimationName 30s ease infinite;
-    animation: AnimationName 30s ease infinite;
+    background: #e52b50;
+    background: -webkit-linear-gradient(top left, #e52b50, #c8257f);
+    background:    -moz-linear-gradient(top left, #e52b50, #c8257f);
+    background:     -ms-linear-gradient(top left, #e52b50, #c8257f);
+    background:      -o-linear-gradient(top left, #e52b50, #c8257f);
+    background:         linear-gradient(to bottom right, #e52b50, #c8257f);
 }
 
 @keyframes fadein {

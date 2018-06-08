@@ -29,8 +29,8 @@
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
-    animation-name: fadein;
-    animation-duration: 0.75s;
+    /* animation-name: fadein;
+    animation-duration: 0.75s; */
 }
 
 .link-logo {

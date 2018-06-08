@@ -16,8 +16,8 @@
     height: 100%;
     background-color: #fff;
     text-align: left;
-    animation-name: fadeInBottom;
-    animation-duration: 0.75s;
+    /* animation-name: fadeInBottom;
+    animation-duration: 0.75s; */
 }
 
 .row {

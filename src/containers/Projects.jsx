@@ -3,7 +3,7 @@ import '../styles/App.css';
 import '../styles/Projects.css';
 import '../styles/Arrows.css';
 import { Link } from 'react-router-dom';
-import LazyLoad from 'react-lazyload';
+// import LazyLoad from 'react-lazyload';
 
 const projects = [
     {
@@ -167,16 +167,16 @@ class Projects extends Component {
                                 projects.map(function(project, index) {
                                     return (
                                         <div key={index} className="col-xs-12 col-sm-6 col-md-4 box-container">
-                                            <LazyLoad height={200} once>
-                                                <div className="project-box">
-                                                    <div className="project-type" />
-                                                    <div className="project-contents">
-                                                        <h2 className="project-title">{project.title}</h2>
-                                                        <h5 className={'project-category project-' + project.categorykey}>{project.category}</h5>
-                                                        <p classname="project-gist">{project.gist}</p>
-                                                    </div>
+                                            {/* <LazyLoad height={200} once> */}
+                                            <div className="project-box">
+                                                <div className="project-type" />
+                                                <div className="project-contents">
+                                                    <h2 className="project-title">{project.title}</h2>
+                                                    <h5 className={'project-category project-' + project.categorykey}>{project.category}</h5>
+                                                    <p classname="project-gist">{project.gist}</p>
                                                 </div>
-                                            </LazyLoad>
+                                            </div>
+                                            {/* </LazyLoad> */}
                                         </div>
                                     );
                                 })
