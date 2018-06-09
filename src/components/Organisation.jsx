@@ -1,206 +1,242 @@
-import React, { Component } from 'react';
-import '../styles/App.css';
-import '../styles/Organisation.css';
-import '../styles/Masonry.css';
-import { Link } from 'react-router-dom';
-import LazyLoad from 'react-lazyload';
+import React, { Component } from "react";
+import "../styles/App.css";
+import "../styles/Organisation.css";
+import "../styles/Masonry.css";
+import { Link } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 
 const experienceInfo = {
-    orgs: {
-        "intuit": {
-            "key": "intuit",
-            "name": "Intuit IDC",
-            "role": "Software Engineer Intern",
-            "headerImage": require('../images/organisations/intuit/one-crop.jpg'),
-            "description": [
-                "Bangalore: The \"Silicon Valley of India\" hype is very real. I had a complete blast of a summer in 2017. Table Tennis, Foosball, outings, treats and lots of code!",
-                "I spent my summer as a Software Engineer Intern at Intuit IDC, Bangalore. After a gruelling semester of preparation for interviews, the selections news from Intuit was as sweet as it could get. Intuit has a beautiful office in south Bangalore buzzing with some of the smartest engineers around. That, and the always fun work culture, were reason enough to seal their #1 spot this year at Great Place to Work's Indian list. And one that provided me reason enough to take the return offer extended by them right after my internship.",
-                "I worked with QuickBooks Online's (QBO) Billing and Subscriptions team at Intuit IDC. In the interest of brevity, here's a quick gist of my projects during my internship:\n\n- Machine Learning to automate migration of customers between 2 billing architectures: My task was to train a Machine Learning model to classify customers into the right SKU of a new billing architecture. Once deployed, this model would speed up the conversion process for large countries from several months to a week.\n- GraphQL API for opting out a customer from QBO trial I was fully responsible for writing this API end-to-end, complete with unit and automation tests. Having never written anything but REST APIs before, this was an entirely new architecure for me and taught me a lof about different software engineering practices.\n- Rewrite front-end logic for an internal tool: This rewrite helped decrease the number of erraneous error reports to my team by over 80% The added logic also prevented engineers from sending incorrect requests to the backend.\n- Runner-up Hackathon project: Machine Learning to predict potential QBO customers. What started as a Hackathon project, we were able to predict potential customers for QBO from customers' trial data with an accuracy of 91%. This project was also awarded numerous 'spotlights' within the company. The project is now being deployed in production to be used as per business requirement.",
-                "My greatest surprise at Intuit was that the interns were given projects that were the scale at which they worked and the business value it added to the company. Meeting a wide range of remarkable people and constantly learning from them and giving back was an experience I'll carry for a long time."
-            ],
-            "images": [
-                require('../images/organisations/intuit/bull.jpg'),
-                require('../images/organisations/intuit/code.jpg'),
-                require('../images/organisations/intuit/glasses.jpg'),
-                require('../images/organisations/intuit/hackathon.JPG'),
-                require('../images/organisations/intuit/last.JPG'),
-                require('../images/organisations/intuit/office.JPG'),
-                require('../images/organisations/intuit/seminar.jpg'),
-                require('../images/organisations/intuit/social.jpg')
-            ]
-        },
-        "ezdi": {
-            "key": "ezdi",
-            "name": "ezDI, India",
-            "role": "Software Engineer Intern",
-            "headerImage": require('../images/organisations/ezdi/jump.png'),
-            "description": [
-                "On the banks of the beautiful Sabarmati river lay this Kentucky based startup \"ezDI\" set out to solve digital transcriptions for the American medical industry. ezDI's Ahmedabad office was their primary development center and housed all of it's core development teams. Having engineered a powerful Natural Language Processing (NLP) engine and comprehensive medical knowledge base, ezDI promised a very unique internship experience with work that has an impact on such an important industry.",
-                "I worked at ezDI as a software engineer intern. Their entire company was hosted on AWS with MySQL RDS as the database of choice. The inception of a new project that required frequent full-table queries brought with it scalability issues and high latency. My project was to solve that, potentially using a datawarehouse. I learnt a great deal about how the different layers of databases from deployment details in production at the high level to the logs generated by MySQL at the low level. I had successfully managed to setup a AWS Redshift database, optimized for their purposes and with replication capabilities (not supported by AWS). As a side project, I also worked on integrating a Business Intelligence (BI) solution into their platform and setup the base classes to take adavantage of reusable SQL views.",
-                "My internship here taught me a lot about the dynamics of working at smaller companies and the responsibility & complete ownership of projects. The company's CTO personally extended a return offer at the end of the internship."
-            ],
-            "images": [
-                require('../images/organisations/ezdi/office.jpg'),
-                require('../images/organisations/ezdi/desk.jpg'),
-                require('../images/organisations/ezdi/diu.png')
-            ]
-        },
-        "auv": {
-            "key": "auv",
-            "name": "AUV, IIT Kharagpur",
-            "role": "Image Processing Developer",
-            "headerImage": require('../images/organisations/auv/team.jpg'),
-            "description": [
-                "Robotics has always been one of the most exciting fields I looked forward to working in growing up. So, when I learnt my college had several research groups dedicated to Robotics, I jumped at the opportunity! They had a very rigorous selection process due to the high number of applications, but I managed to get selected into the Autonomous Underwater Vehicle (Team AUV) research group in my sophomore year. I joined the team when they were working on the 3rd iteration of their bot, Kraken 3.0.",
-                "I joined the team with little to knowledge about Image Processing, version control or linux. Team AUV introduced me to all of this, and each of them have now been ingrained into me. I worked with Team AUV for a year and during that time, implemented algorithms for buoy detection and path following for the bot, and also the first version of adaptive image segmentation using neural networks to better detect colors in different ligting conditions. The learning curve was steep for each of these tasks, but I had a lot of fun working on each so it was always a new challenge waiting to be solved.",
-                "I left the team by the end of Spring '16, but the skills I had picked up from my teammates here are indispensible."
-            ],
-            "images": [
-                require('../images/organisations/auv/bot3.jpg'),
-                require('../images/organisations/auv/bot2.jpg'),
-                require('../images/organisations/auv/demo.jpg'),
-                require('../images/organisations/auv/pool.jpg'),
-                require('../images/organisations/auv/sparton.jpg')
-            ]
-        },
-        "metakgp": {
-            "key": "metakgp",
-            "name": "MetaKGP",
-            "role": "Organisation Maintainer",
-            "headerImage": require('../images/organisations/metakgp/aaron.jpg'),
-            "description": [
-                "I am currently one of the three organisation maintainers at MetaKGP. My tasks range from keeping the community active, helping new contributors, taking all administrative decisions, organising meetups and other events, managing projects, etc. You can checkout MetaKGP's works at https://metakgp.github.io/",
-                "In the words of one of the co-founders, Vikrant Varma, the answer to 'Why MetaKGP?' is that:",
-                "            We come together\n            To share our knowledge\n            And our experiences\n            So that all may benefit\n            From what one has learned\n            And to create\n            An everlasting record\n            Of our fleeting passing\n            Through IIT KGP",
-                "Often, information about various things in IIT Kharagpur is hard to find, possessed by a few privileged individuals, inconsistent across different sources, or simply anecdotal and unrecorded. MetaKGP was started with the hope that the wiki model will be successful in centralising important knowledge about IITKGP.",
-                "Additionally, vast amounts of information in the form of subjective experiences are lost as students pass out, their precious wisdom unrecorded. A more ambitious goal for the wiki is to capture some of these hard won insights so that other students don’t face the same struggles unprepared.",
-                "Finally, the most ambitious goal of the wiki is to nurture an attitude of collaboration, openness, self-improvement and curiosity. By documenting our lives in KGP, we may learn something new about it, and about ourselves. By sharing our knowledge and experiences, we may try harder to overcome our self-imposed restrictions and inhibitions, to be more understanding, and to grow. And if we look back years later at this record of our time here, it will be with the thrill of having created something permanent and useful for generations.",
-                "As a community slowly gathered around Metakgp, we started discussing our other projects and interests. In particular, we began to discuss ways to drive more traffic to the wiki. Thus we started featuring articles, attempted to tune the wiki server to make it go faster, added plugins for all kinds of cool wiki features, and started a Facebook page.",
-                "As of today, MetaKGP is a 300 member strong community of a diverse set of people coming together to get things done."
-            ],
-            "images": []
-        },
-        "iitkgp": {
-            "key": "iitkgp",
-            "name": "Indian Institute of Technology, Kharagpur",
-            "role": "",
-            "headerImage": require('../images/organisations/iitkgp/illu.jpg'),
-            "description": [
-                "Placeholder paragraph 1",
-                "Placeholder paragraph 2",
-                "Placeholder paragraph 3"
-            ],
-            "images": [
-                require('../images/organisations/iitkgp/interiit.jpg'),
-                require('../images/organisations/iitkgp/prize.jpg'),
-                require('../images/organisations/iitkgp/bitwise.png'),
-                require('../images/organisations/iitkgp/drams.jpg'),
-                require('../images/organisations/iitkgp/robotix.jpg')
-            ]
-        },
-        "tls": {
-            "key": "tls",
-            "name": "Technology Literary Society, IITKGP",
-            "role": "Executive Editor",
-            "headerImage": require('../images/organisations/tls/sf.jpg'),
-            "description": [
-                "Becoming a part of Technology Literary Society (TLS) is the best thing that has ever happened to me. Period.",
-                "TLS is a group of writers and creative artists who come together and collaborate on literature. I joined TLS in my sophomore year and was one of the governors of the society during my third year."
-            ],
-            "images": [
-                require('../images/organisations/tls/host.jpg'),
-                require('../images/organisations/tls/sfgroup.jpg'),
-                require('../images/organisations/tls/shivani.jpg'),
-                require('../images/organisations/tls/flavors.jpg'),
-                require('../images/organisations/tls/kalidas.jpg'),
-                require('../images/organisations/tls/govs.png'),
-                require('../images/organisations/tls/tp.jpg'),
-                require('../images/organisations/tls/duddu.png'),
-                require('../images/organisations/tls/shibani.png')
-            ]
-        }
+  orgs: {
+    intuit: {
+      key: "intuit",
+      name: "Intuit IDC",
+      role: "Software Engineer Intern",
+      headerImage: require("../images/organisations/intuit/one-crop.jpg"),
+      description: [
+        'Bangalore: The "Silicon Valley of India" hype is very real. I had a complete blast of a summer in 2017. Table Tennis, Foosball, outings, treats and lots of code!',
+        "I spent my summer as a Software Engineer Intern at Intuit IDC, Bangalore. After a gruelling semester of preparation for interviews, the selections news from Intuit was as sweet as it could get. Intuit has a beautiful office in south Bangalore buzzing with some of the smartest engineers around. That, and the always fun work culture, were reason enough to seal their #1 spot this year at Great Place to Work's Indian list. And one that provided me reason enough to take the return offer extended by them right after my internship.",
+        "I worked with QuickBooks Online's (QBO) Billing and Subscriptions team at Intuit IDC. In the interest of brevity, here's a quick gist of my projects during my internship:\n\n- Machine Learning to automate migration of customers between 2 billing architectures: My task was to train a Machine Learning model to classify customers into the right SKU of a new billing architecture. Once deployed, this model would speed up the conversion process for large countries from several months to a week.\n- GraphQL API for opting out a customer from QBO trial I was fully responsible for writing this API end-to-end, complete with unit and automation tests. Having never written anything but REST APIs before, this was an entirely new architecure for me and taught me a lof about different software engineering practices.\n- Rewrite front-end logic for an internal tool: This rewrite helped decrease the number of erraneous error reports to my team by over 80% The added logic also prevented engineers from sending incorrect requests to the backend.\n- Runner-up Hackathon project: Machine Learning to predict potential QBO customers. What started as a Hackathon project, we were able to predict potential customers for QBO from customers' trial data with an accuracy of 91%. This project was also awarded numerous 'spotlights' within the company. The project is now being deployed in production to be used as per business requirement.",
+        "My greatest surprise at Intuit was that the interns were given projects that were the scale at which they worked and the business value it added to the company. Meeting a wide range of remarkable people and constantly learning from them and giving back was an experience I'll carry for a long time."
+      ],
+      images: [
+        require("../images/organisations/intuit/bull.jpg"),
+        require("../images/organisations/intuit/code.jpg"),
+        require("../images/organisations/intuit/glasses.jpg"),
+        require("../images/organisations/intuit/hackathon.JPG"),
+        require("../images/organisations/intuit/last.JPG"),
+        require("../images/organisations/intuit/office.JPG"),
+        require("../images/organisations/intuit/seminar.jpg"),
+        require("../images/organisations/intuit/social.jpg")
+      ]
+    },
+    ezdi: {
+      key: "ezdi",
+      name: "ezDI, India",
+      role: "Software Engineer Intern",
+      headerImage: require("../images/organisations/ezdi/jump.png"),
+      description: [
+        "On the banks of the beautiful Sabarmati river lay this Kentucky based startup ezDI set out to solve digital transcriptions for the American medical industry. ezDI's Ahmedabad office was their primary development center and housed all of it's core development teams. Having engineered a powerful Natural Language Processing (NLP) engine and comprehensive medical knowledge base, ezDI promised a very unique internship experience with work that has an impact on such an important industry.",
+        "I worked at ezDI as a software engineer intern. Their entire company was hosted on AWS with MySQL RDS as the database of choice. The inception of a new project that required frequent full-table queries brought with it scalability issues and high latency. My project was to solve that, potentially using a datawarehouse. I learnt a great deal about how the different layers of databases from deployment details in production at the high level to the logs generated by MySQL at the low level. I had successfully managed to setup a AWS Redshift database, optimized for their purposes and with replication capabilities (not supported by AWS). As a side project, I also worked on integrating a Business Intelligence (BI) solution into their platform and setup the base classes to take adavantage of reusable SQL views.",
+        "My internship here taught me a lot about the dynamics of working at smaller companies and the responsibility & complete ownership of projects. The company's CTO personally extended a return offer at the end of the internship."
+      ],
+      images: [
+        require("../images/organisations/ezdi/office.jpg"),
+        require("../images/organisations/ezdi/desk.jpg"),
+        require("../images/organisations/ezdi/diu.png")
+      ]
+    },
+    auv: {
+      key: "auv",
+      name: "AUV, IIT Kharagpur",
+      role: "Image Processing Developer",
+      headerImage: require("../images/organisations/auv/team.jpg"),
+      description: [
+        "Robotics has always been one of the most exciting fields I looked forward to working in growing up. So, when I learnt my college had several research groups dedicated to Robotics, I jumped at the opportunity! They had a very rigorous selection process due to the high number of applications, but I managed to get selected into the Autonomous Underwater Vehicle (Team AUV) research group in my sophomore year. I joined the team when they were working on the 3rd iteration of their bot, Kraken 3.0.",
+        "I joined the team with little to knowledge about Image Processing, version control or linux. Team AUV introduced me to all of this, and each of them have now been ingrained into me. I worked with Team AUV for a year and during that time, implemented algorithms for buoy detection and path following for the bot, and also the first version of adaptive image segmentation using neural networks to better detect colors in different ligting conditions. The learning curve was steep for each of these tasks, but I had a lot of fun working on each so it was always a new challenge waiting to be solved.",
+        "I left the team by the end of Spring '16, but the skills I had picked up from my teammates here are indispensible."
+      ],
+      images: [
+        require("../images/organisations/auv/bot3.jpg"),
+        require("../images/organisations/auv/bot2.jpg"),
+        require("../images/organisations/auv/demo.jpg"),
+        require("../images/organisations/auv/pool.jpg"),
+        require("../images/organisations/auv/sparton.jpg")
+      ]
+    },
+    metakgp: {
+      key: "metakgp",
+      name: "MetaKGP",
+      role: "Organisation Maintainer",
+      headerImage: require("../images/organisations/metakgp/aaron.jpg"),
+      description: [
+        "I am currently one of the three organisation maintainers at MetaKGP. My tasks range from keeping the community active, helping new contributors, taking all administrative decisions, organising meetups and other events, managing projects, etc. You can checkout MetaKGP's works at https://metakgp.github.io/",
+        "In the words of one of the co-founders, Vikrant Varma, the answer to 'Why MetaKGP?' is that:",
+        "            We come together\n            To share our knowledge\n            And our experiences\n            So that all may benefit\n            From what one has learned\n            And to create\n            An everlasting record\n            Of our fleeting passing\n            Through IIT KGP",
+        "Often, information about various things in IIT Kharagpur is hard to find, possessed by a few privileged individuals, inconsistent across different sources, or simply anecdotal and unrecorded. MetaKGP was started with the hope that the wiki model will be successful in centralising important knowledge about IITKGP.",
+        "Additionally, vast amounts of information in the form of subjective experiences are lost as students pass out, their precious wisdom unrecorded. A more ambitious goal for the wiki is to capture some of these hard won insights so that other students don’t face the same struggles unprepared.",
+        "Finally, the most ambitious goal of the wiki is to nurture an attitude of collaboration, openness, self-improvement and curiosity. By documenting our lives in KGP, we may learn something new about it, and about ourselves. By sharing our knowledge and experiences, we may try harder to overcome our self-imposed restrictions and inhibitions, to be more understanding, and to grow. And if we look back years later at this record of our time here, it will be with the thrill of having created something permanent and useful for generations.",
+        "As a community slowly gathered around Metakgp, we started discussing our other projects and interests. In particular, we began to discuss ways to drive more traffic to the wiki. Thus we started featuring articles, attempted to tune the wiki server to make it go faster, added plugins for all kinds of cool wiki features, and started a Facebook page.",
+        "As of today, MetaKGP is a 400 member strong community of a diverse set of people coming together to get things done."
+      ],
+      images: []
+    },
+    iitkgp: {
+      key: "iitkgp",
+      name: "Indian Institute of Technology, Kharagpur",
+      role: "",
+      headerImage: require("../images/organisations/iitkgp/illu.jpg"),
+      description: [],
+      images: [
+        require("../images/organisations/iitkgp/interiit.jpg"),
+        require("../images/organisations/iitkgp/prize.jpg"),
+        require("../images/organisations/iitkgp/bitwise.png"),
+        require("../images/organisations/iitkgp/drams.jpg"),
+        require("../images/organisations/iitkgp/robotix.jpg")
+      ]
+    },
+    tls: {
+      key: "tls",
+      name: "Technology Literary Society, IITKGP",
+      role: "Executive Editor",
+      headerImage: require("../images/organisations/tls/sf.jpg"),
+      description: [
+        "Becoming a part of Technology Literary Society (TLS) is the best thing that has ever happened to me. Period.",
+        "TLS is a group of writers and creative artists who come together and collaborate on literature. I joined TLS in my sophomore year and was one of the governors of the society during my third year."
+      ],
+      images: [
+        require("../images/organisations/tls/host.jpg"),
+        require("../images/organisations/tls/sfgroup.jpg"),
+        require("../images/organisations/tls/shivani.jpg"),
+        require("../images/organisations/tls/flavors.jpg"),
+        require("../images/organisations/tls/kalidas.jpg"),
+        require("../images/organisations/tls/govs.png"),
+        require("../images/organisations/tls/tp.jpg"),
+        require("../images/organisations/tls/duddu.png"),
+        require("../images/organisations/tls/shibani.png")
+      ]
     }
-}
+  }
+};
 
-const PlaceholderComponent = () => (<div className="placeholder-element"></div>);
+const PlaceholderComponent = () => <div className="placeholder-element" />;
 
 class Organisation extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedOrganisation: this.props.match.params.orgId
-        }
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOrganisation: this.props.match.params.orgId
+    };
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
 
-    handleKeyPress(e) {
-        switch (e.key) {
-            case 'Escape':
-                this.props.history.push('/experience');
-                break;
-            default:
-                break;
-        }
+  handleKeyPress(e) {
+    switch (e.key) {
+      case "Escape":
+        this.props.history.push("/experience");
+        break;
+      default:
+        break;
     }
+  }
 
-    componentDidMount() {
-        document.addEventListener("keydown", this.handleKeyPress);
-    }
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress);
+  }
 
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.handleKeyPress);
-    }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress);
+  }
 
-    render() {
-        return (
-            <div className="modal-content">
-                <LazyLoad resize once height={500}>
-                    <div className="modal-header-container">
-                        <img src={experienceInfo.orgs[this.state.selectedOrganisation].headerImage} className="modal-header-image" alt="Header"/>
-                        <div className="modal-header-title mobile-invisible tablet-invisible">
-                            <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
-                            <h2 className="header-subtitle">{experienceInfo.orgs[this.state.selectedOrganisation].role}</h2>
-                        </div>
-                    </div>
-                </LazyLoad>
-                <div className="modal-text">
-                    <div className="modal-mobile-header-title tablet-landscape-invisible desktop-invisible">
-                        <h1 className={'header-title ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-color'}>{experienceInfo.orgs[this.state.selectedOrganisation].name}</h1>
-                        <h2 className="header-subtitle">{experienceInfo.orgs[this.state.selectedOrganisation].role}</h2>
-                    </div>
-                    <Link to="/experience" className="modal-close">
-                        <i className="fa fa-close"></i>
-                    </Link>
-                    <div className={'row ' + experienceInfo.orgs[this.state.selectedOrganisation].key + '-text'}>
-                        <div className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-                            {
-                                experienceInfo.orgs[this.state.selectedOrganisation].description.map(function(paragraph, index){
-                                    return <p className="actual-content" key={index}>{paragraph}</p>
-                                })
-                            }
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-xs-12 col-md-offset-1 col-md-10">
-                            <div className="masonry gutterless">
-                                {
-                                    experienceInfo.orgs[this.state.selectedOrganisation].images.map(function(image, index){
-                                        return(
-                                            <LazyLoad key={index} resize once height={300} placeholder={<PlaceholderComponent />}>
-                                                <div className="brick">
-                                                    <img src={image} alt="grid" className="orgImage"/>
-                                                </div>
-                                            </LazyLoad>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  render() {
+    return (
+      <div className="modal-content">
+        <LazyLoad resize once height={500}>
+          <div className="modal-header-container">
+            <img
+              src={
+                experienceInfo.orgs[this.state.selectedOrganisation].headerImage
+              }
+              className="modal-header-image"
+              alt="Header"
+            />
+            <div className="modal-header-title mobile-invisible tablet-invisible">
+              <h1
+                className={
+                  "header-title " +
+                  experienceInfo.orgs[this.state.selectedOrganisation].key +
+                  "-color"
+                }
+              >
+                {experienceInfo.orgs[this.state.selectedOrganisation].name}
+              </h1>
+              <h2 className="header-subtitle">
+                {experienceInfo.orgs[this.state.selectedOrganisation].role}
+              </h2>
             </div>
-        )
-    }
+          </div>
+        </LazyLoad>
+        <div className="modal-text">
+          <div className="modal-mobile-header-title tablet-landscape-invisible desktop-invisible">
+            <h1
+              className={
+                "header-title " +
+                experienceInfo.orgs[this.state.selectedOrganisation].key +
+                "-color"
+              }
+            >
+              {experienceInfo.orgs[this.state.selectedOrganisation].name}
+            </h1>
+            <h2 className="header-subtitle">
+              {experienceInfo.orgs[this.state.selectedOrganisation].role}
+            </h2>
+          </div>
+          <Link to="/experience" className="modal-close">
+            <i className="fa fa-close" />
+          </Link>
+          <div
+            className={
+              "row " +
+              experienceInfo.orgs[this.state.selectedOrganisation].key +
+              "-text"
+            }
+          >
+            <div className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+              {experienceInfo.orgs[
+                this.state.selectedOrganisation
+              ].description.map(function(paragraph, index) {
+                return (
+                  <p className="actual-content" key={index}>{paragraph}</p>
+                );
+              })}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12 col-md-offset-1 col-md-10">
+              <div className="masonry gutterless">
+                {experienceInfo.orgs[
+                  this.state.selectedOrganisation
+                ].images.map(function(image, index) {
+                  return (
+                    <LazyLoad
+                      key={index}
+                      resize
+                      once
+                      height={300}
+                      placeholder={<PlaceholderComponent />}
+                    >
+                      <div className="brick">
+                        <img src={image} alt="grid" className="orgImage" />
+                      </div>
+                    </LazyLoad>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Organisation;

@@ -107,7 +107,7 @@ i:hover {
 } */
 
 #githubicon {
-    color: #4a3863;
+    color: #333;
 }
 
 #linkedinicon {
@@ -120,6 +120,10 @@ i:hover {
 
 #blogicon {
     color: #111;
+}
+
+#codeicon {
+    color: #6e5494;
 }
 
 #instaicon {
@@ -146,6 +150,9 @@ i:hover {
     background-clip: text;
 }
 
+.highlight {
+    font-weight: bold;
+}
 
 /* Responsive stuff */
 

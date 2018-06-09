@@ -1,48 +1,48 @@
-import React, {Component} from 'react';
-import '../styles/App.css';
-import '../styles/About.css';
-import {Link} from 'react-router-dom';
+import React, { Component } from "react";
+import "../styles/App.css";
+import "../styles/About.css";
+import { Link } from "react-router-dom";
 
 class About extends Component {
-  constructor (props) {
-    super (props);
-    this.handleKeyPress = this.handleKeyPress.bind (this);
+  constructor(props) {
+    super(props);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  handleKeyPress (e) {
+  handleKeyPress(e) {
     switch (e.key) {
-      case '1':
-        this.props.history.push ('/about');
+      case "1":
+        this.props.history.push("/about");
         break;
-      case '2':
-        this.props.history.push ('/experience');
+      case "2":
+        this.props.history.push("/experience");
         break;
-      case '3':
-        this.props.history.push ('/projects');
+      case "3":
+        this.props.history.push("/projects");
         break;
-      case '4':
-        this.props.history.push ('/resume');
+      case "4":
+        this.props.history.push("/resume");
         break;
-      case 'ArrowRight':
-        this.props.history.push ('/experience');
+      case "ArrowRight":
+        this.props.history.push("/experience");
         break;
-      case 'Escape':
-        this.props.history.push ('/');
+      case "Escape":
+        this.props.history.push("/");
         break;
       default:
         break;
     }
   }
 
-  componentDidMount () {
-    document.addEventListener ('keydown', this.handleKeyPress);
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress);
   }
 
-  componentWillUnmount () {
-    document.removeEventListener ('keydown', this.handleKeyPress);
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress);
   }
 
-  render () {
+  render() {
     return (
       <div className="about-container">
         <div className="header-container">
@@ -71,7 +71,7 @@ class About extends Component {
           >
             <img
               className="about-image img-thumbnail"
-              src={require ('../images/about.jpg')}
+              src={require("../images/about.jpg")}
               alt="Me!"
             />
           </div>
@@ -85,13 +85,17 @@ class About extends Component {
             </text>
             <div id="aboutdescdesk">
               <p>
-                I study Computer Science at IIT Kharagpur, India. I am madly
-                passionate about working on large scale systems and love
-                solving challenging problems.
+                I study Computer Science at Indian Institute of
+                Technology Kharagpur, India. I am madly passionate about
+                working on large scale systems and love solving
+                challenging problems.
               </p>
               <p>
-                I'm currently working with gRPC as a Google Summer of
-                Code student.
+                I'm currently working with
+                <text className="highlight">
+                  &nbsp;gRPC as a Google Summer of Code student
+                </text>. When I'm not working, I enjoy writing poetry,
+                listening to music or just being awesome.
               </p>
             </div>
             <div className="row" id="iconlinks">
@@ -126,6 +130,13 @@ class About extends Component {
                   rel="noopener noreferrer"
                 >
                   <i id="blogicon" className="fa fa-pencil link-icons" />
+                </a>
+                <a
+                  href="http://code.ghostwriternr.me/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i id="codeicon" className="fa fa-terminal link-icons" />
                 </a>
                 <a
                   href="https://www.instagram.com/noresh.romesh/"
