@@ -43,7 +43,7 @@ class Name extends Component {
                 <div className="name-bg">
                   <p className="subtitle">Hi, I am</p>
                   <a className="link link--name">Naresh R<span data-letters="Naresh R"></span><span data-letters="Naresh R"></span></a>
-                  <p className="subtitle">Developer. Writer. Dreamer.</p>
+                  <p className="subtitle">Software Engineer at Intuit IDC</p>
                   <div className="row navbuttons cl-effect-5">
                     <div className="col-xs-12 col-md-3">
                       <Link to="/about"><span data-hover="About Me">About Me</span></Link>

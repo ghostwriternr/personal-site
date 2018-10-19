@@ -85,13 +85,14 @@ class About extends Component {
             </text>
             <div id="aboutdescdesk">
               <p>
-                I study Computer Science at Indian Institute of
-                Technology Kharagpur, India. I am madly passionate about
-                working on large scale systems and love solving
-                challenging problems.
+                I am currenlty a
+                <text className="highlight">
+                  &nbsp;Software Engineer at Intuit IDC
+                </text>, Bengaluru. I am madly passionate about all
+                things Open Source.
               </p>
               <p>
-                I'm currently working with
+                I recently started working with
                 <text className="highlight">
                   &nbsp;gRPC as a Google Summer of Code student
                 </text>. When I'm not working, I enjoy writing poetry,
