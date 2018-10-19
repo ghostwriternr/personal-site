@@ -74,7 +74,7 @@ class Resume extends Component {
                     </div>
                 </div>
                 <div className="resume-img">
-                    <img src={require('../images/resume.png')} alt="Resume" />
+                    <img src={require('../images/resume.jpg')} alt="Resume" />
                 </div>
                 <nav className="nav-fillpath mobile-invisible tablet-invisible">
                     <Link className="prev" to="/projects">
