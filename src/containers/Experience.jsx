@@ -89,22 +89,20 @@ class Experience extends Component {
         <div className="experience-desc row">
           <div className="col-xs-offset-1 col-xs-10 tablet-landscape-invisible desktop-invisible">
             <p>
-              I will be graduating in 2018 with a Masters degree in Computer
-              Science. During my stay at IIT Kharagpur, I've taken up several
-              technical as well as directorial roles. I spent my summer last
-              year at Intuit IDC writing complex APIs and training
-              neural networks.
+              I graduated in 2018 with a Masters degree in Computer
+              Science. During my stay at IIT Kharagpur, I had taken up several
+              technical as well as directorial roles. I spent last summer with
+              gRPC, a CNCF project, enabling building their Python code with Bazel.
             </p>
           </div>
         </div>
         <div className="experience-desc row">
           <div className="col-md-offset-2 col-md-8 mobile-invisible tablet-invisible">
             <p>
-              I will be graduating in 2018 with a Masters degree in Computer
-              Science. During my stay at IIT Kharagpur, I've taken up several
-              technical as well as directorial roles. I spent my summer last
-              year at Intuit IDC writing complex APIs and training
-              neural networks.
+              I graduated in 2018 with a Masters degree in Computer
+              Science. During my stay at IIT Kharagpur, I had taken up several
+              technical as well as directorial roles. I spent last summer with
+              gRPC, a CNCF project, enabling building their Python code with Bazel.
             </p>
           </div>
         </div>
