@@ -4,4 +4,4 @@ Started as a quick way to force myself to learn React :dizzy: :dizzy: :dizzy:, I
 
 Also, officially joining the React masterrace now!! We had a good run Angular :broken_heart:, but I'm not even sorry it had to end.
 
-Have a look at the new site at http://ghostwriternr.me/
+Have a look at the new site at https://ghostwriternr.me/
