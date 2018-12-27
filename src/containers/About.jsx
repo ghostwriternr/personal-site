@@ -86,16 +86,16 @@ class About extends Component {
             <div id="aboutdescdesk">
               <p>
                 I am currenlty a
-                <text className="highlight">
+                <span className="highlight">
                   &nbsp;Software Engineer at Intuit IDC
-                </text>, Bengaluru. I am madly passionate about all
+                </span>, Bengaluru. I am madly passionate about all
                 things Open Source.
               </p>
               <p>
                 I recently started working with
-                <text className="highlight">
+                <span className="highlight">
                   &nbsp;gRPC as a Google Summer of Code student
-                </text>. When I'm not working, I enjoy writing poetry,
+                </span>. When I'm not working, I enjoy writing poetry,
                 listening to music or just being awesome.
               </p>
             </div>
