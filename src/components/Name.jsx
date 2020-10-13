@@ -42,7 +42,7 @@ class Name extends Component {
             <div className="App-header Aligner">
                 <div className="name-bg">
                   <p className="subtitle">Hi, I am</p>
-                  <a className="link link--name">Naresh R<span data-letters="Naresh R"></span><span data-letters="Naresh R"></span></a>
+                  <p className="link link--name">Naresh R<span data-letters="Naresh R"></span><span data-letters="Naresh R"></span></p>
                   <p className="subtitle">Software Engineer at Intuit IDC</p>
                   <div className="row navbuttons cl-effect-5">
                     <div className="col-xs-12 col-md-3">
