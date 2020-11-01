@@ -89,14 +89,15 @@ class About extends Component {
               <p>
                 I am currenlty a
                 <span className="highlight">
-                  &nbsp;Software Engineer at Intuit IDC
+                  &nbsp;Software Engineer at Setu
                 </span>
                 , Bengaluru. I am madly passionate about all things Open Source.
               </p>
               <p>
-                I recently started working with
+                Previously with Quickbooks, Mint & OSS at{" "}
+                <span className="highlight">Intuit IDC</span> and
                 <span className="highlight">
-                  &nbsp;gRPC as a Google Summer of Code student
+                  &nbsp;Google Summer of Code student with gRPC
                 </span>
                 . When I'm not working, I enjoy writing poetry, listening to
                 music or just being awesome.
