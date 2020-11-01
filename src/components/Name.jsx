@@ -46,7 +46,7 @@ class Name extends Component {
             Naresh R<span data-letters="Naresh R" />
             <span data-letters="Naresh R" />
           </p>
-          <p className="subtitle">Software Engineer at Intuit IDC</p>
+          <p className="subtitle">Software Engineer at Setu</p>
           <div className="row navbuttons cl-effect-5">
             <div className="col-xs-12 col-md-3">
               <Link to="/about">
