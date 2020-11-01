@@ -48,7 +48,9 @@ class About extends Component {
         <div className="header-container">
           <div className="row tablet-landscape-invisible desktop-invisible">
             <div className="col-xs-12">
-              <Link to="/"><i className="back-arrow fa fa-angle-up" /></Link>
+              <Link to="/">
+                <i className="back-arrow fa fa-angle-up" />
+              </Link>
             </div>
           </div>
           <div className="row">
@@ -71,32 +73,33 @@ class About extends Component {
           >
             <img
               className="about-image img-thumbnail"
-              src={require("../images/about.jpg")}
+              src={require("../images/about.jpg").default}
               alt="Me!"
             />
           </div>
           <div className="col-xs-12 col-md-6 text-center" id="intro">
             <text id="about-hi">
-              <span role="img" aria-label="waving-emoji">👋</span>
-              &nbsp;Hi, I am
-              <span className="name-gradient">
-                &nbsp;Naresh
+              <span role="img" aria-label="waving-emoji">
+                👋
               </span>
+              &nbsp;Hi, I am
+              <span className="name-gradient">&nbsp;Naresh</span>
             </text>
             <div id="aboutdescdesk">
               <p>
                 I am currenlty a
                 <span className="highlight">
                   &nbsp;Software Engineer at Intuit IDC
-                </span>, Bengaluru. I am madly passionate about all
-                things Open Source.
+                </span>
+                , Bengaluru. I am madly passionate about all things Open Source.
               </p>
               <p>
                 I recently started working with
                 <span className="highlight">
                   &nbsp;gRPC as a Google Summer of Code student
-                </span>. When I'm not working, I enjoy writing poetry,
-                listening to music or just being awesome.
+                </span>
+                . When I'm not working, I enjoy writing poetry, listening to
+                music or just being awesome.
               </p>
             </div>
             <div className="row" id="iconlinks">
@@ -170,7 +173,9 @@ class About extends Component {
                 />
               </svg>
             </span>
-            <h3><strong>Experience</strong></h3>
+            <h3>
+              <strong>Experience</strong>
+            </h3>
           </Link>
         </nav>
       </div>
