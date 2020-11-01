@@ -14,7 +14,7 @@ const completeCall = target => {
   TweenLite.set(target, { clearProps: "position" });
 };
 
-const AppRoutes = props =>
+const AppRoutes = props => (
   <TransitionGroup>
     <Transition
       key={props.location.pathname}
@@ -38,15 +38,16 @@ const AppRoutes = props =>
       }}
     >
       <Switch location={props.location}>
-        <Route exact path="/" component={Name}/>
-        <Route exact path="/about" component={About}/>
-        <Route exact path="/experience" component={Experience}/>
-        <Route exact path="/experience/:orgId" component={Organisation}/>
-        <Route exact path="/projects" component={Projects}/>
-        <Route exact path="/resume" component={Resume}/>
-        <Redirect from="*" to="/"/>
+        <Route exact path="/" component={Name} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/experience" component={Experience} />
+        <Route exact path="/experience/:orgId" component={Organisation} />
+        <Route exact path="/projects" component={Projects} />
+        <Route exact path="/resume" component={Resume} />
+        <Redirect from="*" to="/" />
       </Switch>
     </Transition>
-  </TransitionGroup>;
+  </TransitionGroup>
+);
 
 export default AppRoutes;

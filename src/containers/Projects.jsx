@@ -183,7 +183,9 @@ class Projects extends Component {
         <div className="header-container">
           <div className="row tablet-landscape-invisible desktop-invisible">
             <div className="col-xs-12">
-              <Link to="/"><i className="back-arrow fa fa-angle-up" /></Link>
+              <Link to="/">
+                <i className="back-arrow fa fa-angle-up" />
+              </Link>
             </div>
           </div>
           <div className="row">
@@ -240,7 +242,9 @@ class Projects extends Component {
                 />
               </svg>
             </span>
-            <h3><strong>Experience</strong></h3>
+            <h3>
+              <strong>Experience</strong>
+            </h3>
           </Link>
           <Link className="next" to="/resume">
             <span className="icon-wrap">
@@ -251,7 +255,9 @@ class Projects extends Component {
                 />
               </svg>
             </span>
-            <h3><strong>Resume</strong></h3>
+            <h3>
+              <strong>Resume</strong>
+            </h3>
           </Link>
         </nav>
       </div>
