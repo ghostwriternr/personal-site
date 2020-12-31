@@ -1,0 +1,62 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.intro {
+    display: flex;
+    flex-direction: row;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.name {
+    background-color: #fe8c00;
+    background-image: linear-gradient(45deg, #fe8c00, #f83600);
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.name::selection {
+    background: unset;
+}
+.name::-moz-selection {
+    background: unset;
+}
+
+.welcome {
+    display: flex;
+    font-size: 1.2rem;
+}
+
+.language {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.language:first-of-type {
+    margin-left: 0;
+}
+.language:last-of-type {
+    margin-right: 0;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.2rem;
+    text-align: right;
+}

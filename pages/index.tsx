@@ -1,16 +1,21 @@
 import Head from "next/head";
+
+import { Header } from "../components/header";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Naresh R</title>
+                <title>Naresh Ramesh</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className={styles.main}>
-                <h1 className={styles.title}>Hello!</h1>
+            <main>
+                <div className={styles.indicator}></div>
+                <div className={styles.content}>
+                    <Header />
+                </div>
             </main>
         </div>
     );

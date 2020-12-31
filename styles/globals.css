@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Guntur&family=Hind+Madurai&family=Poppins&display=swap");
+
 @font-face {
     font-family: "Lufga";
-    src: url("/fonts/Lufga/Lufga-Bold/font.woff2") format("woff2"),
-        url("/fonts/Lufga/Lufga-Bold/font.woff") format("woff");
+    src: url("/fonts/Lufga/Lufga-Bold/font.woff2") format("woff2");
     font-style: normal;
     font-weight: 600;
     font-display: swap;
@@ -9,17 +10,7 @@
 
 @font-face {
     font-family: "Lufga";
-    src: url("/fonts/Lufga/Lufga-Italic/font.woff2") format("woff2"),
-        url("/fonts/Lufga/Lufga-Italic/font.woff") format("woff");
-    font-style: italic;
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Lufga";
-    src: url("/fonts/Lufga/Lufga-Regular/font.woff2") format("woff2"),
-        url("/fonts/Lufga/Lufga-Regular/font.woff") format("woff");
+    src: url("/fonts/Lufga/Lufga-Regular/font.woff2") format("woff2");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
@@ -27,17 +18,53 @@
 
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: Lufga, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    font-family: "Lufga", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
         Droid Sans, Helvetica Neue, sans-serif;
+    background-color: #f1efed;
+    color: #000000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lufga", sans-serif;
+    font-weight: 600;
+}
+
+p,
+a {
+    font-family: "Lufga", sans-serif;
+    font-weight: 400;
 }
 
 a {
-    color: inherit;
+    color: #ff971d;
     text-decoration: none;
 }
 
 * {
     box-sizing: border-box;
+}
+
+::selection {
+    background: #ffe8d6; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+    background: #ffe8d6; /* Gecko Browsers */
+}
+
+.hindi {
+    font-family: "Poppins", sans-serif;
+}
+
+.tamil {
+    font-family: "Hind Madurai", sans-serif;
+}
+
+.telugu {
+    font-family: "Hind Guntur", sans-serif;
 }
