@@ -1,3 +1,3 @@
-export default function Poetry() {
+export default function Blog() {
     return <>Welcome to my blog!</>;
 }
