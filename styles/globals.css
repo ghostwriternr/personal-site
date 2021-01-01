@@ -23,6 +23,7 @@
 
     html,
     body {
+        font-family: "Lufga", sans-serif;
         background-color: #f1efed;
         color: #000000;
     }
