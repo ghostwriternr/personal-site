@@ -12,7 +12,7 @@ export default function Home() {
             </Head>
 
             <main>
-                <div className="h-1 w-screen bg-red-600"></div>
+                <div className="h-2 w-screen" style={{ background: "#ffd081" }}></div>
                 <div className="p-4">
                     <Header />
                     <Body />

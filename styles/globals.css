@@ -24,36 +24,20 @@
     html,
     body {
         font-family: "Lufga", sans-serif;
-        background-color: #f1efed;
-        color: #000000;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply font-semibold;
-    }
-
-    p,
-    a {
-        @apply font-normal;
-    }
-
-    a {
-        text-decoration: none;
+        background-color: #ffecb4;
+        background-image: url("/images/bg.svg");
+        background-attachment: fixed;
+        background-size: cover;
     }
 }
 
-::selection {
-    background: #ffe8d6; /* WebKit/Blink Browsers */
+/* ::selection {
+    background: #ffe8d6;
 }
 
 ::-moz-selection {
-    background: #ffe8d6; /* Gecko Browsers */
-}
+    background: #ffe8d6;
+} */
 
 .hindi {
     font-family: "Poppins", sans-serif;
