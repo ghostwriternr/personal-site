@@ -7,7 +7,7 @@
 
     @font-face {
         font-family: "Lufga";
-        src: url("/fonts/Lufga/Lufga-Bold/font.woff2") format("woff2");
+        src: url("/fonts/Lufga/Lufga-Bold/font.woff2");
         font-style: normal;
         font-weight: 600;
         font-display: optional;
@@ -15,7 +15,7 @@
 
     @font-face {
         font-family: "Lufga";
-        src: url("/fonts/Lufga/Lufga-Regular/font.woff2") format("woff2");
+        src: url("/fonts/Lufga/Lufga-Regular/font.woff2");
         font-style: normal;
         font-weight: 400;
         font-display: optional;
