@@ -10,7 +10,7 @@
         src: url("/fonts/Lufga/Lufga-Bold/font.woff2") format("woff2");
         font-style: normal;
         font-weight: 600;
-        font-display: swap;
+        font-display: optional;
     }
 
     @font-face {
@@ -18,7 +18,7 @@
         src: url("/fonts/Lufga/Lufga-Regular/font.woff2") format("woff2");
         font-style: normal;
         font-weight: 400;
-        font-display: swap;
+        font-display: optional;
     }
 
     html,
