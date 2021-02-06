@@ -27,6 +27,10 @@
         background-attachment: fixed;
         background-size: cover;
     }
+
+    .article-text {
+        font-family: "Bitter", serif;
+    }
 }
 
 ::selection {

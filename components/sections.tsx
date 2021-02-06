@@ -1,27 +1,31 @@
+import Link from "next/link";
+
 export function Sections() {
     return (
         <div className="grid gap-4 mt-16">
-            <div
-                className="relative inline-block"
-                style={{
-                    padding: "8px",
-                    background: "#ffe69a",
-                    clipPath: "polygon(0 0, calc(100% - 68px) 0, 100% 68px, 100% 100%, 0 100%)",
-                }}
-            >
-                <img
-                    className="block"
-                    src="/images/hero-blog.jpg"
-                    alt="Blog"
-                    style={{ clipPath: "polygon(0 0, calc(100% - 64px) 0, 100% 64px, 100% 100%, 0 100%)" }}
-                />
-                <div className="absolute top-0 right-0 h-full w-1/2">
-                    <div className="flex flex-col justify-center items-center h-full">
-                        <h2 className="text-2xl font-bold">A Silhouette's Squire</h2>
-                        <p className="text-lg">My poetry &amp; prose from over the years.</p>
+            <Link href="/blog">
+                <div
+                    className="relative inline-block"
+                    style={{
+                        padding: "8px",
+                        background: "#ffe69a",
+                        clipPath: "polygon(0 0, calc(100% - 68px) 0, 100% 68px, 100% 100%, 0 100%)",
+                    }}
+                >
+                    <img
+                        className="block"
+                        src="/images/hero-blog.jpg"
+                        alt="Blog"
+                        style={{ clipPath: "polygon(0 0, calc(100% - 64px) 0, 100% 64px, 100% 100%, 0 100%)" }}
+                    />
+                    <div className="absolute top-0 right-0 h-full w-1/2">
+                        <div className="flex flex-col justify-center items-center h-full">
+                            <h2 className="text-2xl font-bold">A Silhouette's Squire</h2>
+                            <p className="text-lg">My poetry &amp; prose from over the years.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Link>
             <div
                 className="relative inline-block"
                 style={{
