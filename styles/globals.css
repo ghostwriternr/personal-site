@@ -18,14 +18,45 @@
     font-display: optional;
 }
 
+:root {
+    --primary: #47184c;
+    --secondary: #e17150;
+    --tertiary: #fcaf61;
+    --text: theme("colors.black");
+    --background: theme("colors.white");
+
+    --theme-bg: #ffecb4;
+    --theme-accent: #ffe69a;
+    --theme-accent-dark: #ffd081;
+
+    --home-bg: url("/images/bg.svg");
+}
+
+[data-theme="dark"] {
+    --primary: #fcaf61;
+    --secondary: #e17150;
+    --tertiary: #381e5f;
+    --text: theme("colors.white");
+    --background: theme("colors.black");
+
+    --theme-bg: #221239;
+    --theme-accent: #2d184c;
+    --theme-accent-dark: #381e5f;
+
+    --home-bg: url("/images/bg-dark.svg");
+}
+
 @layer base {
     html,
     body {
         font-family: "Lufga", sans-serif;
+        color: var(--text);
+        background-color: var(--background);
+        transition: all 0.25s linear;
     }
 
     .article-text {
-        font-family: "Bitter", serif;
+        font-family: "Newsreader", serif;
     }
 }
 

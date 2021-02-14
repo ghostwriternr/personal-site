@@ -7,17 +7,16 @@ export function Intro() {
             <div className="col-span-8 md:col-span-6">
                 <div className="table-cell text-center">
                     <h1
-                        className="text-6xl"
+                        className="text-6xl text-th-primary"
                         style={{
-                            color: "#47184c",
-                            textShadow: "3px 3px 0px #e17150, 6px 6px 0px #fcaf61",
+                            textShadow: "3px 3px 0px var(--secondary), 6px 6px 0px var(--tertiary)",
                         }}
                     >
                         Naresh Ramesh
                     </h1>
                 </div>
                 <div className="flex justify-center md:justify-start mt-4">
-                    <h1 className="flex flex-wrap text-xl md:text-4xl" style={{ color: "#47184c" }}>
+                    <h1 className="flex flex-wrap text-xl md:text-4xl text-th-primary">
                         <div className="mr-2">Hello</div>&#8226;<div className="ml-2 mr-2 hindi">नमस्ते</div>&#8226;
                         <div className="ml-2 mr-2 tamil">வணக்கம்</div>&#8226;
                         <div className="ml-2 telugu">స్వాగతం</div>
