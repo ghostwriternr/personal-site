@@ -1,9 +1,12 @@
 import Head from "next/head";
-import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 import { Layout } from "../../components/layout";
 
 function BlogPostPage(props) {
+    const router = useRouter();
+
     return (
         <div className="h-screen">
             <Head>
@@ -13,19 +16,39 @@ function BlogPostPage(props) {
 
             <main>
                 <Layout>
-                    <div className="article-text">
+                    <div className="col-span-12 md:col-start-3 md:col-span-8">
+                        <h1 className="text-4xl md:text-6xl font-bold mb-8">
+                            <span onClick={() => router.back()} className="cursor-pointer mr-4">
+                                &larr;
+                            </span>
+                            {props.blog.title}
+                        </h1>
                         {props.blog.header && (
-                            <img
-                                src={
-                                    props.blog.header["overlay_image"]
-                                        ? props.blog.header["overlay_image"]
-                                        : props.blog.header["image"]
-                                }
-                                alt="Overlay image"
-                            />
+                            <div className="col-span-full">
+                                <Image
+                                    src={
+                                        props.blog.header["overlay_image"]
+                                            ? props.blog.header["overlay_image"]
+                                            : props.blog.header["image"]
+                                    }
+                                    alt="Overlay image"
+                                    layout="responsive"
+                                    width="2000"
+                                    height="1000"
+                                    objectFit="cover"
+                                />
+                            </div>
                         )}
-                        <h1 className="text-4xl md:text-6xl mt-8">{props.blog.title}</h1>
-                        <section className="mt-8" dangerouslySetInnerHTML={{ __html: props.blog.content }}></section>
+                        <div className="article-text mb-8">
+                            <div className="grid grid-cols-6">
+                                <div className="col-start-1 col-span-6 md:col-start-2 md:col-span-4">
+                                    <section
+                                        className="text-xl mt-8 "
+                                        dangerouslySetInnerHTML={{ __html: props.blog.content }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </Layout>
             </main>

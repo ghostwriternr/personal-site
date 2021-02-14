@@ -13,10 +13,22 @@ export default function Home() {
             </Head>
 
             <main>
-                <Layout>
-                    <Intro />
-                    <Sections />
-                </Layout>
+                <>
+                    <div className="h-2 w-screen" style={{ background: "#ffd081" }} />
+                    <Layout
+                        style={{
+                            backgroundColor: "#ffecb4",
+                            backgroundImage: "url('/images/bg.svg')",
+                            backgroundAttachment: "fixed",
+                            backgroundSize: "cover",
+                        }}
+                    >
+                        <div className="col-span-12 md:col-start-3 md:col-span-8">
+                            <Intro />
+                            <Sections />
+                        </div>
+                    </Layout>
+                </>
             </main>
         </div>
     );

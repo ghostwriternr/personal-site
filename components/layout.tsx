@@ -1,17 +1,26 @@
 import Link from "next/link";
+import { CSSProperties } from "react";
 
-export function Layout(props) {
+type LayoutProps = {
+    style?: CSSProperties;
+    children: React.ReactNode;
+};
+
+export function Layout(props: LayoutProps) {
     return (
-        <>
-            <div className="h-2 w-screen" style={{ background: "#ffd081" }} />
+        <div style={props.style}>
             <div className="p-4">
-                <Link href="/">
-                    <img className="fixed hidden md:block" src="/images/me.png" alt="Avatar" height="60" width="60" />
+                <Link href="/" passHref>
+                    <img
+                        className="fixed hidden md:block cursor-pointer"
+                        src="/images/me.png"
+                        alt="Avatar"
+                        height="60"
+                        width="60"
+                    />
                 </Link>
-                <div className="grid grid-cols-12 mt-4 mb-4 md:mt-8 md:mb-4">
-                    <div className="col-span-12 md:col-start-3 md:col-span-8">{props.children}</div>
-                </div>
+                <div className="grid grid-cols-12 pt-4">{props.children}</div>
             </div>
-        </>
+        </div>
     );
 }

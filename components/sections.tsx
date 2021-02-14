@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export function Sections() {
     return (
-        <div className="grid gap-4 mt-16">
-            <Link href="/blog">
+        <div className="grid gap-4 mt-12">
+            <Link href="/blog" passHref>
                 <div
-                    className="relative inline-block"
+                    className="relative inline-block cursor-pointer"
                     style={{
                         padding: "8px",
                         background: "#ffe69a",
