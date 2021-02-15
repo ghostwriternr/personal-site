@@ -39,9 +39,9 @@
     --text: theme("colors.white");
     --background: theme("colors.black");
 
-    --theme-bg: #221239;
-    --theme-accent: #2d184c;
-    --theme-accent-dark: #381e5f;
+    --theme-bg: #160c25;
+    --theme-accent: #221239;
+    --theme-accent-dark: #2d184c;
 
     --home-bg: url("/images/bg-dark.svg");
 }
