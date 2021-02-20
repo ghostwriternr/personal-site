@@ -14,8 +14,8 @@ export function ThemeSwitcher() {
     };
 
     return theme === "light" ? (
-        <IconMoonStars size={30} onClick={toggleTheme} className="cursor-pointer" />
-    ) : (
         <IconSun size={30} onClick={toggleTheme} className="cursor-pointer" />
+    ) : (
+        <IconMoonStars size={30} onClick={toggleTheme} className="cursor-pointer" />
     );
 }

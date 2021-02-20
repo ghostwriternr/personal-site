@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import hydrate from "next-mdx-remote/hydrate";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { Layout } from "../../components/layout";
 import { getFileBySlug, getFiles } from "../../lib/mdx";
 
-function BlogPostPage({ mdxSource, frontMatter }) {
+function CodePostPage({ mdxSource, frontMatter }) {
     const content = hydrate(mdxSource);
     const router = useRouter();
 
@@ -25,22 +24,6 @@ function BlogPostPage({ mdxSource, frontMatter }) {
                     </span>
                     {frontMatter.title}
                 </h1>
-                {frontMatter.header && (
-                    <div className="col-span-full">
-                        <Image
-                            src={
-                                frontMatter.header["overlay_image"]
-                                    ? frontMatter.header["overlay_image"]
-                                    : frontMatter.header["image"]
-                            }
-                            alt="Overlay image"
-                            layout="responsive"
-                            width="2000"
-                            height="1000"
-                            objectFit="cover"
-                        />
-                    </div>
-                )}
                 <div className="article-text mb-8">
                     <div className="grid grid-cols-6">
                         <div className="prose col-start-1 col-span-6 md:col-start-2 md:col-span-4 mt-8 text-2xl">
@@ -53,14 +36,13 @@ function BlogPostPage({ mdxSource, frontMatter }) {
     );
 }
 
-// pass props to BlogPostPage component
 export async function getStaticProps({ params }) {
-    const post = await getFileBySlug("blog", params.slug);
+    const post = await getFileBySlug("code", params.slug);
     return { props: post };
 }
 
 export async function getStaticPaths() {
-    const posts = await getFiles("blog");
+    const posts = await getFiles("code");
 
     return {
         paths: posts.map((post) => ({
@@ -72,4 +54,4 @@ export async function getStaticPaths() {
     };
 }
 
-export default BlogPostPage;
+export default CodePostPage;

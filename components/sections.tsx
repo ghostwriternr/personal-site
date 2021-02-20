@@ -32,7 +32,7 @@ export function Sections() {
                     </div>
                 </div>
             </Link>
-            <Link href="/blog" passHref>
+            <Link href="/code" passHref>
                 <div
                     className="relative inline-block cursor-pointer bg-th-theme-accent p-2"
                     style={{
