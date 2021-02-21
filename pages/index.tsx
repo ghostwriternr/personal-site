@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 
-import { Intro } from "../components/intro";
-import { Layout } from "../components/layout";
-import { Sections } from "../components/sections";
+import { Intro } from "@me/components/intro";
+import { Layout } from "@me/components/layout";
+import { Sections } from "@me/components/sections";
 
 export default function Home() {
     return (

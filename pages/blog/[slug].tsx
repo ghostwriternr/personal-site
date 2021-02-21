@@ -3,8 +3,9 @@ import hydrate from "next-mdx-remote/hydrate";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import { Layout } from "../../components/layout";
-import { getFileBySlug, getFiles } from "../../lib/mdx";
+import { Layout } from "@me/components/layout";
+import { getFileBySlug, getFiles } from "@me/lib/mdx";
+import { MdxRemote } from "next-mdx-remote/types";
 
 function BlogPostPage({ mdxSource, frontMatter }) {
     const content = hydrate(mdxSource);
@@ -54,16 +55,37 @@ function BlogPostPage({ mdxSource, frontMatter }) {
 }
 
 // pass props to BlogPostPage component
-export async function getStaticProps({ params }) {
+export async function getStaticProps({
+    params,
+}: StaticPath): Promise<{
+    props: {
+        mdxSource: MdxRemote.Source;
+        frontMatter: {
+            wordCount: number;
+            slug: string;
+        };
+    };
+}> {
     const post = await getFileBySlug("blog", params.slug);
     return { props: post };
 }
 
-export async function getStaticPaths() {
+type StaticPathParams = {
+    slug: string;
+};
+
+type StaticPath = {
+    params: StaticPathParams;
+};
+
+export async function getStaticPaths(): Promise<{
+    paths: StaticPath[];
+    fallback: boolean;
+}> {
     const posts = await getFiles("blog");
 
     return {
-        paths: posts.map((post) => ({
+        paths: posts.map<StaticPath>((post) => ({
             params: {
                 slug: post.replace(/\.md/, ""),
             },

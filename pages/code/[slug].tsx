@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import hydrate from "next-mdx-remote/hydrate";
 import { useRouter } from "next/router";
 
-import { Layout } from "../../components/layout";
-import { getFileBySlug, getFiles } from "../../lib/mdx";
+import { Layout } from "@me/components/layout";
+import { getFileBySlug, getFiles } from "@me/lib/mdx";
 
 function CodePostPage({ mdxSource, frontMatter }) {
     const content = hydrate(mdxSource);

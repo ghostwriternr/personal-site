@@ -1,5 +1,6 @@
 import { Facebook, Github, Gmail, Goodreads, Instagram, Linkedin, Spotify } from "@icons-pack/react-simple-icons";
-import { HeadShot } from "./headshot";
+
+import { HeadShot } from "@me/components/headshot";
 
 export function Intro() {
     return (

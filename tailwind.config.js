@@ -18,6 +18,31 @@ module.exports = {
                 "th-theme-accent": "var(--theme-accent)",
                 "th-theme-accent-dark": "var(--theme-accent-dark)",
             },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        color: "var(--text)",
+                        a: {
+                            color: "var(--primary)",
+                        },
+                        strong: {
+                            color: "var(--text)",
+                        },
+                        h1: {
+                            color: "var(--text)",
+                        },
+                        h2: {
+                            color: "var(--text)",
+                        },
+                        h3: {
+                            color: "var(--text)",
+                        },
+                        h4: {
+                            color: "var(--text)",
+                        },
+                    },
+                },
+            },
         },
     },
     variants: {

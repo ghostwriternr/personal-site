@@ -46,26 +46,27 @@
     --home-bg: url("/images/bg-dark.svg");
 }
 
-@layer base {
-    html,
-    body {
-        font-family: "Lufga", sans-serif;
-        color: var(--text);
-        background-color: var(--background);
-        transition: all 0.25s linear;
-    }
+html,
+body {
+    font-family: "Lufga", sans-serif;
+    color: var(--text);
+    background-color: var(--background);
+    transition: all 0.25s linear;
+    scroll-behavior: smooth;
+}
 
-    .article-text {
-        font-family: "Newsreader", serif;
-    }
+.article-text {
+    font-family: "Newsreader", serif;
 }
 
 ::selection {
     background: #ffe081;
+    color: var(--background);
 }
 
 ::-moz-selection {
     background: #ffe081;
+    color: var(--background);
 }
 
 .hindi {

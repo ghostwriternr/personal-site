@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { Layout } from "../../components/layout";
-import { getAllFilesFrontMatter } from "../../lib/mdx";
+import { Layout } from "@me/components/layout";
+import { getAllFilesFrontMatter } from "@me/lib/mdx";
 
 export default function Code({ posts }) {
     return (
@@ -15,17 +15,19 @@ export default function Code({ posts }) {
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
                 <h1 className="text-4xl md:text-6xl font-bold">Kill Dash Nine</h1>
-                {posts.map((blog) => {
-                    return (
-                        <Link key={blog.id} href={`/code/${blog.slug}`} prefetch={false} passHref>
-                            <div className="cursor-pointer">
-                                <div className="mt-2">
-                                    <h2 className="text-xl font-bold">{blog.title}</h2>
+                <div className="mt-8">
+                    {posts.map((blog) => {
+                        return (
+                            <Link key={blog.id} href={`/code/${blog.slug}`} prefetch={false} passHref>
+                                <div className="cursor-pointer">
+                                    <div className="mt-2">
+                                        <h2 className="text-xl font-bold">{blog.title}</h2>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                    );
-                })}
+                            </Link>
+                        );
+                    })}
+                </div>
             </motion.div>
         </Layout>
     );

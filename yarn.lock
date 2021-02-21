@@ -1096,6 +1096,30 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
+"@me/components@link:./components":
+  version "0.0.0"
+  uid ""
+
+"@me/data@link:./data":
+  version "0.0.0"
+  uid ""
+
+"@me/lib@link:./lib":
+  version "0.0.0"
+  uid ""
+
+"@me/pages@link:./pages":
+  version "0.0.0"
+  uid ""
+
+"@me/styles@link:./styles":
+  version "0.0.0"
+  uid ""
+
+"@me/types@link:./types":
+  version "0.0.0"
+  uid ""
+
 "@next/env@10.0.3":
   version "10.0.3"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-10.0.3.tgz#ef1077d78bf500855576f83090d6fb1ec96272f8"

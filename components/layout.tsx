@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
 
-import { ThemeSwitcher } from "./themeSwitch";
+import { ThemeSwitcher } from "@me/components/themeSwitch";
 
 type LayoutProps = {
     title: string;

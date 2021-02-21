@@ -8,6 +8,12 @@
         "start": "next start"
     },
     "dependencies": {
+        "@me/components": "link:./components",
+        "@me/data": "link:./data",
+        "@me/lib": "link:./lib",
+        "@me/pages": "link:./pages",
+        "@me/styles": "link:./styles",
+        "@me/types": "link:./types",
         "@icons-pack/react-simple-icons": "^4.0.0",
         "@mdx-js/loader": "^1.6.22",
         "@mdx-js/react": "^1.6.22",

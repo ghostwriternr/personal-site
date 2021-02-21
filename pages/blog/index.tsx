@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { Layout } from "../../components/layout";
-import { getAllFilesFrontMatter } from "../../lib/mdx";
+import { Layout } from "@me/components/layout";
+import { getAllFilesFrontMatter } from "@me/lib/mdx";
 
 export default function Blog({ posts }) {
     return (
