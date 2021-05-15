@@ -20,8 +20,11 @@ function BlogPostPage({ mdxSource, frontMatter }) {
                 exit={{ opacity: 0 }}
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
-                <h1 className="text-4xl md:text-5xl font-bold mb-16 text-center">{frontMatter.title}</h1>
-                {frontMatter.header && (
+                <div className="mb-16 text-center">
+                    <h2 className="text-2xl">A Silhouette's Squire</h2>
+                    <h1 className="text-4xl md:text-5xl font-bold">{frontMatter.title}</h1>
+                </div>
+                {frontMatter.header && (frontMatter.header["overlay_image"] || frontMatter.header["image"]) && (
                     <div className="col-span-full">
                         <Image
                             src={

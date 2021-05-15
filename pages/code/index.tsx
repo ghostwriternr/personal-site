@@ -15,16 +15,20 @@ export default function Code({ posts }) {
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
                 <h1 className="text-4xl md:text-6xl font-bold">Kill Dash Nine</h1>
-                <div className="mt-8">
-                    {posts.map((blog) => {
+                <div className="mt-8 -ml-8 -mr-8 divide-x-0 divide-y-2 divide-th-tertiary">
+                    {posts.map((post) => {
                         return (
-                            <Link key={blog.id} href={`/code/${blog.slug}`} prefetch={false} passHref>
-                                <div className="cursor-pointer">
-                                    <div className="mt-2">
-                                        <h2 className="text-xl font-bold">{blog.title}</h2>
+                            <div key={post.id} className="group cursor-pointer pt-10 pb-10 hover:bg-th-theme-accent">
+                                <Link href={`/code/${post.slug}`} prefetch={false} passHref>
+                                    <div className="flex place-content-between pl-8 pr-8">
+                                        <h2 className="flex text-2xl font-bold">
+                                            {post.title}
+                                            <div className="ml-2 text-transparent group-hover:text-th-text">&rarr;</div>
+                                        </h2>
+                                        <span className="text-lg text-th-secondary">{post.date}</span>
                                     </div>
-                                </div>
-                            </Link>
+                                </Link>
+                            </div>
                         );
                     })}
                 </div>

@@ -38,11 +38,11 @@ The speakers were also kind enough to stay back and answer any questions we had!
 
 The Sponsor Showcase was the next biggest attraction where CNCF sponsors were present at their booths, presenting their latest work and introducing themselves to the attendees (also bombarding them with tons of goodies!). Over the course of the 2 days, I made it a point to try and talk to every single booth, meeting a lot of really amazing people on the way. The last day also had a lot of traditional Chinese artists, sharing some very interesting pieces to take back home.
 
- <div class="row">
-  <div class="column">
+ <div className="row">
+  <div className="column">
     <img src="/assets/code/kubecon/dolls.jpg" alt="Snow" />
   </div>
-  <div class="column">
+  <div className="column">
     <img src="/assets/code/kubecon/paper.jpg" alt="Forest" />
   </div>
 </div> 

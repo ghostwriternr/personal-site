@@ -10,7 +10,7 @@ tags:
     - Love
 ---
 
-![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/pretty.jpg){: .align-center}
+![Pretty!](/assets/images/pretty.jpg)
 
 You make me feel pretty.
 

@@ -21,11 +21,11 @@
 :root {
     --primary: #47184c;
     --secondary: #e17150;
-    --tertiary: #fcaf61;
+    --tertiary: #ffd34e;
     --text: theme("colors.black");
     --background: #ffecb4;
 
-    --theme-accent: #ffe69a;
+    --theme-accent: #ffe081;
     --theme-accent-dark: #ffd081;
 
     --home-bg: url("/images/bg.svg");
@@ -78,4 +78,8 @@ body {
 
 .telugu {
     font-family: "Hind Guntur", sans-serif;
+}
+
+.sidebar-link {
+    @apply flex-grow flex w-full justify-center items-center cursor-pointer hover:text-th-secondary;
 }

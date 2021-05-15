@@ -61,6 +61,7 @@ export async function getAllFilesFrontMatter(type: "blog" | "code"): Promise<any
     return files.reduce((allPosts, postSlug) => {
         const source = fs.readFileSync(path.join(root, "data", type, postSlug), "utf-8");
         const { data } = matter(source);
+        data.date = new Date(data.date).toLocaleDateString("en-IN", { dateStyle: "long" });
 
         return [{ ...data, slug: postSlug.replace(".md", "") }, ...allPosts];
     }, []);

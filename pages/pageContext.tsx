@@ -1,6 +1,6 @@
 import React from "react";
 
-type Page = "code" | "poetry" | "about";
+export type Page = "code" | "poetry" | "work" | "about";
 interface PageContextType {
     state: Page;
     dispatch: (page: Page) => void;

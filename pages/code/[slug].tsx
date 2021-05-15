@@ -12,16 +12,16 @@ function CodePostPage({ mdxSource, frontMatter }) {
     return (
         <Layout title={frontMatter.title}>
             <motion.div
-                className="article-text col-span-12 md:col-start-3 md:col-span-8 pt-16"
+                className="article-text col-span-12 md:col-start-3 md:col-span-8 pt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
-                <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">{frontMatter.title}</h1>
+                <h1 className="text-4xl md:text-5xl font-bold text-center">{frontMatter.title}</h1>
                 <div className="mb-8">
                     <div className="grid grid-cols-6">
-                        <div className="prose col-start-1 col-span-6 md:col-start-2 md:col-span-4 mt-8 text-2xl">
+                        <div className="prose col-start-1 col-span-6 md:col-start-2 md:col-span-4 text-2xl">
                             <MDXRemote {...mdxSource} components={MDXComponents} />
                         </div>
                     </div>
