@@ -18,7 +18,7 @@ export default function Blog({ posts }) {
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
                     {posts.map((blog) => {
                         return (
-                            <Link key={blog.id} href={`/blog/${blog.slug}`} prefetch={false} passHref>
+                            <Link key={blog.id} href={`/blog/${blog.slug}`} passHref>
                                 <div className="cursor-pointer">
                                     <img src={blog.header?.teaser} alt="Blog" className="object-cover w-full h-80" />
                                     <div className="mt-2">

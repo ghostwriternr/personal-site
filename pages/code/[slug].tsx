@@ -1,13 +1,17 @@
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 import { MDXRemote } from "next-mdx-remote";
+import React from "react";
 
 import { Layout } from "@me/components/layout";
-import { getFileBySlug, getFiles } from "@me/lib/mdx";
 import MDXComponents from "@me/components/MDXComponents";
+import { getFileBySlug, getFiles } from "@me/lib/mdx";
+import { usePage } from "@me/lib/pageContext";
 
 function CodePostPage({ mdxSource, frontMatter }) {
-    const router = useRouter();
+    const page = usePage();
+    React.useEffect(() => {
+        page.dispatch("code");
+    }, []);
 
     return (
         <Layout title={frontMatter.title}>

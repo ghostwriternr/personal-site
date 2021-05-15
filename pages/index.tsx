@@ -33,11 +33,11 @@ export default function Home({ blog, code }) {
                         >
                             {code.map((post) => {
                                 return (
-                                    <div
-                                        key={post.id}
-                                        className="group cursor-pointer pt-10 pb-10 hover:bg-th-theme-accent"
-                                    >
-                                        <Link href={`/code/${post.slug}`} prefetch={false} passHref>
+                                    <Link href={`/code/${post.slug}`} passHref>
+                                        <div
+                                            key={post.id}
+                                            className="group cursor-pointer pt-10 pb-10 hover:bg-th-theme-accent"
+                                        >
                                             <div className="flex place-content-between pl-8 pr-8">
                                                 <h2 className="flex text-2xl font-bold">
                                                     {post.title}
@@ -47,8 +47,8 @@ export default function Home({ blog, code }) {
                                                 </h2>
                                                 <span className="text-lg text-th-secondary">{post.date}</span>
                                             </div>
-                                        </Link>
-                                    </div>
+                                        </div>
+                                    </Link>
                                 );
                             })}
                         </motion.div>
@@ -64,26 +64,24 @@ export default function Home({ blog, code }) {
                         >
                             {blog.map((post) => {
                                 return (
-                                    <div key={post.id} className="group cursor-pointer">
-                                        <Link href={`/blog/${post.slug}`} prefetch={false} passHref>
-                                            <>
-                                                <img
-                                                    src={post.header?.teaser}
-                                                    alt="Blog"
-                                                    className="object-cover w-full h-80"
-                                                />
-                                                <div className="mt-2">
-                                                    <div className="flex text-xl font-bold">
-                                                        <h2 className="">{post.title}</h2>
-                                                        <div className="ml-2 text-transparent group-hover:text-th-text">
-                                                            &rarr;
-                                                        </div>
+                                    <Link href={`/blog/${post.slug}`} passHref>
+                                        <div key={post.id} className="group cursor-pointer">
+                                            <img
+                                                src={post.header?.teaser}
+                                                alt="Blog"
+                                                className="object-cover w-full h-80"
+                                            />
+                                            <div className="mt-2">
+                                                <div className="flex text-xl font-bold">
+                                                    <h2 className="">{post.title}</h2>
+                                                    <div className="ml-2 text-transparent group-hover:text-th-text">
+                                                        &rarr;
                                                     </div>
-                                                    <p className="text-lg">{post.date}</p>
                                                 </div>
-                                            </>
-                                        </Link>
-                                    </div>
+                                                <p className="text-lg">{post.date}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                 );
                             })}
                         </motion.div>
