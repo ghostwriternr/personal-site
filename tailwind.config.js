@@ -14,7 +14,6 @@ module.exports = {
                 "th-tertiary": "var(--tertiary)",
                 "th-text": "var(--text)",
                 "th-background": "var(--background)",
-                "th-theme-bg": "var(--theme-bg)",
                 "th-theme-accent": "var(--theme-accent)",
                 "th-theme-accent-dark": "var(--theme-accent-dark)",
             },

@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Link from "next/link";
 
-import { ThemeSwitcher } from "@me/components/themeSwitch";
+import { Sidebar } from "./sidebar";
 
 type LayoutProps = {
     title: string;
@@ -18,21 +17,13 @@ export function Layout({ title, className, ...props }: LayoutProps) {
             </Head>
 
             <main>
-                <div className={className}>
-                    <div className="p-4">
-                        <Link href="/" passHref>
-                            <img
-                                className="fixed hidden md:block cursor-pointer"
-                                src="/images/me.png"
-                                alt="Avatar"
-                                height="60"
-                                width="60"
-                            />
-                        </Link>
-                        <div className="fixed bottom-4 left-4">
-                            <ThemeSwitcher />
-                        </div>
-                        <div className="grid grid-cols-12 pt-4">{props.children}</div>
+                <div className={`min-h-screen ${className}`}>
+                    <div className="fixed z-50 top-0 left-0 h-2 w-screen bg-th-theme-accent-dark" />
+                    <div className="hidden md:block">
+                        <Sidebar />
+                    </div>
+                    <div className="md:ml-20 pt-12 pb-12 grid grid-cols-12" style={{ width: "calc(100vw - 5rem)" }}>
+                        {props.children}
                     </div>
                 </div>
             </main>

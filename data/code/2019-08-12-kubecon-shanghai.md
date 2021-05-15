@@ -1,6 +1,6 @@
 ---
 layout: post
-title: I went to KubeCon 🇨🇳😁
+title: I went to KubeCon
 date: "2019-08-12 10:51 +0530"
 ---
 

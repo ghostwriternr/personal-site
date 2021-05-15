@@ -23,9 +23,8 @@
     --secondary: #e17150;
     --tertiary: #fcaf61;
     --text: theme("colors.black");
-    --background: theme("colors.white");
+    --background: #ffecb4;
 
-    --theme-bg: #ffecb4;
     --theme-accent: #ffe69a;
     --theme-accent-dark: #ffd081;
 
@@ -37,10 +36,9 @@
     --secondary: #e17150;
     --tertiary: #381e5f;
     --text: theme("colors.white");
-    --background: theme("colors.black");
+    --background: #160c25;
 
-    --theme-bg: #160c25;
-    --theme-accent: #221239;
+    --theme-accent: #301a51;
     --theme-accent-dark: #2d184c;
 
     --home-bg: url("/images/bg-dark.svg");
@@ -53,6 +51,7 @@ body {
     background-color: var(--background);
     transition: all 0.25s linear;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .article-text {

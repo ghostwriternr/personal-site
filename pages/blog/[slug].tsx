@@ -1,31 +1,26 @@
 import { motion } from "framer-motion";
-import hydrate from "next-mdx-remote/hydrate";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { MDXRemote } from "next-mdx-remote";
 
 import { Layout } from "@me/components/layout";
 import { getFileBySlug, getFiles } from "@me/lib/mdx";
-import { MdxRemote } from "next-mdx-remote/types";
+
+import MDXComponents from "@me/components/MDXComponents";
 
 function BlogPostPage({ mdxSource, frontMatter }) {
-    const content = hydrate(mdxSource);
     const router = useRouter();
 
     return (
         <Layout title={frontMatter.title}>
             <motion.div
-                className="col-span-12 md:col-start-3 md:col-span-8"
+                className="article-text col-span-12 md:col-start-3 md:col-span-8 pt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
-                <h1 className="text-4xl md:text-6xl font-bold mb-8">
-                    <span onClick={() => router.back()} className="cursor-pointer mr-4">
-                        &larr;
-                    </span>
-                    {frontMatter.title}
-                </h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-16 text-center">{frontMatter.title}</h1>
                 {frontMatter.header && (
                     <div className="col-span-full">
                         <Image
@@ -42,10 +37,10 @@ function BlogPostPage({ mdxSource, frontMatter }) {
                         />
                     </div>
                 )}
-                <div className="article-text mb-8">
+                <div className="mb-8">
                     <div className="grid grid-cols-6">
                         <div className="prose col-start-1 col-span-6 md:col-start-2 md:col-span-4 mt-8 text-2xl">
-                            {content}
+                            <MDXRemote {...mdxSource} components={MDXComponents} />
                         </div>
                     </div>
                 </div>
@@ -55,11 +50,9 @@ function BlogPostPage({ mdxSource, frontMatter }) {
 }
 
 // pass props to BlogPostPage component
-export async function getStaticProps({
-    params,
-}: StaticPath): Promise<{
+export async function getStaticProps({ params }: StaticPath): Promise<{
     props: {
-        mdxSource: MdxRemote.Source;
+        mdxSource: any;
         frontMatter: {
             wordCount: number;
             slug: string;

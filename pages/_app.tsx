@@ -4,13 +4,16 @@ import { MDXProvider } from "@mdx-js/react";
 
 import "@me/styles/globals.css";
 import MDXComponents from "@me/components/MDXComponents";
+import { PageProvider } from "./pageContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ThemeProvider defaultTheme="system">
-            <MDXProvider components={MDXComponents}>
-                <Component {...pageProps} />
-            </MDXProvider>
+            <PageProvider>
+                <MDXProvider components={MDXComponents}>
+                    <Component {...pageProps} />
+                </MDXProvider>
+            </PageProvider>
         </ThemeProvider>
     );
 }

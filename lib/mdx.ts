@@ -2,10 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import mdxPrism from "mdx-prism";
 import path from "path";
-import renderToString from "next-mdx-remote/render-to-string";
-import { MdxRemote } from "next-mdx-remote/types";
-
-import MDXComponents from "@me/components/MDXComponents";
+import { serialize } from "next-mdx-remote/serialize";
 
 const root = process.cwd();
 
@@ -15,7 +12,7 @@ type BlogFrontMatter = {
 };
 
 type FileMeta = {
-    mdxSource: MdxRemote.Source;
+    mdxSource: any;
     frontMatter: BlogFrontMatter;
 };
 
@@ -41,8 +38,7 @@ export async function getFiles(type: "blog" | "code"): Promise<string[]> {
 export async function getFileBySlug(type: "blog" | "code", slug: string): Promise<FileMeta> {
     const source = fs.readFileSync(path.join(root, "data", type, `${slug}.md`), "utf-8");
     const { data, content } = matter(source);
-    const mdxSource = await renderToString(content, {
-        components: MDXComponents,
+    const mdxSource = await serialize(content, {
         mdxOptions: {
             remarkPlugins: [require("remark-autolink-headings"), require("remark-slug"), require("remark-code-titles")],
             rehypePlugins: [mdxPrism],
