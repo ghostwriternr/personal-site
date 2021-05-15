@@ -1,6 +1,6 @@
 ---
 layout: post
-title: I went to KubeCon
+title: Getting shipped to Kubecon
 date: "2019-08-12 10:51 +0530"
 ---
 
@@ -38,14 +38,8 @@ The speakers were also kind enough to stay back and answer any questions we had!
 
 The Sponsor Showcase was the next biggest attraction where CNCF sponsors were present at their booths, presenting their latest work and introducing themselves to the attendees (also bombarding them with tons of goodies!). Over the course of the 2 days, I made it a point to try and talk to every single booth, meeting a lot of really amazing people on the way. The last day also had a lot of traditional Chinese artists, sharing some very interesting pieces to take back home.
 
- <div className="row">
-  <div className="column">
-    <img src="/assets/code/kubecon/dolls.jpg" alt="Snow" />
-  </div>
-  <div className="column">
-    <img src="/assets/code/kubecon/paper.jpg" alt="Forest" />
-  </div>
-</div> 
+![Dolls](/assets/code/kubecon/dolls.jpg)
+![Paper](/assets/code/kubecon/paper.jpg)
 
 ## Wrapping up
 

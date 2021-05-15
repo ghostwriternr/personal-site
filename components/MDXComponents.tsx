@@ -17,7 +17,9 @@ const CustomLink = (props) => {
 };
 
 const MDXComponents = {
-    Image,
+    img: ({ src, height, width, ...rest }) => (
+        <Image layout="responsive" src={src} height={height} width={width} {...rest} />
+    ),
     a: CustomLink,
 };
 

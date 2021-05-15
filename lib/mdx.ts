@@ -4,6 +4,8 @@ import mdxPrism from "mdx-prism";
 import path from "path";
 import { serialize } from "next-mdx-remote/serialize";
 
+import imageMetadata from "../plugins/image-metadata";
+
 const root = process.cwd();
 
 type BlogFrontMatter = {
@@ -41,7 +43,7 @@ export async function getFileBySlug(type: "blog" | "code", slug: string): Promis
     const mdxSource = await serialize(content, {
         mdxOptions: {
             remarkPlugins: [require("remark-autolink-headings"), require("remark-slug"), require("remark-code-titles")],
-            rehypePlugins: [mdxPrism],
+            rehypePlugins: [mdxPrism, imageMetadata],
         },
     });
 

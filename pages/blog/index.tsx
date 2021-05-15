@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Layout } from "@me/components/layout";
@@ -16,14 +17,19 @@ export default function Blog({ posts }) {
             >
                 <h1 className="text-4xl md:text-6xl font-bold">A Silhouette's Squire</h1>
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
-                    {posts.map((blog) => {
+                    {posts.map((post) => {
                         return (
-                            <Link key={blog.id} href={`/blog/${blog.slug}`} passHref>
-                                <div className="cursor-pointer">
-                                    <img src={blog.header?.teaser} alt="Blog" className="object-cover w-full h-80" />
-                                    <div className="mt-2">
-                                        <h2 className="text-xl font-bold">{blog.title}</h2>
-                                        <p className="text-lg">{blog.excerpt}</p>
+                            <Link href={`/blog/${post.slug}`} passHref>
+                                <div key={post.id} className="group cursor-pointer">
+                                    <div className="relative w-full h-60 md:h-80">
+                                        <Image src={post.header?.teaser} alt="Blog" layout="fill" objectFit="cover" />
+                                    </div>
+                                    <div className="mt-2 pl-4 pr-4 md:pl-0 md:pr-0">
+                                        <div className="flex text-xl font-bold">
+                                            <h2 className="">{post.title}</h2>
+                                            <div className="ml-2 text-transparent group-hover:text-th-text">&rarr;</div>
+                                        </div>
+                                        <p className="text-lg">{post.date}</p>
                                     </div>
                                 </div>
                             </Link>

@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Intro } from "@me/components/intro";
@@ -14,6 +14,7 @@ export default function Home({ blog, code }) {
     return (
         <Layout title="Naresh Ramesh" className="bg-home bg-fixed bg-cover">
             <motion.div
+                key="home"
                 className="col-span-12 md:col-start-3 md:col-span-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -25,7 +26,7 @@ export default function Home({ blog, code }) {
                     {page.state === "code" && (
                         <motion.div
                             key="blog-posts"
-                            className="mt-8 -ml-8 -mr-8 divide-x-0 divide-y-2 divide-th-tertiary"
+                            className="mt-8 pl-4 pr-4 md:pl-0 md:pr-0 -ml-8 -mr-8 divide-x-0 divide-y-2 divide-th-tertiary"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -38,7 +39,7 @@ export default function Home({ blog, code }) {
                                             key={post.id}
                                             className="group cursor-pointer pt-10 pb-10 hover:bg-th-theme-accent"
                                         >
-                                            <div className="flex place-content-between pl-8 pr-8">
+                                            <div className="flex flex-col md:flex-row place-content-between pl-8 pr-8">
                                                 <h2 className="flex text-2xl font-bold">
                                                     {post.title}
                                                     <div className="ml-2 text-transparent group-hover:text-th-text">
@@ -66,12 +67,15 @@ export default function Home({ blog, code }) {
                                 return (
                                     <Link href={`/blog/${post.slug}`} passHref>
                                         <div key={post.id} className="group cursor-pointer">
-                                            <img
-                                                src={post.header?.teaser}
-                                                alt="Blog"
-                                                className="object-cover w-full h-80"
-                                            />
-                                            <div className="mt-2">
+                                            <div className="relative w-full h-60 md:h-80">
+                                                <Image
+                                                    src={post.header?.teaser}
+                                                    alt="Blog"
+                                                    layout="fill"
+                                                    objectFit="cover"
+                                                />
+                                            </div>
+                                            <div className="mt-2 pl-4 pr-4 md:pl-0 md:pr-0">
                                                 <div className="flex text-xl font-bold">
                                                     <h2 className="">{post.title}</h2>
                                                     <div className="ml-2 text-transparent group-hover:text-th-text">

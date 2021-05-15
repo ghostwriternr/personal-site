@@ -22,7 +22,7 @@ export function Layout({ title, className, ...props }: LayoutProps) {
                     <div className="hidden md:block">
                         <Sidebar />
                     </div>
-                    <div className="md:ml-20 pt-12 pb-12 grid grid-cols-12" style={{ width: "calc(100vw - 5rem)" }}>
+                    <div className="md:ml-20 md:sidebarless-container pt-12 pb-12 grid grid-cols-12">
                         {props.children}
                     </div>
                 </div>

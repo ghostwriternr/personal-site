@@ -83,3 +83,11 @@ body {
 .sidebar-link {
     @apply flex-grow flex w-full justify-center items-center cursor-pointer hover:text-th-secondary;
 }
+
+@layer utilities {
+    @variants responsive {
+        .sidebarless-container {
+            width: calc(100vw - theme("width.20"));
+        }
+    }
+}
