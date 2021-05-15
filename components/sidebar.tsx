@@ -17,7 +17,7 @@ export function Sidebar() {
     return (
         <div className="fixed mt-2 flex flex-col h-screen w-20 border-r-4 border-th-theme-accent-dark">
             <div className="mt-2 mb-2 flex justify-center" onClick={() => handleClick("code")}>
-                <Image className="cursor-pointer" src="/images/me.png" alt="Avatar" height="60" width="60" />
+                <Image className="cursor-pointer" src="/images/me.png" alt="Avatar" height="60" width="60" priority />
             </div>
             <div className="flex-grow flex flex-col items-center">
                 <div className="sidebar-link" onClick={() => handleClick("code")}>

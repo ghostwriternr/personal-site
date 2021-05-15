@@ -36,4 +36,4 @@ And we'll get there.
 
 But in the meanwhile, let's all just build paper towns to scribble with our memories.
 
-\- With love, to the batch of 2017 :heart:
+\- With love, to the batch of 2017 ❤️

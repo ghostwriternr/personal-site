@@ -42,5 +42,5 @@ Today
 I reminisce our best moments  
 And shout "Aloha!"  
 
-\- With love, to the batch of 2018 :heart:
+\- With love, to the batch of 2018 ❤️
 ​
