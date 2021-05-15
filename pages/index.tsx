@@ -6,7 +6,7 @@ import { Intro } from "@me/components/intro";
 import { Layout } from "@me/components/layout";
 import { getAllFilesFrontMatter } from "@me/lib/mdx";
 
-import { usePage } from "./pageContext";
+import { usePage } from "@me/lib/pageContext";
 
 export default function Home({ blog, code }) {
     const page = usePage();

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 
-import { Page, usePage } from "@me/pages/pageContext";
+import { Page, usePage } from "@me/lib/pageContext";
 
-import { ThemeSwitcher } from "./themeSwitch";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function Sidebar() {
     const page = usePage();

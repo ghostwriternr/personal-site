@@ -4,7 +4,7 @@ import { MDXProvider } from "@mdx-js/react";
 
 import "@me/styles/globals.css";
 import MDXComponents from "@me/components/MDXComponents";
-import { PageProvider } from "./pageContext";
+import { PageProvider } from "@me/lib/pageContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
