@@ -24,7 +24,7 @@ function CodePostPage({ mdxSource, frontMatter }) {
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
                 <div className="text-center mb-16">
-                    {frontMatter.date && <p className="text-xl mb-2">{frontMatter.date}</p>}
+                    <p className="text-xl mb-2">{frontMatter.date}</p>
                     <h1 className="text-4xl md:text-5xl font-bold">{frontMatter.title}</h1>
                 </div>
                 <div className="mb-8">
