@@ -40,6 +40,8 @@ export async function getFiles(type: "blog" | "code"): Promise<string[]> {
 export async function getFileBySlug(type: "blog" | "code", slug: string): Promise<FileMeta> {
     const source = fs.readFileSync(path.join(root, "data", type, `${slug}.md`), "utf-8");
     const { data, content } = matter(source);
+    data.date = new Date(data.date).toLocaleDateString("en-IN", { dateStyle: "long" });
+
     const mdxSource = await serialize(content, {
         mdxOptions: {
             remarkPlugins: [require("remark-autolink-headings"), require("remark-slug"), require("remark-code-titles")],
