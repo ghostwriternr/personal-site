@@ -32,9 +32,9 @@ export default function Home({ blog, code }) {
                             animate="show"
                             variants={navigateVariants}
                         >
-                            {code.map((post) => {
+                            {code.map((post, index) => {
                                 return (
-                                    <motion.div key={post.id} variants={textVariants}>
+                                    <motion.div key={`${post.id}-${index}`} variants={textVariants}>
                                         <Link href={`/code/${post.slug}`} passHref>
                                             <div className="group cursor-pointer pt-10 pb-10 hover:bg-th-theme-accent">
                                                 <div className="flex flex-col md:flex-row place-content-between pl-8 pr-8">
@@ -61,9 +61,9 @@ export default function Home({ blog, code }) {
                             animate="show"
                             variants={navigateVariants}
                         >
-                            {blog.map((post) => {
+                            {blog.map((post, index) => {
                                 return (
-                                    <motion.div key={post.id} variants={textVariants}>
+                                    <motion.div key={`${post.id}-${index}`} variants={textVariants}>
                                         <Link href={`/blog/${post.slug}`} passHref>
                                             <div className="group cursor-pointer">
                                                 <div className="relative w-full h-60 md:h-80">
