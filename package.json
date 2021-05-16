@@ -20,6 +20,7 @@
         "@me/types": "link:./types",
         "@next/mdx": "^10.2.0",
         "@tabler/icons": "^1.41.2",
+        "@types/tailwindcss": "^2.0.3",
         "autoprefixer": "^10.2.5",
         "framer-motion": "^4.1.16",
         "gray-matter": "^4.0.3",

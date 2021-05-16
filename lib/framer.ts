@@ -20,6 +20,9 @@ const textVariants = {
         y: 0,
         transition: { ease: "anticipate", duration: 0.6 },
     },
+    exit: {
+        opacity: 0,
+    },
 };
 
 export { navigateVariants, textVariants };

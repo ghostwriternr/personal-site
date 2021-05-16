@@ -27,6 +27,7 @@ function BlogPostPage({ mdxSource, frontMatter }) {
                 <div className="mb-16 text-center">
                     <h2 className="text-2xl">A Silhouette's Squire</h2>
                     <h1 className="text-4xl md:text-5xl font-bold">{frontMatter.title}</h1>
+                    {frontMatter.date && <p className="text-xl">{frontMatter.date}</p>}
                 </div>
                 {frontMatter.header && (frontMatter.header["overlay_image"] || frontMatter.header["image"]) && (
                     <div className="col-span-full">

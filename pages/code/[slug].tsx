@@ -23,7 +23,10 @@ function CodePostPage({ mdxSource, frontMatter }) {
                 exit={{ opacity: 0 }}
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
-                <h1 className="text-4xl md:text-5xl font-bold text-center mb-16">{frontMatter.title}</h1>
+                <div className="text-center mb-16">
+                    {frontMatter.date && <p className="text-xl mb-2">{frontMatter.date}</p>}
+                    <h1 className="text-4xl md:text-5xl font-bold">{frontMatter.title}</h1>
+                </div>
                 <div className="mb-8">
                     <div className="grid grid-cols-12">
                         <div className="prose col-start-2 col-span-10 md:col-start-3 md:col-span-8 text-xl md:text-2xl">
