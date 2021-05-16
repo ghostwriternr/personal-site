@@ -33,6 +33,3 @@ my every nerve with stories inscribed.
 It's 15 years too late,  
 but read me through dear mine -  
 the time has finally arrived.  
-
-**Author's note**: This is not a _fully_ original piece. I read a poem online a couple days before with the same context, and I had merely modified it to form a different message here. I'm unable to find the original piece though, but will attach it here as and when I do.
-{: .notice--warning}

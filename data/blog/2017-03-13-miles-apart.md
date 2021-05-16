@@ -21,6 +21,3 @@ Then hey! Some whiskey and wine
 Ya drink, to a trip you forever longed;  
 If then you remembered me, my mate  
 You know I'm smiling into the beyond.
-
-**Author's note**: This was an impromptou piece that I wrote when a friend of mine pinged me while he was travelling with a different group of friends and requested a quick poem for the moment.
-{: .notice--warning}

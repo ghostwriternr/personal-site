@@ -11,6 +11,7 @@ function CodePostPage({ mdxSource, frontMatter }) {
     const page = usePage();
     React.useEffect(() => {
         page.dispatch("code");
+        window.scrollTo({ left: 0, top: 0 });
     }, []);
 
     return (

@@ -23,7 +23,7 @@ export function Intro() {
                         <div className="ml-2 telugu">స్వాగతం</div>
                     </h2>
                 </div>
-                <div className="pl-4 pr-4 md:pl-0 md:pr-0 md:hidden">
+                <div className="pl-8 pr-8 md:pl-0 md:pr-0 md:hidden">
                     <HeadShot />
                 </div>
                 <p className="pl-4 pr-4 md:pl-0 md:pr-0 text-center md:text-left mt-4 text-xl md:text-2xl">

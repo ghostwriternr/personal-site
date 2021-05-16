@@ -12,6 +12,7 @@ function BlogPostPage({ mdxSource, frontMatter }) {
     const page = usePage();
     React.useEffect(() => {
         page.dispatch("poetry");
+        window.scrollTo({ left: 0, top: 0 });
     }, []);
 
     return (
