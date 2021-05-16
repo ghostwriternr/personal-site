@@ -24,7 +24,7 @@ function BlogPostPage({ mdxSource, frontMatter }) {
                 exit={{ opacity: 0 }}
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
-                <div className="mb-16 text-center">
+                <div className="mb-12 text-center">
                     <h2 className="text-2xl">A Silhouette's Squire</h2>
                     <h1 className="text-4xl md:text-5xl font-bold">{frontMatter.title}</h1>
                     {frontMatter.date && <p className="text-xl">{frontMatter.date}</p>}

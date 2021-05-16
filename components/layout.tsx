@@ -19,8 +19,8 @@ export function Layout({ title, className, ...props }: LayoutProps) {
 
             <main>
                 <div className={`min-h-screen ${className}`}>
-                    <div className="hidden md:fixed z-50 top-0 left-0 h-2 w-screen bg-th-theme-accent-dark" />
-                    <div className="absolute md:hidden">
+                    <div className="fixed z-50 top-0 left-0 h-2 w-screen bg-th-theme-accent-dark" />
+                    <div className="absolute mt-2 md:hidden">
                         <Topbar />
                     </div>
                     <div className="hidden md:block">
