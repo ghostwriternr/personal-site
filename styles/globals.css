@@ -82,8 +82,6 @@ body {
     color: var(--text);
     background-color: var(--background);
     transition: all 0.25s linear;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 .article-text {
