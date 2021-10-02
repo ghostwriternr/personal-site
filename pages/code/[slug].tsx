@@ -29,9 +29,9 @@ function CodePostPage({ mdxSource, frontMatter }) {
                 </div>
                 <div className="mb-8">
                     <div className="grid grid-cols-12">
-                        <div className="prose col-start-2 col-span-10 md:col-start-3 md:col-span-8 text-xl md:text-2xl">
+                        <article className="prose col-start-2 col-span-10 md:col-start-3 md:col-span-8 text-xl md:text-2xl">
                             <MDXRemote {...mdxSource} components={MDXComponents} />
-                        </div>
+                        </article>
                     </div>
                 </div>
             </motion.div>
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
     return {
         paths: posts.map((post) => ({
             params: {
-                slug: post.replace(/\.md/, ""),
+                slug: post.replace(/\.md(x)?/, ""),
             },
         })),
         fallback: false,

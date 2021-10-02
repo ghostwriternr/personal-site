@@ -13,22 +13,32 @@ class MyDocument extends Document {
                 <Head>
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
                     <link
+                        rel="preload"
+                        href="/fonts/Lufga/regular.woff2"
+                        as="font"
+                        type="font/woff2"
+                        crossOrigin="anonymous"
+                    />
+                    <link
+                        rel="preload"
+                        href="/fonts/Lufga/bold.woff2"
+                        as="font"
+                        type="font/woff2"
+                        crossOrigin="anonymous"
+                    />
+                    <link
+                        rel="preload"
+                        href="/fonts/Lufga/italic.woff2"
+                        as="font"
+                        type="font/woff2"
+                        crossOrigin="anonymous"
+                    />
+                    <link rel="preload" href="/fonts/Argesta/display.otf" as="font" crossOrigin="anonymous" />
+                    <link rel="preload" href="/fonts/Argesta/text_bold.otf" as="font" crossOrigin="anonymous" />
+                    <link rel="preload" href="/fonts/Argesta/display_italic.otf" as="font" crossOrigin="anonymous" />
+                    <link
                         href="https://fonts.googleapis.com/css2?family=Newsreader&family=Hind+Guntur&family=Hind+Madurai&family=Poppins&display=swap"
                         rel="stylesheet"
-                    />
-                    <link
-                        rel="preload"
-                        href="/fonts/Lufga/Lufga-Bold/font.woff2"
-                        as="font"
-                        type="font/woff2"
-                        crossOrigin="anonymous"
-                    />
-                    <link
-                        rel="preload"
-                        href="/fonts/Lufga/Lufga-Regular/font.woff2"
-                        as="font"
-                        type="font/woff2"
-                        crossOrigin="anonymous"
                     />
                 </Head>
                 <body>

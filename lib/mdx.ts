@@ -38,7 +38,12 @@ export async function getFiles(type: "blog" | "code"): Promise<string[]> {
 }
 
 export async function getFileBySlug(type: "blog" | "code", slug: string): Promise<FileMeta> {
-    const source = fs.readFileSync(path.join(root, "data", type, `${slug}.md`), "utf-8");
+    let source: string;
+    try {
+        source = fs.readFileSync(path.join(root, "data", type, `${slug}.md`), "utf-8");
+    } catch (ex) {
+        source = fs.readFileSync(path.join(root, "data", type, `${slug}.mdx`), "utf-8");
+    }
     const { data, content } = matter(source);
     data.date = new Date(data.date).toLocaleDateString("en-IN", { dateStyle: "long" });
 
@@ -67,6 +72,6 @@ export async function getAllFilesFrontMatter(type: "blog" | "code"): Promise<any
         const { data } = matter(source);
         data.date = new Date(data.date).toLocaleDateString("en-IN", { dateStyle: "long" });
 
-        return [{ ...data, slug: postSlug.replace(".md", "") }, ...allPosts];
+        return [{ ...data, slug: postSlug.replace(/\.md(x)?/, "") }, ...allPosts];
     }, []);
 }

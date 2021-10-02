@@ -4,18 +4,48 @@
 
 @font-face {
     font-family: "Lufga";
-    src: url("/fonts/Lufga/Lufga-Bold/font.woff2") format("woff2");
+    src: url("/fonts/Lufga/regular.woff2") format("woff2");
     font-style: normal;
-    font-weight: 600;
-    font-display: optional;
+    font-weight: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Lufga";
-    src: url("/fonts/Lufga/Lufga-Regular/font.woff2") format("woff2");
+    src: url("/fonts/Lufga/bold.woff2") format("woff2");
     font-style: normal;
-    font-weight: 400;
-    font-display: optional;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Lufga";
+    src: url("/fonts/Lufga/italic.woff2") format("woff2");
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Argesta";
+    src: url("/fonts/Argesta/display.otf");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Argesta";
+    src: url("/fonts/Argesta/text_bold.otf");
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Argesta";
+    src: url("/fonts/Argesta/display_italic.otf");
+    font-style: italic;
+    font-display: swap;
 }
 
 :root {
@@ -23,6 +53,7 @@
     --secondary: #e17150;
     --tertiary: #ffd34e;
     --text: theme("colors.black");
+    --subtext: #301a51;
     --background: #ffecb4;
 
     --theme-accent: #ffe081;
@@ -36,6 +67,7 @@
     --secondary: #e17150;
     --tertiary: #381e5f;
     --text: theme("colors.white");
+    --subtext: #c4aee5;
     --background: #160c25;
 
     --theme-accent: #301a51;
@@ -55,17 +87,17 @@ body {
 }
 
 .article-text {
-    font-family: "Newsreader", serif;
+    font-family: "Argesta", serif;
 }
 
 ::selection {
-    background: #ffe081;
-    color: var(--background);
+    background: var(--theme-accent);
+    color: var(--text);
 }
 
 ::-moz-selection {
-    background: #ffe081;
-    color: var(--background);
+    background: var(--theme-accent);
+    color: var(--text);
 }
 
 .hindi {
