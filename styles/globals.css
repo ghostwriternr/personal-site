@@ -117,7 +117,7 @@ body {
 @layer utilities {
     @variants responsive {
         .sidebarless-container {
-            width: calc(100vw - theme("width.20"));
+            width: calc(100% - theme("width.20"));
         }
     }
 }
