@@ -27,7 +27,7 @@ export default function Home({ blog, code }) {
                     {page.state === "code" && (
                         <motion.div
                             key="blog-posts"
-                            className="mt-8 pl-4 pr-4 md:pl-0 md:pr-0 -ml-8 -mr-8 divide-x-0 divide-y-2 divide-th-tertiary"
+                            className="mt-8 pl-4 pr-4 md:pl-0 md:pr-0 divide-x-0 divide-y-2 divide-th-tertiary"
                             initial="hidden"
                             animate="show"
                             variants={navigateVariants}
