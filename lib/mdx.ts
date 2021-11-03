@@ -2,6 +2,9 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { serialize } from "next-mdx-remote/serialize";
+import RemarkAutolinkHeadings from "remark-autolink-headings";
+import RemarkSlug from "remark-slug";
+import RemarkCodeTitles from "remark-code-titles";
 
 import imageMetadata from "../plugins/image-metadata";
 import { getPlaiceholder } from "plaiceholder";
@@ -34,7 +37,7 @@ export async function getFileBySlug(type: "blog" | "code", slug: string): Promis
 
     const mdxSource = await serialize(content, {
         mdxOptions: {
-            remarkPlugins: [require("remark-autolink-headings"), require("remark-slug"), require("remark-code-titles")],
+            remarkPlugins: [RemarkAutolinkHeadings, RemarkSlug, RemarkCodeTitles],
             rehypePlugins: [imageMetadata],
         },
     });
