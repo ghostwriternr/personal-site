@@ -133,8 +133,8 @@ export default function Home({ blog, code }) {
                                                 <div className="flex flex-col pt-3 items-center">
                                                     <GrpcLogo />
                                                     <span className="mt-2">
-                                                        Google Summer of Code (GSoC) student, adding support for
-                                                        building gRPC Python with Bazel.
+                                                        Google Summer of Code (GSoC) student, added support for building
+                                                        gRPC Python with Bazel.
                                                     </span>
                                                     <span className="mt-2">2018</span>
                                                 </div>

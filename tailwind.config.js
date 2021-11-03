@@ -35,6 +35,9 @@ module.exports = {
                         "ol > li::before": {
                             color: "var(--text)",
                         },
+                        "ul > li::before": {
+                            backgroundColor: "var(--text)",
+                        },
                         blockquote: {
                             color: "var(--text)",
                         },
@@ -58,6 +61,13 @@ module.exports = {
                         },
                         pre: {
                             color: "var(--text)",
+                            marginTop: 0,
+                            marginBottom: 0,
+                            borderRadius: 0,
+                            paddingTop: 0,
+                            paddingRight: 0,
+                            paddingBottom: 0,
+                            paddingLeft: 0,
                         },
                         "pre code": {
                             color: "var(--text)",
