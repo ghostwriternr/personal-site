@@ -4,6 +4,7 @@ import path from "path";
 import { serialize } from "next-mdx-remote/serialize";
 
 import imageMetadata from "../plugins/image-metadata";
+import { getPlaiceholder } from "plaiceholder";
 
 const root = process.cwd();
 
@@ -51,11 +52,18 @@ export async function getFileBySlug(type: "blog" | "code", slug: string): Promis
 export async function getAllFilesFrontMatter(type: "blog" | "code"): Promise<any[]> {
     const files = fs.readdirSync(path.join(root, "data", type));
 
-    return files.reduce((allPosts, postSlug) => {
+    return await files.reduce(async (allPosts, postSlug) => {
         const source = fs.readFileSync(path.join(root, "data", type, postSlug), "utf-8");
         const { data } = matter(source);
         data.date = new Date(data.date).toLocaleDateString("en-IN", { dateStyle: "long" });
 
-        return [{ ...data, slug: postSlug.replace(/\.md(x)?/, "") }, ...allPosts];
-    }, []);
+        const headerImage = data.header?.["overlay_image"] ?? data.header?.["image"];
+        const frontMatter = { ...data, slug: postSlug.replace(/\.md(x)?/, "") };
+        if (headerImage) {
+            const { base64 } = await getPlaiceholder(headerImage);
+            return [{ ...frontMatter, blurDataURL: base64 }, ...(await allPosts)];
+        }
+
+        return [frontMatter, ...(await allPosts)];
+    }, Promise.resolve([]));
 }

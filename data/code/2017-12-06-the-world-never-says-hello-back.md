@@ -14,10 +14,10 @@ Say hello to [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan).
 It has been claimed that Brian Kernighan first wrote a "hello, world" program as part of the I/O section in the documentation for [BCPL programming language](https://en.wikipedia.org/wiki/BCPL) developed by Martin Richards. BCPL was then used at Bell Labs where Ken Thompson and Dennis Ritchie were developing [B](https://en.wikipedia.org/wiki/B_(programming_language)), another programming language based mainly on BCPL. Kernighan co-authored the tutorial for B, where the first publicly known-instance of the usage of the words "hello" and "world" together in computer literature occur. He used it as an example to illustrate external variables:
 
 ```c
-main(){
+main() {
   extrn a,b,c;
   putchar(a); putchar(b); putchar(c); putchar('!*n');
-  }
+}
 
 a 'hell';
 b 'o, w';
@@ -31,9 +31,8 @@ The more popular C version included in Kernighan and Ritchie's very popular C bo
 ```c
 #include <stdio.h>
 
-main( )
-{
-        printf("hello, world\n");
+main() {
+  printf("hello, world\n");
 }
 ```
 

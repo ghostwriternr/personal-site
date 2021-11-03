@@ -1,6 +1,7 @@
 // Borrowed from: https://kylepfromer.com/blog/nextjs-image-component-blog
 import imageSize from "image-size";
 import path from "path";
+import { getPlaiceholder } from "plaiceholder";
 import { Processor } from "unified";
 import { Node } from "unist";
 import visit from "unist-util-visit";
@@ -15,6 +16,7 @@ interface ImageNode extends Node {
         src: string;
         height?: number;
         width?: number;
+        blurDataURL?: string;
     };
 }
 
@@ -31,8 +33,11 @@ async function addMetadata(node: ImageNode): Promise<void> {
     const res = await sizeOf(path.join(process.cwd(), "public", node.properties.src));
     if (!res) throw Error(`Invalid image with src "${node.properties.src}"`);
 
+    const { base64 } = await getPlaiceholder(node.properties.src);
+
     node.properties.width = res.width;
     node.properties.height = res.height;
+    node.properties.blurDataURL = base64;
 }
 
 export default function imageMetadata(this: Processor) {

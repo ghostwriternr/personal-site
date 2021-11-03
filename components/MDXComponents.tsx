@@ -4,7 +4,11 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/shadesOfPurple";
 import React from "react";
 
-const CustomLink = (props) => {
+const CustomLink = (
+    props: JSX.IntrinsicAttributes &
+        React.ClassAttributes<HTMLAnchorElement> &
+        React.AnchorHTMLAttributes<HTMLAnchorElement>
+) => {
     const href = props.href;
     const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
 
@@ -40,17 +44,34 @@ const Code = ({ children, className }) => {
 };
 
 const MDXComponents = {
-    img: ({ src, height, width, title, ...rest }) =>
-        title ? (
+    img: ({ src, height, width, title, blurDataURL, ...rest }) => {
+        return title ? (
             <figure>
-                <Image layout="responsive" src={src} height={height} width={width} {...rest} />
+                <Image
+                    layout="responsive"
+                    src={src}
+                    height={height}
+                    width={width}
+                    placeholder="blur"
+                    blurDataURL={blurDataURL}
+                    {...rest}
+                />
                 <figcaption className="w-full text-center">
                     <div className="text-xl text-th-subtext">{title}</div>
                 </figcaption>
             </figure>
         ) : (
-            <Image layout="responsive" src={src} height={height} width={width} {...rest} />
-        ),
+            <Image
+                layout="responsive"
+                src={src}
+                height={height}
+                width={width}
+                placeholder="blur"
+                blurDataURL={blurDataURL}
+                {...rest}
+            />
+        );
+    },
     a: CustomLink,
     code: Code,
     hr: () => <hr className="mt-10 mb-10" />,

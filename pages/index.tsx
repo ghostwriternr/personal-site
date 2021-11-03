@@ -83,6 +83,12 @@ export default function Home({ blog, code }) {
                                                                     alt={post.header?.title}
                                                                     layout="fill"
                                                                     objectFit="cover"
+                                                                    {...(post.blurDataURL
+                                                                        ? {
+                                                                              placeholder: "blur",
+                                                                              blurDataURL: post.blurDataURL,
+                                                                          }
+                                                                        : {})}
                                                                 />
                                                             </div>
                                                             <div className="mt-2 pl-4 pr-4 md:pl-0 md:pr-0">
