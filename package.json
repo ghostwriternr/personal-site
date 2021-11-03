@@ -36,7 +36,7 @@
         "remark-autolink-headings": "^6.0.1",
         "remark-code-titles": "^0.1.2",
         "remark-highlight.js": "^6.0.0",
-        "remark-html": "^13.0.1",
+        "remark-html": "^13.0.2",
         "remark-parse": "^9.0.0",
         "remark-slug": "^6.0.0",
         "sharp": "^0.29.2",
