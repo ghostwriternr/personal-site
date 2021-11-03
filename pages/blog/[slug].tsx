@@ -12,6 +12,7 @@ function BlogPostPage({ mdxSource, frontMatter }) {
     const page = usePage();
     React.useEffect(() => {
         page.dispatch("poetry");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -24,7 +25,7 @@ function BlogPostPage({ mdxSource, frontMatter }) {
                 transition={{ ease: "easeInOut", duration: 0.24 }}
             >
                 <div className="mb-12 text-center">
-                    <h2 className="text-2xl">A Silhouette's Squire</h2>
+                    <h2 className="text-2xl">A Silhouette&rsquo;s Squire</h2>
                     <h1 className="text-4xl md:text-5xl font-bold">{frontMatter.title}</h1>
                     <p className="text-xl">{frontMatter.date}</p>
                 </div>

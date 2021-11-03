@@ -54,6 +54,7 @@ const MDXComponents = {
                     width={width}
                     placeholder="blur"
                     blurDataURL={blurDataURL}
+                    alt=""
                     {...rest}
                 />
                 <figcaption className="w-full text-center">
@@ -68,6 +69,7 @@ const MDXComponents = {
                 width={width}
                 placeholder="blur"
                 blurDataURL={blurDataURL}
+                alt=""
                 {...rest}
             />
         );

@@ -6,7 +6,6 @@ import { Processor } from "unified";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
 import { promisify } from "util";
-import { VFile } from "vfile";
 const sizeOf = promisify(imageSize);
 
 interface ImageNode extends Node {
@@ -41,7 +40,7 @@ async function addMetadata(node: ImageNode): Promise<void> {
 }
 
 export default function imageMetadata(this: Processor) {
-    return async function transformer(tree: Node, file: VFile): Promise<Node> {
+    return async function transformer(tree: Node): Promise<Node> {
         const imgNodes: ImageNode[] = [];
 
         visit(tree, "element", (node) => {

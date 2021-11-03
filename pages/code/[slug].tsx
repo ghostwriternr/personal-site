@@ -11,6 +11,7 @@ function CodePostPage({ mdxSource, frontMatter }) {
     const page = usePage();
     React.useEffect(() => {
         page.dispatch("code");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
