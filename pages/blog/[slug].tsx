@@ -36,7 +36,7 @@ function BlogPostPage({ mdxSource, frontMatter }) {
                                     ? frontMatter.header["overlay_image"]
                                     : frontMatter.header["image"]
                             }
-                            alt="Overlay image"
+                            alt={`Overlay image for ${frontMatter.title}`}
                             layout="responsive"
                             width="2000"
                             height="1000"

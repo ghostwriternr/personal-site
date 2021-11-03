@@ -1,4 +1,13 @@
-import { Facebook, Github, Gmail, Goodreads, Instagram, Linkedin, Spotify } from "@icons-pack/react-simple-icons";
+import {
+    Facebook,
+    Github,
+    Twitter,
+    Gmail,
+    Goodreads,
+    Instagram,
+    Linkedin,
+    Spotify,
+} from "@icons-pack/react-simple-icons";
 
 import { HeadShot } from "@me/components/headshot";
 
@@ -36,6 +45,9 @@ export function Intro() {
                     </a>
                     <a href="https://www.linkedin.com/in/naresh-ramesh" target="_blank" rel="noopener noreferrer">
                         <Linkedin />
+                    </a>
+                    <a href="https://twitter.com/ghostwriternr" target="_blank" rel="noopener noreferrer">
+                        <Twitter />
                     </a>
                     <a href="mailto:ghostwriternr@gmail.com">
                         <Gmail />

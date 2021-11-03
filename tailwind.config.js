@@ -23,10 +23,46 @@ module.exports = {
                 DEFAULT: {
                     css: {
                         color: "var(--text)",
+                        '[class~="lead"]': {
+                            color: "var(--primary)",
+                        },
                         a: {
                             color: "var(--primary)",
                         },
                         strong: {
+                            color: "var(--text)",
+                        },
+                        "ol > li::before": {
+                            color: "var(--text)",
+                        },
+                        blockquote: {
+                            color: "var(--text)",
+                        },
+                        h1: {
+                            color: "var(--text)",
+                        },
+                        h2: {
+                            color: "var(--text)",
+                        },
+                        h3: {
+                            color: "var(--text)",
+                        },
+                        h4: {
+                            color: "var(--text)",
+                        },
+                        "figure figcaption": {
+                            color: "var(--text)",
+                        },
+                        code: {
+                            color: "var(--text)",
+                        },
+                        pre: {
+                            color: "var(--text)",
+                        },
+                        "pre code": {
+                            color: "var(--text)",
+                        },
+                        thead: {
                             color: "var(--text)",
                         },
                         hr: {
