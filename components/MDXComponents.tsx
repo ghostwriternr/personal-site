@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Highlight, { defaultProps } from "prism-react-renderer";
+import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/shadesOfPurple";
 import React from "react";
 
@@ -24,7 +24,8 @@ const CustomLink = (
 };
 
 const Code = ({ children, className }) => {
-    const language = className.replace(/language-/, "");
+    let language: Language = "markdown";
+    if (className) language = className.replace(/language-/, "");
 
     return (
         <Highlight {...defaultProps} code={children} language={language} theme={theme}>

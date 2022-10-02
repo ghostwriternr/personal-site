@@ -19,18 +19,18 @@ Pancakes is here with a simple introduction to gRPC. This is his first time - so
 ### Current scenario
 
 As of today, the vast majority of web APIs on the internet are based on **HTTP + JSON**, with **[REST](https://www.codecademy.com/articles/what-is-rest)** as the architectural principle of how these APIs are designed. HTTP/REST has excellent implementations in every conceivable programming language out there and is extremely popular, but it isn't without it's problems. Some of the **major drawbacks of HTTP/REST** are:
-- The client program (the caller) needs to build extra tooling 🔧 for every new REST API it has to interact with to construct the request headers and payload. Or expect the REST API to come with a client library 📒 (in the same language as the client's implentation) so the functionality can be integrated easily.
-- No formal machine-readable contract 🤖. This makes API discovery impossible and writing client-libraries (for _every_ programming language to be supported) a manual job 🤢.
-- Streaming is almost impossible ❌.
-- JSON is a text-based representation, making it extremely bulky/inefficient 🐢 for transmission over network.
-- A pure REST-ful paradigm can't model all the capabilities to be supported by the API 👎 (example: restarting a machine).
+
+-   The client program (the caller) needs to build extra tooling 🔧 for every new REST API it has to interact with to construct the request headers and payload. Or expect the REST API to come with a client library 📒 (in the same language as the client's implentation) so the functionality can be integrated easily.
+-   No formal machine-readable contract 🤖. This makes API discovery impossible and writing client-libraries (for _every_ programming language to be supported) a manual job 🤢.
+-   Streaming is almost impossible ❌.
+-   JSON is a text-based representation, making it extremely bulky/inefficient 🐢 for transmission over network.
+-   A pure REST-ful paradigm can't model all the capabilities to be supported by the API 👎 (example: restarting a machine).
 
 ### What are the alternatives?
 
 There are several, but in the current scope, we look at RPC. RPC (Remote Procedure Call) is a request-response protocol.
 
 In Layman terms, RPC allows a program to call, say, a method or an API that could be running anywhere on a remote machine as if it were part of the same program (i.e. using standard language semantics without having to even think about network configurations) and get back a response. [Wikipedia has a more formal definition](https://en.wikipedia.org/wiki/Remote_procedure_call), if interested.
-
 
 ## Welcome gRPC
 
@@ -39,10 +39,11 @@ In Layman terms, RPC allows a program to call, say, a method or an API that coul
 [gRPC](https://grpc.io/) is a modern open source high performance RPC framework that can run in any environment. It can efficiently connect services in and across data centers. gRPC evolved out as the V2 of Google's internal RPC solution - Stubby. gRPC solves all the problems listed above (and more!).
 
 Some of the key features that makes gRPC stand-out are:
-- Idiomatic client libraries in 10 languages
-- Highly efficient on wire and with a simple service definition framework
-- Bi-directional streaming with http/2 based transport
-- Pluggable auth, tracing, load balancing and health checking
+
+-   Idiomatic client libraries in 10 languages
+-   Highly efficient on wire and with a simple service definition framework
+-   Bi-directional streaming with http/2 based transport
+-   Pluggable auth, tracing, load balancing and health checking
 
 # Dive into gRPC
 
@@ -59,11 +60,12 @@ By default, gRPC uses protocol buffers as the [Interface Definition Language (ID
 Protobufs provide type-safety, prevent schema violations, provide simple accessors, backward compatibility and extremely fast serialization/deserialization capabilities.
 ![Serialization](/assets/code/grpc/serialization.png)
 ![Deserialization](/assets/code/grpc/deserialization.png)
-*Stats from [JSON vs Protocol Buffers vs FlatBuffers by Karthik Khare](https://codeburst.io/json-vs-protocol-buffers-vs-flatbuffers-a4247f8bda6f)
+\*Stats from [JSON vs Protocol Buffers vs FlatBuffers by Karthik Khare](https://codeburst.io/json-vs-protocol-buffers-vs-flatbuffers-a4247f8bda6f)
 
 For protobufs, you define how you want your data to be structured once. Then, protobuf's compiler (`protoc`) can compile them to source code in a variety of languages to easily write and read your structured data.
 
 A simple service definition with 2 Unary RPCs for a telephony API might look like this:
+
 ```protobuf
 syntax = "proto3";
 package calls;
@@ -99,6 +101,7 @@ message Call {
 Once the API Spec is formally defined in `.proto` files, two things are possible:
 
 Since this is a machine-readable contract, the `protoc` compiler can generate a client-library for this API in any of the [35+ supported languages](https://github.com/protocolbuffers/protobuf/blob/master/docs/third_party.md)! It is then possible to start interacting with the generated library right away with very minimal code. For instance, in the above example, the library can be generated with:
+
 ```bash
 protoc --protoc_path=. --js_out=./js --grpc_out=./js --plugin=protoc-gen-grpc=`which grpc_node_plugin` calls.proto
 ```
@@ -106,19 +109,19 @@ protoc --protoc_path=. --js_out=./js --grpc_out=./js --plugin=protoc-gen-grpc=`w
 And the below code is a fully-working Node.JS client intercting with the generated library (`calls_grpc_pb.js`).
 
 ```js
-var calls = require('./calls_grpc_pb');
-var grpc = require('grpc');
+var calls = require("./calls_grpc_pb");
+var grpc = require("grpc");
 
-var calls = new calls.CallsClient('lolcahost:50051',
-    grpc.credentials.createInsecure());
+var calls = new calls.CallsClient("lolcahost:50051", grpc.credentials.createInsecure());
 var req = new calls.GetReq();
-req.getSid('CA39c33a11fed4a5a1c01');
-calls.get(req, function(err, resp) {
-    console.log('Got call:', resp.getFrom(), resp.getTo());
+req.getSid("CA39c33a11fed4a5a1c01");
+calls.get(req, function (err, resp) {
+    console.log("Got call:", resp.getFrom(), resp.getTo());
 });
 ```
 
 gRPC can also generate server stubs in 10 different languages! For instance, here's working code implemeting the interface exposed by the generated stub:
+
 ```go
 package main
 
@@ -162,25 +165,33 @@ That's it. _True magic does exist!_ (but also demystified in [this talk at KubeC
 gRPC also supports streaming in both directions - between server and client. This can be very easily defined in the proto defition itself with the `stream` keyword before the payload or response, as appropriate.
 
 ### Unary RPCs
+
 The client sends a single request to the server and gets a single response back, just like a normal function call.
+
 ```protobuf
 rpc SayHello(HelloRequest) returns (HelloResponse){}
 ```
 
 ### Server streaming RPCs
+
 The client sends a request to the server and gets a stream to read a sequence of messages back. The client reads from the returned stream until there are no more messages. gRPC guarantees message ordering within an individual RPC call.
+
 ```protobuf
 rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse){}
 ```
 
 ### Client streaming RPCs
+
 The client writes a sequence of messages and sends them to the server, again using a provided stream. Once the client has finished writing the messages, it waits for the server to read them and return its response. Again gRPC guarantees message ordering within an individual RPC call.
+
 ```protobuf
 rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse){}
 ```
 
 ### Bidirectional streaming RPCs
+
 Both sides send a sequence of messages using a read-write stream. The two streams operate independently, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved.
+
 ```protobuf
 rpc BidiHello(stream HelloRequest) returns (stream HelloResponse){}
 ```
@@ -204,6 +215,7 @@ Either the client or the server can cancel an RPC at any time. A cancellation te
 gRPC is an extremely easy to use framework wrapping a very complicated protocol, with tons of optimisations to max out it's performance under the hood. If you have still any questions, please reach out to me via email or Twitter.
 
 # Resources & References
-- [Intro to gRPC: A Modern Toolkit for Microservice Communication](https://www.youtube.com/watch?v=RoXT_Rkg8LA) by Alan Shreve
-- [gRPC official documentation](https://www.grpc.io/docs/)
-- [gRPC on GitHub](https://github.com/grpc/)
+
+-   [Intro to gRPC: A Modern Toolkit for Microservice Communication](https://www.youtube.com/watch?v=RoXT_Rkg8LA) by Alan Shreve
+-   [gRPC official documentation](https://www.grpc.io/docs/)
+-   [gRPC on GitHub](https://github.com/grpc/)
