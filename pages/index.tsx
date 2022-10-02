@@ -123,8 +123,8 @@ export default function Home({ blog, code }) {
                                                 <div className="flex flex-col pt-4 items-center">
                                                     <SetuLogo theme={theme} />
                                                     <span className="mt-4">
-                                                        Fullstack Engineer in the payments team, working on UPI
-                                                        Deeplinks &amp; BBPS and owner for the developer console.
+                                                        Tech Lead for the payments team, working on UPI Deeplinks &amp;
+                                                        BBPS and owner for the developer console.
                                                     </span>
                                                     <span className="mt-2">2020&nbsp;&mdash;</span>
                                                 </div>

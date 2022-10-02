@@ -36,9 +36,8 @@ export function Intro() {
                     <HeadShot />
                 </div>
                 <p className="pl-4 pr-4 md:pl-0 md:pr-0 text-center md:text-left mt-4 text-xl md:text-2xl">
-                    I&rsquo;m a software engineer, currently working at Setu. I enjoy writing, curating music and
-                    playing the Piano. Open Source maintainer &amp; supporter. Dreaming of the sky and a prosperous
-                    India.
+                    Tech Lead for the payments team at Setu. I enjoy writing, curating music and playing the Piano. Open
+                    Source maintainer &amp; supporter. Dreaming of the sky and a prosperous India.
                 </p>
                 <div className="pl-4 pr-4 md:pl-0 md:pr-0 mt-4 flex justify-center md:justify-start space-x-4">
                     <a href="https://github.com/ghostwriternr" target="_blank" rel="noopener noreferrer">
