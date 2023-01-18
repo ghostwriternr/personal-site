@@ -1,6 +1,7 @@
 import {
     Facebook,
     Github,
+    Gitlab,
     Twitter,
     Gmail,
     Goodreads,
@@ -42,6 +43,9 @@ export function Intro() {
                 <div className="pl-4 pr-4 md:pl-0 md:pr-0 mt-4 flex justify-center md:justify-start space-x-4">
                     <a href="https://github.com/ghostwriternr" target="_blank" rel="noopener noreferrer">
                         <Github />
+                    </a>
+                    <a href="https://gitlab.com/ghostwriternr" target="_blank" rel="noopener noreferrer">
+                        <Gitlab />
                     </a>
                     <a href="https://www.linkedin.com/in/naresh-ramesh" target="_blank" rel="noopener noreferrer">
                         <Linkedin />
