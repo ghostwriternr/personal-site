@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@layer utilities {
+    .sidebarless-container {
+        width: calc(100% - theme("width.20"));
+    }
+}

@@ -1,0 +1,111 @@
+---
+import HeadShot from "./HeadShot.astro";
+import FacebookIcon from "../icons/facebook.astro";
+import GithubIcon from "../icons/github.astro";
+import GitlabIcon from "../icons/gitlab.astro";
+import GmailIcon from "../icons/gmail.astro";
+import GoodreadsIcon from "../icons/goodreads.astro";
+import InstagramIcon from "../icons/instagram.astro";
+import LinkedinIcon from "../icons/linkedin.astro";
+import SpotifyIcon from "../icons/spotify.astro";
+import XIcon from "../icons/x.astro";
+---
+
+<div class="grid grid-cols-8 items-center">
+    <div class="col-span-8 md:col-span-6">
+        <div class="table-cell text-center">
+            <h1
+                class="text-th-primary text-6xl drop-shadow-[3px_3px_0px_var(--secondary)] md:drop-shadow-[6px_6px_0px_var(--tertiary)]"
+            >
+                Naresh Ramesh
+            </h1>
+        </div>
+        <div class="mt-4 flex justify-center md:justify-start">
+            <h2 class="text-th-primary flex flex-wrap text-xl md:text-4xl">
+                <div class="mr-2">Hello</div>&#8226;<div
+                    class="hindi mr-2 ml-2"
+                >
+                    नमस्ते
+                </div>&#8226;
+                <div class="tamil mr-2 ml-2">வணக்கம்</div>&#8226;
+                <div class="telugu ml-2">స్వాగతం</div>
+            </h2>
+        </div>
+        <div class="pr-8 pl-8 md:hidden md:pr-0 md:pl-0">
+            <HeadShot />
+        </div>
+        <p
+            class="mt-4 pr-4 pl-4 text-center text-xl md:pr-0 md:pl-0 md:text-left md:text-2xl"
+        >
+            Senior Systems Engineer at Cloudflare. I enjoy writing, curating
+            music and playing the Piano. Open Source maintainer &amp; supporter.
+            Dreaming of the sky and a prosperous India.
+        </p>
+        <div
+            class="mt-4 flex justify-center space-x-4 pr-4 pl-4 md:justify-start md:pr-0 md:pl-0"
+        >
+            <a
+                href="https://github.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <GithubIcon width="24" height="24" class="icon" />
+            </a>
+            <a
+                href="https://gitlab.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <GitlabIcon width="24" height="24" class="icon" />
+            </a>
+            <a
+                href="https://www.linkedin.com/in/naresh-ramesh"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <LinkedinIcon width="24" height="24" class="icon" />
+            </a>
+            <a
+                href="https://twitter.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <XIcon width="24" height="24" class="icon" />
+            </a>
+            <a href="mailto:ghostwriternr@gmail.com">
+                <GmailIcon width="24" height="24" class="icon" />
+            </a>
+            <a
+                href="https://www.facebook.com/naresh.ramesh"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <FacebookIcon width="24" height="24" class="icon" />
+            </a>
+            <a
+                href="https://www.instagram.com/noresh.romesh"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <InstagramIcon width="24" height="24" class="icon" />
+            </a>
+            <a
+                href="https://open.spotify.com/user/22gndvram3iydupmjvgg7fz2a"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <SpotifyIcon width="24" height="24" class="icon" />
+            </a>
+            <a
+                href="https://www.goodreads.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <GoodreadsIcon width="24" height="24" class="icon" />
+            </a>
+        </div>
+    </div>
+    <div class="invisible md:visible md:col-span-2 md:col-start-7">
+        <HeadShot />
+    </div>
+</div>

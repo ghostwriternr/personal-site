@@ -10,48 +10,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-    <style>
-        main {
-            width: calc(100% - 2em);
-            max-width: 100%;
-            margin: 0;
-        }
-        .hero-image {
-            width: 100%;
-        }
-        .hero-image img {
-            display: block;
-            margin: 0 auto;
-            border-radius: 12px;
-            box-shadow: var(--box-shadow);
-        }
-        .prose {
-            width: 720px;
-            max-width: calc(100% - 2em);
-            margin: auto;
-            padding: 1em;
-            color: rgb(var(--gray-dark));
-        }
-        .title {
-            margin-bottom: 1em;
-            padding: 1em 0;
-            text-align: center;
-            line-height: 1;
-        }
-        .title h1 {
-            margin: 0 0 0.5em 0;
-        }
-        .date {
-            margin-bottom: 0.5em;
-            color: rgb(var(--gray));
-        }
-        .last-updated-on {
-            font-style: italic;
-        }
-    </style>
-    <main>
+    <main class="col-span-12 md:col-span-8 md:col-start-3">
         <article>
-            <div class="hero-image">
+            <div class="w-full">
                 {
                     heroImage && (
                         <Image
@@ -59,24 +20,27 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
                             height={510}
                             src={heroImage}
                             alt=""
+                            class="mx-auto block w-full rounded-xl shadow-[var(--box-shadow)]"
                         />
                     )
                 }
             </div>
-            <div class="prose">
-                <div class="title">
-                    <div class="date">
+            <div
+                class="mx-auto w-full max-w-[720px] p-4 text-[rgb(var(--gray-dark))] md:max-w-[calc(100%-2em)]"
+            >
+                <div class="mb-4 py-4 text-center leading-none">
+                    <div class="mb-2 text-[rgb(var(--gray))]">
                         <FormattedDate date={pubDate} />
                         {
                             updatedDate && (
-                                <div class="last-updated-on">
+                                <div class="italic">
                                     Last updated on{" "}
                                     <FormattedDate date={updatedDate} />
                                 </div>
                             )
                         }
                     </div>
-                    <h1>{title}</h1>
+                    <h1 class="m-0 mb-2">{title}</h1>
                     <hr />
                 </div>
                 <slot />
