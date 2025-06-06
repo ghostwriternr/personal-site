@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import HeaderLink from "./HeaderLink.astro";
+import MeImage from "../assets/me.png";
 
 const links = [
     { label: "Blog", href: "/" },
@@ -14,8 +16,8 @@ const links = [
     <!-- Avatar -->
     <div class="mt-2 mb-2 flex justify-center">
         <a href="/">
-            <img
-                src="/images/me.png"
+            <Image
+                src={MeImage}
                 alt="Avatar"
                 class="h-15 w-15 cursor-pointer rounded-full"
             />

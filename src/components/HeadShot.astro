@@ -1,6 +1,11 @@
+---
+import { Image } from "astro:assets";
+import HeadShotImage from "../assets/profile.jpg";
+---
+
 <div class="bg-th-theme-accent hexagon p-2">
-    <img
-        src="/images/profile.jpg"
+    <Image
+        src={HeadShotImage}
         alt="Profile"
         class="hexagon h-auto w-full"
         width="283"

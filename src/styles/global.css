@@ -1,5 +1,121 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: "Lufga";
+    src: url("/fonts/Lufga/regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lufga";
+    src: url("/fonts/Lufga/bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lufga";
+    src: url("/fonts/Lufga/semibold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lufga";
+    src: url("/fonts/Lufga/italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Text";
+    src: url("/fonts/Argesta/text.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Text";
+    src: url("/fonts/Argesta/text_bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Text";
+    src: url("/fonts/Argesta/text_italic.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Hairline";
+    src: url("/fonts/Argesta/hairline.otf") format("opentype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Hairline";
+    src: url("/fonts/Argesta/hairline_italic.otf") format("opentype");
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Headline";
+    src: url("/fonts/Argesta/headline.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Headline";
+    src: url("/fonts/Argesta/headline_italic.otf") format("opentype");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Display";
+    src: url("/fonts/Argesta/display.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Display";
+    src: url("/fonts/Argesta/display_italic.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@theme {
+    --font-lufga: "Lufga", sans-serif;
+    --font-argesta-text: "Argesta Text", serif;
+    --font-argesta-hairline: "Argesta Hairline", serif;
+    --font-argesta-headline: "Argesta Headline", serif;
+    --font-argesta-display: "Argesta Display", serif;
+}
+
+html,
+body {
+    font-family: var(--font-lufga);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    transition: all 0.25s linear;
+}
+
+.article-text {
+    font-family: var(--font-argesta-text);
+}
+
+.hexagon {
+    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+}
+
 @layer utilities {
     .sidebarless-container {
         width: calc(100% - theme("width.20"));
