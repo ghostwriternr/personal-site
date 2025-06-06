@@ -1,0 +1,34 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+
+const links = [
+    { label: "Blog", href: "/" },
+    { label: "Poetry", href: "/poetry" },
+    { label: "About", href: "/about" },
+];
+---
+
+<div
+    class="border-th-theme-accent-dark fixed mt-2 flex h-screen w-20 flex-col border-r-4"
+>
+    <!-- Avatar -->
+    <div class="mt-2 mb-2 flex justify-center">
+        <a href="/">
+            <img
+                src="/images/me.png"
+                alt="Avatar"
+                class="h-15 w-15 cursor-pointer rounded-full"
+            />
+        </a>
+    </div>
+    <!-- Navigation Links -->
+    <div class="flex flex-grow flex-col items-center">
+        {
+            links.map((link) => (
+                <HeaderLink href={link.href}>
+                    <span>{link.label}</span>
+                </HeaderLink>
+            ))
+        }
+    </div>
+</div>

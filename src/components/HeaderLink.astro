@@ -3,22 +3,23 @@ import type { HTMLAttributes } from "astro/types";
 
 type Props = HTMLAttributes<"a">;
 
-const { href, class: className, ...props } = Astro.props;
+// Accept all anchor attributes, including class
+const { href, class: className = "", ...props } = Astro.props;
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
 const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
+
+// Active and base classes for sidebar links
+const baseClasses =
+    "sidebar-link my-2 flex items-center justify-center -rotate-90 transform text-xl transition-colors duration-200";
+const activeClasses = "text-th-primary font-bold";
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a
+    href={href}
+    class={[baseClasses, className, isActive ? activeClasses : ""].join(" ")}
+    aria-current={isActive ? "page" : undefined}
+    {...props}
+>
     <slot />
 </a>
-<style>
-    a {
-        display: inline-block;
-        text-decoration: none;
-    }
-    a.active {
-        font-weight: bolder;
-        text-decoration: underline;
-    }
-</style>
