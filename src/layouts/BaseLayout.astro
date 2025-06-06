@@ -3,7 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Topbar from "../components/Topbar.astro";
 import Sidebar from "../components/Sidebar.astro";
 
-const { title, description } = Astro.props;
+const { title, description, class: className = "" } = Astro.props;
 ---
 
 <html lang="en">
@@ -12,9 +12,9 @@ const { title, description } = Astro.props;
     </head>
     <body>
         <main>
-            <div class="min-h-screen">
+            <div class={`min-h-screen bg-background ${className}`}>
                 <div
-                    class="bg-th-theme-accent-dark fixed top-0 left-0 z-50 h-2 w-screen"
+                    class="bg-theme-accent-dark fixed top-0 left-0 z-50 h-2 w-screen"
                 >
                 </div>
                 <div class="absolute mt-2 md:hidden">

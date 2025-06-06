@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @font-face {
     font-family: "Lufga";
@@ -93,6 +94,15 @@
 }
 
 @theme {
+    --color-primary: #47184c;
+    --color-secondary: #e17150;
+    --color-tertiary: #ffd34e;
+    --color-text: #000000;
+    --color-subtext: #301a51;
+    --color-background: #ffecb4;
+    --color-theme-accent: #ffe081;
+    --color-theme-accent-dark: #ffd081;
+
     --font-lufga: "Lufga", sans-serif;
     --font-argesta-text: "Argesta Text", serif;
     --font-argesta-hairline: "Argesta Hairline", serif;
@@ -100,11 +110,22 @@
     --font-argesta-display: "Argesta Display", serif;
 }
 
+[data-theme="dark"] {
+    --color-primary: #fcaf61;
+    --color-secondary: #e17150;
+    --color-tertiary: #381e5f;
+    --color-text: #ffffff;
+    --color-subtext: #c4aee5;
+    --color-background: #160c25;
+    --color-theme-accent: #301a51;
+    --color-theme-accent-dark: #2d184c;
+}
+
 html,
 body {
     font-family: var(--font-lufga);
-    color: var(--color-text);
-    background-color: var(--color-background);
+    color: var(--text);
+    background-color: var(--background);
     transition: all 0.25s linear;
 }
 
@@ -119,5 +140,75 @@ body {
 @layer utilities {
     .sidebarless-container {
         width: calc(100% - theme("width.20"));
+    }
+
+    .bg-home {
+        background-image: var(--home-bg);
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+}
+
+@layer components {
+    .prose {
+        color: var(--text);
+    }
+    .prose :where([class~="lead"]) {
+        color: var(--primary);
+    }
+    .prose a {
+        color: var(--primary);
+    }
+    .prose strong {
+        color: var(--text);
+    }
+    .prose ol > li::before {
+        color: var(--text);
+    }
+    .prose ul > li::before {
+        background-color: var(--text);
+    }
+    .prose blockquote {
+        color: var(--text);
+    }
+    .prose h1,
+    .prose h2,
+    .prose h3,
+    .prose h4 {
+        color: var(--text);
+    }
+    .prose figure figcaption {
+        color: var(--text);
+    }
+    .prose code {
+        color: var(--text);
+    }
+    .prose pre {
+        color: var(--text);
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+        padding: 0;
+    }
+    .prose pre code {
+        color: var(--text);
+    }
+    .prose thead {
+        color: var(--text);
+    }
+    .prose hr {
+        border-color: var(--subtext);
     }
 }
