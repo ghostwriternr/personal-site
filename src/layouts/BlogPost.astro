@@ -2,47 +2,32 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
     <main class="col-span-12 md:col-span-8 md:col-start-3">
-        <article class="prose">
-            <div class="w-full">
-                {
-                    heroImage && (
-                        <Image
-                            width={1020}
-                            height={510}
-                            src={heroImage}
-                            alt=""
-                            class="mx-auto block w-full rounded-xl shadow-[var(--box-shadow)]"
-                        />
-                    )
-                }
-            </div>
-            <div
-                class="article-text mx-auto w-full max-w-[720px] p-4 text-[rgb(var(--gray-dark))] md:max-w-[calc(100%-2em)]"
-            >
-                <div class="mb-4 py-4 text-center leading-none">
-                    <div class="mb-2 text-[rgb(var(--gray))]">
-                        <FormattedDate date={pubDate} />
-                        {
-                            updatedDate && (
-                                <div class="italic">
-                                    Last updated on{" "}
-                                    <FormattedDate date={updatedDate} />
-                                </div>
-                            )
-                        }
-                    </div>
-                    <h1 class="m-0 mb-2">{title}</h1>
-                    <hr />
+        <article
+            class="article-text mx-auto w-full max-w-[720px] py-4 text-[rgb(var(--gray-dark))] md:max-w-[calc(100%-2em)]"
+        >
+            <div class="mb-4 py-4 leading-none">
+                <div class="mb-2 text-xl text-[rgb(var(--gray))]">
+                    <FormattedDate date={pubDate} />
+                    {
+                        updatedDate && (
+                            <div class="italic">
+                                Last updated on{" "}
+                                <FormattedDate date={updatedDate} />
+                            </div>
+                        )
+                    }
                 </div>
+                <h1 class="m-0 mb-2 text-4xl font-bold">{title}</h1>
+            </div>
+            <div class="prose prose-xl">
                 <slot />
             </div>
         </article>

@@ -164,54 +164,33 @@ body {
     }
 }
 
-@layer components {
-    .prose {
-        color: var(--text);
-    }
-    .prose :where([class~="lead"]) {
-        color: var(--primary);
-    }
-    .prose a {
-        color: var(--primary);
-    }
-    .prose strong {
-        color: var(--text);
-    }
-    .prose ol > li::before {
-        color: var(--text);
-    }
-    .prose ul > li::before {
-        background-color: var(--text);
-    }
-    .prose blockquote {
-        color: var(--text);
-    }
-    .prose h1,
-    .prose h2,
-    .prose h3,
-    .prose h4 {
-        color: var(--text);
-    }
-    .prose figure figcaption {
-        color: var(--text);
-    }
-    .prose code {
-        color: var(--text);
-    }
-    .prose pre {
-        color: var(--text);
-        margin-top: 0;
-        margin-bottom: 0;
-        border-radius: 0;
-        padding: 0;
-    }
-    .prose pre code {
-        color: var(--text);
-    }
-    .prose thead {
-        color: var(--text);
-    }
-    .prose hr {
-        border-color: var(--subtext);
-    }
+/* Tailwind Typography */
+.prose {
+    color: var(--color-text);
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+}
+.prose p {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+.prose li {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+.prose ul > li::marker {
+    color: var(--color-text);
+}
+.prose hr {
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    border-width: 1.2px;
+    border-color: var(--color-tertiary);
 }
