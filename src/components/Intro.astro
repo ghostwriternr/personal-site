@@ -13,11 +13,11 @@ import XIcon from "../icons/x.astro";
 
 <div class="grid grid-cols-8 items-center">
     <div class="col-span-8 pr-2 md:col-span-6">
-        <div class="table-cell text-center">
-            <h1 class="text-primary text-shadow-title text-6xl">
-                Naresh Ramesh
-            </h1>
-        </div>
+        <h1
+            class="text-primary text-shadow-title text-center text-6xl md:text-left"
+        >
+            Naresh Ramesh
+        </h1>
         <div class="mt-4 flex justify-center md:justify-start">
             <h2 class="text-primary flex flex-wrap text-xl md:text-4xl">
                 <div class="mr-2">Hello</div>&#8226;
@@ -25,9 +25,6 @@ import XIcon from "../icons/x.astro";
                 <div class="hindi mr-2 ml-2">नमस्ते</div>&#8226;
                 <div class="telugu ml-2">స్వాగతం</div>
             </h2>
-        </div>
-        <div class="pr-8 pl-8 md:hidden md:pr-0 md:pl-0">
-            <HeadShot />
         </div>
         <p
             class="mt-4 pr-4 pl-4 text-center text-xl md:pr-0 md:pl-0 md:text-left md:text-2xl"
@@ -108,7 +105,7 @@ import XIcon from "../icons/x.astro";
             </a>
         </div>
     </div>
-    <div class="invisible md:visible md:col-span-2 md:col-start-7">
+    <div class="hidden md:col-span-2 md:col-start-7 md:block">
         <HeadShot />
     </div>
 </div>
