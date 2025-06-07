@@ -11,7 +11,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 <BaseLayout title={title} description={description}>
     <main class="col-span-12 md:col-span-8 md:col-start-3">
-        <article>
+        <article class="prose">
             <div class="w-full">
                 {
                     heroImage && (

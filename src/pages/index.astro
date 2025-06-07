@@ -18,13 +18,13 @@ const posts = (await getCollection("blog")).sort(
                 posts.map((post, idx) => (
                     <a
                         href={`/posts/${post.id}/`}
-                        class="group hover:bg-theme-accent animate-fade-in-up block cursor-pointer pt-10 pb-10 transition-colors"
+                        class="group hover:bg-theme-accent animate-fade-in-up block cursor-pointer py-6"
                         style={`animation-delay: ${idx * 40}ms;`}
                     >
                         <div class="flex flex-col justify-between pr-8 pl-8 md:flex-row">
                             <h2 class="flex text-2xl font-bold">
                                 {post.data.title}
-                                <span class="group-hover:text-text ml-2 text-transparent transition-colors">
+                                <span class="group-hover:text-text ml-2 text-transparent">
                                     &rarr;
                                 </span>
                             </h2>
