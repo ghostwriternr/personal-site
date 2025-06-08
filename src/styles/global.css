@@ -133,7 +133,7 @@ body {
 }
 
 .article-text {
-    font-family: var(--font-argesta-text);
+    font-family: var(--font-argesta-display);
 }
 
 .hexagon {
@@ -168,20 +168,16 @@ body {
 .prose {
     color: var(--color-text);
 }
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
+.blog-post .prose h1,
+.blog-post .prose h2,
+.blog-post .prose h3,
+.blog-post .prose h4,
+.blog-post .prose h5,
+.blog-post .prose h6 {
     margin-top: 0.6em;
     margin-bottom: 0.2em;
 }
-.prose p {
-    margin-top: 0.2em;
-    margin-bottom: 0.2em;
-}
-.prose li {
+.blog-post .prose li {
     margin-top: 0.2em;
     margin-bottom: 0.2em;
 }

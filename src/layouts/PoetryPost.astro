@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"poetry">["data"];
+
+const { title, date, image } = Astro.props as Props;
+---
+
+<BaseLayout title={title} description={""}>
+    <main class="col-span-12 pt-4 md:col-span-8 md:col-start-3">
+        <div class="article-text">
+            <div class="mb-12 text-center">
+                <h1 class="text-4xl font-bold md:text-5xl">{title}</h1>
+                <p class="text-xl">
+                    <FormattedDate date={new Date(date)} />
+                </p>
+            </div>
+            {
+                image && (
+                    <div class="col-span-full mb-8 aspect-[2/1]">
+                        <Image
+                            src={image}
+                            alt={`Overlay image for ${title}`}
+                            class="h-full w-full rounded-lg object-cover"
+                        />
+                    </div>
+                )
+            }
+            <div class="mb-8">
+                <div class="grid grid-cols-12">
+                    <article
+                        class="prose prose-2xl col-span-10 col-start-2 mt-8 text-2xl md:col-span-8 md:col-start-3"
+                    >
+                        <slot />
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+</BaseLayout>

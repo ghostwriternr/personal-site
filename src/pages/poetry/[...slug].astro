@@ -1,9 +1,6 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
-import { render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE_TITLE } from "../../consts";
-import FormattedDate from "../../components/FormattedDate.astro";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import PoetryPost from "../../layouts/PoetryPost.astro";
 
 export async function getStaticPaths() {
     const poems = await getCollection("poetry");
@@ -16,40 +13,9 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"poetry">;
 
 const post = Astro.props;
-const data = post.data;
 const { Content } = await render(post);
 ---
 
-<BaseLayout
-    title={`${data.title} | Poetry | ${SITE_TITLE}`}
-    description={data.description}
->
-    <article class="col-span-12 md:col-span-8 md:col-start-3">
-        <header class="mb-8">
-            <h1 class="mb-2 text-4xl font-bold">{data.title}</h1>
-            <div
-                class="flex flex-col items-start justify-between gap-2 md:flex-row md:items-center"
-            >
-                <div class="text-secondary">
-                    <p class="text-lg font-semibold">
-                        <!-- <FormattedDate date={data.pubDate} /> -->
-                    </p>
-                </div>
-                {
-                    data.tags && (
-                        <div class="flex gap-2">
-                            {data.tags.map((tag) => (
-                                <span class="text-secondary bg-theme-accent rounded px-2 py-1 text-sm">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    )
-                }
-            </div>
-        </header>
-        <div class="prose prose-lg max-w-none">
-            <Content />
-        </div>
-    </article>
-</BaseLayout>
+<PoetryPost {...post.data}>
+    <Content />
+</PoetryPost>
