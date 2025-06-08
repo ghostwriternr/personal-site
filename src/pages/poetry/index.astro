@@ -28,6 +28,7 @@ const poems = (await getCollection("poetry")).sort(
                             <Image
                                 src={poem.data.image}
                                 alt={poem.data.title}
+                                loading={idx < 6 ? "eager" : "lazy"}
                                 class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                         </div>

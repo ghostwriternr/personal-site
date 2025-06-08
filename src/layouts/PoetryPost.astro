@@ -23,8 +23,9 @@ const { title, date, image } = Astro.props as Props;
                     <div class="col-span-full mb-8 aspect-[2/1]">
                         <Image
                             src={image}
-                            alt={`Overlay image for ${title}`}
+                            alt={`Hero for ${title}`}
                             class="h-full w-full rounded-lg object-cover"
+                            loading="eager"
                         />
                     </div>
                 )
