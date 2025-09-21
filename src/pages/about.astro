@@ -1,74 +1,138 @@
 ---
-import Layout from "../layouts/BlogPost.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Timeline from "../components/Timeline.astro";
+import Cloudflare from "../components/logos/Cloudflare.astro";
+import CodeStory from "../components/logos/CodeStory.astro";
+import Setu from "../components/logos/Setu.astro";
+import Intuit from "../components/logos/Intuit.astro";
+import GRPC from "../components/logos/GRPC.astro";
+import profileImg from "../assets/profile.jpg";
 ---
 
-<Layout
-    title="About Me"
-    description="Lorem ipsum dolor sit amet"
-    pubDate={new Date("August 08 2021")}
->
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo
-        integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu
-        turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-        adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus
-        sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget
-        magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius
-        sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-        sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque
-        sagittis purus sit amet.
-    </p>
-
-    <p>
-        Morbi tristique senectus et netus. Id semper risus in hendrerit gravida
-        rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis
-        purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae
-        congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-        porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt
-        lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer
-        feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas
-        congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-        bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus
-        urna et pharetra pharetra massa massa ultricies mi.
-    </p>
-
-    <p>
-        Mollis nunc sed id semper risus in. Convallis a cras semper auctor
-        neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu
-        consequat ac felis donec. Egestas integer eget aliquet nibh praesent
-        tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In
-        vitae turpis massa sed elementum. Tristique et egestas quis ipsum
-        suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis
-        nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper
-        viverra nam. Laoreet suspendisse interdum consectetur libero id
-        faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique.
-        Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices
-        tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium
-        quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus
-        faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet
-        dictum sit amet justo donec enim.
-    </p>
-
-    <p>
-        Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere
-        ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim
-        ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra
-        mauris in. Arcu ac tortor dignissim convallis aenean et tortor at.
-        Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor.
-        Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci
-        nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat
-        maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt
-        arcu. Id cursus metus aliquam eleifend mi.
-    </p>
-
-    <p>
-        Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi
-        tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit.
-        Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis
-        elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-        ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper
-        feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet
-        nibh praesent tristique magna.
-    </p>
-</Layout>
+<BaseLayout title="About Naresh Ramesh" description="">
+    <section
+        class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 pt-12 md:col-span-8 md:col-start-3 md:grid-cols-3"
+    >
+        <div class="text-xl md:col-span-2">
+            <h2 class="mb-2 text-xl">Hey! I am</h2>
+            <h1 class="mb-2 text-5xl font-bold">Naresh Ramesh</h1>
+            <h3 class="text-secondary mb-8 text-2xl">
+                Welcome to my tiny space on the internet 🫂
+            </h3>
+            <p class="mb-4">
+                I'm an optimistic software engineer with a love for writing
+                poetry, curating music, reading fiction, and making origami. I
+                occasionally make pixel art, and dream about a world with
+                unbound access to information.
+            </p>
+            <p class="mb-4">
+                I tend to value people above all else, both in my personal
+                relationships and at work. I've always found this natural, and
+                able to build systems around this simple truth.
+            </p>
+            <p class="mb-4">
+                I'm currently spending a lot of time thinking about AI & agents,
+                and converting some of those ideas into code at Cloudflare.
+                Here's a quick overview of what I've been up to the last few
+                years.
+            </p>
+            <Timeline class="my-8">
+                <li class="timeline-item">
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold"
+                            >Senior Systems Engineer at Cloudflare</span
+                        >
+                        <Cloudflare width={80} height={26} />
+                    </div>
+                    <div class="mt-1 text-sm text-gray-600">Current</div>
+                    <p class="mt-1 text-lg text-gray-800">
+                        Building the foundation for developers to build and run
+                        the next generation of software with AI agents at the
+                        core.
+                    </p>
+                </li>
+                <li class="timeline-item">
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold"
+                            >Co-founder & CTO at CodeStory</span
+                        >
+                        <div class="flex items-center gap-1">
+                            <CodeStory width={30} height={30} />
+                            <span class="text-lg font-bold text-gray-700"
+                                >CodeStory</span
+                            >
+                        </div>
+                    </div>
+                    <div class="mt-1 text-sm text-gray-600">
+                        JUL 2023 - MAR 2025
+                    </div>
+                    <p class="mt-1 text-lg text-gray-800">
+                        Led engineering for Aide, an open source AI-native IDE
+                        processing 10B+ LLM tokens/day. Built state-of-the-art
+                        coding agents, and shipped it within a fork of VSCode.
+                        Raised $1.4M pre-seed funding and managed a 2k+ member
+                        community.
+                    </p>
+                </li>
+                <li class="timeline-item">
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold">Tech Lead at Setu</span>
+                        <Setu width={60} height={18} />
+                    </div>
+                    <div class="mt-1 text-sm text-gray-600">
+                        JUN 2020 - JUL 2023
+                    </div>
+                    <p class="mt-1 text-lg text-gray-800">
+                        Led engineering for a 6-person team working on UPI
+                        Deeplinks and BBPS Bill Collect, Setu's highest revenue
+                        products. Built the systems for handling payments,
+                        refunds and settlements via multiple banks, and an
+                        automated merchant onboarding system.
+                    </p>
+                </li>
+                <li class="timeline-item">
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold"
+                            >Software Engineer at Intuit</span
+                        >
+                        <Intuit width={80} height={24} />
+                    </div>
+                    <div class="mt-1 text-sm text-gray-600">
+                        AUG 2018 - MAY 2020
+                    </div>
+                    <p class="mt-1 text-lg text-gray-800">
+                        Built notification systems for Mint's 4M users and
+                        cross-platform GraphQL billing APIs for QuickBooks.
+                        Established the company's first Open Source and Inner
+                        Source program as Intuit India's site leader.
+                    </p>
+                </li>
+                <li class="timeline-item">
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold"
+                            >Google Summer of Code contributor at gRPC</span
+                        >
+                        <GRPC width={60} height={26} />
+                    </div>
+                    <div class="mt-1 text-sm text-gray-600">
+                        MAY 2018 - JUL 2018
+                    </div>
+                    <p class="mt-1 text-lg text-gray-800">
+                        Added support for building gRPC Python with the Bazel
+                        build system and integrated with Skylark, Google's
+                        internal CI. Due to limited support at the time, wrote
+                        custom Skylark rules for the Cython modules to make it
+                        work.
+                    </p>
+                </li>
+            </Timeline>
+        </div>
+        <div class="flex justify-center md:col-span-1 md:justify-end">
+            <img
+                src={profileImg.src}
+                alt="Profile photo"
+                class="mt-8 h-72 w-72 rounded-lg object-cover shadow-lg md:mt-0"
+            />
+        </div>
+    </section>
+</BaseLayout>
