@@ -13,24 +13,24 @@ import profileImg from "../assets/profile.jpg";
     <section
         class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-8 md:col-span-8 md:col-start-3 md:grid-cols-3 md:gap-8 md:pt-12"
     >
-        <div class="order-2 text-lg md:order-1 md:col-span-2 md:text-xl">
-            <h2 class="mb-2 text-lg md:text-xl">Hey! I am</h2>
-            <h1 class="mb-2 text-3xl font-bold md:text-5xl">Naresh Ramesh</h1>
-            <h3 class="text-secondary mb-6 text-xl md:mb-8 md:text-2xl">
+        <div class="order-2 md:order-1 md:col-span-2">
+            <h2 class="mb-2 text-heading-md">Hey! I am</h2>
+            <h1 class="mb-2 text-display-md">Naresh Ramesh</h1>
+            <h3 class="text-secondary mb-6 text-heading-lg md:mb-8">
                 Welcome to my tiny space on the internet 🫂
             </h3>
-            <p class="mb-3 md:mb-4">
+            <p class="mb-3 md:mb-4 text-body-lg">
                 I'm an optimistic software engineer with a love for writing
                 poetry, curating music, reading fiction, and making origami. I
                 occasionally make pixel art, and dream about a world with
                 unbound access to information.
             </p>
-            <p class="mb-3 md:mb-4">
+            <p class="mb-3 md:mb-4 text-body-lg">
                 I tend to value people above all else, both in my personal
                 relationships and at work. I've always found this natural, and
                 able to build systems around this simple truth.
             </p>
-            <p class="mb-3 md:mb-4">
+            <p class="mb-3 md:mb-4 text-body-lg">
                 I'm currently spending a lot of time thinking about AI & agents,
                 and converting some of those ideas into code at Cloudflare.
                 Here's a quick overview of what I've been up to the last few
@@ -41,7 +41,7 @@ import profileImg from "../assets/profile.jpg";
                     href="https://raw.githubusercontent.com/ghostwriternr/resume/refs/heads/master/naresh_resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-secondary text-lg hover:text-gray-500"
+                    class="text-secondary text-body-lg hover:text-gray-500"
                 >
                     View detailed resume ↗
                 </a>
@@ -50,12 +50,12 @@ import profileImg from "../assets/profile.jpg";
                 <li class="timeline-item">
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
-                            <div class="text-base font-semibold sm:text-lg">
+                            <div class="timeline-title">
                                 <span class="block sm:inline"
                                     >Senior Systems Engineer</span
                                 >
                                 <span
-                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                    class="timeline-company sm:inline sm:text-inherit"
                                 >
                                     at Cloudflare</span
                                 >
@@ -67,10 +67,10 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[22px] sm:w-[70px]"
                         />
                     </div>
-                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
+                    <div class="timeline-date">
                         Current
                     </div>
-                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
+                    <p class="timeline-description">
                         Building the foundation for developers to build and run
                         the next generation of software with AI agents at the
                         core.
@@ -79,12 +79,12 @@ import profileImg from "../assets/profile.jpg";
                 <li class="timeline-item">
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
-                            <div class="text-base font-semibold sm:text-lg">
+                            <div class="timeline-title">
                                 <span class="block sm:inline"
                                     >Co-founder & CTO</span
                                 >
                                 <span
-                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                    class="timeline-company sm:inline sm:text-inherit"
                                 >
                                     at CodeStory</span
                                 >
@@ -102,10 +102,10 @@ import profileImg from "../assets/profile.jpg";
                             >
                         </div>
                     </div>
-                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
+                    <div class="timeline-date">
                         JUL 2023 - MAR 2025
                     </div>
-                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
+                    <p class="timeline-description">
                         Led engineering for Aide, an open source AI-native IDE
                         processing 10B+ LLM tokens/day. Built state-of-the-art
                         coding agents, and shipped it within a fork of VSCode.
@@ -116,10 +116,10 @@ import profileImg from "../assets/profile.jpg";
                 <li class="timeline-item">
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
-                            <div class="text-base font-semibold sm:text-lg">
+                            <div class="timeline-title">
                                 <span class="block sm:inline">Tech Lead</span>
                                 <span
-                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                    class="timeline-company sm:inline sm:text-inherit"
                                 >
                                     at Setu</span
                                 >
@@ -131,10 +131,10 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[16px] sm:w-[55px]"
                         />
                     </div>
-                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
+                    <div class="timeline-date">
                         JUN 2020 - JUL 2023
                     </div>
-                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
+                    <p class="timeline-description">
                         Led engineering for a 6-person team working on UPI
                         Deeplinks and BBPS Bill Collect, Setu's highest revenue
                         products. Built the systems for handling payments,
@@ -145,12 +145,12 @@ import profileImg from "../assets/profile.jpg";
                 <li class="timeline-item">
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
-                            <div class="text-base font-semibold sm:text-lg">
+                            <div class="timeline-title">
                                 <span class="block sm:inline"
                                     >Software Engineer</span
                                 >
                                 <span
-                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                    class="timeline-company sm:inline sm:text-inherit"
                                 >
                                     at Intuit</span
                                 >
@@ -162,10 +162,10 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[21px] sm:w-[70px]"
                         />
                     </div>
-                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
+                    <div class="timeline-date">
                         AUG 2018 - MAY 2020
                     </div>
-                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
+                    <p class="timeline-description">
                         Built notification systems for Mint's 4M users and
                         cross-platform GraphQL billing APIs for QuickBooks.
                         Established the company's first Open Source and Inner
@@ -175,12 +175,12 @@ import profileImg from "../assets/profile.jpg";
                 <li class="timeline-item">
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
-                            <div class="text-base font-semibold sm:text-lg">
+                            <div class="timeline-title">
                                 <span class="block sm:inline"
                                     >Google Summer of Code</span
                                 >
                                 <span
-                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                    class="timeline-company sm:inline sm:text-inherit"
                                 >
                                     at gRPC</span
                                 >
@@ -192,10 +192,10 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[24px] sm:w-[55px]"
                         />
                     </div>
-                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
+                    <div class="timeline-date">
                         MAY 2018 - JUL 2018
                     </div>
-                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
+                    <p class="timeline-description">
                         Added support for building gRPC Python with the Bazel
                         build system and integrated with Skylark, Google's
                         internal CI. Due to limited support at the time, wrote

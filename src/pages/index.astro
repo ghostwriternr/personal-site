@@ -22,13 +22,13 @@ const posts = (await getCollection("blog")).sort(
                         style={`animation-delay: ${idx * 40}ms;`}
                     >
                         <div class="flex flex-col justify-between md:flex-row">
-                            <h2 class="flex text-2xl">
+                            <h2 class="flex text-heading-md">
                                 {post.data.title}
                                 <span class="group-hover:text-text ml-2 text-transparent">
                                     &rarr;
                                 </span>
                             </h2>
-                            <span class="text-secondary text-lg font-semibold">
+                            <span class="text-secondary text-caption-lg font-semibold">
                                 <FormattedDate date={post.data.pubDate} />
                             </span>
                         </div>

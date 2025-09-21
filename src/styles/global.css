@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@import "./typography.css";
 
 @font-face {
     font-family: "Lufga";
@@ -108,9 +109,6 @@
     --font-argesta-hairline: "Argesta Hairline", serif;
     --font-argesta-headline: "Argesta Headline", serif;
     --font-argesta-display: "Argesta Display", serif;
-
-    --text-shadow-title:
-        3px 3px 0px var(--color-secondary), 6px 6px 0px var(--color-tertiary);
 }
 
 [data-theme="dark"] {

@@ -15,7 +15,7 @@ const poems = (await getCollection("poetry")).sort(
     description="A collection of poetry"
 >
     <div class="col-span-12 md:col-span-8 md:col-start-3">
-        <h1 class="mb-8 text-4xl font-bold">A silhouette's squire</h1>
+        <h1 class="mb-8 text-display-sm">A silhouette's squire</h1>
         <div class="mt-8 grid gap-8 md:grid-cols-2">
             {
                 poems.map((poem, idx) => (
@@ -34,7 +34,7 @@ const poems = (await getCollection("poetry")).sort(
                         </div>
                         <div class="mt-4 flex justify-between gap-2">
                             <div>
-                                <div class="flex text-xl font-bold">
+                                <div class="flex text-heading-md font-bold">
                                     <h2>{poem.data.title}</h2>
                                     <span class="group-hover:text-text ml-2 text-transparent">
                                         &rarr;
@@ -46,7 +46,7 @@ const poems = (await getCollection("poetry")).sort(
                             </div>
                             <div>
                                 <div class="flex min-w-28 flex-col items-end gap-1">
-                                    <span class="text-secondary">
+                                    <span class="text-secondary text-caption-md">
                                         <FormattedDate
                                             date={new Date(poem.data.date)}
                                         />

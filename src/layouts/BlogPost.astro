@@ -11,23 +11,23 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 <BaseLayout title={title} description={description}>
     <main class="blog-post col-span-12 md:col-span-8 md:col-start-3">
         <article
-            class="article-text mx-auto w-full max-w-[720px] py-4 text-[rgb(var(--gray-dark))] md:max-w-[calc(100%-2em)]"
+            class="article-text mx-auto w-full max-w-[720px] py-4 md:max-w-[calc(100%-2em)]"
         >
-            <div class="mb-4 py-4 leading-none">
-                <div class="mb-2 text-xl text-[rgb(var(--gray))]">
+            <div class="mb-6 py-4 leading-none">
+                <div class="mb-3 text-caption-lg text-[rgb(var(--gray))]">
                     <FormattedDate date={pubDate} />
                     {
                         updatedDate && (
-                            <div class="italic">
+                            <div class="italic text-caption-md">
                                 Last updated on{" "}
                                 <FormattedDate date={updatedDate} />
                             </div>
                         )
                     }
                 </div>
-                <h1 class="m-0 mb-2 text-4xl font-bold">{title}</h1>
+                <h1 class="m-0 mb-2 text-display-md">{title}</h1>
             </div>
-            <div class="prose prose-2xl">
+            <div class="article-prose">
                 <slot />
             </div>
         </article>
