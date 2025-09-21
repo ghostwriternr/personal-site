@@ -11,62 +11,91 @@ import profileImg from "../assets/profile.jpg";
 
 <BaseLayout title="About Naresh Ramesh" description="">
     <section
-        class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-8 pt-12 md:col-span-8 md:col-start-3 md:grid-cols-3"
+        class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-8 md:col-span-8 md:col-start-3 md:grid-cols-3 md:gap-8 md:pt-12"
     >
-        <div class="text-xl md:col-span-2">
-            <h2 class="mb-2 text-xl">Hey! I am</h2>
-            <h1 class="mb-2 text-5xl font-bold">Naresh Ramesh</h1>
-            <h3 class="text-secondary mb-8 text-2xl">
+        <div class="order-2 text-lg md:order-1 md:col-span-2 md:text-xl">
+            <h2 class="mb-2 text-lg md:text-xl">Hey! I am</h2>
+            <h1 class="mb-2 text-3xl font-bold md:text-5xl">Naresh Ramesh</h1>
+            <h3 class="text-secondary mb-6 text-xl md:mb-8 md:text-2xl">
                 Welcome to my tiny space on the internet 🫂
             </h3>
-            <p class="mb-4">
+            <p class="mb-3 md:mb-4">
                 I'm an optimistic software engineer with a love for writing
                 poetry, curating music, reading fiction, and making origami. I
                 occasionally make pixel art, and dream about a world with
                 unbound access to information.
             </p>
-            <p class="mb-4">
+            <p class="mb-3 md:mb-4">
                 I tend to value people above all else, both in my personal
                 relationships and at work. I've always found this natural, and
                 able to build systems around this simple truth.
             </p>
-            <p class="mb-4">
+            <p class="mb-3 md:mb-4">
                 I'm currently spending a lot of time thinking about AI & agents,
                 and converting some of those ideas into code at Cloudflare.
                 Here's a quick overview of what I've been up to the last few
                 years.
             </p>
-            <Timeline class="my-8">
+            <Timeline class="my-6 md:my-8">
                 <li class="timeline-item">
-                    <div class="flex items-center justify-between">
-                        <span class="font-semibold"
-                            >Senior Systems Engineer at Cloudflare</span
-                        >
-                        <Cloudflare width={80} height={26} />
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex-1">
+                            <div class="text-base font-semibold sm:text-lg">
+                                <span class="block sm:inline"
+                                    >Senior Systems Engineer</span
+                                >
+                                <span
+                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                >
+                                    at Cloudflare</span
+                                >
+                            </div>
+                        </div>
+                        <Cloudflare
+                            width={60}
+                            height={40}
+                            class="shrink-0 sm:h-[22px] sm:w-[70px]"
+                        />
                     </div>
-                    <div class="mt-1 text-sm text-gray-600">Current</div>
-                    <p class="mt-1 text-lg text-gray-800">
+                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
+                        Current
+                    </div>
+                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
                         Building the foundation for developers to build and run
                         the next generation of software with AI agents at the
                         core.
                     </p>
                 </li>
                 <li class="timeline-item">
-                    <div class="flex items-center justify-between">
-                        <span class="font-semibold"
-                            >Co-founder & CTO at CodeStory</span
-                        >
-                        <div class="flex items-center gap-1">
-                            <CodeStory width={30} height={30} />
-                            <span class="text-lg font-bold text-gray-700"
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex-1">
+                            <div class="text-base font-semibold sm:text-lg">
+                                <span class="block sm:inline"
+                                    >Co-founder & CTO</span
+                                >
+                                <span
+                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                >
+                                    at CodeStory</span
+                                >
+                            </div>
+                        </div>
+                        <div class="flex shrink-0 items-center gap-1">
+                            <CodeStory
+                                width={30}
+                                height={30}
+                                class="sm:h-[28] sm:w-[28]"
+                            />
+                            <span
+                                class="hidden text-base font-bold text-gray-700 sm:block"
                                 >CodeStory</span
                             >
                         </div>
                     </div>
-                    <div class="mt-1 text-sm text-gray-600">
+                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
                         JUL 2023 - MAR 2025
                     </div>
-                    <p class="mt-1 text-lg text-gray-800">
+                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
                         Led engineering for Aide, an open source AI-native IDE
                         processing 10B+ LLM tokens/day. Built state-of-the-art
                         coding agents, and shipped it within a fork of VSCode.
@@ -75,14 +104,27 @@ import profileImg from "../assets/profile.jpg";
                     </p>
                 </li>
                 <li class="timeline-item">
-                    <div class="flex items-center justify-between">
-                        <span class="font-semibold">Tech Lead at Setu</span>
-                        <Setu width={60} height={18} />
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex-1">
+                            <div class="text-base font-semibold sm:text-lg">
+                                <span class="block sm:inline">Tech Lead</span>
+                                <span
+                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                >
+                                    at Setu</span
+                                >
+                            </div>
+                        </div>
+                        <Setu
+                            width={48}
+                            height={36}
+                            class="shrink-0 sm:h-[16px] sm:w-[55px]"
+                        />
                     </div>
-                    <div class="mt-1 text-sm text-gray-600">
+                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
                         JUN 2020 - JUL 2023
                     </div>
-                    <p class="mt-1 text-lg text-gray-800">
+                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
                         Led engineering for a 6-person team working on UPI
                         Deeplinks and BBPS Bill Collect, Setu's highest revenue
                         products. Built the systems for handling payments,
@@ -91,16 +133,29 @@ import profileImg from "../assets/profile.jpg";
                     </p>
                 </li>
                 <li class="timeline-item">
-                    <div class="flex items-center justify-between">
-                        <span class="font-semibold"
-                            >Software Engineer at Intuit</span
-                        >
-                        <Intuit width={80} height={24} />
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex-1">
+                            <div class="text-base font-semibold sm:text-lg">
+                                <span class="block sm:inline"
+                                    >Software Engineer</span
+                                >
+                                <span
+                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                >
+                                    at Intuit</span
+                                >
+                            </div>
+                        </div>
+                        <Intuit
+                            width={60}
+                            height={40}
+                            class="shrink-0 sm:h-[21px] sm:w-[70px]"
+                        />
                     </div>
-                    <div class="mt-1 text-sm text-gray-600">
+                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
                         AUG 2018 - MAY 2020
                     </div>
-                    <p class="mt-1 text-lg text-gray-800">
+                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
                         Built notification systems for Mint's 4M users and
                         cross-platform GraphQL billing APIs for QuickBooks.
                         Established the company's first Open Source and Inner
@@ -108,16 +163,29 @@ import profileImg from "../assets/profile.jpg";
                     </p>
                 </li>
                 <li class="timeline-item">
-                    <div class="flex items-center justify-between">
-                        <span class="font-semibold"
-                            >Google Summer of Code contributor at gRPC</span
-                        >
-                        <GRPC width={60} height={26} />
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex-1">
+                            <div class="text-base font-semibold sm:text-lg">
+                                <span class="block sm:inline"
+                                    >Google Summer of Code</span
+                                >
+                                <span
+                                    class="block text-sm text-gray-600 sm:inline sm:text-base sm:text-inherit"
+                                >
+                                    at gRPC</span
+                                >
+                            </div>
+                        </div>
+                        <GRPC
+                            width={48}
+                            height={40}
+                            class="shrink-0 sm:h-[24px] sm:w-[55px]"
+                        />
                     </div>
-                    <div class="mt-1 text-sm text-gray-600">
+                    <div class="mt-1 text-xs text-gray-600 sm:text-sm">
                         MAY 2018 - JUL 2018
                     </div>
-                    <p class="mt-1 text-lg text-gray-800">
+                    <p class="mt-1 text-base text-gray-800 sm:text-lg">
                         Added support for building gRPC Python with the Bazel
                         build system and integrated with Skylark, Google's
                         internal CI. Due to limited support at the time, wrote
@@ -127,11 +195,13 @@ import profileImg from "../assets/profile.jpg";
                 </li>
             </Timeline>
         </div>
-        <div class="flex justify-center md:col-span-1 md:justify-end">
+        <div
+            class="order-1 flex justify-center md:order-2 md:col-span-1 md:justify-end"
+        >
             <img
                 src={profileImg.src}
                 alt="Profile photo"
-                class="mt-8 h-72 w-72 rounded-lg object-cover shadow-lg md:mt-0"
+                class="h-48 w-48 rounded-lg object-cover shadow-lg md:h-72 md:w-72"
             />
         </div>
     </section>
