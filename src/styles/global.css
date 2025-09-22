@@ -113,7 +113,7 @@
     --font-argesta-display: "Argesta Display", serif;
 }
 
-[data-theme="dark"] {
+html[data-theme="dark"] {
     --color-primary: #fcaf61;
     --color-secondary: #e17150;
     --color-tertiary: #381e5f;
