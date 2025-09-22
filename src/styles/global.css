@@ -126,6 +126,11 @@ html[data-theme="dark"] {
     --color-theme-accent-dark: #2d184c;
 }
 
+/* Make timeline logos use muted color in dark mode */
+html[data-theme="dark"] .timeline-item svg path {
+    fill: var(--color-muted) !important;
+}
+
 html,
 body {
     font-family: var(--font-lufga);

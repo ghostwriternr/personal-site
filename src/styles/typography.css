@@ -136,13 +136,13 @@
 }
 
 .timeline-company {
-    @apply text-caption-md font-normal text-[var(--color-muted-foreground)];
+    @apply text-caption-md font-normal text-[var(--color-subtext)];
 }
 
 .timeline-date {
-    @apply text-caption-sm mb-3 font-normal text-[var(--color-muted-foreground)];
+    @apply text-caption-sm mb-3 font-normal text-[var(--color-subtext)];
 }
 
 .timeline-description {
-    @apply text-body-lg font-normal text-[var(--color-muted)];
+    @apply text-body-lg font-normal;
 }
