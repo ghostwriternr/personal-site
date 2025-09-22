@@ -106,6 +106,12 @@
     --color-theme-accent: #ffe081;
     --color-theme-accent-dark: #ffd081;
 
+    --home-bg: radial-gradient(
+        circle at 1px 1px,
+        rgba(71, 24, 76, 0.15) 1px,
+        transparent 0
+    );
+
     --font-lufga: "Lufga", sans-serif;
     --font-argesta-text: "Argesta Text", serif;
     --font-argesta-hairline: "Argesta Hairline", serif;
@@ -124,6 +130,12 @@ html[data-theme="dark"] {
     --color-background: #160c25;
     --color-theme-accent: #301a51;
     --color-theme-accent-dark: #2d184c;
+
+    --home-bg: radial-gradient(
+        circle at 1px 1px,
+        rgba(252, 175, 97, 0.15) 1px,
+        transparent 0
+    );
 }
 
 /* Make timeline logos use muted color in dark mode */
@@ -154,6 +166,7 @@ body {
 
     .bg-home {
         background-image: var(--home-bg);
+        background-size: 20px 20px;
     }
 
     .sidebar-link {
@@ -200,9 +213,10 @@ body {
 .prose ul > li::marker {
     color: var(--color-text);
 }
-.prose hr {
-    margin-top: 1.6em;
-    margin-bottom: 1.6em;
+.prose hr,
+.article-prose hr {
+    margin-top: 2em;
+    margin-bottom: 2em;
     border-width: 1.2px;
     border-color: var(--color-tertiary);
 }
