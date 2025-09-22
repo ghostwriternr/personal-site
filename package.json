@@ -9,7 +9,8 @@
         "astro": "astro",
         "deploy": "astro build && wrangler deploy",
         "cf-typegen": "wrangler types",
-        "format": "prettier . --write"
+        "format": "prettier . --write",
+        "compress-images": "scripts/compress-images.sh"
     },
     "dependencies": {
         "@astrojs/cloudflare": "^12.5.4",

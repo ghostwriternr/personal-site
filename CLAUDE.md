@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run deploy` - Build and deploy to Cloudflare Pages
 - `npm run format` - Format code with Prettier
 - `npm run cf-typegen` - Generate Cloudflare Workers types
+- `npm run compress-images` - Manually compress all images in src/content/
 
 ## Architecture Overview
 
@@ -57,3 +58,28 @@ The site uses Cloudflare's edge deployment with:
 - View transitions for smooth navigation
 - Prefetch configuration for performance
 - RSS feed generation at /rss.xml
+
+### Image Optimization
+
+The site implements aggressive image optimization for web performance:
+
+**Automatic Compression:**
+- **Git Pre-commit Hook**: Automatically compresses new/modified images when committing
+- **Target**: <100KB final WebP size after Astro's optimization
+- **Dependencies**: ImageMagick, pngquant, jpegoptim
+
+**Compression Standards:**
+- **JPEGs**: Quality 50, max 1000px width, progressive encoding
+- **PNGs**: Quality 40-60 with pngquant, max 1000px width
+- **Output**: Astro converts to optimized WebP during build
+
+**Manual Commands:**
+- `npm run compress-images` - Compress all images in src/content/
+- `scripts/compress-images.sh [file1] [file2]` - Compress specific files
+- Files under 100KB are automatically skipped
+
+**Adding New Images:**
+1. Add image files to appropriate src/content/ subdirectory
+2. Git will automatically compress on commit via pre-commit hook
+3. Or run `npm run compress-images` manually before committing
+
