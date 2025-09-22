@@ -1,0 +1,40 @@
+---
+import Intro from "../components/Intro.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <div class="col-span-12 md:col-span-8 md:col-start-3">
+        <Intro />
+        <div class="divide-tertiary mt-8 divide-y-2">
+            {
+                posts.map((post, idx) => (
+                    <a
+                        href={`/posts/${post.id}/`}
+                        class="group hover:bg-theme-accent animate-fade-in-up block cursor-pointer py-4 hover:-mr-4 hover:-ml-4 hover:pr-4 hover:pl-4"
+                        style={`animation-delay: ${idx * 40}ms;`}
+                    >
+                        <div class="flex flex-col justify-between md:flex-row">
+                            <h2 class="flex text-heading-md">
+                                {post.data.title}
+                                <span class="group-hover:text-text ml-2 text-transparent">
+                                    &rarr;
+                                </span>
+                            </h2>
+                            <span class="text-secondary text-caption-lg font-semibold">
+                                <FormattedDate date={post.data.pubDate} />
+                            </span>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</BaseLayout>

@@ -1,0 +1,111 @@
+---
+import HeadShot from "./HeadShot.astro";
+import BlueskyIcon from "../icons/bluesky.astro";
+import GithubIcon from "../icons/github.astro";
+import GitlabIcon from "../icons/gitlab.astro";
+import GmailIcon from "../icons/gmail.astro";
+import GoodreadsIcon from "../icons/goodreads.astro";
+import InstagramIcon from "../icons/instagram.astro";
+import LinkedinIcon from "../icons/linkedin.astro";
+import SpotifyIcon from "../icons/spotify.astro";
+import XIcon from "../icons/x.astro";
+---
+
+<div class="grid grid-cols-8 items-center">
+    <div class="col-span-8 pr-2 md:col-span-6">
+        <h1
+            class="text-primary text-shadow-hero text-display-lg text-center md:text-left"
+        >
+            Naresh Ramesh
+        </h1>
+        <div class="mt-4 flex justify-center md:justify-start">
+            <h2 class="text-primary flex flex-wrap text-heading-md md:text-heading-xl">
+                <div class="mr-2">Hello</div>&#8226;
+                <div class="tamil mr-2 ml-2">வணக்கம்</div>&#8226;
+                <div class="hindi mr-2 ml-2">नमस्ते</div>&#8226;
+                <div class="telugu ml-2">స్వాగతం</div>
+            </h2>
+        </div>
+        <p
+            class="mt-4 pr-4 pl-4 text-center text-body-xl md:pr-0 md:pl-0 md:text-left"
+        >
+            Building agents at Cloudflare. I enjoy writing, curating music and
+            making origami. Open Source maintainer &amp; supporter. Dreaming of
+            the sky and a prosperous India.
+        </p>
+        <div
+            class="mt-4 flex justify-center space-x-4 pr-4 pl-4 md:justify-start md:pr-0 md:pl-0"
+        >
+            <a
+                href="https://github.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+            >
+                <GithubIcon height="20" class="icon" />
+            </a>
+            <a
+                href="https://gitlab.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitLab Profile"
+            >
+                <GitlabIcon height="20" class="icon" />
+            </a>
+            <a
+                href="https://twitter.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter Profile"
+            >
+                <XIcon height="20" width="18" class="icon" />
+            </a>
+            <a
+                href="https://www.linkedin.com/in/naresh-ramesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+            >
+                <LinkedinIcon height="20" class="icon" />
+            </a>
+            <a href="mailto:ghostwriternr@gmail.com" aria-label="Email me">
+                <GmailIcon height="20" class="icon text-primary" />
+            </a>
+            <a
+                href="https://bsky.app/profile/ghostwriternr.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Bluesky Profile"
+            >
+                <BlueskyIcon height="20" class="icon" />
+            </a>
+            <a
+                href="https://www.instagram.com/noresh.romesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram Profile"
+            >
+                <InstagramIcon height="20" class="icon" />
+            </a>
+            <a
+                href="https://open.spotify.com/user/22gndvram3iydupmjvgg7fz2a"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Spotify Profile"
+            >
+                <SpotifyIcon height="20" class="icon" />
+            </a>
+            <a
+                href="https://www.goodreads.com/ghostwriternr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Goodreads Profile"
+            >
+                <GoodreadsIcon height="20" class="icon" />
+            </a>
+        </div>
+    </div>
+    <div class="hidden md:col-span-2 md:col-start-7 md:block">
+        <HeadShot />
+    </div>
+</div>

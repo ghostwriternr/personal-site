@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, updatedDate } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+    <main class="blog-post col-span-12 md:col-span-8 md:col-start-3">
+        <article
+            class="article-text mx-auto w-full max-w-[720px] py-4 md:max-w-[calc(100%-2em)]"
+        >
+            <div class="blog-header mb-6 py-4 leading-none">
+                <div class="blog-meta mb-3 text-caption-lg text-[rgb(var(--gray))]">
+                    <FormattedDate date={pubDate} />
+                    {
+                        updatedDate && (
+                            <div class="italic text-caption-md">
+                                Last updated on{" "}
+                                <FormattedDate date={updatedDate} />
+                            </div>
+                        )
+                    }
+                </div>
+                <h1 class="blog-title m-0 mb-2 text-display-md">{title}</h1>
+            </div>
+            <div class="article-prose blog-content">
+                <slot />
+            </div>
+        </article>
+    </main>
+</BaseLayout>
+
+<style>
+    /* Subtle fade-in animation for the entire article */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Staggered animations for different parts */
+    .blog-meta {
+        animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .blog-title {
+        animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+
+    .blog-content {
+        animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    }
+
+    /* Smooth appearance for images */
+    .blog-content :global(img) {
+        animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+</style>

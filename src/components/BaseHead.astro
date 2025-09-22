@@ -1,0 +1,243 @@
+---
+// Import the global.css file here so that it is included on
+// all pages through the use of the <BaseHead /> component.
+import "../styles/global.css";
+import { SITE_TITLE } from "../consts";
+import FallbackImage from "../assets/blog-placeholder.jpg";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    title: string;
+    description: string;
+    image?: ImageMetadata;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, image = FallbackImage } = Astro.props;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title={SITE_TITLE}
+    href={new URL("rss.xml", Astro.site)}
+/>
+<meta name="generator" content={Astro.generator} />
+
+<!-- Font preloads -->
+<link
+    rel="preload"
+    href="/fonts/Lufga/regular.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+/>
+<link
+    rel="preload"
+    href="/fonts/Lufga/bold.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+/>
+<link
+    rel="preload"
+    href="/fonts/Lufga/semibold.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+/>
+<link
+    rel="preload"
+    href="/fonts/Lufga/italic.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+/>
+<link rel="preload" href="/fonts/Argesta/text.otf" as="font" type="font/otf" />
+<link
+    rel="preload"
+    href="/fonts/Argesta/text_bold.otf"
+    as="font"
+    type="font/otf"
+/>
+<link
+    rel="preload"
+    href="/fonts/Argesta/text_italic.otf"
+    as="font"
+    type="font/otf"
+/>
+<link
+    rel="preload"
+    href="/fonts/Argesta/hairline.otf"
+    as="font"
+    type="font/otf"
+/>
+<link
+    rel="preload"
+    href="/fonts/Argesta/hairline_italic.otf"
+    as="font"
+    type="font/otf"
+/>
+<link
+    rel="preload"
+    href="/fonts/Argesta/headline.otf"
+    as="font"
+    type="font/otf"
+/>
+<link
+    rel="preload"
+    href="/fonts/Argesta/headline_italic.otf"
+    as="font"
+    type="font/otf"
+/>
+<link
+    rel="preload"
+    href="/fonts/Argesta/display.otf"
+    as="font"
+    type="font/otf"
+/>
+<link
+    rel="preload"
+    href="/fonts/Argesta/display_italic.otf"
+    as="font"
+    type="font/otf"
+/>
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image.src, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<script is:inline data-astro-rerun>
+    (function () {
+        if (window.__themeManagerInit) {
+            try {
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    (function () {
+                        var s = localStorage.getItem("theme-mode") || "auto";
+                        var m = matchMedia(
+                            "(prefers-color-scheme: dark)"
+                        ).matches;
+                        return s === "auto" ? (m ? "dark" : "light") : s;
+                    })()
+                );
+            } catch (_) {}
+            return;
+        }
+        window.__themeManagerInit = true;
+        var STORAGE_KEY = "theme-mode";
+        var media = window.matchMedia("(prefers-color-scheme: dark)");
+        function getMode() {
+            try {
+                return localStorage.getItem(STORAGE_KEY) || "auto";
+            } catch (_) {
+                return "auto";
+            }
+        }
+        function effective(mode) {
+            return mode === "auto" ? (media.matches ? "dark" : "light") : mode;
+        }
+        function updateIcons(mode) {
+            var sun = document.getElementById("sun-icon");
+            var moon = document.getElementById("moon-icon");
+            var auto = document.getElementById("auto-icon");
+            if (!sun || !moon || !auto) return;
+            sun.classList.add("hidden");
+            moon.classList.add("hidden");
+            auto.classList.add("hidden");
+            if (mode === "light") sun.classList.remove("hidden");
+            else if (mode === "dark") moon.classList.remove("hidden");
+            else auto.classList.remove("hidden");
+        }
+        function apply(mode) {
+            var eff = effective(mode);
+            document.documentElement.setAttribute("data-theme", eff);
+            updateIcons(mode);
+        }
+        // Apply immediately on initial parse (before paint)
+        apply(getMode());
+        // Ensure incoming document has correct theme before swap
+        document.addEventListener("astro:before-swap", function (event) {
+            try {
+                var mode = getMode();
+                var eff = effective(mode);
+                if (event.newDocument) {
+                    // Stamp data-theme on incoming root only; avoid extra mutations
+                    event.newDocument.documentElement.setAttribute(
+                        "data-theme",
+                        eff
+                    );
+                }
+            } catch (_) {
+                /* ignore */
+            }
+        });
+        // Re-apply after client-side navigations
+        document.addEventListener("astro:after-swap", function () {
+            apply(getMode());
+        });
+        document.addEventListener("astro:page-load", function () {
+            apply(getMode());
+        });
+        // Respect system changes when in auto mode
+        media.addEventListener("change", function () {
+            if (getMode() === "auto") apply("auto");
+        });
+        // Event delegation for theme toggle button
+        document.addEventListener("click", function (e) {
+            var t = e.target;
+            if (!(t instanceof Element)) return;
+            var btn = t.closest("#theme-toggle");
+            if (!btn) return;
+            var mode = getMode();
+            var systemIsDark = media.matches;
+            var opposite = systemIsDark ? "light" : "dark";
+            var other = systemIsDark ? "dark" : "light";
+            var next;
+            switch (mode) {
+                case "auto":
+                    next = opposite;
+                    break;
+                case opposite:
+                    next = other;
+                    break;
+                case other:
+                    next = "auto";
+                    break;
+                default:
+                    next = opposite;
+                    break;
+            }
+            try {
+                localStorage.setItem(STORAGE_KEY, next);
+            } catch (_) {
+                /* ignore */
+            }
+            apply(next);
+        });
+    })();
+</script>

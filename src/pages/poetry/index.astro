@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { SITE_TITLE } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+
+const poems = (await getCollection("poetry")).sort(
+    (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+);
+---
+
+<BaseLayout
+    title={`Poetry | ${SITE_TITLE}`}
+    description="A collection of poetry"
+>
+    <div class="col-span-12 md:col-span-8 md:col-start-3">
+        <h1 class="mb-8 text-display-sm">A silhouette's squire</h1>
+        <div class="mt-8 grid gap-8 md:grid-cols-2">
+            {
+                poems.map((poem, idx) => (
+                    <a
+                        href={`/poetry/${poem.id}/`}
+                        class="group animate-fade-in-up cursor-pointer"
+                        style={`animation-delay: ${idx * 40}ms;`}
+                    >
+                        <div class="relative h-60 w-full overflow-hidden md:h-80">
+                            <Image
+                                src={poem.data.image}
+                                alt={poem.data.title}
+                                loading={idx < 6 ? "eager" : "lazy"}
+                                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                        </div>
+                        <div class="mt-4 flex justify-between gap-2">
+                            <div>
+                                <div class="flex text-heading-md font-bold">
+                                    <h2>{poem.data.title}</h2>
+                                    <span class="group-hover:text-text ml-2 text-transparent">
+                                        &rarr;
+                                    </span>
+                                </div>
+                                {/* <p class="text-secondary mt-1">
+                                    {poem.data.excerpt}
+                                </p> */}
+                            </div>
+                            <div>
+                                <div class="flex min-w-28 flex-col items-end gap-1">
+                                    <span class="text-secondary text-caption-md">
+                                        <FormattedDate
+                                            date={new Date(poem.data.date)}
+                                        />
+                                    </span>
+                                    {/* <div class="flex gap-2">
+                                        {poem.data.tags.map((tag) => (
+                                            <span class="text-secondary bg-theme-accent rounded px-2 py-1 text-sm">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div> */}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</BaseLayout>

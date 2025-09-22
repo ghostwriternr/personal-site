@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"poetry">["data"];
+
+const { title, date, image } = Astro.props as Props;
+---
+
+<BaseLayout title={title} description={""}>
+    <main class="col-span-12 pt-4 md:col-span-8 md:col-start-3">
+        <div class="article-text">
+            <div class="poetry-header mb-12 text-center">
+                <h1 class="poetry-title text-display-md">{title}</h1>
+                <p class="poetry-date text-caption-lg">
+                    <FormattedDate date={new Date(date)} />
+                </p>
+            </div>
+            {
+                image && (
+                    <div class="poetry-image col-span-full mb-8 aspect-[2/1]">
+                        <Image
+                            src={image}
+                            alt={`Hero for ${title}`}
+                            class="h-full w-full rounded-lg object-cover"
+                            loading="eager"
+                        />
+                    </div>
+                )
+            }
+            <div class="mb-8">
+                <div class="grid grid-cols-12">
+                    <article
+                        class="poetry-content article-prose col-span-10 col-start-2 mt-8 md:col-span-8 md:col-start-3"
+                    >
+                        <slot />
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+</BaseLayout>
+
+<style>
+    /* Poetry-specific animations - more graceful and flowing */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Slower, more elegant animations for poetry */
+    .poetry-title {
+        animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .poetry-date {
+        animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .poetry-image {
+        animation: fadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+
+    .poetry-content {
+        animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    }
+
+    /* Blockquotes for epigraphs or quotations */
+    .poetry-content :global(blockquote) {
+        font-style: italic;
+        text-align: center;
+        margin: 2em 0;
+        padding: 1em;
+        position: relative;
+        animation: fadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+    }
+</style>
