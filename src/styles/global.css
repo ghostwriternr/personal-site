@@ -100,6 +100,8 @@
     --color-tertiary: #ffd34e;
     --color-text: #000000;
     --color-subtext: #301a51;
+    --color-muted: #6b7280;
+    --color-muted-foreground: #9ca3af;
     --color-background: #ffecb4;
     --color-theme-accent: #ffe081;
     --color-theme-accent-dark: #ffd081;
@@ -117,6 +119,8 @@
     --color-tertiary: #381e5f;
     --color-text: #ffffff;
     --color-subtext: #c4aee5;
+    --color-muted: #9ca3af;
+    --color-muted-foreground: #6b7280;
     --color-background: #160c25;
     --color-theme-accent: #301a51;
     --color-theme-accent-dark: #2d184c;
@@ -125,8 +129,8 @@
 html,
 body {
     font-family: var(--font-lufga);
-    color: var(--text);
-    background-color: var(--background);
+    color: var(--color-text);
+    background-color: var(--color-background);
     transition: all 0.25s linear;
 }
 
@@ -147,6 +151,15 @@ body {
         background-image: var(--home-bg);
     }
 
+    .sidebar-link {
+        transition: color 0.25s linear;
+    }
+
+    .bg-theme-background {
+        background-color: var(--color-background);
+        transition: background-color 0.25s linear;
+    }
+
     @keyframes fade-in-up {
         from {
             opacity: 0;
@@ -158,7 +171,7 @@ body {
         }
     }
     .animate-fade-in-up {
-        animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 }
 
