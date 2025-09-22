@@ -7,6 +7,7 @@ import Setu from "../components/logos/Setu.astro";
 import Intuit from "../components/logos/Intuit.astro";
 import GRPC from "../components/logos/GRPC.astro";
 import profileImg from "../assets/profile.jpg";
+import { Image } from "astro:assets";
 ---
 
 <BaseLayout title="About Naresh Ramesh" description="">
@@ -14,29 +15,29 @@ import profileImg from "../assets/profile.jpg";
         class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-8 md:col-span-8 md:col-start-3 md:grid-cols-3 md:gap-8 md:pt-12"
     >
         <div class="order-2 md:order-1 md:col-span-2">
-            <h2 class="mb-2 text-heading-md">Hey! I am</h2>
-            <h1 class="mb-2 text-display-md">Naresh Ramesh</h1>
-            <h3 class="text-secondary mb-6 text-heading-lg md:mb-8">
+            <h2 class="text-heading-md mb-2">Hey! I am</h2>
+            <h1 class="text-display-md mb-2">Naresh Ramesh</h1>
+            <h3 class="text-secondary text-heading-lg mb-6 md:mb-8">
                 Welcome to my tiny space on the internet 🫂
             </h3>
-            <p class="mb-3 md:mb-4 text-body-lg">
+            <p class="text-body-lg mb-3 md:mb-4">
                 I'm an optimistic software engineer with a love for writing
                 poetry, curating music, reading fiction, and making origami. I
                 occasionally make pixel art, and dream about a world with
                 unbound access to information.
             </p>
-            <p class="mb-3 md:mb-4 text-body-lg">
+            <p class="text-body-lg mb-3 md:mb-4">
                 I tend to value people above all else, both in my personal
                 relationships and at work. I've always found this natural, and
                 able to build systems around this simple truth.
             </p>
-            <p class="mb-3 md:mb-4 text-body-lg">
+            <p class="text-body-lg mb-3 md:mb-4">
                 I'm currently spending a lot of time thinking about AI & agents,
                 and converting some of those ideas into code at Cloudflare.
                 Here's a quick overview of what I've been up to the last few
                 years.
             </p>
-            <div class="mb-2 mt-6">
+            <div class="mt-6 mb-2">
                 <a
                     href="https://raw.githubusercontent.com/ghostwriternr/resume/refs/heads/master/naresh_resume.pdf"
                     target="_blank"
@@ -47,7 +48,10 @@ import profileImg from "../assets/profile.jpg";
                 </a>
             </div>
             <Timeline class="mb-6 md:mb-8">
-                <li class="timeline-item animate-fade-in-up" style="animation-delay: 0ms;">
+                <li
+                    class="timeline-item animate-fade-in-up"
+                    style="animation-delay: 0ms;"
+                >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
                             <div class="timeline-title">
@@ -67,16 +71,17 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[22px] sm:w-[70px]"
                         />
                     </div>
-                    <div class="timeline-date">
-                        Current
-                    </div>
+                    <div class="timeline-date">Current</div>
                     <p class="timeline-description">
                         Building the foundation for developers to build and run
                         the next generation of software with AI agents at the
                         core.
                     </p>
                 </li>
-                <li class="timeline-item animate-fade-in-up" style="animation-delay: 40ms;">
+                <li
+                    class="timeline-item animate-fade-in-up"
+                    style="animation-delay: 40ms;"
+                >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
                             <div class="timeline-title">
@@ -102,9 +107,7 @@ import profileImg from "../assets/profile.jpg";
                             >
                         </div>
                     </div>
-                    <div class="timeline-date">
-                        JUL 2023 - MAR 2025
-                    </div>
+                    <div class="timeline-date">JUL 2023 - MAR 2025</div>
                     <p class="timeline-description">
                         Led engineering for Aide, an open source AI-native IDE
                         processing 10B+ LLM tokens/day. Built state-of-the-art
@@ -113,7 +116,10 @@ import profileImg from "../assets/profile.jpg";
                         community.
                     </p>
                 </li>
-                <li class="timeline-item animate-fade-in-up" style="animation-delay: 80ms;">
+                <li
+                    class="timeline-item animate-fade-in-up"
+                    style="animation-delay: 80ms;"
+                >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
                             <div class="timeline-title">
@@ -131,9 +137,7 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[16px] sm:w-[55px]"
                         />
                     </div>
-                    <div class="timeline-date">
-                        JUN 2020 - JUL 2023
-                    </div>
+                    <div class="timeline-date">JUN 2020 - JUL 2023</div>
                     <p class="timeline-description">
                         Led engineering for a 6-person team working on UPI
                         Deeplinks and BBPS Bill Collect, Setu's highest revenue
@@ -142,7 +146,10 @@ import profileImg from "../assets/profile.jpg";
                         automated merchant onboarding system.
                     </p>
                 </li>
-                <li class="timeline-item animate-fade-in-up" style="animation-delay: 120ms;">
+                <li
+                    class="timeline-item animate-fade-in-up"
+                    style="animation-delay: 120ms;"
+                >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
                             <div class="timeline-title">
@@ -162,9 +169,7 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[21px] sm:w-[70px]"
                         />
                     </div>
-                    <div class="timeline-date">
-                        AUG 2018 - MAY 2020
-                    </div>
+                    <div class="timeline-date">AUG 2018 - MAY 2020</div>
                     <p class="timeline-description">
                         Built notification systems for Mint's 4M users and
                         cross-platform GraphQL billing APIs for QuickBooks.
@@ -172,7 +177,10 @@ import profileImg from "../assets/profile.jpg";
                         Source program as Intuit India's site leader.
                     </p>
                 </li>
-                <li class="timeline-item animate-fade-in-up" style="animation-delay: 160ms;">
+                <li
+                    class="timeline-item animate-fade-in-up"
+                    style="animation-delay: 160ms;"
+                >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
                             <div class="timeline-title">
@@ -192,9 +200,7 @@ import profileImg from "../assets/profile.jpg";
                             class="shrink-0 sm:h-[24px] sm:w-[55px]"
                         />
                     </div>
-                    <div class="timeline-date">
-                        MAY 2018 - JUL 2018
-                    </div>
+                    <div class="timeline-date">MAY 2018 - JUL 2018</div>
                     <p class="timeline-description">
                         Added support for building gRPC Python with the Bazel
                         build system and integrated with Skylark, Google's
@@ -208,8 +214,8 @@ import profileImg from "../assets/profile.jpg";
         <div
             class="order-1 flex justify-center md:order-2 md:col-span-1 md:justify-end"
         >
-            <img
-                src={profileImg.src}
+            <Image
+                src={profileImg}
                 alt="Profile photo"
                 class="h-48 w-48 rounded-lg object-cover shadow-lg md:h-72 md:w-72"
             />
