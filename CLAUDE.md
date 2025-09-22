@@ -64,7 +64,7 @@ The site uses Cloudflare's edge deployment with:
 The site implements aggressive image optimization for web performance:
 
 **Automatic Compression:**
-- **Git Pre-commit Hook**: Automatically compresses new/modified images when committing
+- **Husky + lint-staged**: Automatically compresses new/modified images when committing
 - **Target**: <100KB final WebP size after Astro's optimization
 - **Dependencies**: ImageMagick, pngquant, jpegoptim
 
@@ -80,6 +80,9 @@ The site implements aggressive image optimization for web performance:
 
 **Adding New Images:**
 1. Add image files to appropriate src/content/ subdirectory
-2. Git will automatically compress on commit via pre-commit hook
+2. Git will automatically compress on commit via Husky + lint-staged
 3. Or run `npm run compress-images` manually before committing
 
+**Setup for New Clones:**
+- Husky hooks are automatically installed via `npm install` (prepare script)
+- No additional setup required for collaborators

@@ -10,7 +10,13 @@
         "deploy": "astro build && wrangler deploy",
         "cf-typegen": "wrangler types",
         "format": "prettier . --write",
-        "compress-images": "scripts/compress-images.sh"
+        "compress-images": "scripts/compress-images.sh",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.{jpg,jpeg,png,JPG}": [
+            "scripts/compress-images.sh"
+        ]
     },
     "dependencies": {
         "@astrojs/cloudflare": "^12.5.4",
@@ -25,6 +31,8 @@
     },
     "devDependencies": {
         "@types/node": "^22.15.30",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.0",
         "prettier": "3.5.3",
         "prettier-plugin-astro": "0.14.1",
         "prettier-plugin-tailwindcss": "0.6.12",

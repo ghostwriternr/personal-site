@@ -6,7 +6,7 @@
 # - PNGs: Quality 40-60, max 1000px width
 # - Target: <100KB final WebP size after Astro optimization
 
-set -e
+# set -e  # Removed to handle errors more gracefully
 
 # Colors for output
 RED='\033[0;31m'
@@ -49,6 +49,7 @@ compress_jpeg() {
         local new_size=$(du -h "$file" | cut -f1)
         echo -e "${GREEN}✓ Compressed: ${original_size} → ${new_size}${NC}"
         ((PROCESSED++))
+        git add "$file"
     else
         echo -e "${RED}✗ Failed to compress: $(basename "$file")${NC}"
         ((ERRORS++))
@@ -73,6 +74,7 @@ compress_png() {
             local new_size=$(du -h "$file" | cut -f1)
             echo -e "${GREEN}✓ Compressed: ${original_size} → ${new_size}${NC}"
             ((PROCESSED++))
+            git add "$file"
         else
             rm -f "$temp_file"
             echo -e "${RED}✗ Failed to compress with pngquant: $(basename "$file")${NC}"
@@ -165,6 +167,9 @@ main() {
         echo ""
         echo -e "${GREEN}✓ Image compression complete! Run 'npm run build' to see final optimized sizes.${NC}"
     fi
+
+    # Exit with success
+    exit 0
 }
 
 # Run main function with all arguments
