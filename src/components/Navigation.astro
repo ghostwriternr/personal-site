@@ -1,0 +1,90 @@
+---
+import { Image } from "astro:assets";
+import ThemeToggle from "./ThemeToggle.astro";
+import MeImage from "../assets/me.png";
+
+const links = [
+    { label: "Blog", href: "/" },
+    { label: "Poetry", href: "/poetry" },
+    { label: "About", href: "/about" },
+];
+
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
+const subpath = pathname.match(/[^\/]+/g);
+
+function isActive(href: string) {
+    return href === pathname ||
+        href === "/" + (subpath?.[0] || "") ||
+        (href === "/" && subpath?.[0] === "posts");
+}
+---
+
+<!-- Desktop Sidebar (md+) -->
+<div class="border-theme-accent-dark fixed mt-2 hidden h-screen w-20 flex-col border-r-4 md:flex">
+    <!-- Avatar -->
+    <div class="mt-2 mb-2 flex justify-center">
+        <a href="/">
+            <Image
+                src={MeImage}
+                alt="Avatar"
+                class="h-15 w-15 cursor-pointer"
+                loading="eager"
+            />
+        </a>
+    </div>
+    <!-- Navigation Links -->
+    <div class="flex grow flex-col items-center justify-evenly">
+        {
+            links.map((link) => {
+                const baseClasses = "sidebar-link flex h-20 items-center justify-center -rotate-90 transform text-heading-sm text-[var(--color-text)] transition-colors";
+                const activeClasses = isActive(link.href) ? "text-primary font-bold" : "";
+                return (
+                    <a
+                        href={link.href}
+                        class={`${baseClasses} ${activeClasses}`}
+                        aria-current={isActive(link.href) ? "page" : undefined}
+                    >
+                        <span>{link.label}</span>
+                    </a>
+                );
+            })
+        }
+    </div>
+    <!-- Theme Toggle -->
+    <div class="mt-auto pt-6 mb-6 flex justify-center">
+        <ThemeToggle />
+    </div>
+</div>
+
+<!-- Mobile Topbar (sm) -->
+<div class="fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 md:hidden">
+    <!-- Avatar -->
+    <a href="/">
+        <Image
+            src={MeImage}
+            alt="Avatar"
+            class="h-10 w-10 cursor-pointer"
+            loading="eager"
+        />
+    </a>
+    
+    <!-- Links and Theme Toggle -->
+    <div class="flex items-center space-x-4">
+        {
+            links.map((link) => {
+                const baseClasses = "text-body-lg transition-colors";
+                const activeClasses = isActive(link.href) ? "text-primary font-bold" : "text-[var(--color-text)]";
+                return (
+                    <a
+                        href={link.href}
+                        class={`${baseClasses} ${activeClasses}`}
+                        aria-current={isActive(link.href) ? "page" : undefined}
+                    >
+                        <span>{link.label}</span>
+                    </a>
+                );
+            })
+        }
+        <ThemeToggle />
+    </div>
+</div>

@@ -38,10 +38,31 @@ class ThemeManager {
      * Find and cache DOM elements
      */
     private findElements(): void {
-        this.elements.sun = document.getElementById("sun-icon");
-        this.elements.moon = document.getElementById("moon-icon");
-        this.elements.auto = document.getElementById("auto-icon");
-        this.elements.button = document.getElementById("theme-toggle");
+        // Find all theme toggle buttons and use the first visible one
+        const buttons = document.querySelectorAll(
+            "#theme-toggle"
+        ) as NodeListOf<HTMLElement>;
+        for (const button of buttons) {
+            if (button.offsetParent !== null) {
+                this.elements.button = button;
+                break;
+            }
+        }
+        if (!this.elements.button && buttons.length > 0) {
+            this.elements.button = buttons[0];
+        }
+
+        if (this.elements.button) {
+            this.elements.sun = this.elements.button.querySelector(
+                "#sun-icon"
+            ) as HTMLElement;
+            this.elements.moon = this.elements.button.querySelector(
+                "#moon-icon"
+            ) as HTMLElement;
+            this.elements.auto = this.elements.button.querySelector(
+                "#auto-icon"
+            ) as HTMLElement;
+        }
     }
 
     /**

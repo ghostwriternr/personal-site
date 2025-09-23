@@ -1,7 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Topbar from "../components/Topbar.astro";
-import Sidebar from "../components/Sidebar.astro";
+import Navigation from "../components/Navigation.astro";
 
 interface Props {
     title: string;
@@ -22,12 +21,7 @@ const { title, description, class: className = "" } = Astro.props;
                     class="bg-theme-accent-dark fixed top-0 left-0 z-50 h-2 w-screen"
                 >
                 </div>
-                <div class="absolute mt-2 md:hidden">
-                    <Topbar />
-                </div>
-                <div class="hidden md:block">
-                    <Sidebar />
-                </div>
+                <Navigation />
                 <div
                     class="md:sidebarless-container grid grid-cols-12 pt-20 pb-12 pr-4 pl-4 md:ml-20 md:pt-12 md:pr-0 md:pl-0"
                 >
