@@ -165,21 +165,29 @@ const { title, description, image = FallbackImage } = Astro.props;
             var sun = document.getElementById("sun-icon");
             var moon = document.getElementById("moon-icon");
             var auto = document.getElementById("auto-icon");
-            if (!sun || !moon || !auto) return;
+            var btn = document.getElementById("theme-toggle");
+            if (!sun || !moon || !auto || !btn) return;
             sun.classList.add("hidden");
             moon.classList.add("hidden");
             auto.classList.add("hidden");
-            if (mode === "light") sun.classList.remove("hidden");
-            else if (mode === "dark") moon.classList.remove("hidden");
-            else auto.classList.remove("hidden");
+            btn.classList.remove("theme-toggle-active");
+            if (mode === "light") {
+                sun.classList.remove("hidden");
+                btn.classList.add("theme-toggle-active");
+            } else if (mode === "dark") {
+                moon.classList.remove("hidden");
+                btn.classList.add("theme-toggle-active");
+            } else {
+                auto.classList.remove("hidden");
+            }
         }
         function apply(mode) {
             var eff = effective(mode);
             document.documentElement.setAttribute("data-theme", eff);
             updateIcons(mode);
         }
-        // Apply immediately on initial parse (before paint)
-        apply(getMode());
+        // Apply after initial parse
+        setTimeout(function () { apply(getMode()); }, 0);
         // Ensure incoming document has correct theme before swap
         document.addEventListener("astro:before-swap", function (event) {
             try {
