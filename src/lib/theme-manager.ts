@@ -9,17 +9,8 @@ const MODES: ThemeMode[] = ["auto", "light", "dark"];
 
 class ThemeManager {
     private mediaQuery: MediaQueryList;
-    private elements: {
-        sun: HTMLElement | null;
-        moon: HTMLElement | null;
-        auto: HTMLElement | null;
-        button: HTMLElement | null;
-    } = {
-        sun: null,
-        moon: null,
-        auto: null,
-        button: null,
-    };
+    private button: HTMLElement | null = null;
+    private lastAppliedMode: string | null = null;
 
     constructor() {
         this.mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -37,32 +28,11 @@ class ThemeManager {
     /**
      * Find and cache DOM elements
      */
-    private findElements(): void {
-        // Find all theme toggle buttons and use the first visible one
-        const buttons = document.querySelectorAll(
-            "#theme-toggle"
-        ) as NodeListOf<HTMLElement>;
-        for (const button of buttons) {
-            if (button.offsetParent !== null) {
-                this.elements.button = button;
-                break;
-            }
-        }
-        if (!this.elements.button && buttons.length > 0) {
-            this.elements.button = buttons[0];
-        }
-
-        if (this.elements.button) {
-            this.elements.sun = this.elements.button.querySelector(
-                "#sun-icon"
-            ) as HTMLElement;
-            this.elements.moon = this.elements.button.querySelector(
-                "#moon-icon"
-            ) as HTMLElement;
-            this.elements.auto = this.elements.button.querySelector(
-                "#auto-icon"
-            ) as HTMLElement;
-        }
+    private findElements(): boolean {
+        const newButton = document.getElementById("theme-toggle");
+        const buttonChanged = this.button !== newButton;
+        this.button = newButton;
+        return buttonChanged;
     }
 
     /**
@@ -70,8 +40,8 @@ class ThemeManager {
      */
     private setupEventListeners(): void {
         // Theme toggle button click
-        if (this.elements.button) {
-            this.elements.button.addEventListener("click", () => this.toggle());
+        if (this.button) {
+            this.button.addEventListener("click", () => this.toggle());
         }
 
         // System preference changes (only affects auto mode)
@@ -90,16 +60,18 @@ class ThemeManager {
                     "data-theme",
                     effective
                 );
+                event.newDocument.documentElement.setAttribute(
+                    "data-theme-mode",
+                    mode
+                );
             }
         });
 
         document.addEventListener("astro:after-swap", () => {
-            this.findElements(); // Re-find elements after navigation
-            this.applyCurrentMode();
-        });
-
-        document.addEventListener("astro:page-load", () => {
-            this.applyCurrentMode();
+            const elementsChanged = this.findElements();
+            if (elementsChanged) {
+                this.applyCurrentMode();
+            }
         });
     }
 
@@ -155,7 +127,7 @@ class ThemeManager {
     private applyMode(mode: ThemeMode): void {
         const effective = this.getEffectiveMode(mode);
         document.documentElement.setAttribute("data-theme", effective);
-        this.updateIcons(mode);
+        document.documentElement.setAttribute("data-theme-mode", mode);
     }
 
     /**
@@ -163,38 +135,16 @@ class ThemeManager {
      */
     private applyCurrentMode(): void {
         const mode = this.getCurrentMode();
+        const effective = this.getEffectiveMode(mode);
+        const modeKey = `${mode}-${effective}`;
+
+        // Skip if we're applying the same mode that's already applied
+        if (this.lastAppliedMode === modeKey) {
+            return;
+        }
+
+        this.lastAppliedMode = modeKey;
         this.applyMode(mode);
-    }
-
-    /**
-     * Update the icon visibility and button styling
-     */
-    private updateIcons(mode: ThemeMode): void {
-        const { sun, moon, auto, button } = this.elements;
-
-        if (!sun || !moon || !auto || !button) {
-            return; // Elements not ready yet
-        }
-
-        // Hide all icons
-        sun.classList.add("hidden");
-        moon.classList.add("hidden");
-        auto.classList.add("hidden");
-
-        // Remove background styling
-        button.classList.remove("theme-toggle-active");
-
-        // Show appropriate icon and styling
-        if (mode === "light") {
-            sun.classList.remove("hidden");
-            button.classList.add("theme-toggle-active");
-        } else if (mode === "dark") {
-            moon.classList.remove("hidden");
-            button.classList.add("theme-toggle-active");
-        } else {
-            // auto
-            auto.classList.remove("hidden");
-        }
     }
 }
 

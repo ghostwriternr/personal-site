@@ -132,13 +132,14 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
 <script is:inline data-astro-rerun>
-    // Set initial theme to prevent flash of wrong theme
+    // Set initial theme and mode to prevent flash of wrong theme
     (function () {
         try {
             const stored = localStorage.getItem("theme-mode") || "auto";
             const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
             const effective = stored === "auto" ? (systemDark ? "dark" : "light") : stored;
             document.documentElement.setAttribute("data-theme", effective);
+            document.documentElement.setAttribute("data-theme-mode", stored);
         } catch (_) {
             // Ignore errors
         }

@@ -13,31 +13,39 @@ const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
 const subpath = pathname.match(/[^\/]+/g);
 
 function isActive(href: string) {
-    return href === pathname ||
+    return (
+        href === pathname ||
         href === "/" + (subpath?.[0] || "") ||
-        (href === "/" && subpath?.[0] === "posts");
+        (href === "/" && subpath?.[0] === "posts")
+    );
 }
 ---
 
-<!-- Desktop Sidebar (md+) -->
-<div class="border-theme-accent-dark fixed mt-2 hidden h-screen w-20 flex-col border-r-4 md:flex">
+<!-- Unified Navigation Container -->
+<div
+    class="border-theme-accent-dark bg-background fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 md:mt-2 md:h-screen md:w-20 md:flex-col md:border-r-4 md:bg-transparent md:p-0 md:pt-2 md:pb-2"
+>
     <!-- Avatar -->
-    <div class="mt-2 mb-2 flex justify-center">
+    <div class="flex-shrink-0 md:flex md:justify-center">
         <a href="/">
             <Image
                 src={MeImage}
                 alt="Avatar"
-                class="h-15 w-15 cursor-pointer"
+                class="w-10 cursor-pointer md:w-15"
                 loading="eager"
             />
         </a>
     </div>
-    <!-- Navigation Links -->
-    <div class="flex grow flex-col items-center justify-evenly">
+
+    <!-- Mobile: Links + Theme Toggle grouped on right, Desktop: Links in center, Theme at bottom -->
+    <div class="flex items-center space-x-4 md:hidden">
         {
             links.map((link) => {
-                const baseClasses = "sidebar-link flex h-20 items-center justify-center -rotate-90 transform text-heading-sm text-[var(--color-text)] transition-colors";
-                const activeClasses = isActive(link.href) ? "text-primary font-bold" : "";
+                const baseClasses =
+                    "sidebar-link flex items-center justify-center transition-colors text-body-lg text-[var(--color-text)]";
+                const activeClasses = isActive(link.href)
+                    ? "text-primary font-bold"
+                    : "";
                 return (
                     <a
                         href={link.href}
@@ -49,31 +57,18 @@ function isActive(href: string) {
                 );
             })
         }
-    </div>
-    <!-- Theme Toggle -->
-    <div class="mt-auto pt-6 mb-6 flex justify-center">
         <ThemeToggle />
     </div>
-</div>
 
-<!-- Mobile Topbar (sm) -->
-<div class="fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 md:hidden">
-    <!-- Avatar -->
-    <a href="/">
-        <Image
-            src={MeImage}
-            alt="Avatar"
-            class="h-10 w-10 cursor-pointer"
-            loading="eager"
-        />
-    </a>
-    
-    <!-- Links and Theme Toggle -->
-    <div class="flex items-center space-x-4">
+    <!-- Desktop: Navigation Links -->
+    <div class="hidden md:flex md:grow md:flex-col md:items-center md:justify-evenly">
         {
             links.map((link) => {
-                const baseClasses = "text-body-lg transition-colors";
-                const activeClasses = isActive(link.href) ? "text-primary font-bold" : "text-[var(--color-text)]";
+                const baseClasses =
+                    "sidebar-link flex items-center justify-center transition-colors md:h-20 md:-rotate-90 md:transform md:text-heading-sm text-[var(--color-text)]";
+                const activeClasses = isActive(link.href)
+                    ? "md:text-primary md:font-bold"
+                    : "";
                 return (
                     <a
                         href={link.href}
@@ -85,6 +80,10 @@ function isActive(href: string) {
                 );
             })
         }
+    </div>
+
+    <!-- Desktop: Theme Toggle -->
+    <div class="hidden md:flex md:mt-auto md:mb-4 md:justify-center">
         <ThemeToggle />
     </div>
 </div>
