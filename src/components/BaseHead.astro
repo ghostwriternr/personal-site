@@ -136,8 +136,11 @@ const { title, description, image = FallbackImage } = Astro.props;
     (function () {
         try {
             const stored = localStorage.getItem("theme-mode") || "auto";
-            const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
-            const effective = stored === "auto" ? (systemDark ? "dark" : "light") : stored;
+            const systemDark = matchMedia(
+                "(prefers-color-scheme: dark)"
+            ).matches;
+            const effective =
+                stored === "auto" ? (systemDark ? "dark" : "light") : stored;
             document.documentElement.setAttribute("data-theme", effective);
             document.documentElement.setAttribute("data-theme-mode", stored);
         } catch (_) {
@@ -147,11 +150,13 @@ const { title, description, image = FallbackImage } = Astro.props;
 </script>
 
 <script>
-    import { themeManager } from '../lib/theme-manager';
+    import { themeManager } from "../lib/theme-manager";
 
     // Initialize theme manager when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => themeManager.init());
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () =>
+            themeManager.init()
+        );
     } else {
         themeManager.init();
     }

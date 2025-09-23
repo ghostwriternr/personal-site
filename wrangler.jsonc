@@ -3,25 +3,22 @@
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "personal-site",
-	"main": "./dist/_worker.js/index.js",
-	"compatibility_date": "2025-05-31",
-	"compatibility_flags": [
-		"nodejs_compat",
-		"global_fetch_strictly_public"
-	],
-	"assets": {
-		"binding": "ASSETS",
-		"directory": "./dist"
-	},
-	"observability": {
-		"enabled": true
-	},
-	"routes": [
-		{
-			"pattern": "ghostwriternr.me",
-			"custom_domain": true
-		}
-	]
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "personal-site",
+    "main": "./dist/_worker.js/index.js",
+    "compatibility_date": "2025-05-31",
+    "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+    "assets": {
+        "binding": "ASSETS",
+        "directory": "./dist",
+    },
+    "observability": {
+        "enabled": true,
+    },
+    "routes": [
+        {
+            "pattern": "ghostwriternr.me",
+            "custom_domain": true,
+        },
+    ],
 }

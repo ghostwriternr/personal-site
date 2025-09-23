@@ -61,7 +61,9 @@ function isActive(href: string) {
     </div>
 
     <!-- Desktop: Navigation Links -->
-    <div class="hidden md:flex md:grow md:flex-col md:items-center md:justify-evenly">
+    <div
+        class="hidden md:flex md:grow md:flex-col md:items-center md:justify-evenly"
+    >
         {
             links.map((link) => {
                 const baseClasses =
@@ -83,7 +85,7 @@ function isActive(href: string) {
     </div>
 
     <!-- Desktop: Theme Toggle -->
-    <div class="hidden md:flex md:mt-auto md:mb-4 md:justify-center">
+    <div class="hidden md:mt-auto md:mb-4 md:flex md:justify-center">
         <ThemeToggle />
     </div>
 </div>

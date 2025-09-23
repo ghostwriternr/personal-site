@@ -14,18 +14,20 @@ const { title, description, pubDate, updatedDate } = Astro.props;
             class="article-text mx-auto w-full max-w-[720px] py-4 md:max-w-[calc(100%-2em)]"
         >
             <div class="blog-header mb-6 py-4 leading-none">
-                <div class="blog-meta mb-3 text-caption-lg text-[rgb(var(--gray))]">
+                <div
+                    class="blog-meta text-caption-lg mb-3 text-[rgb(var(--gray))]"
+                >
                     <FormattedDate date={pubDate} />
                     {
                         updatedDate && (
-                            <div class="italic text-caption-md">
+                            <div class="text-caption-md italic">
                                 Last updated on{" "}
                                 <FormattedDate date={updatedDate} />
                             </div>
                         )
                     }
                 </div>
-                <h1 class="blog-title m-0 mb-2 text-display-md">{title}</h1>
+                <h1 class="blog-title text-display-md m-0 mb-2">{title}</h1>
             </div>
             <div class="article-prose blog-content">
                 <slot />

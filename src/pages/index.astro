@@ -22,7 +22,7 @@ const posts = (await getCollection("blog")).sort(
                         style={`animation-delay: ${idx * 40}ms;`}
                     >
                         <div class="flex flex-col justify-between md:flex-row">
-                            <h2 class="flex text-heading-md">
+                            <h2 class="text-heading-md flex">
                                 {post.data.title}
                                 <span class="group-hover:text-text ml-2 text-transparent">
                                     &rarr;

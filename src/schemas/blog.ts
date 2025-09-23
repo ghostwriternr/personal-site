@@ -8,4 +8,3 @@ export const blogSchema = () =>
         pubDate: z.coerce.date(),
         updatedDate: z.coerce.date().optional(),
     });
-

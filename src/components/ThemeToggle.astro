@@ -2,25 +2,70 @@
 // Theme toggle component for dark/light mode switching
 ---
 
-<button id="theme-toggle" class="bg-transparent border-none p-1 rounded-md transition-colors" aria-label="Toggle theme">
-    <svg id="sun-icon" class="theme-icon cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<button
+    id="theme-toggle"
+    class="rounded-md border-none bg-transparent p-1 transition-colors"
+    aria-label="Toggle theme"
+>
+    <svg
+        id="sun-icon"
+        class="theme-icon cursor-pointer"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    >
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <circle cx="12" cy="12" r="4"></circle>
-        <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+        <path
+            d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+        ></path>
     </svg>
-    <svg id="moon-icon" class="theme-icon cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg
+        id="moon-icon"
+        class="theme-icon cursor-pointer"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    >
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
-        <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+        <path
+            d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+        ></path>
+        <path
+            d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"
+        ></path>
         <path d="M19 11h2m-1 -1v2"></path>
     </svg>
-    <svg id="auto-icon" class="theme-icon cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-        <path d="M4.731 19h11.539a1 1 0 0 0 .866 -1.5l-5.769 -10a1 1 0 0 0 -1.732 0l-5.769 10a1 1 0 0 0 .865 1.5" />
-        <path d="M2 13h4.45" />
-        <path d="M18 5l-4.5 6" />
-        <path d="M22 9l-7.75 3.25" />
-        <path d="M22 15l-7 -1.5" />
+    <svg
+        id="auto-icon"
+        class="theme-icon cursor-pointer"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path
+            d="M4.731 19h11.539a1 1 0 0 0 .866 -1.5l-5.769 -10a1 1 0 0 0 -1.732 0l-5.769 10a1 1 0 0 0 .865 1.5"
+        ></path>
+        <path d="M2 13h4.45"></path>
+        <path d="M18 5l-4.5 6"></path>
+        <path d="M22 9l-7.75 3.25"></path>
+        <path d="M22 15l-7 -1.5"></path>
     </svg>
 </button>
 
@@ -29,34 +74,33 @@
     .theme-icon {
         display: none !important;
     }
-    
+
     /* Show the correct icon based on the theme mode data attribute */
     html[data-theme-mode="light"] #sun-icon {
         display: block !important;
     }
-    
+
     html[data-theme-mode="dark"] #moon-icon {
         display: block !important;
     }
-    
+
     html[data-theme-mode="auto"] #auto-icon {
         display: block !important;
     }
-    
+
     /* Fallback: show auto icon if no theme mode is set */
     html:not([data-theme-mode]) #auto-icon {
         display: block !important;
     }
-    
+
     /* Apply background styling for light/dark modes */
     html[data-theme-mode="light"] #theme-toggle,
     html[data-theme-mode="dark"] #theme-toggle {
         background-color: rgba(0, 0, 0, 0.05);
     }
-    
+
     html[data-theme="dark"][data-theme-mode="light"] #theme-toggle,
     html[data-theme="dark"][data-theme-mode="dark"] #theme-toggle {
         background-color: rgba(255, 255, 255, 0.05);
     }
 </style>
-
