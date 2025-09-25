@@ -2,31 +2,36 @@
 
 /* Display Typography - For hero sections and primary attention */
 @utility text-display-lg {
-    @apply text-6xl font-normal md:text-7xl;
+    @apply text-6xl font-semibold md:text-7xl;
+    font-family: var(--font-lufga);
     line-height: 1.1;
     letter-spacing: -0.02em;
 }
 
 @utility text-display-md {
-    @apply text-5xl font-normal md:text-6xl;
+    @apply text-5xl font-semibold md:text-6xl;
+    font-family: var(--font-lufga);
     line-height: 1.15;
     letter-spacing: -0.01em;
 }
 
 @utility text-display-sm {
-    @apply text-4xl font-normal md:text-5xl;
+    @apply text-4xl font-semibold md:text-5xl;
+    font-family: var(--font-lufga);
     line-height: 1.2;
     letter-spacing: -0.01em;
 }
 
 /* Heading Typography - For section headers and content structure */
 @utility text-heading-xl {
-    @apply text-3xl font-normal md:text-4xl;
+    @apply text-3xl font-semibold md:text-4xl;
+    font-family: var(--font-lufga);
     line-height: 1.25;
 }
 
 @utility text-heading-lg {
-    @apply text-2xl font-normal md:text-3xl;
+    @apply text-2xl font-semibold md:text-3xl;
+    font-family: var(--font-lufga);
     line-height: 1.3;
 }
 
@@ -132,7 +137,7 @@
 
 /* Timeline specific typography */
 .timeline-title {
-    @apply text-heading-sm font-normal;
+    @apply text-heading-sm font-semibold;
 }
 
 .timeline-company {
@@ -145,4 +150,14 @@
 
 .timeline-description {
     @apply text-body-lg font-normal;
+}
+
+/* Homepage-specific typography overrides */
+.text-shadow-hero.text-display-lg {
+    font-weight: 400; /* Regular weight for elegant, lighter main title */
+}
+
+.text-heading-md.text-primary,
+.text-heading-xl.text-primary {
+    font-weight: 400; /* Regular weight for lighter hello greeting */
 }

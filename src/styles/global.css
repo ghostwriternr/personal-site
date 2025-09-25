@@ -11,13 +11,6 @@
 }
 @font-face {
     font-family: "Lufga";
-    src: url("/fonts/Lufga/bold.woff2") format("woff2");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Lufga";
     src: url("/fonts/Lufga/semibold.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
@@ -48,34 +41,6 @@
     font-family: "Argesta Text";
     src: url("/fonts/Argesta/text_italic.otf") format("opentype");
     font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Argesta Hairline";
-    src: url("/fonts/Argesta/hairline.otf") format("opentype");
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Argesta Hairline";
-    src: url("/fonts/Argesta/hairline_italic.otf") format("opentype");
-    font-weight: 100;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Argesta Headline";
-    src: url("/fonts/Argesta/headline.otf") format("opentype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Argesta Headline";
-    src: url("/fonts/Argesta/headline_italic.otf") format("opentype");
-    font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
@@ -112,11 +77,12 @@
         transparent 0
     );
 
-    --font-lufga: "Lufga", sans-serif;
-    --font-argesta-text: "Argesta Text", serif;
-    --font-argesta-hairline: "Argesta Hairline", serif;
-    --font-argesta-headline: "Argesta Headline", serif;
-    --font-argesta-display: "Argesta Display", serif;
+    --font-lufga:
+        "Lufga", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        sans-serif;
+    --font-argesta-text: "Argesta Text", Georgia, "Times New Roman", serif;
+    --font-argesta-display:
+        "Argesta Display", "Playfair Display", Georgia, serif;
 }
 
 html[data-theme="dark"] {
@@ -151,8 +117,13 @@ body {
     transition: all 0.15s linear;
 }
 
+/* Content-specific font assignments */
 .article-text {
-    font-family: var(--font-argesta-display);
+    font-family: var(--font-argesta-text); /* Better for reading */
+}
+
+.article-text.poetry-content {
+    font-family: var(--font-argesta-display); /* More artistic for poetry */
 }
 
 .hexagon {
