@@ -37,7 +37,7 @@ function isActive(href: string) {
         </a>
     </div>
 
-    <!-- Mobile: Links grouped on right -->
+    <!-- Mobile: Links and theme toggle grouped on right -->
     <div class="flex items-center space-x-4 md:hidden">
         {
             links.map((link) => {
@@ -57,6 +57,8 @@ function isActive(href: string) {
                 );
             })
         }
+        <!-- Theme toggle on mobile -->
+        <ThemeToggle />
     </div>
 
     <!-- Desktop: Navigation Links -->
@@ -83,8 +85,8 @@ function isActive(href: string) {
         }
     </div>
 
-    <!-- Unified Theme Toggle (mobile right, desktop bottom) -->
-    <div class="flex md:mt-auto md:mb-4 md:justify-center">
+    <!-- Desktop Theme Toggle (bottom) -->
+    <div class="hidden md:flex md:mt-auto md:mb-4 md:justify-center">
         <ThemeToggle />
     </div>
 </div>
