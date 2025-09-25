@@ -9,61 +9,40 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-    <main class="blog-post col-span-12 md:col-span-8 md:col-start-3">
-        <article
-            class="article-text mx-auto w-full max-w-[720px] py-4 md:max-w-[calc(100%-2em)]"
+    <main class="col-span-12 pt-4 md:col-span-8 md:col-start-3">
+        <div
+            class="article-text mx-auto w-full max-w-[720px] md:max-w-[calc(100%-2em)]"
         >
-            <div class="blog-header mb-6 py-4 leading-none">
+            <div class="content-header mb-8 py-4">
+                <h1
+                    class="content-title animate-content-title text-display-sm m-0 mb-1"
+                >
+                    {title}
+                </h1>
                 <div
-                    class="blog-meta text-caption-lg mb-3 text-[rgb(var(--gray))]"
+                    class="content-meta animate-content-meta text-body-sm text-[var(--color-subtext)]"
                 >
                     <FormattedDate date={pubDate} />
                     {
                         updatedDate && (
-                            <div class="text-caption-md italic">
+                            <div class="text-caption-md mt-1 italic">
                                 Last updated on{" "}
                                 <FormattedDate date={updatedDate} />
                             </div>
                         )
                     }
                 </div>
-                <h1 class="blog-title text-display-md m-0 mb-2">{title}</h1>
             </div>
-            <div class="article-prose blog-content">
+            <article class="content-body animate-content-body article-prose">
                 <slot />
-            </div>
-        </article>
+            </article>
+        </div>
     </main>
 </BaseLayout>
 
 <style>
-    /* Subtle fade-in animation for the entire article */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Staggered animations for different parts */
-    .blog-meta {
-        animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .blog-title {
-        animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
-    }
-
-    .blog-content {
-        animation: fadeInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
-    }
-
-    /* Smooth appearance for images */
-    .blog-content :global(img) {
-        animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    /* Enhanced image appearance */
+    .content-body :global(img) {
+        animation: content-fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 </style>

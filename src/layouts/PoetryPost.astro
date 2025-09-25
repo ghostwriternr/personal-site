@@ -11,16 +11,24 @@ const { title, date, image } = Astro.props as Props;
 
 <BaseLayout title={title} description={""}>
     <main class="col-span-12 pt-4 md:col-span-8 md:col-start-3">
-        <div class="article-text">
-            <div class="poetry-header mb-12 text-center">
-                <h1 class="poetry-title text-display-md">{title}</h1>
-                <p class="poetry-date text-caption-lg">
+        <div
+            class="article-text mx-auto w-full max-w-[720px] md:max-w-[calc(100%-2em)]"
+        >
+            <div class="content-header mb-8 py-4">
+                <h1
+                    class="content-title animate-content-title text-display-sm m-0 mb-1"
+                >
+                    {title}
+                </h1>
+                <div
+                    class="content-meta animate-content-meta text-body-sm text-[var(--color-subtext)]"
+                >
                     <FormattedDate date={new Date(date)} />
-                </p>
+                </div>
             </div>
             {
                 image && (
-                    <div class="poetry-image col-span-full mb-8 aspect-[2/1]">
+                    <div class="content-image animate-content-image mb-8 aspect-[2/1]">
                         <Image
                             src={image}
                             alt={`Hero for ${title}`}
@@ -30,65 +38,29 @@ const { title, date, image } = Astro.props as Props;
                     </div>
                 )
             }
-            <div class="mb-8">
-                <div class="grid grid-cols-12">
-                    <article
-                        class="poetry-content article-prose col-span-10 col-start-2 mt-8 md:col-span-8 md:col-start-3"
-                    >
-                        <slot />
-                    </article>
-                </div>
-            </div>
+            <article
+                class="content-body animate-content-body article-prose poetry-content"
+            >
+                <slot />
+            </article>
         </div>
     </main>
 </BaseLayout>
 
 <style>
-    /* Poetry-specific animations - more graceful and flowing */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    /* Quick, elegant animations for poetry */
-    .poetry-title {
-        animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .poetry-date {
-        animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
-    }
-
-    .poetry-image {
-        animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
-    }
-
-    .poetry-content {
-        animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
-    }
-
-    /* Blockquotes for epigraphs or quotations */
+    /* Poetry-specific styling enhancements */
     .poetry-content :global(blockquote) {
         font-style: italic;
         text-align: center;
         margin: 2em 0;
         padding: 1em;
         position: relative;
-        animation: fadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        animation: content-fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.3s
+            both;
+    }
+
+    /* Enhanced image appearance */
+    .content-body :global(img) {
+        animation: content-fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 </style>

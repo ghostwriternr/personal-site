@@ -199,6 +199,47 @@ body {
     .animate-fade-in-up {
         animation: fade-in-up 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
+
+    /* Unified content layout animations */
+    @keyframes content-fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes content-fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Content animation utilities */
+    .animate-content-meta {
+        animation: content-fade-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .animate-content-title {
+        animation: content-fade-in-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.08s
+            both;
+    }
+
+    .animate-content-image {
+        animation: content-fade-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.12s
+            both;
+    }
+
+    .animate-content-body {
+        animation: content-fade-in-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.16s
+            both;
+    }
 }
 
 /* Tailwind Typography */
