@@ -214,3 +214,24 @@ body {
     border-width: 1.2px;
     border-color: var(--color-tertiary);
 }
+
+/* Inline code styling - for non-block code elements */
+.prose code:not(pre code),
+.article-prose code:not(pre code) {
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 0.875em;
+}
+
+/* Dark theme for inline code */
+html[data-theme="dark"] .prose code:not(pre code),
+html[data-theme="dark"] .article-prose code:not(pre code) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Expressive Code block spacing */
+.prose .expressive-code,
+.article-prose .expressive-code {
+    margin-bottom: 1.5rem;
+}
