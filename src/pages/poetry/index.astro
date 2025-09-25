@@ -22,14 +22,14 @@ const poems = (await getCollection("poetry")).sort(
                     <a
                         href={`/poetry/${poem.id}/`}
                         class="group animate-fade-in-up cursor-pointer"
-                        style={`animation-delay: ${idx * 40}ms;`}
+                        style={`animation-delay: ${idx * 25}ms;`}
                     >
                         <div class="relative h-60 w-full overflow-hidden md:h-80">
                             <Image
                                 src={poem.data.image}
                                 alt={poem.data.title}
                                 loading={idx < 6 ? "eager" : "lazy"}
-                                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
                             />
                         </div>
                         <div class="mt-4 flex justify-between gap-2">

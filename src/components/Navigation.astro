@@ -42,7 +42,7 @@ function isActive(href: string) {
         {
             links.map((link) => {
                 const baseClasses =
-                    "sidebar-link flex items-center justify-center transition-colors text-body-lg text-[var(--color-text)]";
+                    "sidebar-link flex items-center justify-center transition-colors duration-100 text-body-lg text-[var(--color-text)]";
                 const activeClasses = isActive(link.href)
                     ? "text-primary font-bold"
                     : "";
@@ -68,7 +68,7 @@ function isActive(href: string) {
         {
             links.map((link) => {
                 const baseClasses =
-                    "sidebar-link flex items-center justify-center transition-colors md:h-20 md:-rotate-90 md:transform md:text-heading-sm text-[var(--color-text)]";
+                    "sidebar-link flex items-center justify-center transition-colors duration-100 md:h-20 md:-rotate-90 md:transform md:text-heading-sm text-[var(--color-text)]";
                 const activeClasses = isActive(link.href)
                     ? "md:text-primary md:font-bold"
                     : "";

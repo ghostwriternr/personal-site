@@ -148,7 +148,7 @@ body {
     font-family: var(--font-lufga);
     color: var(--color-text);
     background-color: var(--color-background);
-    transition: all 0.25s linear;
+    transition: all 0.15s linear;
 }
 
 .article-text {
@@ -170,12 +170,12 @@ body {
     }
 
     .sidebar-link {
-        transition: color 0.25s linear;
+        transition: color 0.15s linear;
     }
 
     .bg-theme-background {
         background-color: var(--color-background);
-        transition: background-color 0.25s linear;
+        transition: background-color 0.15s linear;
     }
 
     .theme-toggle-active {
@@ -197,7 +197,7 @@ body {
         }
     }
     .animate-fade-in-up {
-        animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: fade-in-up 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 }
 
