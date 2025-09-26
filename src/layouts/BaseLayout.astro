@@ -10,15 +10,15 @@ interface Props {
 const { title, description, class: className = "" } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="max-md:max-w-full max-md:overflow-x-hidden max-md:relative">
     <head>
         <BaseHead title={title} description={description} />
     </head>
-    <body>
+    <body class="max-md:max-w-full max-md:overflow-x-hidden max-md:relative">
         <main>
             <div class={`min-h-screen bg-home ${className}`}>
                 <div
-                    class="bg-theme-accent-dark fixed top-0 left-0 z-50 h-2 w-screen"
+                    class="bg-theme-accent-dark fixed top-0 left-0 right-0 z-50 h-2"
                 >
                 </div>
                 <Navigation />
