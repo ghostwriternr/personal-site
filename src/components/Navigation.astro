@@ -37,19 +37,20 @@ function isActive(href: string) {
         </a>
     </div>
 
-    <!-- Mobile: Links and theme toggle grouped on right -->
-    <div class="flex items-center space-x-4 md:hidden">
+    <!-- Navigation Links and Theme Toggle -->
+    <div class="flex items-center space-x-4 md:flex-col md:grow md:space-x-0 md:justify-evenly">
         {
             links.map((link) => {
                 const baseClasses =
-                    "sidebar-link flex items-center justify-center transition-colors duration-100 text-body-lg text-[var(--color-text)]";
+                    "sidebar-link flex items-center justify-center transition-colors duration-100 text-[var(--color-text)]";
+                const responsiveClasses = "text-body-lg md:h-20 md:-rotate-90 md:transform md:text-heading-sm";
                 const activeClasses = isActive(link.href)
-                    ? "text-primary font-semibold"
+                    ? "!text-primary font-semibold"
                     : "";
                 return (
                     <a
                         href={link.href}
-                        class={`${baseClasses} ${activeClasses}`}
+                        class={`${baseClasses} ${responsiveClasses} ${activeClasses}`}
                         aria-current={isActive(link.href) ? "page" : undefined}
                     >
                         <span>{link.label}</span>
@@ -57,36 +58,9 @@ function isActive(href: string) {
                 );
             })
         }
-        <!-- Theme toggle on mobile -->
-        <ThemeToggle />
-    </div>
-
-    <!-- Desktop: Navigation Links -->
-    <div
-        class="hidden md:flex md:grow md:flex-col md:items-center md:justify-evenly"
-    >
-        {
-            links.map((link) => {
-                const baseClasses =
-                    "sidebar-link flex items-center justify-center transition-colors duration-100 md:h-20 md:-rotate-90 md:transform md:text-heading-sm text-[var(--color-text)]";
-                const activeClasses = isActive(link.href)
-                    ? "md:text-primary md:font-semibold"
-                    : "";
-                return (
-                    <a
-                        href={link.href}
-                        class={`${baseClasses} ${activeClasses}`}
-                        aria-current={isActive(link.href) ? "page" : undefined}
-                    >
-                        <span>{link.label}</span>
-                    </a>
-                );
-            })
-        }
-    </div>
-
-    <!-- Desktop Theme Toggle (bottom) -->
-    <div class="hidden md:mt-auto md:mb-4 md:flex md:justify-center">
-        <ThemeToggle />
+        <!-- Theme Toggle: inline on mobile, absolute bottom on desktop -->
+        <div class="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2">
+            <ThemeToggle />
+        </div>
     </div>
 </div>
