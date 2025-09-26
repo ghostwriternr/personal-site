@@ -73,6 +73,7 @@
     /* Hide all theme icons by default */
     .theme-icon {
         display: none !important;
+        will-change: transform, opacity;
     }
 
     /* Show the correct icon based on the theme mode data attribute */
@@ -102,5 +103,32 @@
     html[data-theme="dark"][data-theme-mode="light"] #theme-toggle,
     html[data-theme="dark"][data-theme-mode="dark"] #theme-toggle {
         background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Ensure consistent background animation for auto mode as well */
+    html[data-theme-mode="auto"] #theme-toggle {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    html[data-theme="dark"][data-theme-mode="auto"] #theme-toggle {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Subtle icon entrance animation for all mode switches */
+    @keyframes theme-icon-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9) rotate(-8deg);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    html[data-theme-mode="light"] #sun-icon,
+    html[data-theme-mode="dark"] #moon-icon,
+    html[data-theme-mode="auto"] #auto-icon {
+        animation: theme-icon-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 </style>
