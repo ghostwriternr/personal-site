@@ -11,7 +11,9 @@ const links = [
 ];
 
 const readingList = await getCollection("nowReading");
-const books = readingList.map(entry => entry.data);
+const books = readingList
+    .map(entry => entry.data)
+    .filter(book => book.cover);
 
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
 const subpath = pathname.match(/[^\/]+/g);
@@ -90,17 +92,11 @@ function isActive(href: string) {
                             class="transition-transform duration-200 hover:scale-105 flex items-center justify-center"
                         >
                             <div class="w-6 h-9 md:w-8 md:h-12 bg-primary/5 rounded-sm overflow-hidden border border-primary/10 shadow-sm group-hover:border-secondary/50 transition-colors">
-                                {book.cover ? (
-                                    <img
-                                        src={book.cover}
-                                        alt={book.title}
-                                        class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
-                                    />
-                                ) : (
-                                    <div class="w-full h-full flex items-center justify-center text-[8px] text-center p-1 opacity-50">
-                                        {book.title}
-                                    </div>
-                                )}
+                                <img
+                                    src={book.cover}
+                                    alt={book.title}
+                                    class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
+                                />
                             </div>
                         </a>
                         <div class="hidden md:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
