@@ -16,18 +16,18 @@ export default defineConfig({
     },
     integrations: [
         expressiveCode({
-            themes: ['rose-pine-dawn', 'dracula-soft'],
+            themes: ["rose-pine-dawn", "dracula-soft"],
             defaultProps: {
                 // Enable word wrap for better readability
                 wrap: true,
             },
             styleOverrides: {
                 // Increase code font size for better readability
-                codeFontSize: '0.95rem',
+                codeFontSize: "0.95rem",
             },
         }),
         mdx(),
-        sitemap()
+        sitemap(),
     ],
     vite: {
         plugins: [tailwindcss()],
