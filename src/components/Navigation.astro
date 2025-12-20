@@ -11,10 +11,7 @@ const links = [
 ];
 
 const readingList = await getCollection("nowReading");
-const randomBookEntry = readingList.length > 0 
-    ? readingList[Math.floor(Math.random() * readingList.length)] 
-    : null;
-const randomBook = randomBookEntry?.data;
+const books = readingList.map(entry => entry.data);
 
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
 const subpath = pathname.match(/[^\/]+/g);
@@ -74,39 +71,73 @@ function isActive(href: string) {
         <!-- Theme Toggle and Book -->
         <div class="flex items-center gap-4 md:flex-col md:gap-6">
         <ThemeToggle />
-        
-        {randomBook && (
-            <div class="group relative flex items-center justify-center">
-                <a 
-                    href={randomBook.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="transition-transform duration-200 hover:scale-105 flex items-center justify-center"
-                >
-                    <div class="w-6 h-9 md:w-8 md:h-12 bg-primary/5 rounded-sm overflow-hidden border border-primary/10 shadow-sm group-hover:border-secondary/50 transition-colors">
-                        {randomBook.cover ? (
-                            <img 
-                                src={randomBook.cover} 
-                                alt={randomBook.title} 
-                                class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
-                            />
-                        ) : (
-                            <div class="w-full h-full flex items-center justify-center text-[8px] text-center p-1 opacity-50">
-                                {randomBook.title}
-                            </div>
-                        )}
-                    </div>
-                </a>
-                
-                <!-- Tooltip (Desktop only) -->
-                <div class="hidden md:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
-                    <div class="font-bold">{randomBook.title}</div>
-                    <div class="opacity-70">by {randomBook.author}</div>
-                    <!-- Arrow -->
-                    <div class="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-primary rotate-45 border-l border-t border-white/10"></div>
-                </div>
+
+        {books.length > 0 && (
+            <div id="now-reading-container" class="group relative flex items-center justify-center" data-books={JSON.stringify(books)}>
+                <!-- Book will be rendered by client-side script -->
             </div>
-            )}
+        )}
         </div>
     </div>
 </div>
+
+<script>
+    function renderNowReading() {
+        const container = document.getElementById('now-reading-container');
+        if (!container) return;
+
+        const books = JSON.parse(container.dataset.books || '[]');
+        if (books.length === 0) return;
+
+        // Get or set the session book index
+        const SESSION_KEY = 'now-reading-index';
+        let bookIndex = sessionStorage.getItem(SESSION_KEY);
+
+        if (bookIndex === null || parseInt(bookIndex) >= books.length) {
+            // Pick a random book and save to session
+            bookIndex = Math.floor(Math.random() * books.length).toString();
+            sessionStorage.setItem(SESSION_KEY, bookIndex);
+        }
+
+        const book = books[parseInt(bookIndex)];
+        if (!book) return;
+
+        // Render the book
+        container.innerHTML = `
+            <a
+                href="${book.url}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="transition-transform duration-200 hover:scale-105 flex items-center justify-center"
+            >
+                <div class="w-6 h-9 md:w-8 md:h-12 bg-primary/5 rounded-sm overflow-hidden border border-primary/10 shadow-sm group-hover:border-secondary/50 transition-colors">
+                    ${book.cover ? `
+                        <img
+                            src="${book.cover}"
+                            alt="${book.title}"
+                            class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
+                        />
+                    ` : `
+                        <div class="w-full h-full flex items-center justify-center text-[8px] text-center p-1 opacity-50">
+                            ${book.title}
+                        </div>
+                    `}
+                </div>
+            </a>
+
+            <!-- Tooltip (Desktop only) -->
+            <div class="hidden md:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
+                <div class="font-bold">${book.title}</div>
+                <div class="opacity-70">by ${book.author}</div>
+                <!-- Arrow -->
+                <div class="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-primary rotate-45 border-l border-t border-white/10"></div>
+            </div>
+        `;
+    }
+
+    // Initial render
+    renderNowReading();
+
+    // Re-render on Astro view transitions
+    document.addEventListener('astro:page-load', renderNowReading);
+</script>
