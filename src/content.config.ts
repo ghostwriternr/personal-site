@@ -22,7 +22,7 @@ const nowReading = defineCollection({
     schema: z.object({
         title: z.string(),
         author: z.string(),
-        cover: z.string().url().optional(),
+        cover: z.string().url().nullish(),
         url: z.string().url(),
     }),
 });
