@@ -1,4 +1,4 @@
-import { glob } from "astro/loaders";
+import { glob, file } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 import { poetrySchema } from "./schemas/poetry";
 import { blogSchema } from "./schemas/blog";
@@ -17,4 +17,14 @@ const poetry = defineCollection({
     schema: poetrySchema,
 });
 
-export const collections = { blog, poetry };
+const nowReading = defineCollection({
+    loader: file("src/content/now-reading.json"),
+    schema: z.object({
+        title: z.string(),
+        author: z.string(),
+        cover: z.string().url().optional(),
+        url: z.string().url(),
+    }),
+});
+
+export const collections = { blog, poetry, nowReading };

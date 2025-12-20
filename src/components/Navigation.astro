@@ -2,12 +2,19 @@
 import { Image } from "astro:assets";
 import ThemeToggle from "./ThemeToggle.astro";
 import MeImage from "../assets/me.png";
+import { getCollection } from "astro:content";
 
 const links = [
     { label: "Blog", href: "/" },
     { label: "Poetry", href: "/poetry" },
     { label: "About", href: "/about" },
 ];
+
+const readingList = await getCollection("nowReading");
+const randomBookEntry = readingList.length > 0 
+    ? readingList[Math.floor(Math.random() * readingList.length)] 
+    : null;
+const randomBook = randomBookEntry?.data;
 
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
 const subpath = pathname.match(/[^\/]+/g);
@@ -23,7 +30,7 @@ function isActive(href: string) {
 
 <!-- Unified Navigation Container -->
 <div
-    class="border-theme-accent-dark bg-theme-background fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 md:mt-2 md:h-screen md:w-20 md:flex-col md:border-r-4 md:bg-transparent md:p-0 md:pt-2 md:pb-2"
+    class="border-theme-accent-dark bg-theme-background fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 md:h-screen md:w-20 md:flex-col md:border-r-4 md:bg-transparent md:p-0 md:pt-8 md:pb-8"
 >
     <!-- Avatar -->
     <div class="flex-shrink-0 md:flex md:justify-center">
@@ -37,33 +44,69 @@ function isActive(href: string) {
         </a>
     </div>
 
-    <!-- Navigation Links and Theme Toggle -->
-    <div
-        class="flex items-center space-x-4 md:grow md:flex-col md:justify-evenly md:space-x-0"
-    >
-        {
-            links.map((link) => {
-                const baseClasses =
-                    "sidebar-link flex items-center justify-center transition-colors duration-100 text-[var(--color-text)]";
-                const responsiveClasses =
-                    "text-body-lg md:h-20 md:-rotate-90 md:transform md:text-heading-sm";
-                const activeClasses = isActive(link.href)
-                    ? "!text-primary font-bold"
-                    : "";
-                return (
-                    <a
-                        href={link.href}
-                        class={`${baseClasses} ${responsiveClasses} ${activeClasses}`}
-                        aria-current={isActive(link.href) ? "page" : undefined}
-                    >
-                        <span>{link.label}</span>
-                    </a>
-                );
-            })
-        }
-        <!-- Theme Toggle: inline on mobile, absolute bottom on desktop -->
-        <div class="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2">
-            <ThemeToggle />
+    <!-- Mobile: Wrapper for Nav + Theme + Book (right side) -->
+    <!-- Desktop: Separate containers for Nav (middle) and Theme/Book (bottom) -->
+    <div class="flex items-center gap-4 md:contents">
+        <!-- Navigation Links -->
+        <div class="flex items-center space-x-4 md:grow md:flex-col md:justify-center md:space-x-0 md:gap-24 md:py-8">
+            {
+                links.map((link) => {
+                    const baseClasses =
+                        "sidebar-link flex items-center justify-center transition-colors duration-100 text-[var(--color-text)]";
+                    const responsiveClasses =
+                        "text-body-lg md:h-20 md:-rotate-90 md:transform md:text-heading-sm";
+                    const activeClasses = isActive(link.href)
+                        ? "!text-primary font-bold"
+                        : "";
+                    return (
+                        <a
+                            href={link.href}
+                            class={`${baseClasses} ${responsiveClasses} ${activeClasses}`}
+                            aria-current={isActive(link.href) ? "page" : undefined}
+                        >
+                            <span>{link.label}</span>
+                        </a>
+                    );
+                })
+            }
+        </div>
+
+        <!-- Theme Toggle and Book -->
+        <div class="flex items-center gap-4 md:flex-col md:gap-6">
+        <ThemeToggle />
+        
+        {randomBook && (
+            <div class="group relative flex items-center justify-center">
+                <a 
+                    href={randomBook.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="transition-transform duration-200 hover:scale-105 flex items-center justify-center"
+                >
+                    <div class="w-6 h-9 md:w-8 md:h-12 bg-primary/5 rounded-sm overflow-hidden border border-primary/10 shadow-sm group-hover:border-secondary/50 transition-colors">
+                        {randomBook.cover ? (
+                            <img 
+                                src={randomBook.cover} 
+                                alt={randomBook.title} 
+                                class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
+                            />
+                        ) : (
+                            <div class="w-full h-full flex items-center justify-center text-[8px] text-center p-1 opacity-50">
+                                {randomBook.title}
+                            </div>
+                        )}
+                    </div>
+                </a>
+                
+                <!-- Tooltip (Desktop only) -->
+                <div class="hidden md:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
+                    <div class="font-bold">{randomBook.title}</div>
+                    <div class="opacity-70">by {randomBook.author}</div>
+                    <!-- Arrow -->
+                    <div class="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-primary rotate-45 border-l border-t border-white/10"></div>
+                </div>
+            </div>
+            )}
         </div>
     </div>
 </div>
