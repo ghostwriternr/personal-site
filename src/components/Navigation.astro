@@ -89,20 +89,15 @@ function isActive(href: string) {
 <script>
     function renderNowReading() {
         const container = document.getElementById('now-reading-container');
-        if (!container) return;
+        if (!container || container.children.length > 0 || !container.dataset.books) return;
 
-        // Skip if already rendered (transition:persist keeps the DOM)
-        if (container.children.length > 0) return;
-
-        const books = JSON.parse(container.dataset.books || '[]');
+        const books = JSON.parse(container.dataset.books);
         if (books.length === 0) return;
 
-        // Get or set the session book index
         const SESSION_KEY = 'now-reading-index';
         let bookIndex = sessionStorage.getItem(SESSION_KEY);
 
         if (bookIndex === null || parseInt(bookIndex) >= books.length) {
-            // Pick a random book and save to session
             bookIndex = Math.floor(Math.random() * books.length).toString();
             sessionStorage.setItem(SESSION_KEY, bookIndex);
         }
@@ -110,7 +105,6 @@ function isActive(href: string) {
         const book = books[parseInt(bookIndex)];
         if (!book) return;
 
-        // Create elements safely (no XSS risk)
         const link = document.createElement('a');
         link.href = book.url;
         link.target = '_blank';
@@ -127,38 +121,35 @@ function isActive(href: string) {
             img.className = 'w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all';
             bookDiv.appendChild(img);
         } else {
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'w-full h-full flex items-center justify-center text-[8px] text-center p-1 opacity-50';
-            titleDiv.textContent = book.title; // Safe: textContent auto-escapes
-            bookDiv.appendChild(titleDiv);
+            const fallback = document.createElement('div');
+            fallback.className = 'w-full h-full flex items-center justify-center text-[8px] text-center p-1 opacity-50';
+            fallback.textContent = book.title;
+            bookDiv.appendChild(fallback);
         }
 
         link.appendChild(bookDiv);
 
-        // Create tooltip
         const tooltip = document.createElement('div');
         tooltip.className = 'hidden md:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10';
 
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'font-bold';
-        titleDiv.textContent = book.title; // Safe: textContent auto-escapes
+        const title = document.createElement('div');
+        title.className = 'font-bold';
+        title.textContent = book.title;
 
-        const authorDiv = document.createElement('div');
-        authorDiv.className = 'opacity-70';
-        authorDiv.textContent = `by ${book.author}`; // Safe: textContent auto-escapes
+        const author = document.createElement('div');
+        author.className = 'opacity-70';
+        author.textContent = `by ${book.author}`;
 
         const arrow = document.createElement('div');
         arrow.className = 'absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-primary rotate-45 border-l border-t border-white/10';
 
-        tooltip.appendChild(titleDiv);
-        tooltip.appendChild(authorDiv);
+        tooltip.appendChild(title);
+        tooltip.appendChild(author);
         tooltip.appendChild(arrow);
 
-        // Add everything to container
         container.appendChild(link);
         container.appendChild(tooltip);
     }
 
-    // Initial render - runs once per session thanks to transition:persist
     renderNowReading();
 </script>
