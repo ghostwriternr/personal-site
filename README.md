@@ -22,27 +22,31 @@ This site serves as both a professional portfolio and a creative outlet, featuri
 
 - 🚀 Clean, modern design with responsive layout
 - ⚡ Blazing fast performance with Astro static site generation
-- 🌓 Dark/Light theme toggle with system preference detection
-- 📝 Blog section for technical writing
-- ✍️ Poetry collection
-- 📱 Fully responsive design
-- 🔍 SEO-optimized with sitemap and RSS feed
-- 🎨 Custom typography with Argesta and Lufga fonts
-- 🖼️ Automatic image optimization with pre-commit hooks
-- 📖 Reading list integration
+- 🌓 Three-mode theme toggle (Light/Dark/Auto) with system preference detection
+- 📝 Blog section for technical writing with syntax highlighting
+- ✍️ Poetry collection with rich metadata and imagery
+- 📱 Fully responsive design optimized for all devices
+- 🔍 SEO-optimized with sitemap and RSS feed generation
+- 🎨 Custom typography system with Argesta and Lufga fonts (Major Third ratio)
+- 🖼️ Automatic image optimization with pre-commit hooks (target <100KB WebP)
+- 📖 Reading list integration with book covers displayed in navigation
+- ✨ View transitions for smooth page navigation
+- 🔗 Social media integration (GitHub, LinkedIn, Twitter/X, Bluesky, Instagram, YouTube Music)
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build) 5.x - Modern static site framework
-- **Styling**: [Tailwind CSS](https://tailwindcss.com) 4.x with Typography plugin
-- **Content**: MDX support for enhanced Markdown with [Expressive Code](https://expressive-code.com/)
-- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/) with Workers adapter
-- **Type Safety**: TypeScript with content schema validation
+- **Framework**: [Astro](https://astro.build) 5.x - Modern static site generator with excellent performance
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) 4.x with Typography plugin for rich content formatting
+- **Content**: MDX support for enhanced Markdown with [Expressive Code](https://expressive-code.com/) for beautiful syntax highlighting
+- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/) with Workers adapter for edge deployment
+- **Image Processing**: Sharp for automatic image optimization and WebP conversion
+- **Type Safety**: TypeScript with Zod schema validation for content collections
 - **Developer Tools**:
-  - Prettier for code formatting
+  - Prettier for code formatting with Astro and Tailwind plugins
   - Husky for Git hooks
-  - lint-staged for automated image compression
-  - Wrangler for Cloudflare deployment
+  - lint-staged for automated image compression on commit
+  - Wrangler for Cloudflare deployment and local preview
+  - ImageMagick, pngquant, and jpegoptim for image compression
 
 ## Quick Start
 
@@ -58,7 +62,7 @@ This site serves as both a professional portfolio and a creative outlet, featuri
 git clone https://github.com/ghostwriternr/personal-site.git
 cd personal-site
 
-# Install dependencies
+# Install dependencies (this will also set up Husky hooks automatically)
 npm install
 ```
 
@@ -118,12 +122,13 @@ The built site will be in the `./dist/` directory.
 
 ## Content Management
 
-The site uses Astro's Content Collections API for managing content:
+The site uses Astro's Content Collections API for type-safe content management:
 
-- **Blog Posts** (`src/content/blog/`): Technical articles and writing
-- **Poetry** (`src/content/poetry/`): Creative writing and poetry
+- **Blog Posts** (`src/content/blog/`): Technical articles with required frontmatter (title, description, pubDate, optional updatedDate)
+- **Poetry** (`src/content/poetry/`): Creative writing with rich metadata (title, date, categories, tags, excerpt, images)
+- **Reading List** (`src/content/now-reading.json`): Currently reading books with covers and links, displayed in the navigation sidebar
 
-All content is written in Markdown/MDX with frontmatter validation using Zod schemas.
+All content is written in Markdown/MDX with frontmatter validation using Zod schemas defined in `src/schemas/`. Content assets (images) are co-located with their respective content files.
 
 ## Image Optimization
 
