@@ -1,10 +1,22 @@
 # Naresh R's Personal Website
 
-Personal website and portfolio of Naresh R ([ghostwriternr.me](https://ghostwriternr.me)) - Software engineer, builder, and technology enthusiast based in London.
+> Personal portfolio and blog of Naresh R - Building the future of AI agents and developer tools
+
+[![Live Site](https://img.shields.io/badge/live-ghostwriternr.me-blue)](https://ghostwriternr.me)
+[![Built with Astro](https://img.shields.io/badge/built%20with-Astro-FF5D01)](https://astro.build)
+[![Deployed on Cloudflare](https://img.shields.io/badge/deployed%20on-Cloudflare%20Pages-F38020)](https://pages.cloudflare.com)
 
 ## About
 
-Naresh is a software engineer at Cloudflare working on the agents team. Previously co-founded CodeStory (YC S23). This site serves as his digital presence and portfolio, featuring technical writing, poetry, and professional experience.
+Welcome to my digital home on the internet! This is where I share my thoughts on technology, AI agents, developer tools, and life through technical writing and poetry.
+
+**Naresh R** is currently building the future of AI agents at [Cloudflare](https://cloudflare.com), where he works on the agents team. Previously, he co-founded and served as CTO of [CodeStory](https://codestory.ai) (YC S23), an AI-powered code editor that helps developers write and understand code faster. Based in London, Naresh is passionate about creating developer tools that augment human capabilities and exploring the intersection of AI and software engineering.
+
+This site serves as both a professional portfolio and a creative outlet, featuring:
+- **Technical blog posts** on AI agents, distributed systems, and developer tools
+- **Poetry and creative writing** exploring life, technology, and human experiences
+- **Professional timeline** showcasing work at Cloudflare, CodeStory, Intuit, and Setu
+- **Reading list** of books that have shaped my thinking
 
 ## Features
 
@@ -32,11 +44,12 @@ Naresh is a software engineer at Cloudflare working on the agents team. Previous
   - lint-staged for automated image compression
   - Wrangler for Cloudflare deployment
 
-## Prerequisites
+## Quick Start
+
+### Prerequisites
 
 - Node.js 18+ and npm
-
-## Setup Instructions
+- (Optional) ImageMagick, pngquant, and jpegoptim for image compression
 
 ### Installation
 
@@ -56,23 +69,19 @@ npm install
 npm run dev
 ```
 
-The site will be available at `http://localhost:4321`.
+The site will be available at `http://localhost:4321` with hot module reloading.
 
-### Build
+### Build & Preview
 
 ```bash
 # Build for production
 npm run build
+
+# Preview production build with Cloudflare Workers locally
+npm run preview
 ```
 
 The built site will be in the `./dist/` directory.
-
-### Preview Production Build
-
-```bash
-# Build and preview with Cloudflare Workers locally
-npm run preview
-```
 
 ## Available Commands
 
@@ -127,18 +136,63 @@ The project includes automatic image compression:
 
 ## Deployment
 
-The site is deployed at [ghostwriternr.me](https://ghostwriternr.me) using Cloudflare Pages.
+The site is automatically deployed to [ghostwriternr.me](https://ghostwriternr.me) using Cloudflare Pages with continuous deployment from the main branch.
 
-To deploy:
+### Manual Deployment
 
 ```bash
+# Deploy to Cloudflare Pages
 npm run deploy
 ```
 
+This builds the site and deploys it using Wrangler, Cloudflare's CLI tool.
+
+## Design Philosophy
+
+This site embodies several key principles:
+
+- **Performance First**: Static site generation with edge deployment for blazing-fast load times
+- **Content-Driven**: Markdown/MDX content with strong type safety through Zod schemas
+- **Accessibility**: Semantic HTML, proper heading hierarchy, and responsive design
+- **Progressive Enhancement**: Works without JavaScript, enhanced with it
+- **Developer Experience**: Fast local development, type safety, and automated workflows
+
+## Key Features Explained
+
+### Automatic Image Optimization
+
+The project uses Husky pre-commit hooks to automatically compress images:
+- Images are resized to max 1000px width
+- Compressed to <100KB target size
+- Converted to optimized WebP format during build
+- Run manually with `npm run compress-images`
+
+### Theme System
+
+Three-mode theme toggle (Light/Dark/Auto) with:
+- System preference detection
+- LocalStorage persistence
+- Smooth transitions (250ms)
+- No flash of unstyled content (FOUC)
+
+### Content Collections
+
+Astro's Content Collections provide:
+- Type-safe frontmatter with Zod validation
+- Automatic slug generation
+- Co-located assets with content
+- MDX support for interactive content
+
+## Contributing
+
+This is a personal site, but if you spot any bugs or have suggestions, feel free to open an issue on GitHub.
+
 ## License
 
-All rights reserved.
+© 2025 Naresh R. All rights reserved.
+
+The code is available for reference and learning purposes. Please don't copy the content or design wholesale.
 
 ---
 
-Built with [Astro](https://astro.build) 🚀
+Built with ❤️ using [Astro](https://astro.build), deployed on [Cloudflare Pages](https://pages.cloudflare.com)
