@@ -1,68 +1,144 @@
-# Astro Starter Kit: Blog
+# Naresh R's Personal Website
 
-```sh
-npm create astro@latest -- --template blog
+Personal website and portfolio of Naresh R ([ghostwriternr.me](https://ghostwriternr.me)) - Software engineer, builder, and technology enthusiast based in London.
+
+## About
+
+Naresh is a software engineer at Cloudflare working on the agents team. Previously co-founded CodeStory (YC S23). This site serves as his digital presence and portfolio, featuring technical writing, poetry, and professional experience.
+
+## Features
+
+- 🚀 Clean, modern design with responsive layout
+- ⚡ Blazing fast performance with Astro static site generation
+- 🌓 Dark/Light theme toggle with system preference detection
+- 📝 Blog section for technical writing
+- ✍️ Poetry collection
+- 📱 Fully responsive design
+- 🔍 SEO-optimized with sitemap and RSS feed
+- 🎨 Custom typography with Argesta and Lufga fonts
+- 🖼️ Automatic image optimization with pre-commit hooks
+- 📖 Reading list integration
+
+## Tech Stack
+
+- **Framework**: [Astro](https://astro.build) 5.x - Modern static site framework
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) 4.x with Typography plugin
+- **Content**: MDX support for enhanced Markdown with [Expressive Code](https://expressive-code.com/)
+- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/) with Workers adapter
+- **Type Safety**: TypeScript with content schema validation
+- **Developer Tools**:
+  - Prettier for code formatting
+  - Husky for Git hooks
+  - lint-staged for automated image compression
+  - Wrangler for Cloudflare deployment
+
+## Prerequisites
+
+- Node.js 18+ and npm
+
+## Setup Instructions
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/ghostwriternr/personal-site.git
+cd personal-site
+
+# Install dependencies
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+### Development
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```bash
+# Start the development server
+npm run dev
+```
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+The site will be available at `http://localhost:4321`.
 
-Features:
+### Build
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+```bash
+# Build for production
+npm run build
+```
 
-## 🚀 Project Structure
+The built site will be in the `./dist/` directory.
 
-Inside of your Astro project, you'll see the following folders and files:
+### Preview Production Build
+
+```bash
+# Build and preview with Cloudflare Workers locally
+npm run preview
+```
+
+## Available Commands
+
+| Command                  | Description                                      |
+| :----------------------- | :----------------------------------------------- |
+| `npm install`            | Install dependencies                             |
+| `npm run dev`            | Start local dev server at `localhost:4321`       |
+| `npm run build`          | Build production site to `./dist/`               |
+| `npm run preview`        | Build and preview with Cloudflare Workers        |
+| `npm run deploy`         | Build and deploy to Cloudflare Pages             |
+| `npm run format`         | Format code with Prettier                        |
+| `npm run compress-images`| Manually compress all images in src/content/     |
+| `npm run cf-typegen`     | Generate Cloudflare Workers types                |
+
+## Project Structure
 
 ```text
 ├── public/
+│   └── fonts/          # Custom Argesta and Lufga fonts
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+│   ├── assets/         # Image assets
+│   ├── components/     # Reusable Astro components
+│   ├── content/        # Content collections (blog & poetry)
+│   ├── icons/          # Social media icons
+│   ├── layouts/        # Page layouts
+│   ├── lib/            # Utility libraries (theme management)
+│   ├── pages/          # File-based routing
+│   ├── schemas/        # Zod schemas for content validation
+│   └── styles/         # Global styles and typography
+├── astro.config.mjs    # Astro configuration
+├── package.json        # Project dependencies and scripts
+└── tsconfig.json       # TypeScript configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Content Management
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The site uses Astro's Content Collections API for managing content:
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+- **Blog Posts** (`src/content/blog/`): Technical articles and writing
+- **Poetry** (`src/content/poetry/`): Creative writing and poetry
 
-Any static assets, like images, can be placed in the `public/` directory.
+All content is written in Markdown/MDX with frontmatter validation using Zod schemas.
 
-## 🧞 Commands
+## Image Optimization
 
-All commands are run from the root of the project, from a terminal:
+The project includes automatic image compression:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- **Pre-commit hooks** automatically compress new/modified images
+- Target: <100KB final WebP size
+- Powered by ImageMagick, pngquant, and jpegoptim
+- Manual compression: `npm run compress-images`
 
-## 👀 Want to learn more?
+## Deployment
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site is deployed at [ghostwriternr.me](https://ghostwriternr.me) using Cloudflare Pages.
 
-## Credit
+To deploy:
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+```bash
+npm run deploy
+```
+
+## License
+
+All rights reserved.
+
+---
+
+Built with [Astro](https://astro.build) 🚀
