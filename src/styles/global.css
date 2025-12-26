@@ -39,22 +39,17 @@
 }
 
 @theme {
-    --color-primary: #47184c;
-    --color-secondary: #e17150;
-    --color-tertiary: #ffd34e;
-    --color-text: #000000;
-    --color-subtext: #301a51;
-    --color-muted: #6b7280;
-    --color-muted-foreground: #9ca3af;
-    --color-background: #ffecb4;
-    --color-theme-accent: #ffe081;
-    --color-theme-accent-dark: #ffd081;
-
-    --home-bg: radial-gradient(
-        circle at 1px 1px,
-        rgba(71, 24, 76, 0.15) 1px,
-        transparent 0
-    );
+    /* Light theme - Original colors in HSL format */
+    --color-primary: hsl(294, 52%, 20%);
+    --color-secondary: hsl(14, 71%, 60%);
+    --color-tertiary: hsl(45, 100%, 65%);
+    --color-text: hsl(0, 0%, 0%);
+    --color-subtext: hsl(264, 51%, 21%);
+    --color-muted: hsl(220, 9%, 46%);
+    --color-muted-foreground: hsl(218, 11%, 65%);
+    --color-background: hsl(45, 100%, 85%);
+    --color-theme-accent: hsl(45, 100%, 75%);
+    --color-theme-accent-dark: hsl(38, 100%, 75%);
 
     --font-lufga:
         "Lufga", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -64,22 +59,17 @@
 }
 
 html[data-theme="dark"] {
-    --color-primary: #fcaf61;
-    --color-secondary: #e17150;
-    --color-tertiary: #381e5f;
-    --color-text: #ffffff;
-    --color-subtext: #c4aee5;
-    --color-muted: #9ca3af;
-    --color-muted-foreground: #6b7280;
-    --color-background: #160c25;
-    --color-theme-accent: #301a51;
-    --color-theme-accent-dark: #2d184c;
-
-    --home-bg: radial-gradient(
-        circle at 1px 1px,
-        rgba(252, 175, 97, 0.15) 1px,
-        transparent 0
-    );
+    /* Dark theme - Original colors in HSL format */
+    --color-primary: hsl(30, 96%, 68%);
+    --color-secondary: hsl(14, 71%, 60%);
+    --color-tertiary: hsl(264, 52%, 25%);
+    --color-text: hsl(0, 0%, 100%);
+    --color-subtext: hsl(264, 51%, 79%);
+    --color-muted: hsl(218, 11%, 65%);
+    --color-muted-foreground: hsl(220, 9%, 46%);
+    --color-background: hsl(264, 51%, 10%);
+    --color-theme-accent: hsl(264, 51%, 21%);
+    --color-theme-accent-dark: hsl(264, 52%, 20%);
 }
 
 /* Make timeline logos use muted color in dark mode */
@@ -107,11 +97,6 @@ body {
 @layer utilities {
     .sidebarless-container {
         width: calc(100% - theme("width.20"));
-    }
-
-    .bg-home {
-        background-image: var(--home-bg);
-        background-size: 20px 20px;
     }
 
     .sidebar-link {

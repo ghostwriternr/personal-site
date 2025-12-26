@@ -19,7 +19,7 @@ const { title, description, class: className = "" } = Astro.props;
     </head>
     <body class="max-md:relative max-md:max-w-full max-md:overflow-x-hidden">
         <main>
-            <div class={`min-h-screen bg-home ${className}`}>
+            <div class={`min-h-screen ${className}`}>
                 <Navigation />
                 <div
                     class="bg-theme-accent-dark pointer-events-none fixed top-0 right-0 left-0 z-[60] h-2"
