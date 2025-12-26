@@ -44,8 +44,8 @@ compress_jpeg() {
 
     echo -e "${BLUE}Compressing JPEG: $(basename "$file") (${original_size})${NC}"
 
-    # Resize to max 1000px width and compress to quality 50
-    if magick "$file" -resize "1000x>" -quality 50 -strip -interlace Plane -sampling-factor 4:2:0 "$file"; then
+    # Auto-orient (apply EXIF rotation), resize to max 1000px width and compress to quality 50
+    if magick "$file" -auto-orient -resize "1000x>" -quality 50 -strip -interlace Plane -sampling-factor 4:2:0 "$file"; then
         local new_size=$(du -h "$file" | cut -f1)
         echo -e "${GREEN}✓ Compressed: ${original_size} → ${new_size}${NC}"
         ((PROCESSED++))

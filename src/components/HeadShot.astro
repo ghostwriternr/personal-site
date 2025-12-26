@@ -1,15 +1,13 @@
 ---
 import { Image } from "astro:assets";
-import HeadShotImage from "../assets/profile.jpg";
+import HeadShotImage from "../assets/bio.jpeg";
 ---
 
-<div class="bg-theme-accent hexagon p-2">
-    <Image
-        src={HeadShotImage}
-        alt="Profile"
-        class="hexagon h-auto w-full"
-        width="283"
-        height="283"
-        loading="eager"
-    />
-</div>
+<Image
+    src={HeadShotImage}
+    alt="Profile"
+    class="rounded-lg h-auto w-full object-cover aspect-square"
+    width="283"
+    height="283"
+    loading="eager"
+/>

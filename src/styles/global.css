@@ -90,10 +90,6 @@ body {
     font-family: var(--font-argesta-display); /* Beautiful for all content */
 }
 
-.hexagon {
-    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-}
-
 @layer utilities {
     .sidebarless-container {
         width: calc(100% - theme("width.20"));
