@@ -20,11 +20,11 @@ const { title, description, class: className = "" } = Astro.props;
     <body class="max-md:relative max-md:max-w-full max-md:overflow-x-hidden">
         <main>
             <div class={`min-h-screen bg-home ${className}`}>
+                <Navigation />
                 <div
-                    class="bg-theme-accent-dark fixed top-0 right-0 left-0 z-50 h-2"
+                    class="bg-theme-accent-dark pointer-events-none fixed top-0 right-0 left-0 z-[60] h-2"
                 >
                 </div>
-                <Navigation />
                 <div
                     class="md:sidebarless-container grid grid-cols-12 pt-20 pr-4 pb-12 pl-4 md:ml-20 md:pt-12 md:pr-0 md:pl-0"
                 >
