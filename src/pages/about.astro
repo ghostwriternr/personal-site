@@ -23,7 +23,6 @@ const logoComponents = {
         width: 30,
         height: 30,
         class: "sm:h-[28] sm:w-[28]",
-        hasText: true,
     },
     setu: {
         component: Setu,
@@ -97,12 +96,12 @@ const logoComponents = {
                 {workExperience.map((job, idx) => {
                     const logo = logoComponents[job.logo];
                     const LogoComponent = logo.component;
-                    const isCodeStory = job.logo === "codestory";
                     const periodDisplay = job.period.toUpperCase();
+                    const needsGroupHover = job.logo === "codestory";
                     
                     return (
                         <li
-                            class={`timeline-item animate-fade-in-up ${isCodeStory ? "group" : ""}`}
+                            class={`timeline-item animate-fade-in-up ${needsGroupHover ? "group" : ""}`}
                             style={`animation-delay: ${idx * 25}ms;`}
                             data-role={job.role}
                             data-company={job.company}
@@ -122,24 +121,11 @@ const logoComponents = {
                                         <span>{periodDisplay}</span>
                                     </div>
                                 </div>
-                                {isCodeStory ? (
-                                    <div class="flex shrink-0 items-center gap-1">
-                                        <LogoComponent
-                                            width={logo.width}
-                                            height={logo.height}
-                                            class={logo.class}
-                                        />
-                                        <span class="no-select text-subtle hidden text-base font-semibold transition-colors duration-150 group-hover:text-[#f7931e] sm:block">
-                                            CodeStory
-                                        </span>
-                                    </div>
-                                ) : (
-                                    <LogoComponent
-                                        width={logo.width}
-                                        height={logo.height}
-                                        class={logo.class}
-                                    />
-                                )}
+                                <LogoComponent
+                                    width={logo.width}
+                                    height={logo.height}
+                                    class={logo.class}
+                                />
                             </div>
                             <div class="timeline-date hidden sm:block">{periodDisplay}</div>
                             <p class="timeline-description">{job.description}</p>
