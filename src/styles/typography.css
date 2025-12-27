@@ -141,7 +141,7 @@
 
 /* Timeline specific typography */
 .timeline-title {
-    @apply text-heading-sm font-semibold;
+    @apply text-heading-sm font-semibold text-[var(--color-primary)];
 }
 
 .timeline-company {

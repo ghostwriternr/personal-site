@@ -52,6 +52,7 @@
     --color-tertiary: hsl(45, 100%, 65%);
     --color-text: hsl(0, 0%, 0%);
     --color-subtext: hsl(264, 51%, 21%);
+    --color-subtle: hsl(264, 51%, 35%);
     --color-muted: hsl(220, 9%, 46%);
     --color-muted-foreground: hsl(218, 11%, 65%);
     --color-background: hsl(45, 100%, 85%);
@@ -72,6 +73,7 @@ html[data-theme="dark"] {
     --color-tertiary: hsl(264, 52%, 25%);
     --color-text: hsl(0, 0%, 100%);
     --color-subtext: hsl(264, 51%, 79%);
+    --color-subtle: hsl(264, 51%, 85%);
     --color-muted: hsl(218, 11%, 65%);
     --color-muted-foreground: hsl(220, 9%, 46%);
     --color-background: hsl(264, 51%, 10%);
@@ -79,9 +81,9 @@ html[data-theme="dark"] {
     --color-theme-accent-dark: hsl(264, 52%, 20%);
 }
 
-/* Make timeline logos use subtext color in both themes */
+/* Make timeline logos use subtle color in both themes */
 .timeline-item svg path {
-    fill: var(--color-subtext) !important;
+    fill: var(--color-subtle) !important;
 }
 
 html,
