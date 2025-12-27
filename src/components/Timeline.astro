@@ -25,7 +25,8 @@ const { class: className } = Astro.props;
     .timeline :global(.timeline-item) {
         position: relative;
         padding: 1rem 1rem 1rem 1.25rem;
-        border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+        border-bottom: 1px solid
+            color-mix(in srgb, var(--color-text) 8%, transparent);
     }
 
     .timeline :global(.timeline-item:last-child) {

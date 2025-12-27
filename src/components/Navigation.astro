@@ -12,8 +12,8 @@ const links = [
 
 const readingList = await getCollection("nowReading");
 const books = readingList
-    .map(entry => entry.data)
-    .filter(book => book.cover);
+    .map((entry) => entry.data)
+    .filter((book) => book.cover);
 
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
 const subpath = pathname.match(/[^\/]+/g);
@@ -27,9 +27,7 @@ function isActive(href: string) {
 }
 ---
 
-<!-- Unified Navigation Container -->
-<!-- Mobile/Tablet (<1280px): Horizontal top bar -->
-<!-- Desktop (>=1280px): Vertical sidebar -->
+<!-- Unified Navigation Container --><!-- Mobile/Tablet (<1280px): Horizontal top bar --><!-- Desktop (>=1280px): Vertical sidebar -->
 <div
     class="no-select border-theme-accent-dark bg-theme-background fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 xl:h-screen xl:w-20 xl:flex-col xl:border-r-4 xl:bg-transparent xl:p-0 xl:pt-6 xl:pb-6"
 >
@@ -49,7 +47,9 @@ function isActive(href: string) {
     <!-- Desktop: Separate containers for Nav (middle) and Theme/Book (bottom) -->
     <div class="flex items-center gap-4 xl:contents">
         <!-- Navigation Links -->
-        <div class="flex items-center space-x-4 xl:grow xl:flex-col xl:justify-center xl:space-x-0 xl:gap-24 xl:py-8">
+        <div
+            class="flex items-center space-x-4 xl:grow xl:flex-col xl:justify-center xl:gap-24 xl:space-x-0 xl:py-8"
+        >
             {
                 links.map((link) => {
                     const baseClasses =
@@ -63,7 +63,9 @@ function isActive(href: string) {
                         <a
                             href={link.href}
                             class={`${baseClasses} ${responsiveClasses} ${activeClasses}`}
-                            aria-current={isActive(link.href) ? "page" : undefined}
+                            aria-current={
+                                isActive(link.href) ? "page" : undefined
+                            }
                         >
                             <span>{link.label}</span>
                         </a>
@@ -74,61 +76,70 @@ function isActive(href: string) {
 
         <!-- Theme Toggle and Book -->
         <div class="flex items-center gap-4 xl:flex-col xl:gap-6">
-        <ThemeToggle />
+            <ThemeToggle />
 
-        {books.length > 0 && (
-            <div
-                id="now-reading-container"
-                class="group relative"
-                transition:persist="now-reading"
-            >
-                {books.map((book, i) => (
+            {
+                books.length > 0 && (
                     <div
-                        class="book-option hidden flex items-center justify-center"
-                        data-index={i}
+                        id="now-reading-container"
+                        class="group relative"
+                        transition:persist="now-reading"
                     >
-                        <a
-                            href={book.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="transition-transform duration-200 hover:scale-105 flex items-center justify-center"
-                        >
-                            <div class="w-6 h-9 xl:w-8 xl:h-12 bg-primary/5 rounded-sm overflow-hidden border border-primary/10 shadow-sm group-hover:border-secondary/50 transition-colors">
-                                <img
-                                    src={book.cover}
-                                    alt={book.title}
-                                    class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all"
-                                />
+                        {books.map((book, i) => (
+                            <div
+                                class="book-option flex hidden items-center justify-center"
+                                data-index={i}
+                            >
+                                <a
+                                    href={book.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center justify-center transition-transform duration-200 hover:scale-105"
+                                >
+                                    <div class="bg-primary/5 border-primary/10 group-hover:border-secondary/50 h-9 w-6 overflow-hidden rounded-sm border shadow-sm transition-colors xl:h-12 xl:w-8">
+                                        <img
+                                            src={book.cover}
+                                            alt={book.title}
+                                            class="h-full w-full object-cover grayscale-[0.2] transition-all group-hover:grayscale-0"
+                                        />
+                                    </div>
+                                </a>
+                                <div class="bg-primary text-background pointer-events-none absolute top-1/2 left-full z-50 ml-4 hidden -translate-y-1/2 rounded-md border border-white/10 px-3 py-2 text-xs whitespace-nowrap opacity-0 shadow-xl transition-opacity group-hover:opacity-100 xl:block">
+                                    <div class="font-bold">{book.title}</div>
+                                    <div class="opacity-70">
+                                        by {book.author}
+                                    </div>
+                                    <div class="bg-primary absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rotate-45 border-t border-l border-white/10" />
+                                </div>
                             </div>
-                        </a>
-                        <div class="hidden xl:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
-                            <div class="font-bold">{book.title}</div>
-                            <div class="opacity-70">by {book.author}</div>
-                            <div class="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-primary rotate-45 border-l border-t border-white/10"></div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-        )}
+                )
+            }
         </div>
     </div>
 </div>
 
 <script>
-    const container = document.getElementById('now-reading-container');
+    const container = document.getElementById("now-reading-container");
     if (container) {
-        const bookOptions = container.querySelectorAll('.book-option');
+        const bookOptions = container.querySelectorAll(".book-option");
 
         if (bookOptions.length > 0) {
-            const SESSION_KEY = 'now-reading-index';
+            const SESSION_KEY = "now-reading-index";
             let bookIndex = sessionStorage.getItem(SESSION_KEY);
 
-            if (bookIndex === null || parseInt(bookIndex) >= bookOptions.length) {
-                bookIndex = Math.floor(Math.random() * bookOptions.length).toString();
+            if (
+                bookIndex === null ||
+                parseInt(bookIndex) >= bookOptions.length
+            ) {
+                bookIndex = Math.floor(
+                    Math.random() * bookOptions.length
+                ).toString();
                 sessionStorage.setItem(SESSION_KEY, bookIndex);
             }
 
-            bookOptions[parseInt(bookIndex)]?.classList.remove('hidden');
+            bookOptions[parseInt(bookIndex)]?.classList.remove("hidden");
         }
     }
 </script>

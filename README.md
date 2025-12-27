@@ -13,6 +13,7 @@ Welcome to my digital home on the internet! This is where I share my thoughts on
 **Naresh R** is currently building the future of AI agents at [Cloudflare](https://cloudflare.com), where he works on the agents team. Previously, he co-founded and served as CTO of [CodeStory](https://codestory.ai) (YC S23), an AI-powered code editor that helps developers write and understand code faster. Based in London, Naresh is passionate about creating developer tools that augment human capabilities and exploring the intersection of AI and software engineering.
 
 This site serves as both a professional portfolio and a creative outlet, featuring:
+
 - **Technical blog posts** on AI agents, distributed systems, and developer tools
 - **Poetry and creative writing** exploring life, technology, and human experiences
 - **Professional timeline** showcasing work at Cloudflare, CodeStory, Intuit, and Setu
@@ -42,11 +43,11 @@ This site serves as both a professional portfolio and a creative outlet, featuri
 - **Image Processing**: Sharp for automatic image optimization and WebP conversion
 - **Type Safety**: TypeScript with Zod schema validation for content collections
 - **Developer Tools**:
-  - Prettier for code formatting with Astro and Tailwind plugins
-  - Husky for Git hooks
-  - lint-staged for automated image compression on commit
-  - Wrangler for Cloudflare deployment and local preview
-  - ImageMagick, pngquant, and jpegoptim for image compression
+    - Prettier for code formatting with Astro and Tailwind plugins
+    - Husky for Git hooks
+    - lint-staged for automated image compression on commit
+    - Wrangler for Cloudflare deployment and local preview
+    - ImageMagick, pngquant, and jpegoptim for image compression
 
 ## Quick Start
 
@@ -89,16 +90,16 @@ The built site will be in the `./dist/` directory.
 
 ## Available Commands
 
-| Command                  | Description                                      |
-| :----------------------- | :----------------------------------------------- |
-| `npm install`            | Install dependencies                             |
-| `npm run dev`            | Start local dev server at `localhost:4321`       |
-| `npm run build`          | Build production site to `./dist/`               |
-| `npm run preview`        | Build and preview with Cloudflare Workers        |
-| `npm run deploy`         | Build and deploy to Cloudflare Pages             |
-| `npm run format`         | Format code with Prettier                        |
-| `npm run compress-images`| Manually compress all images in src/content/     |
-| `npm run cf-typegen`     | Generate Cloudflare Workers types                |
+| Command                   | Description                                  |
+| :------------------------ | :------------------------------------------- |
+| `npm install`             | Install dependencies                         |
+| `npm run dev`             | Start local dev server at `localhost:4321`   |
+| `npm run build`           | Build production site to `./dist/`           |
+| `npm run preview`         | Build and preview with Cloudflare Workers    |
+| `npm run deploy`          | Build and deploy to Cloudflare Pages         |
+| `npm run format`          | Format code with Prettier                    |
+| `npm run compress-images` | Manually compress all images in src/content/ |
+| `npm run cf-typegen`      | Generate Cloudflare Workers types            |
 
 ## Project Structure
 
@@ -167,6 +168,7 @@ This site embodies several key principles:
 ### Automatic Image Optimization
 
 The project uses Husky pre-commit hooks to automatically compress images:
+
 - Images are resized to max 1000px width
 - Compressed to <100KB target size
 - Converted to optimized WebP format during build
@@ -175,6 +177,7 @@ The project uses Husky pre-commit hooks to automatically compress images:
 ### Theme System
 
 Three-mode theme toggle (Light/Dark/Auto) with:
+
 - System preference detection
 - LocalStorage persistence
 - Smooth transitions (250ms)
@@ -183,6 +186,7 @@ Three-mode theme toggle (Light/Dark/Auto) with:
 ### Content Collections
 
 Astro's Content Collections provide:
+
 - Type-safe frontmatter with Zod validation
 - Automatic slug generation
 - Co-located assets with content
