@@ -8,35 +8,57 @@ import Intuit from "../components/logos/Intuit.astro";
 import GRPC from "../components/logos/GRPC.astro";
 import profileImg from "../assets/avatar.jpeg";
 import { Image } from "astro:assets";
+import { bio, site, workExperience } from "../content/site";
+
+// Map logo names to components with their specific sizing
+const logoComponents = {
+    cloudflare: {
+        component: Cloudflare,
+        width: 60,
+        height: 40,
+        class: "shrink-0 sm:h-[22px] sm:w-[70px]",
+    },
+    codestory: {
+        component: CodeStory,
+        width: 30,
+        height: 30,
+        class: "sm:h-[28] sm:w-[28]",
+        hasText: true,
+    },
+    setu: {
+        component: Setu,
+        width: 48,
+        height: 36,
+        class: "shrink-0 sm:h-[16px] sm:w-[55px]",
+    },
+    intuit: {
+        component: Intuit,
+        width: 60,
+        height: 40,
+        class: "shrink-0 sm:h-[21px] sm:w-[70px]",
+    },
+    grpc: {
+        component: GRPC,
+        width: 48,
+        height: 40,
+        class: "shrink-0 sm:h-[24px] sm:w-[55px]",
+    },
+};
 ---
 
-<BaseLayout title="About Naresh Ramesh" description="">
+<BaseLayout title={`About ${site.title}`} description="">
     <section
         class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-4 md:col-span-10 md:col-start-2 md:pt-8 lg:pt-10 xl:col-span-8 xl:col-start-3 xl:grid-cols-3 xl:gap-12 xl:pt-12"
     >
         <div class="order-2 xl:order-1 xl:col-span-2 xl:pr-8">
             <h2 class="text-heading-md mb-2">Hey! I am</h2>
-            <h1 class="text-display-md text-primary mb-2">Naresh Ramesh</h1>
+            <h1 class="text-display-md text-primary mb-2">{site.title}</h1>
             <h3 class="text-secondary text-heading-md mb-6 lg:mb-8">
                 Welcome to my tiny space on the internet 🫂
             </h3>
-            <p class="text-body-lg mb-3 lg:mb-4">
-                I'm an optimistic software engineer with a love for writing
-                poetry, curating music, reading fiction, and making origami. I
-                occasionally make pixel art, and dream about a world with
-                unbound access to information.
-            </p>
-            <p class="text-body-lg mb-3 lg:mb-4">
-                I tend to value people above all else, both in my personal
-                relationships and at work. I've always found this natural, and
-                able to build systems around this simple truth.
-            </p>
-            <p class="text-body-lg mb-3 lg:mb-4">
-                I'm currently spending a lot of time thinking about AI & agents,
-                and converting some of those ideas into code at Cloudflare.
-                Here's a quick overview of what I've been up to the last few
-                years.
-            </p>
+            {bio.extended.map((paragraph) => (
+                <p class="text-body-lg mb-3 lg:mb-4">{paragraph}</p>
+            ))}
             <div class="mt-6 mb-2 flex items-center justify-between">
                 <a
                     href="https://raw.githubusercontent.com/ghostwriternr/resume/refs/heads/master/naresh_resume.pdf"
@@ -72,225 +94,58 @@ import { Image } from "astro:assets";
                 </button>
             </div>
             <Timeline class="mb-6 lg:mb-8">
-                <li
-                    class="timeline-item animate-fade-in-up"
-                    style="animation-delay: 0ms;"
-                    data-role="Senior Systems Engineer"
-                    data-company="Cloudflare"
-                    data-period="Current"
-                >
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="flex-1">
-                            <div class="timeline-title">
-                                <span class="block sm:inline"
-                                    >Senior Systems Engineer</span
-                                >
-                                <span
-                                    class="timeline-company hidden sm:inline sm:text-inherit"
-                                >
-                                    at Cloudflare</span
-                                >
+                {workExperience.map((job, idx) => {
+                    const logo = logoComponents[job.logo];
+                    const LogoComponent = logo.component;
+                    const isCodeStory = job.logo === "codestory";
+                    const periodDisplay = job.period.toUpperCase();
+                    
+                    return (
+                        <li
+                            class={`timeline-item animate-fade-in-up ${isCodeStory ? "group" : ""}`}
+                            style={`animation-delay: ${idx * 25}ms;`}
+                            data-role={job.role}
+                            data-company={job.company}
+                            data-period={job.period}
+                        >
+                            <div class="flex items-center justify-between gap-3">
+                                <div class="flex-1">
+                                    <div class="timeline-title">
+                                        <span class="block sm:inline">{job.role}</span>
+                                        <span class="timeline-company hidden sm:inline sm:text-inherit">
+                                            {" "}at {job.company}
+                                        </span>
+                                    </div>
+                                    <div class="timeline-date sm:hidden">
+                                        <span class="timeline-company">{job.company}</span>
+                                        <span class="mx-2 text-[var(--color-subtext)]">•</span>
+                                        <span>{periodDisplay}</span>
+                                    </div>
+                                </div>
+                                {isCodeStory ? (
+                                    <div class="flex shrink-0 items-center gap-1">
+                                        <LogoComponent
+                                            width={logo.width}
+                                            height={logo.height}
+                                            class={logo.class}
+                                        />
+                                        <span class="no-select text-subtle hidden text-base font-semibold transition-colors duration-150 group-hover:text-[#f7931e] sm:block">
+                                            CodeStory
+                                        </span>
+                                    </div>
+                                ) : (
+                                    <LogoComponent
+                                        width={logo.width}
+                                        height={logo.height}
+                                        class={logo.class}
+                                    />
+                                )}
                             </div>
-                            <div class="timeline-date sm:hidden">
-                                <span class="timeline-company">Cloudflare</span>
-                                <span class="mx-2 text-[var(--color-subtext)]"
-                                    >•</span
-                                >
-                                <span>CURRENT</span>
-                            </div>
-                        </div>
-                        <Cloudflare
-                            width={60}
-                            height={40}
-                            class="shrink-0 sm:h-[22px] sm:w-[70px]"
-                        />
-                    </div>
-                    <div class="timeline-date hidden sm:block">CURRENT</div>
-                    <p class="timeline-description">
-                        Building the foundation for developers to build and run
-                        the next generation of software with AI agents at the
-                        core.
-                    </p>
-                </li>
-                <li
-                    class="timeline-item animate-fade-in-up group"
-                    style="animation-delay: 25ms;"
-                    data-role="Co-founder & CTO"
-                    data-company="CodeStory"
-                    data-period="Jul 2023 - Mar 2025"
-                >
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="flex-1">
-                            <div class="timeline-title">
-                                <span class="block sm:inline"
-                                    >Co-founder & CTO</span
-                                >
-                                <span
-                                    class="timeline-company hidden sm:inline sm:text-inherit"
-                                >
-                                    at CodeStory</span
-                                >
-                            </div>
-                            <div class="timeline-date sm:hidden">
-                                <span class="timeline-company">CodeStory</span>
-                                <span class="mx-2 text-[var(--color-subtext)]"
-                                    >•</span
-                                >
-                                <span>JUL 2023 - MAR 2025</span>
-                            </div>
-                        </div>
-                        <div class="flex shrink-0 items-center gap-1">
-                            <CodeStory
-                                width={30}
-                                height={30}
-                                class="sm:h-[28] sm:w-[28]"
-                            />
-                            <span
-                                class="no-select text-subtle hidden text-base font-semibold transition-colors duration-150 group-hover:text-[#f7931e] sm:block"
-                                >CodeStory</span
-                            >
-                        </div>
-                    </div>
-                    <div class="timeline-date hidden sm:block">
-                        JUL 2023 - MAR 2025
-                    </div>
-                    <p class="timeline-description">
-                        Led engineering for Aide, an open source AI-native IDE
-                        processing 10B+ LLM tokens/day. Built state-of-the-art
-                        coding agents, and shipped it within a fork of VSCode.
-                        Raised $1.4M pre-seed funding and managed a 2k+ member
-                        community.
-                    </p>
-                </li>
-                <li
-                    class="timeline-item animate-fade-in-up"
-                    style="animation-delay: 50ms;"
-                    data-role="Tech Lead"
-                    data-company="Setu"
-                    data-period="Jun 2020 - Jul 2023"
-                >
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="flex-1">
-                            <div class="timeline-title">
-                                <span class="block sm:inline">Tech Lead</span>
-                                <span
-                                    class="timeline-company hidden sm:inline sm:text-inherit"
-                                >
-                                    at Setu</span
-                                >
-                            </div>
-                            <div class="timeline-date sm:hidden">
-                                <span class="timeline-company">Setu</span>
-                                <span class="mx-2 text-[var(--color-subtext)]"
-                                    >•</span
-                                >
-                                <span>JUN 2020 - JUL 2023</span>
-                            </div>
-                        </div>
-                        <Setu
-                            width={48}
-                            height={36}
-                            class="shrink-0 sm:h-[16px] sm:w-[55px]"
-                        />
-                    </div>
-                    <div class="timeline-date hidden sm:block">
-                        JUN 2020 - JUL 2023
-                    </div>
-                    <p class="timeline-description">
-                        Led engineering for a 6-person team working on UPI
-                        Deeplinks and BBPS Bill Collect, Setu's highest revenue
-                        products. Built the systems for handling payments,
-                        refunds and settlements via multiple banks, and an
-                        automated merchant onboarding system.
-                    </p>
-                </li>
-                <li
-                    class="timeline-item animate-fade-in-up"
-                    style="animation-delay: 75ms;"
-                    data-role="Software Engineer"
-                    data-company="Intuit"
-                    data-period="Aug 2018 - May 2020"
-                >
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="flex-1">
-                            <div class="timeline-title">
-                                <span class="block sm:inline"
-                                    >Software Engineer</span
-                                >
-                                <span
-                                    class="timeline-company hidden sm:inline sm:text-inherit"
-                                >
-                                    at Intuit</span
-                                >
-                            </div>
-                            <div class="timeline-date sm:hidden">
-                                <span class="timeline-company">Intuit</span>
-                                <span class="mx-2 text-[var(--color-subtext)]"
-                                    >•</span
-                                >
-                                <span>AUG 2018 - MAY 2020</span>
-                            </div>
-                        </div>
-                        <Intuit
-                            width={60}
-                            height={40}
-                            class="shrink-0 sm:h-[21px] sm:w-[70px]"
-                        />
-                    </div>
-                    <div class="timeline-date hidden sm:block">
-                        AUG 2018 - MAY 2020
-                    </div>
-                    <p class="timeline-description">
-                        Built notification systems for Mint's 4M users and
-                        cross-platform GraphQL billing APIs for QuickBooks.
-                        Established the company's first Open Source and Inner
-                        Source program as Intuit India's site leader.
-                    </p>
-                </li>
-                <li
-                    class="timeline-item animate-fade-in-up"
-                    style="animation-delay: 100ms;"
-                    data-role="Google Summer of Code"
-                    data-company="gRPC"
-                    data-period="May 2018 - Jul 2018"
-                >
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="flex-1">
-                            <div class="timeline-title">
-                                <span class="block sm:inline"
-                                    >Google Summer of Code</span
-                                >
-                                <span
-                                    class="timeline-company hidden sm:inline sm:text-inherit"
-                                >
-                                    at gRPC</span
-                                >
-                            </div>
-                            <div class="timeline-date sm:hidden">
-                                <span class="timeline-company">gRPC</span>
-                                <span class="mx-2 text-[var(--color-subtext)]"
-                                    >•</span
-                                >
-                                <span>MAY 2018 - JUL 2018</span>
-                            </div>
-                        </div>
-                        <GRPC
-                            width={48}
-                            height={40}
-                            class="shrink-0 sm:h-[24px] sm:w-[55px]"
-                        />
-                    </div>
-                    <div class="timeline-date hidden sm:block">
-                        MAY 2018 - JUL 2018
-                    </div>
-                    <p class="timeline-description">
-                        Added support for building gRPC Python with the Bazel
-                        build system and integrated with Skylark, Google's
-                        internal CI. Due to limited support at the time, wrote
-                        custom Skylark rules for the Cython modules to make it
-                        work.
-                    </p>
-                </li>
+                            <div class="timeline-date hidden sm:block">{periodDisplay}</div>
+                            <p class="timeline-description">{job.description}</p>
+                        </li>
+                    );
+                })}
             </Timeline>
         </div>
         <div

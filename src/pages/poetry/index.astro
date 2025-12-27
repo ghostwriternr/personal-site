@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { SITE_TITLE } from "../../consts";
+import { site } from "../../content/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 
@@ -11,7 +11,7 @@ const poems = (await getCollection("poetry")).sort(
 ---
 
 <BaseLayout
-    title={`Poetry | ${SITE_TITLE}`}
+    title={`Poetry | ${site.title}`}
     description="A collection of poetry"
 >
     <div

@@ -1,23 +1,29 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { notFound } from "../content/site";
+
+// Split poem into lines for proper HTML rendering with <br />
+const poemLines = notFound.poem.split("\n");
 ---
 
 <BaseLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
     <div
         class="col-span-12 flex min-h-[calc(100vh-10rem)] flex-col items-center justify-center text-center md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3"
     >
-        <h1 class="text-display-lg text-primary mb-2">404</h1>
+        <h1 class="text-display-lg text-primary mb-2">{notFound.title}</h1>
         <p class="text-heading-md text-secondary mb-8">
-            This page has wandered off somewhere
+            {notFound.subtitle}
         </p>
         <p
             class="text-body-lg text-tertiary mb-10 max-w-sm italic leading-relaxed"
             style="font-family: var(--font-argesta-text);"
         >
-            Not all who wander are lost,<br />
-            but this page, I fear, is.<br />
-            A ghost in the machine,<br />
-            a dream that never was.
+            {poemLines.map((line, i) => (
+                <>
+                    {line}
+                    {i < poemLines.length - 1 && <br />}
+                </>
+            ))}
         </p>
         <a
             href="/"

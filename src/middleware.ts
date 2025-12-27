@@ -1,5 +1,12 @@
 import { getCollection } from "astro:content";
 import { defineMiddleware } from "astro:middleware";
+import {
+    generate404Markdown,
+    generateAboutMarkdown,
+    generateLlmsTxt,
+    generatePoetryIndexMarkdown,
+    generatePostsIndexMarkdown,
+} from "./lib/content-formatters";
 
 /**
  * Check if the request prefers markdown/plain text over HTML
@@ -23,45 +30,6 @@ function prefersMarkdown(request: Request): boolean {
 }
 
 /**
- * Generate llms.txt content (reused from the endpoint)
- */
-async function generateLlmsTxt(baseUrl: string): Promise<string> {
-    const blogPosts = (await getCollection("blog")).sort(
-        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-    );
-
-    const poems = (await getCollection("poetry")).sort(
-        (a, b) =>
-            new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
-    );
-
-    return `# Naresh Ramesh
-
-Building agents at Cloudflare. I enjoy writing, curating music and making origami. Open Source maintainer & supporter. Dreaming of the sky and a prosperous India.
-Previously Co-founder & CTO at CodeStory, where I led engineering for Aide, an open source AI-native IDE. Before that, Tech Lead at Setu, Software Engineer at Intuit, and Google Summer of Code at gRPC.
-
-## Blog Posts
-
-${blogPosts.map((post) => `- [${post.data.title}](${baseUrl}/posts/${post.id}/): ${post.data.description}`).join("\n")}
-
-## Poetry
-
-${poems.map((poem) => `- [${poem.data.title}](${baseUrl}/poetry/${poem.id}/)`).join("\n")}
-
-## Links
-
-- Website: ${baseUrl}
-- GitHub: https://github.com/ghostwriternr
-- Twitter/X: https://twitter.com/ghostwriternr
-- LinkedIn: https://www.linkedin.com/in/naresh-ramesh
-- Bluesky: https://bsky.app/profile/ghostwriternr.me
-- Instagram: https://www.instagram.com/noresh.romesh
-- YouTube Music: https://music.youtube.com/channel/UCxWjIwpCoSwtLGSKxkfJxcw
-- Email: ghostwriternr@gmail.com
-`;
-}
-
-/**
  * Format frontmatter as YAML
  */
 function formatFrontmatter(data: Record<string, unknown>): string {
@@ -78,6 +46,23 @@ function formatFrontmatter(data: Record<string, unknown>): string {
     return lines.join("\n");
 }
 
+/**
+ * Helper to create a text/plain response
+ */
+function textResponse(
+    content: string,
+    options: { status?: number; cache?: boolean } = {}
+): Response {
+    const { status = 200, cache = true } = options;
+    const headers: Record<string, string> = {
+        "Content-Type": "text/plain; charset=utf-8",
+    };
+    if (cache) {
+        headers["Cache-Control"] = "public, max-age=3600";
+    }
+    return new Response(content, { status, headers });
+}
+
 export const onRequest = defineMiddleware(async ({ request, url }, next) => {
     // Only intercept if the request prefers markdown
     if (!prefersMarkdown(request)) {
@@ -87,15 +72,50 @@ export const onRequest = defineMiddleware(async ({ request, url }, next) => {
     const baseUrl = url.origin || "https://ghostwriternr.me";
     const pathname = url.pathname;
 
+    // Fetch collections once for routes that need them
+    const getBlogPosts = async () => {
+        const posts = await getCollection("blog");
+        return posts
+            .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+            .map((p) => ({
+                id: p.id,
+                title: p.data.title,
+                description: p.data.description,
+            }));
+    };
+
+    const getPoems = async () => {
+        const poems = await getCollection("poetry");
+        return poems
+            .sort(
+                (a, b) =>
+                    new Date(b.data.date).valueOf() -
+                    new Date(a.data.date).valueOf()
+            )
+            .map((p) => ({ id: p.id, title: p.data.title }));
+    };
+
     // Root path - serve llms.txt content
     if (pathname === "/" || pathname === "") {
-        const content = await generateLlmsTxt(baseUrl);
-        return new Response(content, {
-            headers: {
-                "Content-Type": "text/plain; charset=utf-8",
-                "Cache-Control": "public, max-age=3600",
-            },
-        });
+        const [posts, poems] = await Promise.all([getBlogPosts(), getPoems()]);
+        return textResponse(generateLlmsTxt(baseUrl, posts, poems));
+    }
+
+    // About page - /about/
+    if (pathname === "/about" || pathname === "/about/") {
+        return textResponse(generateAboutMarkdown());
+    }
+
+    // Poetry index - /poetry/
+    if (pathname === "/poetry" || pathname === "/poetry/") {
+        const poems = await getPoems();
+        return textResponse(generatePoetryIndexMarkdown(baseUrl, poems));
+    }
+
+    // Blog posts index - /posts/
+    if (pathname === "/posts" || pathname === "/posts/") {
+        const posts = await getBlogPosts();
+        return textResponse(generatePostsIndexMarkdown(baseUrl, posts));
     }
 
     // Blog posts - /posts/[slug]/
@@ -114,12 +134,11 @@ ${frontmatter}
 ---
 
 ${post.body}`;
-
-            return new Response(content, {
-                headers: {
-                    "Content-Type": "text/plain; charset=utf-8",
-                    "Cache-Control": "public, max-age=3600",
-                },
+            return textResponse(content);
+        } else {
+            return textResponse(generate404Markdown(), {
+                status: 404,
+                cache: false,
             });
         }
     }
@@ -140,16 +159,23 @@ ${frontmatter}
 ---
 
 ${poem.body}`;
-
-            return new Response(content, {
-                headers: {
-                    "Content-Type": "text/plain; charset=utf-8",
-                    "Cache-Control": "public, max-age=3600",
-                },
+            return textResponse(content);
+        } else {
+            return textResponse(generate404Markdown(), {
+                status: 404,
+                cache: false,
             });
         }
     }
 
-    // Fall through to normal rendering for other routes
-    return next();
+    // 404 page
+    if (pathname === "/404" || pathname === "/404/") {
+        return textResponse(generate404Markdown(), {
+            status: 404,
+            cache: false,
+        });
+    }
+
+    // Any other unmatched route - return 404 for LLMs
+    return textResponse(generate404Markdown(), { status: 404, cache: false });
 });
