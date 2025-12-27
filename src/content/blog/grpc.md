@@ -10,7 +10,7 @@ description: "Introduction to gRPC"
 
 "Woah! I came in here looking for some nerdy info about gRPC - that fancy pants RPC framework everyone is talking about these days. But who is this CUTE monster above?"
 
-Isn't he the cutest? The _cute monster_ is gRPC's mascot, **Pancakes**! Say Hello 🐶
+Isn't he the cutest? The _cute monster_ is gRPC's mascot, **Pancakes**!
 
 Pancakes is here with a simple introduction to gRPC. This is his first time - so if you find any mistakes, please [raise an issue here](https://github.com/ghostwriternr/kill-dash-nine/issues) and we'll get it fixed stat! **Woof!**
 
@@ -20,11 +20,11 @@ Pancakes is here with a simple introduction to gRPC. This is his first time - so
 
 As of today, the vast majority of web APIs on the internet are based on **HTTP + JSON**, with **[REST](https://www.codecademy.com/articles/what-is-rest)** as the architectural principle of how these APIs are designed. HTTP/REST has excellent implementations in every conceivable programming language out there and is extremely popular, but it isn't without it's problems. Some of the **major drawbacks of HTTP/REST** are:
 
-- The client program (the caller) needs to build extra tooling 🔧 for every new REST API it has to interact with to construct the request headers and payload. Or expect the REST API to come with a client library 📒 (in the same language as the client's implentation) so the functionality can be integrated easily.
-- No formal machine-readable contract 🤖. This makes API discovery impossible and writing client-libraries (for _every_ programming language to be supported) a manual job 🤢.
-- Streaming is almost impossible ❌.
-- JSON is a text-based representation, making it extremely bulky/inefficient 🐢 for transmission over network.
-- A pure REST-ful paradigm can't model all the capabilities to be supported by the API 👎 (example: restarting a machine).
+- The client program (the caller) needs to build extra tooling for every new REST API it has to interact with to construct the request headers and payload. Or expect the REST API to come with a client library (in the same language as the client's implentation) so the functionality can be integrated easily.
+- No formal machine-readable contract. This makes API discovery impossible and writing client-libraries (for _every_ programming language to be supported) a manual job.
+- Streaming is almost impossible.
+- JSON is a text-based representation, making it extremely bulky/inefficient for transmission over network.
+- A pure REST-ful paradigm can't model all the capabilities to be supported by the API (example: restarting a machine).
 
 ### What are the alternatives?
 
@@ -164,7 +164,7 @@ On the server side, the server implements the methods declared by the service an
 
 On the client side, the client has a local object known as stub (for some languages, the preferred term is client) that implements the same methods as the service. The client can then just call those methods on the local object, wrapping the parameters for the call in the appropriate protocol buffer message type - gRPC looks after sending the request(s) to the server and returning the server’s protocol buffer response(s).
 
-That's it. _True magic does exist!_ (but also demystified in [this talk at KubeCon EU 2018](https://www.youtube.com/watch?v=S7WIYLcPS1Y) 🎩).
+That's it. _True magic does exist!_ (but also demystified in [this talk at KubeCon EU 2018](https://www.youtube.com/watch?v=S7WIYLcPS1Y)).
 
 ![Visualisation](./assets/grpc/visualisation.png)
 
@@ -206,15 +206,15 @@ rpc BidiHello(stream HelloRequest) returns (stream HelloResponse){}
 
 ## Other useful concepts
 
-### Interceptors 👮
+### Interceptors
 
 Interceptors in gRPC are essentially what is commonly called 'middleware'. Interceptors allow for custom actions to be written that can happen _during_ the lifespan of an RPC call. Simple examples can be handling the incoming payload and logging it to the console, for debugging purposes. But the usefulness of interceptors go much beyond that.
 
-### Deadlines ⏰
+### Deadlines
 
 gRPC allows clients to specify how long they are willing to wait for an RPC to complete before the RPC is terminated with the error `DEADLINE_EXCEEDED`. On the server side, the server can query to see if a particular RPC has timed out, or how much time is left to complete the RPC.
 
-### Cancellations 🚫
+### Cancellations
 
 Either the client or the server can cancel an RPC at any time. A cancellation terminates the RPC immediately so that no further work is done. It is not an 'undo': changes made before the cancellation will not be rolled back.
 
