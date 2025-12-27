@@ -1,7 +1,7 @@
 /* Typography Scale - Following 1.25 Major Third Scale for Harmonious Proportions */
+/* All scales use lg: breakpoint (1024px) for consistent responsive behavior */
 
 /* Display Typography - For hero sections and primary attention */
-/* Display text scales up at lg for iPad Pro, full size at xl */
 @utility text-display-lg {
     @apply text-6xl font-semibold lg:text-7xl;
     font-family: var(--font-lufga);
@@ -24,65 +24,65 @@
 }
 
 /* Heading Typography - For section headers and content structure */
-/* Stays at mobile size through tablets, grows at desktop (xl) */
 @utility text-heading-xl {
-    @apply text-3xl font-semibold xl:text-4xl;
+    @apply text-3xl font-semibold lg:text-4xl;
     font-family: var(--font-lufga);
     line-height: 1.25;
 }
 
 @utility text-heading-lg {
-    @apply text-2xl font-semibold xl:text-3xl;
+    @apply text-2xl font-semibold lg:text-3xl;
     font-family: var(--font-lufga);
     line-height: 1.3;
 }
 
 @utility text-heading-md {
-    @apply text-xl font-normal xl:text-2xl;
+    @apply text-xl font-semibold lg:text-2xl;
+    font-family: var(--font-lufga);
     line-height: 1.35;
 }
 
 @utility text-heading-sm {
-    @apply text-lg font-normal xl:text-xl;
+    @apply text-lg font-semibold lg:text-xl;
+    font-family: var(--font-lufga);
     line-height: 1.4;
 }
 
 /* Body Typography - For content and descriptions */
-/* Stays at mobile size through tablets, grows at desktop (xl) */
 @utility text-body-xl {
-    @apply text-xl xl:text-2xl;
+    @apply text-xl lg:text-2xl;
     line-height: 1.5;
 }
 
 @utility text-body-lg {
-    @apply text-lg xl:text-xl;
+    @apply text-lg lg:text-xl;
     line-height: 1.6;
 }
 
 @utility text-body-md {
-    @apply text-base xl:text-lg;
+    @apply text-base lg:text-lg;
     line-height: 1.6;
 }
 
 @utility text-body-sm {
-    @apply text-base;
+    @apply text-sm lg:text-base;
     line-height: 1.5;
 }
 
 /* Caption Typography - For metadata, dates, and supplementary info */
 /* Distinctly smaller than body text */
 @utility text-caption-lg {
-    @apply text-base xl:text-lg;
+    @apply text-sm lg:text-base;
     line-height: 1.4;
 }
 
 @utility text-caption-md {
-    @apply text-sm xl:text-base;
+    @apply text-xs lg:text-sm;
     line-height: 1.4;
 }
 
 @utility text-caption-sm {
-    @apply text-sm;
+    @apply text-xs;
     line-height: 1.4;
 }
 
@@ -141,19 +141,19 @@
 
 /* Timeline specific typography */
 .timeline-title {
-    @apply text-heading-sm font-semibold text-[var(--color-primary)];
+    @apply text-heading-sm text-[var(--color-primary)];
 }
 
 .timeline-company {
-    @apply text-caption-md font-normal text-[var(--color-subtext)];
+    @apply text-body-sm font-normal text-[var(--color-subtext)];
 }
 
 .timeline-date {
-    @apply text-caption-sm mb-3 font-normal text-[var(--color-subtext)];
+    @apply text-caption-lg mb-3 font-normal text-[var(--color-subtext)];
 }
 
 .timeline-description {
-    @apply text-body-md font-normal;
+    @apply text-body-lg font-normal;
 }
 
 /* Homepage-specific typography overrides */
