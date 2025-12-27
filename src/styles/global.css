@@ -69,9 +69,10 @@
     --color-theme-accent-dark: hsl(35, 100%, 60%);
 
     --font-lufga:
-        "Lufga", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        sans-serif;
-    --font-argesta-text: "Argesta Text", "Playfair Display", Georgia, serif;
+        "Lufga", "Noto Color Emoji", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+    --font-argesta-text:
+        "Argesta Text", "Noto Color Emoji", "Playfair Display", Georgia, serif;
 }
 
 html[data-theme="dark"] {
@@ -163,9 +164,7 @@ html[data-theme="dark"] .icon:hover {
 
 /* Content-specific font assignments */
 .article-text {
-    font-family: var(
-        --font-argesta-text
-    ); /* Optimized for body text readability */
+    font-family: var(--font-argesta-text), "Noto Color Emoji", sans-serif;
 }
 
 @layer utilities {
