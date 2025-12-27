@@ -237,6 +237,11 @@ html[data-theme="dark"] .icon:hover {
 .prose ul > li::marker {
     color: var(--color-text);
 }
+.prose img,
+.article-prose img {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
 .prose hr,
 .article-prose hr {
     margin-top: 2em;

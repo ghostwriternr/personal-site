@@ -47,4 +47,5 @@ The Sponsor Showcase was the next biggest attraction where CNCF sponsors were pr
 The overall experience was one I'll cherish for a very long time to come. The conference definitely helped me learn a ton that I've brought back and already working on introducing to people at work and my team.
 
 Thank you CNCF, GSoC and China!
+
 ![Tianmien Square](./assets/kubecon-shanghai/tianmien.jpeg)
