@@ -12,9 +12,9 @@ import { Image } from "astro:assets";
 
 <BaseLayout title="About Naresh Ramesh" description="">
     <section
-        class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-8 md:col-span-8 md:col-start-3 md:grid-cols-3 md:gap-8 md:pt-12"
+        class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-8 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3 xl:grid-cols-3 xl:gap-8 xl:pt-12"
     >
-        <div class="order-2 md:order-1 md:col-span-2">
+        <div class="order-2 xl:order-1 xl:col-span-2">
             <h2 class="text-heading-md mb-2">Hey! I am</h2>
             <h1 class="text-display-md mb-2">Naresh Ramesh</h1>
             <h3 class="text-secondary text-heading-md mb-6 md:mb-8">
@@ -255,12 +255,12 @@ import { Image } from "astro:assets";
             </Timeline>
         </div>
         <div
-            class="order-1 flex justify-center md:order-2 md:col-span-1 md:justify-end"
+            class="order-1 flex justify-center xl:order-2 xl:col-span-1 xl:justify-end"
         >
             <Image
                 src={profileImg}
                 alt="Profile photo"
-                class="w-full aspect-[16/9] object-cover rounded-lg shadow-lg md:w-72 md:aspect-auto md:object-contain"
+                class="w-full max-w-md aspect-[16/9] object-cover rounded-lg shadow-lg md:max-w-lg xl:w-72 xl:max-w-none xl:aspect-auto xl:object-contain"
             />
         </div>
     </section>

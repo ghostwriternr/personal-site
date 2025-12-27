@@ -14,9 +14,9 @@ const poems = (await getCollection("poetry")).sort(
     title={`Poetry | ${SITE_TITLE}`}
     description="A collection of poetry"
 >
-    <div class="col-span-12 md:col-span-8 md:col-start-3">
+    <div class="col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3">
         <h1 class="text-display-sm mb-8">A silhouette's squire</h1>
-        <div class="mt-8 grid gap-8 md:grid-cols-2">
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-2">
             {
                 poems.map((poem, idx) => (
                     <a

@@ -91,8 +91,16 @@ body {
 }
 
 @layer utilities {
+    /* Container width when sidebar is visible (lg and above) */
     .sidebarless-container {
         width: calc(100% - theme("width.20"));
+    }
+
+    /* Max width constraints for better readability on tablets */
+    .tablet-container {
+        max-width: 48rem; /* 768px */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .sidebar-link {

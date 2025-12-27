@@ -28,32 +28,34 @@ function isActive(href: string) {
 ---
 
 <!-- Unified Navigation Container -->
+<!-- Mobile/Tablet (<1280px): Horizontal top bar -->
+<!-- Desktop (>=1280px): Vertical sidebar -->
 <div
-    class="border-theme-accent-dark bg-theme-background fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 md:h-screen md:w-20 md:flex-col md:border-r-4 md:bg-transparent md:p-0 md:pt-6 md:pb-6"
+    class="border-theme-accent-dark bg-theme-background fixed top-0 left-0 z-50 flex w-full items-center justify-between p-4 xl:h-screen xl:w-20 xl:flex-col xl:border-r-4 xl:bg-transparent xl:p-0 xl:pt-6 xl:pb-6"
 >
     <!-- Avatar -->
-    <div class="flex-shrink-0 md:flex md:justify-center">
+    <div class="flex-shrink-0 xl:flex xl:justify-center">
         <a href="/">
             <Image
                 src={MeImage}
                 alt="Avatar"
-                class="w-10 cursor-pointer md:w-15"
+                class="w-10 cursor-pointer xl:w-15"
                 loading="eager"
             />
         </a>
     </div>
 
-    <!-- Mobile: Wrapper for Nav + Theme + Book (right side) -->
+    <!-- Mobile/Tablet: Wrapper for Nav + Theme + Book (right side) -->
     <!-- Desktop: Separate containers for Nav (middle) and Theme/Book (bottom) -->
-    <div class="flex items-center gap-4 md:contents">
+    <div class="flex items-center gap-4 xl:contents">
         <!-- Navigation Links -->
-        <div class="flex items-center space-x-4 md:grow md:flex-col md:justify-center md:space-x-0 md:gap-24 md:py-8">
+        <div class="flex items-center space-x-4 xl:grow xl:flex-col xl:justify-center xl:space-x-0 xl:gap-24 xl:py-8">
             {
                 links.map((link) => {
                     const baseClasses =
                         "sidebar-link flex items-center justify-center transition-colors duration-100 text-[var(--color-text)]";
                     const responsiveClasses =
-                        "text-body-lg md:h-20 md:-rotate-90 md:transform md:text-heading-sm";
+                        "text-body-lg xl:h-20 xl:-rotate-90 xl:transform xl:text-heading-sm";
                     const activeClasses = isActive(link.href)
                         ? "!text-primary font-bold"
                         : "";
@@ -71,7 +73,7 @@ function isActive(href: string) {
         </div>
 
         <!-- Theme Toggle and Book -->
-        <div class="flex items-center gap-4 md:flex-col md:gap-6">
+        <div class="flex items-center gap-4 xl:flex-col xl:gap-6">
         <ThemeToggle />
 
         {books.length > 0 && (
@@ -91,7 +93,7 @@ function isActive(href: string) {
                             rel="noopener noreferrer"
                             class="transition-transform duration-200 hover:scale-105 flex items-center justify-center"
                         >
-                            <div class="w-6 h-9 md:w-8 md:h-12 bg-primary/5 rounded-sm overflow-hidden border border-primary/10 shadow-sm group-hover:border-secondary/50 transition-colors">
+                            <div class="w-6 h-9 xl:w-8 xl:h-12 bg-primary/5 rounded-sm overflow-hidden border border-primary/10 shadow-sm group-hover:border-secondary/50 transition-colors">
                                 <img
                                     src={book.cover}
                                     alt={book.title}
@@ -99,7 +101,7 @@ function isActive(href: string) {
                                 />
                             </div>
                         </a>
-                        <div class="hidden md:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
+                        <div class="hidden xl:block absolute top-1/2 left-full ml-4 -translate-y-1/2 px-3 py-2 bg-primary text-background text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl border border-white/10">
                             <div class="font-bold">{book.title}</div>
                             <div class="opacity-70">by {book.author}</div>
                             <div class="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 bg-primary rotate-45 border-l border-t border-white/10"></div>

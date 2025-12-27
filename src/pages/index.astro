@@ -11,7 +11,7 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-    <div class="col-span-12 md:col-span-8 md:col-start-3">
+    <div class="col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3">
         <Intro />
         <div class="divide-tertiary mt-8 divide-y-2">
             {
@@ -21,14 +21,14 @@ const posts = (await getCollection("blog")).sort(
                         class="group hover:bg-theme-accent animate-fade-in-up block cursor-pointer py-4 hover:-mr-4 hover:-ml-4 hover:pr-4 hover:pl-4"
                         style={`animation-delay: ${idx * 25}ms;`}
                     >
-                        <div class="flex flex-col justify-between md:flex-row">
+                        <div class="flex flex-col justify-between sm:flex-row sm:items-center">
                             <h2 class="text-heading-md flex">
                                 {post.data.title}
                                 <span class="group-hover:text-text ml-2 text-transparent">
                                     &rarr;
                                 </span>
                             </h2>
-                            <span class="text-secondary text-caption-lg font-semibold">
+                            <span class="text-secondary text-caption-lg mt-1 font-semibold sm:mt-0 sm:shrink-0">
                                 <FormattedDate date={post.data.pubDate} />
                             </span>
                         </div>

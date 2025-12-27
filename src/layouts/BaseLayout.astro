@@ -12,12 +12,12 @@ const { title, description, class: className = "" } = Astro.props;
 
 <html
     lang="en"
-    class="max-md:relative max-md:max-w-full max-md:overflow-x-hidden"
+    class="max-xl:relative max-xl:max-w-full max-xl:overflow-x-hidden"
 >
     <head>
         <BaseHead title={title} description={description} />
     </head>
-    <body class="max-md:relative max-md:max-w-full max-md:overflow-x-hidden">
+    <body class="max-xl:relative max-xl:max-w-full max-xl:overflow-x-hidden">
         <main>
             <div class={`min-h-screen ${className}`}>
                 <Navigation />
@@ -26,7 +26,7 @@ const { title, description, class: className = "" } = Astro.props;
                 >
                 </div>
                 <div
-                    class="md:sidebarless-container grid grid-cols-12 pt-20 pr-4 pb-12 pl-4 md:ml-20 md:pt-12 md:pr-0 md:pl-0"
+                    class="xl:sidebarless-container grid grid-cols-12 px-4 pt-20 pb-12 md:px-8 lg:px-12 xl:ml-20 xl:px-0 xl:pt-12"
                 >
                     <slot />
                 </div>

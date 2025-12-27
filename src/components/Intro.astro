@@ -10,15 +10,15 @@ import XIcon from "../icons/x.astro";
 ---
 
 <div class="grid grid-cols-8 items-center">
-    <div class="col-span-8 pr-2 md:col-span-6">
+    <div class="col-span-8 pr-2 xl:col-span-6">
         <h1
-            class="text-primary text-shadow-hero text-display-lg text-center md:text-left"
+            class="text-primary text-shadow-hero text-display-lg text-center xl:text-left"
         >
             Naresh Ramesh
         </h1>
-        <div class="mt-4 flex justify-center md:justify-start">
+        <div class="mt-4 flex justify-center xl:justify-start">
             <h2
-                class="text-primary text-heading-md md:text-heading-xl flex flex-wrap"
+                class="text-primary text-heading-md md:text-heading-lg xl:text-heading-xl flex flex-wrap justify-center xl:justify-start"
             >
                 <div class="mr-2">Hello</div>&#8226;
                 <div class="tamil mr-2 ml-2">வணக்கம்</div>&#8226;
@@ -26,19 +26,21 @@ import XIcon from "../icons/x.astro";
                 <div class="telugu ml-2">స్వాగతం</div>
             </h2>
         </div>
-        <!-- Mobile headshot -->
-        <div class="my-6 flex justify-center px-16 md:hidden">
-            <HeadShot />
+        <!-- Mobile/Tablet headshot (shows below xl breakpoint) -->
+        <div class="my-6 flex justify-center xl:hidden">
+            <div class="w-full max-w-56 sm:max-w-56 md:max-w-64 lg:max-w-72">
+                <HeadShot />
+            </div>
         </div>
         <p
-            class="text-body-xl pr-4 pl-4 text-center md:mt-4 md:pr-0 md:pl-0 md:text-left"
+            class="text-body-lg md:text-body-xl px-2 text-center sm:px-4 md:px-0 xl:mt-4 xl:text-left"
         >
             Building agents at Cloudflare. I enjoy writing, curating music and
             making origami. Open Source maintainer &amp; supporter. Dreaming of
             the sky and a prosperous India.
         </p>
         <div
-            class="mt-4 flex justify-center space-x-4 pr-4 pl-4 md:justify-start md:pr-0 md:pl-0"
+            class="mt-4 flex justify-center space-x-4 px-4 md:px-0 xl:justify-start"
         >
             <a
                 href="https://github.com/ghostwriternr"
@@ -93,8 +95,8 @@ import XIcon from "../icons/x.astro";
             </a>
         </div>
     </div>
-    <!-- Desktop headshot -->
-    <div class="hidden md:col-span-2 md:col-start-7 md:flex">
+    <!-- Desktop headshot (shows at xl and above) -->
+    <div class="hidden xl:col-span-2 xl:col-start-7 xl:flex">
         <HeadShot />
     </div>
 </div>
