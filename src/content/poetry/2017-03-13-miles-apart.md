@@ -11,11 +11,11 @@ tags:
     - Friends
 ---
 
-Across the hundred bridges, mate  
-Views a thousand you cross  
-Across the million steps, my mate  
-You trudge o'er ferns and moss.  
-Then hey! Some whiskey and wine  
-Ya drink, to a trip you forever longed;  
-If then you remembered me, my mate  
+Across the hundred bridges, mate
+Views a thousand you cross
+Across the million steps, my mate
+You trudge o'er ferns and moss.
+Then hey! Some whiskey and wine
+Ya drink, to a trip you forever longed;
+If then you remembered me, my mate
 You know I'm smiling into the beyond.

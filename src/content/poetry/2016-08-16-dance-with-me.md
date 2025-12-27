@@ -67,9 +67,9 @@ We always had this weird obsession with fingers. Maybe this is true for almost a
 
 Stepping into the Rivoli Ballroom is like stepping back in time, to a more glamorous age. Everything about the decor is sumptuous, decadent and at points a little surreal. A wonderful 1950s ballroom, adorned with plush, red velvet walls, gigantic Chinese lanterns hung side by side with Austrian crystal chandeliers, and filled with the most eclectic show of unfettered fancy dress imaginable. Our mutual love for vintage music was reason enough to be there that night.
 
-_“I wish we could dance.”_  
-_“Maybe we should.”_  
-_“Wait. You sure? I am really bad at this. Can you dance?”_  
+_“I wish we could dance.”_
+_“Maybe we should.”_
+_“Wait. You sure? I am really bad at this. Can you dance?”_
 _“I can’t dance. Here, let me teach you.”_
 
 The opera was playing [“As time goes by, Frank Sinatra”](https://www.youtube.com/watch?v=wxMeu34o_jQ). He walked me to the ballroom floor, between tens of other couples slowly dancing, and held my hands. Perfectly. I could feel his warmth and nervousness, as he gracefully held me in his arms and danced. And I was just lost in the moment.
@@ -82,54 +82,54 @@ I slipped a piece of paper into his pocket. Neither of us said a word. We danced
 
 **The letter**
 
-> I could offer an uneasy smile  
-> to cover things  
-> that aren’t so nice to show,  
-> make excuses for my limits,  
-> or you could just take me now  
-> attitude and all.  
-> Yes, I can be so neurotic, angel,  
-> but I can be the cat’s meow,  
-> a dismal delight now,  
-> stuck tumbling between  
-> your wild darting hearts  
-> I could feed your flames.  
-> Touching my surface,  
-> you know what’s underneath,  
-> I’m not offering regrets,  
-> but you still hesitate.  
-> What do you fear?  
-> You’ve got nothing to lose.  
-> I could be a mistake,  
-> a cheap one, an easy exit,  
-> but I’m telling you  
-> truly, with no conceit,  
-> I could be the one  
-> that makes you glow.  
-> Can you honestly tell me  
-> I don’t already, just a little?  
-> I do something to you,  
-> I know I do.  
-> What if that’s the sign  
-> you’re looking for?  
-> Yes, I’ve got issues,  
-> so do you.   
-> The difference is  
-> I want your issues  
-> tumbled in with my issues  
-> so we can be ridiculous together.  
-> I ask you,   
-> take me,  
-> tumble me to the ground,  
-> all of me,  
-> broken twisted me,  
-> candy coated me,  
-> sweetheart dearheart me.  
-> Take me,  
-> stop worrying so much  
-> about me worrying so much  
-> and just press yourself against me.  
-> I’m already yours.  
+> I could offer an uneasy smile
+> to cover things
+> that aren't so nice to show,
+> make excuses for my limits,
+> or you could just take me now
+> attitude and all.
+> Yes, I can be so neurotic, angel,
+> but I can be the cat's meow,
+> a dismal delight now,
+> stuck tumbling between
+> your wild darting hearts
+> I could feed your flames.
+> Touching my surface,
+> you know what's underneath,
+> I'm not offering regrets,
+> but you still hesitate.
+> What do you fear?
+> You've got nothing to lose.
+> I could be a mistake,
+> a cheap one, an easy exit,
+> but I'm telling you
+> truly, with no conceit,
+> I could be the one
+> that makes you glow.
+> Can you honestly tell me
+> I don't already, just a little?
+> I do something to you,
+> I know I do.
+> What if that's the sign
+> you're looking for?
+> Yes, I've got issues,
+> so do you.
+> The difference is
+> I want your issues
+> tumbled in with my issues
+> so we can be ridiculous together.
+> I ask you,
+> take me,
+> tumble me to the ground,
+> all of me,
+> broken twisted me,
+> candy coated me,
+> sweetheart dearheart me.
+> Take me,
+> stop worrying so much
+> about me worrying so much
+> and just press yourself against me.
+> I'm already yours.
 > Do you understand?
 >
 > \- Trish

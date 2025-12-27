@@ -41,7 +41,7 @@ const { title, date, image } = Astro.props as Props;
                 )
             }
             <article
-                class="content-body animate-content-body article-prose poetry-content"
+                class="content-body animate-content-body prose article-prose poetry-content"
             >
                 <slot />
             </article>
@@ -50,15 +50,21 @@ const { title, date, image } = Astro.props as Props;
 </BaseLayout>
 
 <style>
-    /* Poetry-specific styling enhancements */
+    /* Poetry-specific styling - preserve line breaks within stanzas */
+    .poetry-content :global(p) {
+        white-space: pre-line;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+
     .poetry-content :global(blockquote) {
-        font-style: italic;
-        text-align: center;
-        margin: 2em 0;
-        padding: 1em;
-        position: relative;
-        animation: content-fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.3s
-            both;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .poetry-content :global(blockquote p::before),
+    .poetry-content :global(blockquote p::after) {
+        content: none;
     }
 
     /* Enhanced image appearance */

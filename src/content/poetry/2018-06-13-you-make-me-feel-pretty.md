@@ -25,4 +25,3 @@ It was that boy who'd always enjoyed telling you stories of his favourite advent
 But today, I could see him in the mirror. He was smiling back at me. The same one in all those photographs that you keep sending me of the both of us. And I didn't tell him anything, just the way I couldn't tell you anything on that phone call.
 
 In both occasions, I only wished I could have atleast said... "Thank you". For reminding me.
-​
