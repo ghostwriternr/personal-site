@@ -13,7 +13,7 @@ image: ./assets/tls.jpg
 The blow of discovering we aren't young anymore
 hit us like crisp aged wine washed ashore.
 
-We were naive once.. and young.
+We were naive once... and young.
 But we found our love;
 In the kitten's purr and the midnight's blur,
 In the crease of an old parchment

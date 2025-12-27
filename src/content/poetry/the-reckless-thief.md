@@ -23,7 +23,7 @@ But once, and for all, the beast was caught in all blood and thirst,
 And the curses of the forest, pointed nowhere but hell.
 
 He then recollects, the words of that woman,
-The one who spent sleepless nights, kissing him through his wounds....
+The one who spent sleepless nights, kissing him through his wounds...
 And now killing himself,
 For he couldn't even remember his love.
 

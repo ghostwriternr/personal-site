@@ -52,7 +52,7 @@ And you might have to swim through these million words.
 or maybe even a million more.
 But when you reach your dream, and you certainly will,
 you will glow; Brighter than the stars.
-For you will then be..
+For you will then be...
 a million words wiser.
 
 **Those were the words she spilled at 5 in the morning.**

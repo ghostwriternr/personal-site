@@ -31,4 +31,4 @@ Also, I have faced situations where I get all the strange looks when I tell my f
 
 We’re all surrounded by introverts. But I wish you could understand that we introverts sometimes go all the way to act out of character for the sake of work and for the people we love. I have such a strong inner life that I’m never bored and only occasionally lonely. But we need the breaks to be who we really are. We, as introverts, love to be totally engaged in what we’re doing, and most often than not, we’d rather do it in solitude. I would argue that that’s a wonderful and transcendent state to be in and it’s a happy state, but not necessarily the happiness of bubbly exuberance. It’s a different kind of happiness. Our cognition is well setup to process our thoughts clearly when in isolation.
 
-> “Don't think of our introversion as something that needs to be cured. Introverts are just…… different.”
+> “Don't think of our introversion as something that needs to be cured. Introverts are just...... different.”
