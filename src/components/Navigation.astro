@@ -78,25 +78,25 @@ function isActive(href: string) {
         <div class="flex items-center gap-4 xl:flex-col xl:gap-6">
             <ThemeToggle />
 
+            {/* Book container - fixed size to prevent layout shift while JS selects the book */}
             {
                 books.length > 0 && (
                     <div
                         id="now-reading-container"
-                        class="group relative"
-                        transition:persist="now-reading"
+                        class="group relative h-9 w-6 xl:h-12 xl:w-8"
                     >
                         {books.map((book, i) => (
                             <div
-                                class="book-option flex hidden items-center justify-center"
+                                class="book-option absolute inset-0 hidden"
                                 data-index={i}
                             >
                                 <a
                                     href={book.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="flex items-center justify-center transition-transform duration-200 hover:scale-105"
+                                    class="flex h-full w-full items-center justify-center transition-transform duration-200 hover:scale-105"
                                 >
-                                    <div class="bg-primary/5 border-primary/10 group-hover:border-secondary/50 h-9 w-6 overflow-hidden rounded-sm border shadow-sm transition-colors xl:h-12 xl:w-8">
+                                    <div class="bg-primary/5 border-primary/10 group-hover:border-secondary/50 h-full w-full overflow-hidden rounded-sm border shadow-sm transition-colors">
                                         <img
                                             src={book.cover}
                                             alt={book.title}
@@ -121,6 +121,7 @@ function isActive(href: string) {
 </div>
 
 <script>
+    // Select a random book per tab, persist across navigation within the same tab
     const container = document.getElementById("now-reading-container");
     if (container) {
         const bookOptions = container.querySelectorAll(".book-option");
