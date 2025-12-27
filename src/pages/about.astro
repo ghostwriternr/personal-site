@@ -37,7 +37,7 @@ import { Image } from "astro:assets";
                 Here's a quick overview of what I've been up to the last few
                 years.
             </p>
-            <div class="mt-6 mb-2">
+            <div class="mt-6 mb-2 flex items-center justify-between">
                 <a
                     href="https://raw.githubusercontent.com/ghostwriternr/resume/refs/heads/master/naresh_resume.pdf"
                     target="_blank"
@@ -46,11 +46,25 @@ import { Image } from "astro:assets";
                 >
                     View detailed resume ↗
                 </a>
+                <button
+                    id="copy-experience"
+                    class="no-select text-secondary text-body-sm hover:text-[var(--color-muted)] flex items-center gap-1.5 transition-colors duration-150"
+                    title="Copy work experience to clipboard"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                    </svg>
+                    <span id="copy-experience-text">Copy</span>
+                </button>
             </div>
             <Timeline class="mb-6 lg:mb-8">
                 <li
                     class="timeline-item animate-fade-in-up"
                     style="animation-delay: 0ms;"
+                    data-role="Senior Systems Engineer"
+                    data-company="Cloudflare"
+                    data-period="Current"
                 >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
@@ -86,8 +100,11 @@ import { Image } from "astro:assets";
                     </p>
                 </li>
                 <li
-                    class="timeline-item animate-fade-in-up"
+                    class="timeline-item animate-fade-in-up group"
                     style="animation-delay: 25ms;"
+                    data-role="Co-founder & CTO"
+                    data-company="CodeStory"
+                    data-period="Jul 2023 - Mar 2025"
                 >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
@@ -116,7 +133,7 @@ import { Image } from "astro:assets";
                                 class="sm:h-[28] sm:w-[28]"
                             />
                             <span
-                                class="hidden text-base font-semibold sm:block text-subtle"
+                                class="no-select hidden text-base font-semibold sm:block text-subtle transition-colors duration-150 group-hover:text-[#f7931e]"
                                 >CodeStory</span
                             >
                         </div>
@@ -135,6 +152,9 @@ import { Image } from "astro:assets";
                 <li
                     class="timeline-item animate-fade-in-up"
                     style="animation-delay: 50ms;"
+                    data-role="Tech Lead"
+                    data-company="Setu"
+                    data-period="Jun 2020 - Jul 2023"
                 >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
@@ -174,6 +194,9 @@ import { Image } from "astro:assets";
                 <li
                     class="timeline-item animate-fade-in-up"
                     style="animation-delay: 75ms;"
+                    data-role="Software Engineer"
+                    data-company="Intuit"
+                    data-period="Aug 2018 - May 2020"
                 >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
@@ -214,6 +237,9 @@ import { Image } from "astro:assets";
                 <li
                     class="timeline-item animate-fade-in-up"
                     style="animation-delay: 100ms;"
+                    data-role="Google Summer of Code"
+                    data-company="gRPC"
+                    data-period="May 2018 - Jul 2018"
                 >
                     <div class="flex items-center justify-between gap-3">
                         <div class="flex-1">
@@ -265,3 +291,35 @@ import { Image } from "astro:assets";
         </div>
     </section>
 </BaseLayout>
+
+<script>
+    const copyButton = document.getElementById('copy-experience');
+    const copyText = document.getElementById('copy-experience-text');
+    
+    copyButton?.addEventListener('click', async () => {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const experience = Array.from(timelineItems).map(item => {
+            const role = item.getAttribute('data-role');
+            const company = item.getAttribute('data-company');
+            const period = item.getAttribute('data-period');
+            const description = item.querySelector('.timeline-description')?.textContent?.trim().replace(/\s+/g, ' ');
+            
+            return `### ${role} at ${company}\n*${period}*\n\n${description}`;
+        }).join('\n\n---\n\n');
+        
+        const fullText = `# Naresh Ramesh - Work Experience\n\n${experience}`;
+        
+        try {
+            await navigator.clipboard.writeText(fullText);
+            if (copyText) {
+                copyText.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyText.textContent = 'Copy';
+                }, 2000);
+            }
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    });
+</script>

@@ -24,13 +24,13 @@ const posts = (await getCollection("blog")).sort(
                         <div class="flex flex-col justify-between sm:flex-row sm:items-center">
                             <h2 class="text-heading-md flex">
                                 {post.data.title}
-                                <span class="group-hover:text-text ml-2 text-transparent">
-                                    &rarr;
-                                </span>
+<span class="no-select group-hover:text-text ml-2 text-transparent">
+                                                &rarr;
+                                            </span>
                             </h2>
-                            <span class="text-secondary text-body-sm mt-1 font-bold sm:mt-0 sm:shrink-0">
-                                <FormattedDate date={post.data.pubDate} />
-                            </span>
+<span class="no-select text-secondary text-body-sm mt-1 font-bold sm:mt-0 sm:shrink-0">
+                                                <FormattedDate date={post.data.pubDate} />
+                                            </span>
                         </div>
                     </a>
                 ))

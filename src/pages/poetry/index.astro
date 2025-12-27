@@ -37,12 +37,12 @@ const poems = (await getCollection("poetry")).sort(
                         <div class="mt-4 flex items-baseline justify-between gap-2">
                             <h2 class="text-heading-md font-semibold">
                                 {poem.data.title}
-                                <span class="group-hover:text-text ml-2 text-transparent">
+                                <span class="no-select group-hover:text-text ml-2 text-transparent">
                                     &rarr;
                                 </span>
                             </h2>
                             <div class="min-w-24 text-right">
-                                <span class="text-secondary text-body-sm font-bold">
+                                <span class="no-select text-secondary text-body-sm font-bold">
                                     <FormattedDate
                                         date={new Date(poem.data.date)}
                                     />

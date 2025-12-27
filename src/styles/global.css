@@ -89,9 +89,31 @@ html[data-theme="dark"] {
     --color-theme-accent-dark: hsl(264, 52%, 20%);
 }
 
-/* Make timeline logos use subtle color in both themes */
+/* Make timeline logos use subtle color in both themes, show true colors on hover */
+.timeline-item:not(:hover) svg path {
+    fill: var(--color-subtle);
+}
+
 .timeline-item svg path {
-    fill: var(--color-subtle) !important;
+    transition: fill 0.15s linear;
+}
+
+/* Setu logo - purple in light mode, teal in dark mode */
+.timeline-item:hover .setu-path {
+    fill: #20014b;
+}
+
+html[data-theme="dark"] .timeline-item:hover .setu-path {
+    fill: #42cacd;
+}
+
+/* Cloudflare logo text - dark gray in light mode, white in dark mode */
+.timeline-item:hover .cloudflare-text {
+    fill: #404041;
+}
+
+html[data-theme="dark"] .timeline-item:hover .cloudflare-text {
+    fill: #ffffff;
 }
 
 html,
@@ -100,6 +122,22 @@ body {
     color: var(--color-text);
     background-color: var(--color-background);
     transition: all 0.15s linear;
+}
+
+/* Text selection styling */
+::selection {
+    background-color: var(--color-theme-accent-dark);
+    color: var(--color-text);
+}
+
+/* Prevent selection on UI chrome elements */
+.no-select {
+    user-select: none;
+}
+
+/* Prevent selection on images */
+img {
+    user-select: none;
 }
 
 /* Use default cursor instead of pointer for links */
