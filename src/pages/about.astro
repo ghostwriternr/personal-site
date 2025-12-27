@@ -12,26 +12,26 @@ import { Image } from "astro:assets";
 
 <BaseLayout title="About Naresh Ramesh" description="">
     <section
-        class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-8 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3 xl:grid-cols-3 xl:gap-8 xl:pt-12"
+        class="col-span-12 mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 pt-4 md:col-span-10 md:col-start-2 md:pt-8 lg:pt-10 xl:col-span-8 xl:col-start-3 xl:grid-cols-3 xl:gap-8 xl:pt-12"
     >
         <div class="order-2 xl:order-1 xl:col-span-2">
             <h2 class="text-heading-md mb-2">Hey! I am</h2>
             <h1 class="text-display-md mb-2">Naresh Ramesh</h1>
-            <h3 class="text-secondary text-heading-md mb-6 md:mb-8">
+            <h3 class="text-secondary text-heading-md mb-6 lg:mb-8">
                 Welcome to my tiny space on the internet 🫂
             </h3>
-            <p class="text-body-lg mb-3 md:mb-4">
+            <p class="text-body-lg mb-3 lg:mb-4">
                 I'm an optimistic software engineer with a love for writing
                 poetry, curating music, reading fiction, and making origami. I
                 occasionally make pixel art, and dream about a world with
                 unbound access to information.
             </p>
-            <p class="text-body-lg mb-3 md:mb-4">
+            <p class="text-body-lg mb-3 lg:mb-4">
                 I tend to value people above all else, both in my personal
                 relationships and at work. I've always found this natural, and
                 able to build systems around this simple truth.
             </p>
-            <p class="text-body-lg mb-3 md:mb-4">
+            <p class="text-body-lg mb-3 lg:mb-4">
                 I'm currently spending a lot of time thinking about AI & agents,
                 and converting some of those ideas into code at Cloudflare.
                 Here's a quick overview of what I've been up to the last few
@@ -47,7 +47,7 @@ import { Image } from "astro:assets";
                     View detailed resume ↗
                 </a>
             </div>
-            <Timeline class="mb-6 md:mb-8">
+            <Timeline class="mb-6 lg:mb-8">
                 <li
                     class="timeline-item animate-fade-in-up"
                     style="animation-delay: 0ms;"
@@ -260,7 +260,7 @@ import { Image } from "astro:assets";
             <Image
                 src={profileImg}
                 alt="Profile photo"
-                class="w-full max-w-md aspect-[16/9] object-cover rounded-lg shadow-lg md:max-w-lg xl:w-72 xl:max-w-none xl:aspect-auto xl:object-contain"
+                class="w-full max-w-sm aspect-[16/9] object-cover rounded-lg shadow-lg md:max-w-md lg:max-w-lg xl:w-72 xl:max-w-none xl:aspect-auto xl:object-contain"
             />
         </div>
     </section>

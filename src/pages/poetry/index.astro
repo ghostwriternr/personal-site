@@ -14,9 +14,11 @@ const poems = (await getCollection("poetry")).sort(
     title={`Poetry | ${SITE_TITLE}`}
     description="A collection of poetry"
 >
-    <div class="col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3">
+    <div
+        class="col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3"
+    >
         <h1 class="text-display-sm mb-8">A silhouette's squire</h1>
-        <div class="mt-8 grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-2">
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 md:gap-8">
             {
                 poems.map((poem, idx) => (
                     <a
@@ -24,7 +26,7 @@ const poems = (await getCollection("poetry")).sort(
                         class="group animate-fade-in-up cursor-pointer"
                         style={`animation-delay: ${idx * 25}ms;`}
                     >
-                        <div class="relative h-60 w-full overflow-hidden md:h-80">
+                        <div class="relative h-60 w-full overflow-hidden md:h-72 lg:h-80">
                             <Image
                                 src={poem.data.image}
                                 alt={poem.data.title}
@@ -32,33 +34,19 @@ const poems = (await getCollection("poetry")).sort(
                                 class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
                             />
                         </div>
-                        <div class="mt-4 flex justify-between gap-2">
-                            <div>
-                                <div class="text-heading-md flex font-semibold">
-                                    <h2>{poem.data.title}</h2>
-                                    <span class="group-hover:text-text ml-2 text-transparent">
-                                        &rarr;
-                                    </span>
-                                </div>
-                                {/* <p class="text-secondary mt-1">
-                                    {poem.data.excerpt}
-                                </p> */}
-                            </div>
-                            <div>
-                                <div class="flex min-w-28 flex-col items-end gap-1">
-                                    <span class="text-secondary text-caption-md">
-                                        <FormattedDate
-                                            date={new Date(poem.data.date)}
-                                        />
-                                    </span>
-                                    {/* <div class="flex gap-2">
-                                        {poem.data.tags.map((tag) => (
-                                            <span class="text-secondary bg-theme-accent rounded px-2 py-1 text-sm">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div> */}
-                                </div>
+                        <div class="mt-4 flex items-baseline justify-between gap-2">
+                            <h2 class="text-heading-md font-semibold">
+                                {poem.data.title}
+                                <span class="group-hover:text-text ml-2 text-transparent">
+                                    &rarr;
+                                </span>
+                            </h2>
+                            <div class="min-w-24">
+                                <span class="text-secondary text-caption-md">
+                                    <FormattedDate
+                                        date={new Date(poem.data.date)}
+                                    />
+                                </span>
                             </div>
                         </div>
                     </a>
