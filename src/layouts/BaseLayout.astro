@@ -18,15 +18,19 @@ const { title, description, class: className = "" } = Astro.props;
         <BaseHead title={title} description={description} />
     </head>
     <body class="max-xl:relative max-xl:max-w-full max-xl:overflow-x-hidden">
-        <main>
+        <!-- Top border bar - needs high z-index so content doesn't scroll over it -->
+        <div class="bg-theme-accent-dark pointer-events-none fixed top-0 left-0 right-0 z-[60] h-[10px]"></div>
+        <!-- Bottom border bar - only on desktop, needs high z-index -->
+        <div class="bg-theme-accent-dark pointer-events-none fixed bottom-0 left-0 right-0 z-[60] hidden h-[10px] xl:block"></div>
+        <!-- Inner content panel: rounded corners on right side, inset from edges -->
+        <!-- The html background (accent color) shows through as the "frame" -->
+        <!-- Bottom inset only on desktop (xl) where we want the bottom border -->
+        <div class="frame-rounded pointer-events-none fixed top-[10px] bottom-0 left-0 right-0 z-0 bg-theme-background xl:bottom-[10px]"></div>
+        <main class="relative z-10">
             <div class={`min-h-screen ${className}`}>
                 <Navigation />
                 <div
-                    class="bg-theme-accent-dark pointer-events-none fixed top-0 right-0 left-0 z-[60] h-2"
-                >
-                </div>
-                <div
-                    class="mx-auto grid max-w-screen-2xl grid-cols-12 px-4 pt-20 pb-12 md:px-8 lg:px-12 xl:pt-12 xl:pr-8 xl:pl-24"
+                    class="mx-auto grid max-w-screen-2xl grid-cols-12 px-4 pt-20 pb-12 md:px-8 lg:px-12 xl:pt-12 xl:pr-8 xl:pl-28"
                 >
                     <slot />
                 </div>

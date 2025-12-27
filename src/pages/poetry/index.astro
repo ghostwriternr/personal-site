@@ -14,10 +14,11 @@ const poems = (await getCollection("poetry")).sort(
     title={`Poetry | ${site.title}`}
     description="A collection of poetry"
 >
-    <div
-        class="col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3"
+    <main
+        class="col-span-12 pt-4 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3"
     >
-        <h1 class="text-display-sm text-primary mb-8">A silhouette's squire</h1>
+        <div class="mx-auto w-full max-w-4xl">
+            <h1 class="text-display-sm text-primary mb-8">A silhouette's squire</h1>
         <div class="mt-8 grid gap-6 sm:grid-cols-2 md:gap-8">
             {
                 poems.map((poem, idx) => (
@@ -53,5 +54,6 @@ const poems = (await getCollection("poetry")).sort(
                 ))
             }
         </div>
-    </div>
+        </div>
+    </main>
 </BaseLayout>

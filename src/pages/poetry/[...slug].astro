@@ -4,10 +4,16 @@ import PoetryPost from "../../layouts/PoetryPost.astro";
 import NotFound from "../404.astro";
 
 const { slug } = Astro.params;
-const poems = await getCollection("poetry");
-const post = poems.find((p) => p.id === slug);
+const poems = (await getCollection("poetry")).sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+const postIndex = poems.findIndex((p) => p.id === slug);
+const post = poems[postIndex];
 
 let Content: Awaited<ReturnType<typeof render>>["Content"] | null = null;
+let prevPost = postIndex < poems.length - 1 ? poems[postIndex + 1] : null;
+let nextPost = postIndex > 0 ? poems[postIndex - 1] : null;
+
 if (post) {
     Content = (await render(post)).Content;
 } else {
@@ -16,7 +22,7 @@ if (post) {
 ---
 
 {post && Content ? (
-    <PoetryPost {...post.data}>
+    <PoetryPost {...post.data} prevPost={prevPost} nextPost={nextPost}>
         <Content />
     </PoetryPost>
 ) : (

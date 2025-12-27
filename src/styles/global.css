@@ -2,6 +2,56 @@
 @plugin "@tailwindcss/typography";
 @import "./typography.css";
 
+/* Prevent layout shift from scrollbar appearing/disappearing */
+/* overflow-y: scroll ensures scrollbar is always present */
+/* scrollbar-gutter: stable only on xl+ to reserve space for the right border effect */
+html {
+    overflow-y: scroll;
+}
+
+@media (min-width: 1280px) {
+    html {
+        scrollbar-gutter: stable;
+    }
+}
+
+/* Custom themed scrollbar */
+/* Transparent track by default, colored track only on xl+ (desktop with sidebar) */
+/* Modern browsers (Firefox, Chrome 121+) */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-tertiary) transparent;
+}
+
+@media (min-width: 1280px) {
+    * {
+        scrollbar-color: var(--color-tertiary) var(--color-theme-accent-dark);
+    }
+}
+
+/* WebKit fallback (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@media (min-width: 1280px) {
+    ::-webkit-scrollbar-track {
+        background: var(--color-theme-accent-dark);
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-tertiary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-subtext);
+}
+
 @font-face {
     font-family: "Lufga";
     src: url("/fonts/Lufga/regular.woff2") format("woff2");
@@ -117,12 +167,19 @@ html[data-theme="dark"] .timeline-item:hover .cloudflare-text {
     fill: #ffffff;
 }
 
-html,
-body {
+html {
     font-family: var(--font-lufga);
     color: var(--color-text);
+    /* Default background - same as content */
     background-color: var(--color-background);
     transition: all 0.15s linear;
+}
+
+/* On xl+ screens, html background becomes the frame color */
+@media (min-width: 1280px) {
+    html {
+        background-color: var(--color-theme-accent-dark);
+    }
 }
 
 /* Text selection styling */
@@ -168,6 +225,15 @@ html[data-theme="dark"] .icon:hover {
 }
 
 @layer utilities {
+    /* Rounded corners only on xl+ screens with fine pointer (mouse/trackpad) */
+    /* Touch devices don't show scrollbar, so right border isn't visible */
+    @media (pointer: fine) and (min-width: 1280px) {
+        .frame-rounded {
+            border-top-right-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+        }
+    }
+
     /* Container width when sidebar is visible (lg and above) */
     .sidebarless-container {
         width: calc(100% - theme("width.20"));
@@ -271,6 +337,7 @@ html[data-theme="dark"] .icon:hover {
     --tw-prose-pre-bg: var(--color-theme-accent);
     --tw-prose-th-borders: var(--color-tertiary);
     --tw-prose-td-borders: var(--color-tertiary);
+    max-width: none;
 }
 .prose a,
 .article-prose a {

@@ -4,18 +4,19 @@ import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import type { CollectionEntry } from "astro:content";
 
-type Props = CollectionEntry<"poetry">["data"];
+type Props = CollectionEntry<"poetry">["data"] & {
+    prevPost?: CollectionEntry<"poetry"> | null;
+    nextPost?: CollectionEntry<"poetry"> | null;
+};
 
-const { title, date, image } = Astro.props as Props;
+const { title, date, image, prevPost, nextPost } = Astro.props as Props;
 ---
 
 <BaseLayout title={title} description={""}>
     <main
         class="col-span-12 pt-4 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3"
     >
-        <div
-            class="article-text poetry-content mx-auto w-full max-w-[720px] md:max-w-[calc(100%-2em)]"
-        >
+        <div class="article-text poetry-content mx-auto w-full max-w-4xl">
             <div class="content-header mb-8 py-4">
                 <h1
                     class="content-title animate-content-title text-display-sm text-primary m-0 mb-1"
@@ -45,6 +46,27 @@ const { title, date, image } = Astro.props as Props;
             >
                 <slot />
             </article>
+
+            {(prevPost || nextPost) && (
+                <nav class="post-nav mt-12 flex justify-between border-t border-[var(--color-tertiary)] pt-8">
+                    <div class="prev">
+                        {prevPost && (
+                            <a href={`/poetry/${prevPost.id}/`} class="text-subtle hover:text-secondary">
+                                <span class="text-caption-md block">Previous</span>
+                                <span class="text-body-md">{prevPost.data.title}</span>
+                            </a>
+                        )}
+                    </div>
+                    <div class="next text-right">
+                        {nextPost && (
+                            <a href={`/poetry/${nextPost.id}/`} class="text-subtle hover:text-secondary">
+                                <span class="text-caption-md block">Next</span>
+                                <span class="text-body-md">{nextPost.data.title}</span>
+                            </a>
+                        )}
+                    </div>
+                </nav>
+            )}
         </div>
     </main>
 </BaseLayout>

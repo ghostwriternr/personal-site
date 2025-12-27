@@ -4,10 +4,16 @@ import BlogPost from "../../layouts/BlogPost.astro";
 import NotFound from "../404.astro";
 
 const { slug } = Astro.params;
-const posts = await getCollection("blog");
-const post = posts.find((p) => p.id === slug);
+const posts = (await getCollection("blog")).sort(
+    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+const postIndex = posts.findIndex((p) => p.id === slug);
+const post = posts[postIndex];
 
 let Content: Awaited<ReturnType<typeof render>>["Content"] | null = null;
+let prevPost = postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
+let nextPost = postIndex > 0 ? posts[postIndex - 1] : null;
+
 if (post) {
     Content = (await render(post)).Content;
 } else {
@@ -16,7 +22,7 @@ if (post) {
 ---
 
 {post && Content ? (
-    <BlogPost {...post.data}>
+    <BlogPost {...post.data} prevPost={prevPost} nextPost={nextPost}>
         <Content />
     </BlogPost>
 ) : (
