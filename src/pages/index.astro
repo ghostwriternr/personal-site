@@ -13,12 +13,12 @@ const posts = (await getCollection("blog")).sort(
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
     <div class="col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3">
         <Intro />
-        <div class="divide-tertiary mt-8 divide-y-2">
+        <div class="mt-8">
             {
                 posts.map((post, idx) => (
                     <a
                         href={`/posts/${post.id}/`}
-                        class="group hover:bg-theme-accent animate-fade-in-up block py-4 hover:-mr-4 hover:-ml-4 hover:pr-4 hover:pl-4"
+                        class="group hover:bg-theme-accent animate-fade-in-up block py-4 hover:-mr-4 hover:-ml-4 hover:pr-4 hover:pl-4 border-y-2 border-tertiary -mt-[2px] first:mt-0 first:border-t-transparent last:border-b-transparent hover:border-tertiary"
                         style={`animation-delay: ${idx * 25}ms;`}
                     >
                         <div class="flex flex-col justify-between sm:flex-row sm:items-center">
