@@ -31,39 +31,47 @@
     font-display: swap;
 }
 @font-face {
-    font-family: "Argesta Display";
-    src: url("/fonts/Argesta/display.otf") format("opentype");
+    font-family: "Argesta Text";
+    src: url("/fonts/Argesta/text.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: "Argesta Display";
-    src: url("/fonts/Argesta/display_italic.otf") format("opentype");
+    font-family: "Argesta Text";
+    src: url("/fonts/Argesta/text_bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Argesta Text";
+    src: url("/fonts/Argesta/text_italic.otf") format("opentype");
     font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 
 @theme {
-    /* Light theme - Original colors in HSL format */
-    --color-primary: hsl(294, 52%, 20%);
-    --color-secondary: hsl(14, 71%, 60%);
-    --color-tertiary: hsl(45, 100%, 65%);
-    --color-text: hsl(0, 0%, 0%);
-    --color-subtext: hsl(264, 51%, 21%);
-    --color-subtle: hsl(264, 51%, 35%);
-    --color-muted: hsl(220, 9%, 46%);
-    --color-muted-foreground: hsl(218, 11%, 65%);
-    --color-background: hsl(45, 100%, 85%);
-    --color-theme-accent: hsl(45, 100%, 75%);
-    --color-theme-accent-dark: hsl(38, 100%, 75%);
+    /* Light theme - DARK PASTELS: warm canvas + contrasting accents */
+    /* Subtext/subtle in WARM family (like dark mode uses purple family) */
+    /* Low saturation, appropriate lightness - dusty, not tacky */
+    --color-primary: hsl(265, 45%, 22%);
+    --color-secondary: hsl(265, 40%, 36%);
+    --color-tertiary: hsl(35, 100%, 45%);
+    --color-text: hsl(264, 50%, 10%);
+    --color-subtext: hsl(35, 100%, 32%);
+    --color-subtle: hsl(35, 100%, 38%);
+    --color-muted: hsl(35, 100%, 48%);
+    --color-muted-foreground: hsl(35, 100%, 56%);
+    --color-background: hsl(35, 100%, 74%);
+    --color-theme-accent: hsl(35, 100%, 68%);
+    --color-theme-accent-dark: hsl(35, 100%, 60%);
 
     --font-lufga:
         "Lufga", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         sans-serif;
-    --font-argesta-display:
-        "Argesta Display", "Playfair Display", Georgia, serif;
+    --font-argesta-text: "Argesta Text", "Playfair Display", Georgia, serif;
 }
 
 html[data-theme="dark"] {
@@ -117,7 +125,9 @@ html[data-theme="dark"] .icon:hover {
 
 /* Content-specific font assignments */
 .article-text {
-    font-family: var(--font-argesta-display); /* Beautiful for all content */
+    font-family: var(
+        --font-argesta-text
+    ); /* Optimized for body text readability */
 }
 
 @layer utilities {

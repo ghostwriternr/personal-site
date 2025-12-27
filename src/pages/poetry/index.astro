@@ -17,7 +17,7 @@ const poems = (await getCollection("poetry")).sort(
     <div
         class="col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3"
     >
-        <h1 class="text-display-sm mb-8">A silhouette's squire</h1>
+        <h1 class="text-display-sm text-primary mb-8">A silhouette's squire</h1>
         <div class="mt-8 grid gap-6 sm:grid-cols-2 md:gap-8">
             {
                 poems.map((poem, idx) => (
@@ -41,8 +41,8 @@ const poems = (await getCollection("poetry")).sort(
                                     &rarr;
                                 </span>
                             </h2>
-                            <div class="min-w-24">
-                                <span class="text-secondary text-body-sm">
+                            <div class="min-w-24 text-right">
+                                <span class="text-secondary text-body-sm font-bold">
                                     <FormattedDate
                                         date={new Date(poem.data.date)}
                                     />
