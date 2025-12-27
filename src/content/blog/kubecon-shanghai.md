@@ -20,8 +20,12 @@ During the course of the summer, I found out about KubeCon and felt it would be 
 
 KubeCon + CloudNativeCon was by far the largest conference I've ever attended. Held at the Shanghai Expo Centre, it was spread over 3 days and [had over 200 talks](https://events19.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/schedule-english/). I was primarily interested in gRPC, Jaeger, Envoy and Kubernetes related talks and tried to organise my schedule in a way as to make it to as many as I could! Due to many of the talks being presented in Chinese, the organisers had arranged for live transaltions (by a real person, relayed through a handy device) at every talk, which was really helpful.
 
+<figure>
+
 ![Keynote](./assets/kubecon-shanghai/conference.jpg)
-_Image courtesy of CNCF_
+
+<figcaption>Image courtesy of CNCF</figcaption>
+</figure>
 
 The very first meetup I attended there was the first-time contributors workshop at the Kubernetes Contributor Summit, where we were introduced to the different components behind Kubernetes and how we can make our first contribution to the project. I've listed below some of my favourite talks from the conference:
 

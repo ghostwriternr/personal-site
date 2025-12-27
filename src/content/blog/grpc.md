@@ -58,9 +58,14 @@ By default, gRPC uses protocol buffers as the [Interface Definition Language (ID
 [Protocol Buffers](https://developers.google.com/protocol-buffers/), or Protobufs, are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler.
 
 Protobufs provide type-safety, prevent schema violations, provide simple accessors, backward compatibility and extremely fast serialization/deserialization capabilities.
+
+<figure>
+
 ![Serialization](./assets/grpc/serialization.png)
 ![Deserialization](./assets/grpc/deserialization.png)
-\*Stats from [JSON vs Protocol Buffers vs FlatBuffers by Karthik Khare](https://codeburst.io/json-vs-protocol-buffers-vs-flatbuffers-a4247f8bda6f)
+
+<figcaption>Stats from <a href="https://codeburst.io/json-vs-protocol-buffers-vs-flatbuffers-a4247f8bda6f">JSON vs Protocol Buffers vs FlatBuffers by Karthik Khare</a></figcaption>
+</figure>
 
 For protobufs, you define how you want your data to be structured once. Then, protobuf's compiler (`protoc`) can compile them to source code in a variety of languages to easily write and read your structured data.
 

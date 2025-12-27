@@ -242,6 +242,26 @@ html[data-theme="dark"] .icon:hover {
     margin-top: 2em;
     margin-bottom: 2em;
 }
+/* Style figure elements with captions */
+.prose figure,
+.article-prose figure {
+    margin: 2em 0;
+}
+.prose figure p,
+.article-prose figure p {
+    margin: 0;
+}
+.prose figure img,
+.article-prose figure img {
+    margin: 0;
+}
+.prose figcaption,
+.article-prose figcaption {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+    color: var(--color-subtle);
+    text-align: center;
+}
 .prose hr,
 .article-prose hr {
     margin-top: 2em;

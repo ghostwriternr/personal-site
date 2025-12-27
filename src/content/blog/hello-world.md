@@ -8,8 +8,12 @@ So, 99% of all programmers' first ever program is "**Hello, world!**". I conside
 
 Say hello to [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan).
 
-![Brian Kernighan](./assets/hello-world/kernighan.jpg "Brian Kernighan")  
-_via [An Interview with Brian Kernighan](https://www.cs.cmu.edu/~mihaib/kernighan-interview/)_
+<figure>
+
+![Brian Kernighan](./assets/hello-world/kernighan.jpg "Brian Kernighan")
+
+<figcaption>via <a href="https://www.cs.cmu.edu/~mihaib/kernighan-interview/">An Interview with Brian Kernighan</a></figcaption>
+</figure>
 
 It has been claimed that Brian Kernighan first wrote a "hello, world" program as part of the I/O section in the documentation for [BCPL programming language](https://en.wikipedia.org/wiki/BCPL) developed by Martin Richards. BCPL was then used at Bell Labs where Ken Thompson and Dennis Ritchie were developing [B](<https://en.wikipedia.org/wiki/B_(programming_language)>), another programming language based mainly on BCPL. Kernighan co-authored the tutorial for B, where the first publicly known-instance of the usage of the words "hello" and "world" together in computer literature occur. He used it as an example to illustrate external variables:
 
