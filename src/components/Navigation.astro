@@ -78,13 +78,12 @@ function isActive(href: string) {
         <div class="flex items-center gap-4 xl:flex-col xl:gap-6">
             <ThemeToggle />
 
-            {/* Book container - persists across View Transitions navigations */}
+            {/* Book container - fixed size to prevent layout shift while JS selects the book */}
             {
                 books.length > 0 && (
                     <div
                         id="now-reading-container"
                         class="group relative h-9 w-6 xl:h-12 xl:w-8"
-                        transition:persist="now-reading"
                     >
                         {books.map((book, i) => (
                             <div
@@ -122,27 +121,26 @@ function isActive(href: string) {
 </div>
 
 <script>
-    // Select a random book on initial page load only
-    // With transition:persist, the container keeps its state across navigations
-    function initBookSelection() {
-        const container = document.getElementById("now-reading-container");
-        if (!container) return;
-
-        // Skip if already initialized (a book is visible)
-        const visibleBook = container.querySelector(".book-option:not(.hidden)");
-        if (visibleBook) return;
-
+    // Select a random book per tab, persist across navigation within the same tab
+    const container = document.getElementById("now-reading-container");
+    if (container) {
         const bookOptions = container.querySelectorAll(".book-option");
-        if (bookOptions.length === 0) return;
 
-        // Pick a random book
-        const bookIndex = Math.floor(Math.random() * bookOptions.length);
-        bookOptions[bookIndex]?.classList.remove("hidden");
+        if (bookOptions.length > 0) {
+            const SESSION_KEY = "now-reading-index";
+            let bookIndex = sessionStorage.getItem(SESSION_KEY);
+
+            if (
+                bookIndex === null ||
+                parseInt(bookIndex) >= bookOptions.length
+            ) {
+                bookIndex = Math.floor(
+                    Math.random() * bookOptions.length
+                ).toString();
+                sessionStorage.setItem(SESSION_KEY, bookIndex);
+            }
+
+            bookOptions[parseInt(bookIndex)]?.classList.remove("hidden");
+        }
     }
-
-    // Run on initial load
-    initBookSelection();
-
-    // Also run after View Transitions swap (in case persist failed)
-    document.addEventListener("astro:after-swap", initBookSelection);
 </script>

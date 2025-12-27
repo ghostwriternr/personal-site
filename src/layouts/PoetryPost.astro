@@ -49,18 +49,18 @@ const { title, date, image, prevPost, nextPost } = Astro.props as Props;
 
             {(prevPost || nextPost) && (
                 <nav class="post-nav mt-12 flex justify-between gap-6 border-t border-[var(--color-tertiary)] pt-8">
-                    {prevPost ? (
+                    {prevPost && (
                         <a href={`/poetry/${prevPost.id}/`} class="prev block text-subtle hover:text-secondary">
                             <span class="text-caption-md block">Previous</span>
                             <span class="text-body-md">{prevPost.data.title}</span>
                         </a>
-                    ) : <div />}
-                    {nextPost ? (
+                    )}
+                    {nextPost && (
                         <a href={`/poetry/${nextPost.id}/`} class="next block text-right text-subtle hover:text-secondary">
                             <span class="text-caption-md block">Next</span>
                             <span class="text-body-md">{nextPost.data.title}</span>
                         </a>
-                    ) : <div />}
+                    )}
                 </nav>
             )}
         </div>
