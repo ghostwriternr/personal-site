@@ -26,8 +26,12 @@ import XIcon from "../icons/x.astro";
                 <div class="telugu ml-2">స్వాగతం</div>
             </h2>
         </div>
+        <!-- Mobile headshot -->
+        <div class="my-6 flex justify-center px-16 md:hidden">
+            <HeadShot />
+        </div>
         <p
-            class="text-body-xl mt-4 pr-4 pl-4 text-center md:pr-0 md:pl-0 md:text-left"
+            class="text-body-xl pr-4 pl-4 text-center md:mt-4 md:pr-0 md:pl-0 md:text-left"
         >
             Building agents at Cloudflare. I enjoy writing, curating music and
             making origami. Open Source maintainer &amp; supporter. Dreaming of
@@ -89,7 +93,8 @@ import XIcon from "../icons/x.astro";
             </a>
         </div>
     </div>
-    <div class="hidden md:col-span-2 md:col-start-7 md:block">
+    <!-- Desktop headshot -->
+    <div class="hidden md:col-span-2 md:col-start-7 md:flex">
         <HeadShot />
     </div>
 </div>
