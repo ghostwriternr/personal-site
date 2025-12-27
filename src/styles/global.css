@@ -254,12 +254,28 @@ html[data-theme="dark"] .icon:hover {
     }
 }
 
-/* Tailwind Typography */
+/* Tailwind Typography - Override default colors with theme variables */
 .prose {
     color: var(--color-text);
+    --tw-prose-body: var(--color-text);
+    --tw-prose-headings: var(--color-primary);
+    --tw-prose-links: var(--color-text);
+    --tw-prose-bold: var(--color-text);
+    --tw-prose-counters: var(--color-text);
+    --tw-prose-bullets: var(--color-text);
+    --tw-prose-hr: var(--color-tertiary);
+    --tw-prose-quotes: var(--color-text);
+    --tw-prose-quote-borders: var(--color-tertiary);
+    --tw-prose-captions: var(--color-subtle);
+    --tw-prose-code: var(--color-text);
+    --tw-prose-pre-code: var(--color-text);
+    --tw-prose-pre-bg: var(--color-theme-accent);
+    --tw-prose-th-borders: var(--color-tertiary);
+    --tw-prose-td-borders: var(--color-tertiary);
 }
 .prose a,
 .article-prose a {
+    color: var(--color-text);
     text-decoration: underline;
     text-decoration-color: var(--color-subtext);
     text-underline-offset: 4px;
@@ -268,6 +284,14 @@ html[data-theme="dark"] .icon:hover {
 .prose a:hover,
 .article-prose a:hover {
     color: var(--color-secondary);
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+    color: var(--color-primary);
 }
 .blog-post .prose h1,
 .blog-post .prose h2,
@@ -283,6 +307,9 @@ html[data-theme="dark"] .icon:hover {
     margin-bottom: 0.2em;
 }
 .prose ul > li::marker {
+    color: var(--color-text);
+}
+.prose strong {
     color: var(--color-text);
 }
 .prose img,
