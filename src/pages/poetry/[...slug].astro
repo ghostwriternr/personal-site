@@ -1,21 +1,24 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
+import { getCollection, render } from "astro:content";
 import PoetryPost from "../../layouts/PoetryPost.astro";
+import NotFound from "../404.astro";
 
-export async function getStaticPaths() {
-    const poems = await getCollection("poetry");
-    return poems.map((poem) => ({
-        params: { slug: poem.id },
-        props: poem,
-    }));
+const { slug } = Astro.params;
+const poems = await getCollection("poetry");
+const post = poems.find((p) => p.id === slug);
+
+let Content: Awaited<ReturnType<typeof render>>["Content"] | null = null;
+if (post) {
+    Content = (await render(post)).Content;
+} else {
+    Astro.response.status = 404;
 }
-
-type Props = CollectionEntry<"poetry">;
-
-const post = Astro.props;
-const { Content } = await render(post);
 ---
 
-<PoetryPost {...post.data}>
-    <Content />
-</PoetryPost>
+{post && Content ? (
+    <PoetryPost {...post.data}>
+        <Content />
+    </PoetryPost>
+) : (
+    <NotFound />
+)}
