@@ -2,6 +2,9 @@
     "name": "personal-site",
     "type": "module",
     "version": "0.0.1",
+    "overrides": {
+        "vite": "^6.4.1"
+    },
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",

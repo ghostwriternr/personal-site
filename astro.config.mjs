@@ -17,7 +17,12 @@ export default defineConfig({
     },
     integrations: [
         expressiveCode({
-            themes: ["rose-pine-dawn", "dracula-soft"],
+            themes: ["everforest-light", "rose-pine-moon"],
+            themeCssSelector: (theme) => {
+                // Map theme to light/dark based on theme type
+                const isDark = theme.type === "dark";
+                return `[data-theme='${isDark ? "dark" : "light"}']`;
+            },
             defaultProps: {
                 // Enable word wrap for better readability
                 wrap: true,
