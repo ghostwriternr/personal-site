@@ -97,6 +97,22 @@ a {
     cursor: default;
 }
 
+/* Social icons - background change on hover like theme toggle */
+.icon {
+    color: var(--color-text);
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+html[data-theme="dark"] .icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Content-specific font assignments */
 .article-text {
     font-family: var(--font-argesta-display); /* Beautiful for all content */
@@ -191,6 +207,17 @@ a {
 /* Tailwind Typography */
 .prose {
     color: var(--color-text);
+}
+.prose a,
+.article-prose a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-subtext);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+}
+.prose a:hover,
+.article-prose a:hover {
+    color: var(--color-secondary);
 }
 .blog-post .prose h1,
 .blog-post .prose h2,
