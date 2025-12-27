@@ -39,7 +39,7 @@ function isActive(href: string) {
             <Image
                 src={MeImage}
                 alt="Avatar"
-                class="w-10 cursor-pointer xl:w-15"
+                class="w-10 xl:w-15"
                 loading="eager"
             />
         </a>
@@ -53,7 +53,7 @@ function isActive(href: string) {
             {
                 links.map((link) => {
                     const baseClasses =
-                        "sidebar-link flex items-center justify-center transition-colors duration-100 text-[var(--color-text)]";
+                        "sidebar-link flex items-center justify-center transition-colors duration-100 text-[var(--color-text)] hover:text-[var(--color-secondary)] font-bold";
                     const responsiveClasses =
                         "text-base xl:h-20 xl:-rotate-90 xl:transform xl:text-heading-sm";
                     const activeClasses = isActive(link.href)

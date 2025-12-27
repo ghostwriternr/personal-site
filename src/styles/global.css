@@ -18,6 +18,13 @@
 }
 @font-face {
     font-family: "Lufga";
+    src: url("/fonts/Lufga/bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lufga";
     src: url("/fonts/Lufga/italic.woff2") format("woff2");
     font-weight: 400;
     font-style: italic;
@@ -72,9 +79,9 @@ html[data-theme="dark"] {
     --color-theme-accent-dark: hsl(264, 52%, 20%);
 }
 
-/* Make timeline logos use muted color in dark mode */
-html[data-theme="dark"] .timeline-item svg path {
-    fill: var(--color-muted) !important;
+/* Make timeline logos use subtext color in both themes */
+.timeline-item svg path {
+    fill: var(--color-subtext) !important;
 }
 
 html,
@@ -83,6 +90,11 @@ body {
     color: var(--color-text);
     background-color: var(--color-background);
     transition: all 0.15s linear;
+}
+
+/* Use default cursor instead of pointer for links */
+a {
+    cursor: default;
 }
 
 /* Content-specific font assignments */

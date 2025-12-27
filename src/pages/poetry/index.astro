@@ -23,7 +23,7 @@ const poems = (await getCollection("poetry")).sort(
                 poems.map((poem, idx) => (
                     <a
                         href={`/poetry/${poem.id}/`}
-                        class="group animate-fade-in-up cursor-pointer"
+                        class="group animate-fade-in-up"
                         style={`animation-delay: ${idx * 25}ms;`}
                     >
                         <div class="relative h-60 w-full overflow-hidden md:h-72 lg:h-80">
