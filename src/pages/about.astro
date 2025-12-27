@@ -151,38 +151,53 @@ const logoComponents = {
 </BaseLayout>
 
 <script>
-    const copyButton = document.getElementById("copy-experience");
-    const copyText = document.getElementById("copy-experience-text");
+    function initCopyButton() {
+        const copyButton = document.getElementById("copy-experience");
+        const copyText = document.getElementById("copy-experience-text");
 
-    copyButton?.addEventListener("click", async () => {
-        const timelineItems = document.querySelectorAll(".timeline-item");
+        if (!copyButton) return;
 
-        const experience = Array.from(timelineItems)
-            .map((item) => {
-                const role = item.getAttribute("data-role");
-                const company = item.getAttribute("data-company");
-                const period = item.getAttribute("data-period");
-                const description = item
-                    .querySelector(".timeline-description")
-                    ?.textContent?.trim()
-                    .replace(/\s+/g, " ");
+        // Remove existing listener if any (prevent duplicates)
+        const newButton = copyButton.cloneNode(true);
+        copyButton.parentNode?.replaceChild(newButton, copyButton);
 
-                return `### ${role} at ${company}\n*${period}*\n\n${description}`;
-            })
-            .join("\n\n---\n\n");
+        newButton.addEventListener("click", async () => {
+            const timelineItems = document.querySelectorAll(".timeline-item");
 
-        const fullText = `# Naresh Ramesh - Work Experience\n\n${experience}`;
+            const experience = Array.from(timelineItems)
+                .map((item) => {
+                    const role = item.getAttribute("data-role");
+                    const company = item.getAttribute("data-company");
+                    const period = item.getAttribute("data-period");
+                    const description = item
+                        .querySelector(".timeline-description")
+                        ?.textContent?.trim()
+                        .replace(/\s+/g, " ");
 
-        try {
-            await navigator.clipboard.writeText(fullText);
-            if (copyText) {
-                copyText.textContent = "Copied!";
-                setTimeout(() => {
-                    copyText.textContent = "Copy";
-                }, 2000);
+                    return `### ${role} at ${company}\n*${period}*\n\n${description}`;
+                })
+                .join("\n\n---\n\n");
+
+            const fullText = `# Naresh Ramesh - Work Experience\n\n${experience}`;
+
+            try {
+                await navigator.clipboard.writeText(fullText);
+                const textEl = document.getElementById("copy-experience-text");
+                if (textEl) {
+                    textEl.textContent = "Copied!";
+                    setTimeout(() => {
+                        textEl.textContent = "Copy";
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error("Failed to copy:", err);
             }
-        } catch (err) {
-            console.error("Failed to copy:", err);
-        }
-    });
+        });
+    }
+
+    // Run on initial load
+    initCopyButton();
+
+    // Re-run after View Transitions navigation
+    document.addEventListener("astro:after-swap", initCopyButton);
 </script>
