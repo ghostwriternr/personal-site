@@ -32,7 +32,7 @@ This is a personal blog/portfolio built with Astro, deployed on Cloudflare Pages
 
 ### Technology Stack
 
-- **Framework**: Astro 5.x with SSG
+- **Framework**: Astro 5.x with SSR (`output: "server"`)
 - **Styling**: Tailwind CSS 4.x with typography plugin
 - **Content**: MDX support for enhanced Markdown
 - **Deployment**: Cloudflare Pages with Workers adapter
@@ -41,6 +41,28 @@ This is a personal blog/portfolio built with Astro, deployed on Cloudflare Pages
 ### Content Management
 
 Content is managed through Astro's Content Collections API. Blog posts require structured frontmatter while poetry includes rich metadata like categories, tags, and associated images. All content assets are co-located in respective subdirectories.
+
+### Single Source of Truth (`src/content/site.ts`)
+
+Site-wide content is centralized in `src/content/site.ts` to avoid duplication:
+
+- **`site`**: Title, description, URL
+- **`bio`**: Short bio (homepage), extended bio (about page), work summary (LLMs)
+- **`socialLinks`**: All social media links with icons
+- **`workExperience`**: Job history with roles, companies, periods, descriptions
+- **`notFound`**: 404 page content (title, subtitle, poem)
+
+This data is used by both HTML pages and LLM-friendly markdown endpoints. To update bio, work history, or social links, edit this single file.
+
+### Content Formatters (`src/lib/content-formatters.ts`)
+
+Helper functions that convert site data to markdown for LLM responses:
+
+- `generateLlmsTxt()` - Site overview for `/llms.txt`
+- `generateAboutMarkdown()` - About page content
+- `generatePostsIndexMarkdown()` - Blog index
+- `generatePoetryIndexMarkdown()` - Poetry index
+- `generate404Markdown()` - 404 page
 
 ### Design System
 
@@ -58,6 +80,39 @@ The site uses Cloudflare's edge deployment with:
 - View transitions for smooth navigation
 - Prefetch configuration for performance
 - RSS feed generation at /rss.xml
+
+### LLM-Friendly Content Negotiation
+
+The site supports content negotiation via the `Accept` header for LLM access (`src/middleware.ts`):
+
+**How it works:**
+
+- Requests with `Accept: text/markdown` or `Accept: text/plain` (preferred over `text/html`) receive markdown
+- Browser requests (preferring `text/html`) receive normal HTML pages
+
+**Supported routes:**
+
+| Route             | Markdown Response                  |
+| ----------------- | ---------------------------------- |
+| `/`               | Site overview (llms.txt)           |
+| `/about`          | Bio + work experience              |
+| `/posts/`         | Blog post index                    |
+| `/posts/[slug]/`  | Raw post markdown with frontmatter |
+| `/poetry/`        | Poetry index                       |
+| `/poetry/[slug]/` | Raw poem markdown with frontmatter |
+| `/llms.txt`       | Direct llms.txt endpoint           |
+| Any invalid route | 404 with poetic message            |
+
+**Testing:**
+
+```bash
+# Get markdown from any route
+curl -H "Accept: text/markdown" https://ghostwriternr.me/
+curl -H "Accept: text/markdown" https://ghostwriternr.me/posts/grpc/
+
+# Direct llms.txt endpoint
+curl https://ghostwriternr.me/llms.txt
+```
 
 ### Image Optimization
 
