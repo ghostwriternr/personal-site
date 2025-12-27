@@ -41,23 +41,19 @@ const { title, description, pubDate, updatedDate, prevPost, nextPost } = Astro.p
             </article>
 
             {(prevPost || nextPost) && (
-                <nav class="post-nav mt-12 flex justify-between border-t border-[var(--color-tertiary)] pt-8">
-                    <div class="prev">
-                        {prevPost && (
-                            <a href={`/posts/${prevPost.id}/`} class="text-subtle hover:text-secondary">
-                                <span class="text-caption-md block">Previous</span>
-                                <span class="text-body-md">{prevPost.data.title}</span>
-                            </a>
-                        )}
-                    </div>
-                    <div class="next text-right">
-                        {nextPost && (
-                            <a href={`/posts/${nextPost.id}/`} class="text-subtle hover:text-secondary">
-                                <span class="text-caption-md block">Next</span>
-                                <span class="text-body-md">{nextPost.data.title}</span>
-                            </a>
-                        )}
-                    </div>
+                <nav class="post-nav mt-12 flex justify-between gap-6 border-t border-[var(--color-tertiary)] pt-8">
+                    {prevPost && (
+                        <a href={`/posts/${prevPost.id}/`} class="prev block text-subtle hover:text-secondary">
+                            <span class="text-caption-md block">Previous</span>
+                            <span class="text-body-md">{prevPost.data.title}</span>
+                        </a>
+                    )}
+                    {nextPost && (
+                        <a href={`/posts/${nextPost.id}/`} class="next block text-right text-subtle hover:text-secondary">
+                            <span class="text-caption-md block">Next</span>
+                            <span class="text-body-md">{nextPost.data.title}</span>
+                        </a>
+                    )}
                 </nav>
             )}
         </div>
