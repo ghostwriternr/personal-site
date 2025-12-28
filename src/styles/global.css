@@ -136,8 +136,8 @@ html[data-theme="dark"] {
     --color-muted: hsl(218, 11%, 65%);
     --color-muted-foreground: hsl(220, 9%, 46%);
     --color-background: hsl(264, 51%, 10%);
-    --color-theme-accent: hsl(264, 51%, 21%);
-    --color-theme-accent-dark: hsl(264, 52%, 20%);
+    --color-theme-accent: hsl(264, 51%, 22%);
+    --color-theme-accent-dark: hsl(264, 52%, 18%);
 }
 
 /* Make timeline logos use subtle color in both themes, show true colors on hover */
