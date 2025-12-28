@@ -9,8 +9,6 @@ tags:
     - Love
 ---
 
-![Pretty!](./assets/pretty.jpg)
-
 You make me feel pretty.
 
 Today, as I was walking through the waiting room at the cinema, I caught a glimpse of myself in the mirror. Nothing that I haven't seen before. Nothing apart from the droopiness in my eyes that usually reminds me of the flowers in my garden withering and falling. Or my arms of the thin branches growing on maple trees that the big boys break and play gilli danda on the streets. Or my skin of that kid in class who no one remembers, who isn't invited to birthday parties and is always picked last in team games just because the sides need to be even.
