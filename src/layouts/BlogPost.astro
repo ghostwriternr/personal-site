@@ -49,7 +49,7 @@ const { title, description, pubDate, updatedDate, prevPost, nextPost } = Astro.p
                         </a>
                     )}
                     {nextPost && (
-                        <a href={`/posts/${nextPost.id}/`} class="next block text-right text-subtle hover:text-secondary">
+                        <a href={`/posts/${nextPost.id}/`} class="next ml-auto block text-right text-subtle hover:text-secondary">
                             <span class="text-caption-md block">Next</span>
                             <span class="text-body-md">{nextPost.data.title}</span>
                         </a>
