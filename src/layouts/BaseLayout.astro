@@ -24,8 +24,8 @@ const { title, description, class: className = "" } = Astro.props;
         <div class="bg-theme-accent-dark pointer-events-none fixed bottom-0 left-0 right-0 z-[60] hidden h-[10px] xl:block"></div>
         <!-- Inner content panel: rounded corners on right side, inset from edges -->
         <!-- The html background (accent color) shows through as the "frame" -->
-        <!-- Bottom inset only on desktop (xl) where we want the bottom border -->
-        <div class="frame-rounded pointer-events-none fixed top-[10px] bottom-0 left-0 right-0 z-0 bg-theme-background xl:bottom-[10px]"></div>
+        <!-- Bottom and right inset only on desktop (xl) where we want the borders -->
+        <div class="frame-rounded pointer-events-none fixed top-[10px] bottom-0 left-0 right-0 z-0 bg-theme-background xl:right-[10px] xl:bottom-[10px]"></div>
         <main class="relative z-10">
             <div class={`min-h-screen ${className}`}>
                 <Navigation />
