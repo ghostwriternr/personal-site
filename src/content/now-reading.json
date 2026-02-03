@@ -5,17 +5,23 @@
     "cover": "https://assets.hardcover.app/external_data/43295845/f4a8749dd530cd3f34b4cb00d225aca590487218.jpeg",
     "url": "https://hardcover.app/books/deep-work"
   },
+  "remarkably-bright-creatures": {
+    "title": "Remarkably Bright Creatures",
+    "author": "Shelby Van Pelt",
+    "cover": "https://assets.hardcover.app/external_data/59670735/818b8dba4df472df4d9153083bdaefcdd670c84b.jpeg",
+    "url": "https://hardcover.app/books/remarkably-bright-creatures"
+  },
   "murder-at-the-mushaira": {
     "title": "Murder at the Mushaira",
     "author": "Raza Mir",
     "cover": "https://assets.hardcover.app/external_data/60823244/d0d2b0ddb6d6e3a749a1470cf658e47651051a33.jpeg",
     "url": "https://hardcover.app/books/murder-at-the-mushaira"
   },
-  "tomorrow-and-tomorrow-and-tomorrow": {
-    "title": "Tomorrow, and Tomorrow, and Tomorrow",
-    "author": "Gabrielle Zevin",
-    "cover": "https://assets.hardcover.app/edition/30535150/2efdfd508a803c89913fd6e987f69048a17c89c6.jpeg",
-    "url": "https://hardcover.app/books/tomorrow-and-tomorrow-and-tomorrow"
+  "the-midnight-library": {
+    "title": "The Midnight Library",
+    "author": "Matt Haig",
+    "cover": "https://assets.hardcover.app/external_data/30206313/f95c74793bcdd7925758f16a6f6f5f423a2ec81d.jpeg",
+    "url": "https://hardcover.app/books/the-midnight-library"
   },
   "india-after-gandhi-the-history-of-the-worlds-largest-democracy": {
     "title": "India After Gandhi: The History of the World's Largest Democracy",
