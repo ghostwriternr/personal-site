@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import SlideControls from "./SlideControls";
-import type { SlideComponent } from "./types";
+import type { SlideComponent, TalkTheme } from "./types";
 
 interface SlideDeckProps {
     slides: SlideComponent[];
+    theme: TalkTheme;
     exitHref?: string;
 }
 
@@ -14,7 +15,7 @@ function getInitialSlide(total: number): number {
     return num >= 1 && num <= total ? num - 1 : 0;
 }
 
-export default function SlideDeck({ slides, exitHref }: SlideDeckProps) {
+export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentSlide, setCurrentSlide] = useState(() =>
         getInitialSlide(slides.length)
@@ -99,7 +100,8 @@ export default function SlideDeck({ slides, exitHref }: SlideDeckProps) {
     return (
         <div
             ref={containerRef}
-            className="relative h-full w-full bg-[var(--color-background)]"
+            style={theme as React.CSSProperties}
+            className="relative h-full w-full bg-(--slide-bg) text-(--slide-fg)"
         >
             <div className="h-full w-full">
                 <CurrentSlide />

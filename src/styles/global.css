@@ -101,6 +101,20 @@ html {
     font-style: italic;
     font-display: swap;
 }
+@font-face {
+    font-family: "But Head";
+    src: url("/fonts/ButHead/But-Head-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: "But Head";
+    src: url("/fonts/ButHead/But-Head-Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: block;
+}
 
 @theme {
     /* Light theme - DARK PASTELS: warm canvas + contrasting accents */
@@ -123,6 +137,7 @@ html {
         "Segoe UI", Roboto, sans-serif;
     --font-argesta-text:
         "Argesta Text", "Noto Color Emoji", "Playfair Display", Georgia, serif;
+    --font-but-head: "But Head", "SF Mono", "Fira Code", monospace;
 }
 
 html[data-theme="dark"] {

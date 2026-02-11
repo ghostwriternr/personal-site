@@ -21,7 +21,7 @@ export default function SlideControls({
                 {exitHref && (
                     <a
                         href={exitHref}
-                        className="rounded px-3 py-1 text-[var(--color-subtext)]"
+                        className="rounded px-3 py-1 text-(--slide-fg-muted)"
                         title="Exit presentation (Esc)"
                     >
                         &#x2715;
@@ -31,19 +31,19 @@ export default function SlideControls({
                     type="button"
                     onClick={onPrev}
                     disabled={currentSlide === 0}
-                    className="rounded px-3 py-1 text-[var(--color-subtext)] disabled:opacity-20"
+                    className="rounded px-3 py-1 text-(--slide-fg-muted) disabled:opacity-20"
                 >
                     &#8592;
                 </button>
             </div>
-            <span className="text-xs text-[var(--color-subtext)] tabular-nums">
+            <span className="text-xs text-(--slide-fg-muted) tabular-nums">
                 {currentSlide + 1} / {totalSlides}
             </span>
             <div className="flex gap-2">
                 <button
                     type="button"
                     onClick={onToggleFullscreen}
-                    className="rounded px-3 py-1 text-[var(--color-subtext)]"
+                    className="rounded px-3 py-1 text-(--slide-fg-muted)"
                     title="Toggle fullscreen (F)"
                 >
                     &#x26F6;
@@ -52,7 +52,7 @@ export default function SlideControls({
                     type="button"
                     onClick={onNext}
                     disabled={currentSlide === totalSlides - 1}
-                    className="rounded px-3 py-1 text-[var(--color-subtext)] disabled:opacity-20"
+                    className="rounded px-3 py-1 text-(--slide-fg-muted) disabled:opacity-20"
                 >
                     &#8594;
                 </button>
