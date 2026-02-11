@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../content/site";
+import type { TalkMeta } from "../../components/slides/types";
+
+const talkModules = import.meta.glob<{ meta: TalkMeta }>(
+    "../../talks/*/index.tsx",
+    { eager: true },
+);
+
+const talks = Object.entries(talkModules)
+    .map(([path, mod]) => {
+        const slug = path.match(/talks\/([^/]+)\//)?.[1] || "";
+        return { slug, ...mod.meta };
+    })
+    .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+---
+
+<BaseLayout title={`Talks | ${site.title}`} description="Tech talks and presentations">
+    <main
+        class="col-span-12 pt-4 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3"
+    >
+        <div class="mx-auto w-full max-w-4xl">
+            <h1 class="text-display-sm text-primary mb-8">Talks</h1>
+            {
+                talks.map((talk, idx) => (
+                    <a
+                        href={`/talks/${talk.slug}/`}
+                        class="group hover:bg-theme-accent animate-fade-in-up border-tertiary hover:border-tertiary -mt-[2px] block border-y-2 py-4 first:mt-0 first:border-t-transparent last:border-b-transparent hover:-mx-4 hover:px-4"
+                        style={`animation-delay: ${idx * 25}ms;`}
+                    >
+                        <div class="flex flex-col justify-between sm:flex-row sm:items-center">
+                            <h2 class="text-heading-md flex">
+                                {talk.title}
+                                <span class="no-select group-hover:text-text ml-2 text-transparent">
+                                    &rarr;
+                                </span>
+                            </h2>
+                            <span class="no-select text-secondary text-body-sm mt-1 font-bold sm:mt-0 sm:shrink-0">
+                                {talk.event || talk.date}
+                            </span>
+                        </div>
+                        <p class="text-body-sm mt-1 text-[var(--color-subtext)]">
+                            {talk.description}
+                        </p>
+                    </a>
+                ))
+            }
+        </div>
+    </main>
+</BaseLayout>
