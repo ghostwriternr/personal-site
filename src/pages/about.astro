@@ -76,14 +76,23 @@ const logoComponents = {
 
         <section class="mx-auto max-w-4xl pt-6">
             <div class="mb-2 flex items-center justify-between">
-                <a
-                    href="https://raw.githubusercontent.com/ghostwriternr/resume/refs/heads/master/naresh_resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-secondary text-body-lg hover:text-[var(--color-muted)]"
-                >
-                    View detailed resume ↗
-                </a>
+                <div class="flex items-center gap-4">
+                    <a
+                        href="https://raw.githubusercontent.com/ghostwriternr/resume/refs/heads/master/naresh_resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-secondary text-body-lg hover:text-[var(--color-muted)]"
+                    >
+                        View detailed resume ↗
+                    </a>
+                    <span class="no-select text-[var(--color-tertiary)]">|</span>
+                    <a
+                        href="/talks"
+                        class="text-secondary text-body-lg hover:text-[var(--color-muted)]"
+                    >
+                        View my talks &rarr;
+                    </a>
+                </div>
                 <button
                     id="copy-experience"
                     class="no-select text-secondary text-body-sm flex items-center gap-1.5 transition-colors duration-150 hover:text-[var(--color-muted)]"

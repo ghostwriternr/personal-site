@@ -6,7 +6,14 @@ import {
     generateLlmsTxt,
     generatePoetryIndexMarkdown,
     generatePostsIndexMarkdown,
+    generateTalksIndexMarkdown,
 } from "./lib/content-formatters";
+import type { TalkMeta } from "./components/slides/types";
+
+const talkModules = import.meta.glob<{ meta: TalkMeta }>(
+    "./talks/*/index.tsx",
+    { eager: true }
+);
 
 /**
  * Check if the request prefers markdown/plain text over HTML
@@ -159,6 +166,38 @@ ${frontmatter}
 ---
 
 ${poem.body}`;
+            return textResponse(content);
+        } else {
+            return textResponse(generate404Markdown(), {
+                status: 404,
+                cache: false,
+            });
+        }
+    }
+
+    // Talks index - /talks/
+    if (pathname === "/talks" || pathname === "/talks/") {
+        const talks = Object.entries(talkModules)
+            .map(([path, mod]) => {
+                const slug = path.match(/talks\/([^/]+)\//)?.[1] || "";
+                return {
+                    slug,
+                    title: mod.meta.title,
+                    description: mod.meta.description,
+                };
+            })
+            .sort((a, b) => a.title.localeCompare(b.title));
+        return textResponse(generateTalksIndexMarkdown(baseUrl, talks));
+    }
+
+    // Talks - /talks/[slug]/
+    const talkMatch = pathname.match(/^\/talks\/([^/]+)\/?$/);
+    if (talkMatch) {
+        const slug = talkMatch[1];
+        const mod = talkModules[`./talks/${slug}/index.tsx`];
+        if (mod) {
+            const { meta } = mod;
+            const content = `# ${meta.title}\n\n${meta.event ? `*${meta.event} — ${meta.date}*` : `*${meta.date}*`}\n\n${meta.description}`;
             return textResponse(content);
         } else {
             return textResponse(generate404Markdown(), {
