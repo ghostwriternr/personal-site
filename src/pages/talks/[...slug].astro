@@ -34,25 +34,25 @@ const isPresenting = Astro.url.searchParams.has("present");
             title={`${meta.title} | ${site.title}`}
             description={meta.description}
         >
-            <main class="col-span-12 pt-4 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3">
-                <div class="mx-auto w-full max-w-4xl">
-                    <div class="mb-4 flex items-center justify-between">
-                        <div>
-                            <h1 class="text-heading-xl text-primary">
-                                {meta.title}
-                            </h1>
+            <main class="col-span-12 px-2 xl:-mt-6 xl:px-6">
+                <div class="w-full">
+                    <div class="mb-4">
+                        <h1 class="text-heading-xl text-primary">
+                            {meta.title}
+                        </h1>
+                        <div class="mt-1 flex items-center justify-between">
                             {meta.event && (
-                                <p class="text-body-sm mt-1 text-[var(--color-subtext)]">
+                                <p class="text-body-sm text-[var(--color-subtext)]">
                                     {meta.event} &middot; {meta.date}
                                 </p>
                             )}
+                            <a
+                                href={`/talks/${slug}/?present`}
+                                class="text-secondary text-body-sm hover:text-[var(--color-muted)]"
+                            >
+                                Present &rarr;
+                            </a>
                         </div>
-                        <a
-                            href={`/talks/${slug}/?present`}
-                            class="text-secondary text-body-sm hover:text-[var(--color-muted)]"
-                        >
-                            Present &rarr;
-                        </a>
                     </div>
                     <div class="aspect-video overflow-hidden rounded-lg border-2 border-[var(--color-tertiary)]">
                         <TalkLoader client:load slug={slug!} />
