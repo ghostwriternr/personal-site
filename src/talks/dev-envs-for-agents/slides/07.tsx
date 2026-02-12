@@ -32,7 +32,7 @@ function LayerDiagramSlide() {
             <div className="flex w-full max-w-3xl flex-col gap-3">
                 {layers.map((layer, i) => (
                     <div
-                        key={i}
+                        key={layer.name}
                         className="flex items-baseline gap-4 border-l-2 py-3 pl-5 transition-all duration-300"
                         style={{
                             borderColor:
@@ -46,10 +46,10 @@ function LayerDiagramSlide() {
                                     : "translateX(-12px)",
                         }}
                     >
-                        <span className="font-lufga shrink-0 text-xl font-light text-(--slide-fg)">
+                        <span className="font-lufga shrink-0 text-2xl font-light text-(--slide-fg)">
                             {layer.name}
                         </span>
-                        <span className="text-sm text-(--slide-fg-muted)">
+                        <span className="text-base text-(--slide-fg-muted)">
                             {layer.detail}
                         </span>
                     </div>
