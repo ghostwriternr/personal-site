@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import DotGrid from "./DotGrid";
 import SlideControls from "./SlideControls";
+import { StepContext } from "./useStep";
 import type { SlideComponent, TalkTheme } from "./types";
 
 export const CANVAS_WIDTH = 1280;
@@ -89,31 +90,46 @@ function SlideBackground() {
     );
 }
 
+function stepsFor(slide: SlideComponent): number {
+    return slide.steps ?? 1;
+}
+
 export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentSlide, setCurrentSlide] = useState(() =>
         getInitialSlide(slides.length)
     );
+    const [currentStep, setCurrentStep] = useState(0);
     const scale = useScale(containerRef);
 
     const goTo = useCallback(
-        (index: number) => {
+        (index: number, step = 0) => {
             if (index >= 0 && index < slides.length) {
                 setCurrentSlide(index);
+                setCurrentStep(step);
                 window.history.replaceState(null, "", `#${index + 1}`);
             }
         },
         [slides.length]
     );
 
-    const next = useCallback(
-        () => goTo(currentSlide + 1),
-        [currentSlide, goTo]
-    );
-    const prev = useCallback(
-        () => goTo(currentSlide - 1),
-        [currentSlide, goTo]
-    );
+    const next = useCallback(() => {
+        const totalSteps = stepsFor(slides[currentSlide]);
+        if (currentStep < totalSteps - 1) {
+            setCurrentStep(currentStep + 1);
+        } else {
+            goTo(currentSlide + 1, 0);
+        }
+    }, [currentSlide, currentStep, slides, goTo]);
+
+    const prev = useCallback(() => {
+        if (currentStep > 0) {
+            setCurrentStep(currentStep - 1);
+        } else if (currentSlide > 0) {
+            const prevSteps = stepsFor(slides[currentSlide - 1]);
+            goTo(currentSlide - 1, prevSteps - 1);
+        }
+    }, [currentSlide, currentStep, slides, goTo]);
 
     const toggleFullscreen = useCallback(() => {
         if (!document.fullscreenElement) {
@@ -164,6 +180,7 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
             const num = parseInt(window.location.hash.replace("#", ""), 10);
             if (num >= 1 && num <= slides.length) {
                 setCurrentSlide(num - 1);
+                setCurrentStep(0);
             }
         };
         window.addEventListener("hashchange", handleHashChange);
@@ -189,7 +206,9 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
                 className="relative text-(--slide-fg)"
             >
                 <SlideBackground />
-                <CurrentSlide />
+                <StepContext.Provider value={currentStep}>
+                    <CurrentSlide />
+                </StepContext.Provider>
             </div>
             <SlideControls
                 currentSlide={currentSlide}
