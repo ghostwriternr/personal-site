@@ -1,107 +1,118 @@
-import { useEffect, useState } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import Slide from "../../../components/slides/Slide";
+import { useStep } from "../../../components/slides/useStep";
 import TerminalMockup from "../../../components/slides/TerminalMockup";
 import BrowserMockup from "../../../components/slides/BrowserMockup";
-import type { TerminalLine } from "../../../components/slides/TerminalMockup";
+import { useSandboxDemo } from "../../../components/slides/useSandboxDemo";
 
-const terminalLines: TerminalLine[] = [
-    {
-        text: 'agent-run --fresh --task "build a tiny web app" --preview',
-        type: "command",
-        delay: 600,
-    },
-    { text: "", type: "output", delay: 400 },
-    { text: "workspace: empty    cache: none", type: "info", delay: 600 },
-    { text: "Creating workspace… ok", type: "output", delay: 800 },
-    {
-        text: "Provisioning isolated runtime… ok",
-        type: "output",
-        delay: 1000,
-    },
-    { text: "Writing files… ok (5 files)", type: "output", delay: 1200 },
-    {
-        text: "Starting dev server… ok (port 5173)",
-        type: "output",
-        delay: 800,
-    },
-    { text: "Exposing preview…", type: "info", delay: 600 },
-    { text: "", type: "output", delay: 400 },
-    {
-        text: "Preview ready: https://preview-7f3a.example.dev",
-        type: "success",
-        delay: 1000,
-    },
+const API_URL = "http://localhost:8787/demo";
+const PROMPT = "make the goose follow my cursor";
+
+const idleLines = [
+    { text: "press Enter to start demo", type: "info" as const },
 ];
 
-/** Total animation duration: initial 300ms + sum of all line delays */
-const TOTAL_DURATION_MS =
-    300 + terminalLines.reduce((sum, line) => sum + (line.delay ?? 400), 0);
-
-function ElapsedTimer() {
-    const [elapsed, setElapsed] = useState(0);
-    const [done, setDone] = useState(false);
+function DemoSlide() {
+    const step = useStep();
+    const showHooks = step >= 1;
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+    const { lines, previewUrl, status, elapsed, start } = useSandboxDemo(
+        API_URL,
+        PROMPT
+    );
 
     useEffect(() => {
-        const start = performance.now();
-        const tick = () => {
-            const now = performance.now() - start;
-            if (now >= TOTAL_DURATION_MS) {
-                setElapsed(TOTAL_DURATION_MS / 1000);
-                setDone(true);
-                return;
+        if (status === "done" && iframeRef.current) {
+            iframeRef.current.src += "";
+        }
+    }, [status]);
+
+    const handleKeyDown = useCallback(
+        (e: KeyboardEvent) => {
+            if (e.key === "Enter" && status === "idle") {
+                e.preventDefault();
+                start();
             }
-            setElapsed(now / 1000);
-            requestAnimationFrame(tick);
-        };
-        const raf = requestAnimationFrame(tick);
-        return () => cancelAnimationFrame(raf);
-    }, []);
-
-    return (
-        <span
-            className={`font-mono text-sm tabular-nums ${done ? "text-green-400" : "text-(--slide-fg-muted)"}`}
-        >
-            {elapsed.toFixed(1)}s
-        </span>
+        },
+        [status, start]
     );
-}
 
-export default function DemoSlide() {
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [handleKeyDown]);
+
+    const timerColor =
+        status === "done"
+            ? "text-green-400"
+            : status === "error"
+              ? "text-red-400"
+              : "text-(--slide-fg-muted)";
+
+    const paneHeight = showHooks ? "h-[320px]" : "h-[420px]";
+
     return (
         <Slide>
             <div className="absolute bottom-6 left-6 z-10">
-                <ElapsedTimer />
-            </div>
-            <div className="flex h-full w-full items-center gap-4 px-8">
-                <TerminalMockup
-                    title="~/project"
-                    lines={terminalLines}
-                    animate
-                    className="h-[420px] w-[65%]"
-                />
-                <BrowserMockup
-                    url="https://preview-7f3a.example.dev"
-                    className="h-[420px] w-[35%]"
+                <span
+                    className={`font-mono text-sm tabular-nums ${timerColor}`}
                 >
-                    <div className="flex h-full flex-col items-center justify-center gap-4 p-6">
-                        <span className="font-lufga text-lg text-(--slide-fg)">
-                            My App
-                        </span>
-                        <div className="flex w-full max-w-[200px] items-center gap-2">
-                            <div className="h-8 flex-1 rounded border border-(--slide-border) bg-(--slide-bg-active) px-2" />
-                            <div className="h-8 rounded bg-(--slide-accent) px-3 py-1">
-                                <span className="text-xs font-medium text-(--slide-fg)">
-                                    Add
+                    {status === "idle" ? "enter ↵" : `${elapsed.toFixed(1)}s`}
+                </span>
+            </div>
+            <div className="flex h-full w-full flex-col items-center justify-center gap-6 px-8">
+                <div
+                    className={`flex w-full items-center gap-4 transition-all duration-500 ${paneHeight}`}
+                >
+                    <TerminalMockup
+                        title="~/demo"
+                        lines={status === "idle" ? idleLines : lines}
+                        className="h-full w-1/2"
+                    />
+                    <BrowserMockup
+                        url={previewUrl ?? "about:blank"}
+                        className="h-full w-1/2"
+                    >
+                        {previewUrl ? (
+                            <iframe
+                                ref={iframeRef}
+                                src={previewUrl}
+                                className="h-full w-full border-0"
+                                title="Sandbox preview"
+                            />
+                        ) : (
+                            <div className="flex h-full items-center justify-center">
+                                <span className="text-sm text-(--slide-fg-muted)">
+                                    {status === "idle"
+                                        ? ""
+                                        : "Waiting for preview…"}
                                 </span>
                             </div>
-                        </div>
-                        <div className="flex w-full max-w-[200px] flex-col gap-1.5">
-                            <div className="h-2 w-3/4 rounded bg-(--slide-bg-active)" />
-                            <div className="h-2 w-1/2 rounded bg-(--slide-bg-active)" />
-                        </div>
+                        )}
+                    </BrowserMockup>
+                </div>
+                {showHooks && (
+                    <div className="flex max-w-3xl flex-col gap-3 text-center">
+                        <p className="font-lufga text-lg leading-relaxed text-(--slide-fg)">
+                            There's no localhost here.
+                        </p>
+                        <p className="font-lufga text-base leading-relaxed text-(--slide-fg-muted)">
+                            That preview URL had to find its way from the
+                            internet to a specific port in a specific
+                            environment.
+                        </p>
+                        <p className="font-lufga text-base leading-relaxed text-(--slide-fg-muted)">
+                            And if the user closes the tab and comes back
+                            tomorrow… the agent expects to pick up where it left
+                            off.
+                        </p>
                     </div>
-                </BrowserMockup>
+                )}
             </div>
         </Slide>
     );
 }
+
+DemoSlide.steps = 2;
+
+export default DemoSlide;
