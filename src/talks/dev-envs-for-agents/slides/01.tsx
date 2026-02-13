@@ -1,25 +1,32 @@
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback, useRef, useMemo } from "react";
 import Slide from "../../../components/slides/Slide";
 import { useStep } from "../../../components/slides/useStep";
 import TerminalMockup from "../../../components/slides/TerminalMockup";
 import BrowserMockup from "../../../components/slides/BrowserMockup";
-import { useSandboxDemo } from "../../../components/slides/useSandboxDemo";
+import { ArrowFatUp, KeyReturn } from "@phosphor-icons/react";
+import { useSandbox } from "../../../components/slides/useSandbox";
+import { useSlideActions } from "../../../components/slides/useSlideActions";
 
-const API_URL = "http://localhost:8787/demo";
+const WS_URL = "wss://goose-pond-editor.ghostwriternr.me/ws/session";
 const PROMPT = "make the goose follow my cursor";
 
 const idleLines = [
-    { text: "press Enter to start demo", type: "info" as const },
+    { text: "press Enter to start", type: "info" as const },
 ];
 
-function DemoSlide() {
+const fullLines = [
+    { text: "service at capacity — try again shortly", type: "error" as const },
+];
+
+function SandboxSlide() {
     const step = useStep();
     const showHooks = step >= 1;
     const iframeRef = useRef<HTMLIFrameElement>(null);
-    const { lines, previewUrl, status, elapsed, start } = useSandboxDemo(
-        API_URL,
-        PROMPT
-    );
+    const { lines, previewUrl, status, elapsed, start } = useSandbox({
+        url: WS_URL,
+        prompt: PROMPT,
+        sessionKey: "goose-pond",
+    });
 
     useEffect(() => {
         if (status === "done" && iframeRef.current) {
@@ -29,12 +36,20 @@ function DemoSlide() {
 
     const handleKeyDown = useCallback(
         (e: KeyboardEvent) => {
-            if (e.key === "Enter" && status === "idle") {
+            if (
+                e.key === "Enter" &&
+                (status === "idle" || status === "done")
+            ) {
                 e.preventDefault();
                 start();
             }
+            if (e.key === "r" && e.shiftKey) {
+                e.preventDefault();
+                localStorage.removeItem("sandbox-session:goose-pond");
+                window.location.reload();
+            }
         },
-        [status, start]
+        [status, start],
     );
 
     useEffect(() => {
@@ -42,31 +57,74 @@ function DemoSlide() {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [handleKeyDown]);
 
+    useSlideActions(
+        useMemo(
+            () => [
+                {
+                    id: "start",
+                    label: (
+                        <>
+                            <KeyReturn size={14} /> start
+                        </>
+                    ),
+                    onClick: start,
+                },
+                {
+                    id: "reset",
+                    label: (
+                        <>
+                            <ArrowFatUp size={14} />R reset
+                        </>
+                    ),
+                    onClick: () => {
+                        localStorage.removeItem("sandbox-session:goose-pond");
+                        window.location.reload();
+                    },
+                },
+            ],
+            [start],
+        ),
+    );
+
+    const timerLabel = (() => {
+        if (status === "idle" || status === "full") return null;
+        if (status === "connecting") return "connecting…";
+        return `${elapsed.toFixed(1)}s`;
+    })();
+
     const timerColor =
         status === "done"
             ? "text-green-400"
-            : status === "error"
+            : status === "error" || status === "full"
               ? "text-red-400"
               : "text-(--slide-fg-muted)";
+
+    const displayLines = (() => {
+        if (status === "full") return fullLines;
+        if (status === "idle" && lines.length === 0) return idleLines;
+        return lines;
+    })();
 
     const paneHeight = showHooks ? "h-[320px]" : "h-[420px]";
 
     return (
         <Slide>
-            <div className="absolute bottom-6 left-6 z-10">
-                <span
-                    className={`font-mono text-sm tabular-nums ${timerColor}`}
-                >
-                    {status === "idle" ? "enter ↵" : `${elapsed.toFixed(1)}s`}
-                </span>
-            </div>
+            {timerLabel && (
+                <div className="absolute bottom-6 left-6 z-10">
+                    <span
+                        className={`font-mono text-sm tabular-nums ${timerColor}`}
+                    >
+                        {timerLabel}
+                    </span>
+                </div>
+            )}
             <div className="flex h-full w-full flex-col items-center justify-center gap-6 px-8">
                 <div
                     className={`flex w-full items-center gap-4 transition-all duration-500 ${paneHeight}`}
                 >
                     <TerminalMockup
-                        title="~/demo"
-                        lines={status === "idle" ? idleLines : lines}
+                        title="~/sandbox"
+                        lines={displayLines}
                         className="h-full w-1/2"
                     />
                     <BrowserMockup
@@ -83,7 +141,7 @@ function DemoSlide() {
                         ) : (
                             <div className="flex h-full items-center justify-center">
                                 <span className="text-sm text-(--slide-fg-muted)">
-                                    {status === "idle"
+                                    {status === "idle" || status === "full"
                                         ? ""
                                         : "Waiting for preview…"}
                                 </span>
@@ -113,6 +171,6 @@ function DemoSlide() {
     );
 }
 
-DemoSlide.steps = 2;
+SandboxSlide.steps = 2;
 
-export default DemoSlide;
+export default SandboxSlide;
