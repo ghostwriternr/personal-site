@@ -2,6 +2,10 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import DotGrid from "./DotGrid";
 import SlideControls from "./SlideControls";
 import { StepContext } from "./useStep";
+import {
+    SlideActionsContext,
+    useSlideActionsProvider,
+} from "./useSlideActions";
 import type { SlideComponent, TalkTheme } from "./types";
 
 export const CANVAS_WIDTH = 1280;
@@ -188,6 +192,7 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
     }, [slides.length]);
 
     const CurrentSlide = slides[currentSlide];
+    const slideActions = useSlideActionsProvider();
 
     return (
         <div
@@ -206,9 +211,11 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
                 className="relative text-(--slide-fg)"
             >
                 <SlideBackground />
-                <StepContext.Provider value={currentStep}>
-                    <CurrentSlide />
-                </StepContext.Provider>
+                <SlideActionsContext.Provider value={slideActions}>
+                    <StepContext.Provider value={currentStep}>
+                        <CurrentSlide />
+                    </StepContext.Provider>
+                </SlideActionsContext.Provider>
             </div>
             <SlideControls
                 currentSlide={currentSlide}
@@ -217,6 +224,7 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
                 onPrev={prev}
                 onToggleFullscreen={toggleFullscreen}
                 exitHref={exitHref}
+                slideActions={slideActions.actions}
             />
         </div>
     );

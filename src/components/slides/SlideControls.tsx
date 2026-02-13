@@ -1,3 +1,5 @@
+import type { SlideAction } from "./useSlideActions";
+
 interface SlideControlsProps {
     currentSlide: number;
     totalSlides: number;
@@ -5,6 +7,7 @@ interface SlideControlsProps {
     onPrev: () => void;
     onToggleFullscreen: () => void;
     exitHref?: string;
+    slideActions?: SlideAction[];
 }
 
 export default function SlideControls({
@@ -14,10 +17,11 @@ export default function SlideControls({
     onPrev,
     onToggleFullscreen,
     exitHref,
+    slideActions = [],
 }: SlideControlsProps) {
     return (
         <div className="absolute right-0 bottom-0 left-0 flex items-center justify-between p-4 opacity-0 transition-opacity duration-200 hover:opacity-100">
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
                 {exitHref && (
                     <a
                         href={exitHref}
@@ -35,6 +39,16 @@ export default function SlideControls({
                 >
                     &#8592;
                 </button>
+                {slideActions.map((action) => (
+                    <button
+                        key={action.id}
+                        type="button"
+                        onClick={action.onClick}
+                        className="flex items-center gap-1 rounded px-2 py-1 font-mono text-xs text-(--slide-fg-muted) hover:text-(--slide-fg) transition-colors"
+                    >
+                        {action.label}
+                    </button>
+                ))}
             </div>
             <span className="text-xs text-(--slide-fg-muted) tabular-nums">
                 {currentSlide + 1} / {totalSlides}
