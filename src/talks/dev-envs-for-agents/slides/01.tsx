@@ -18,6 +18,10 @@ const fullLines = [
     { text: "service at capacity — try again shortly", type: "error" as const },
 ];
 
+const expiredLines = [
+    { text: "sandbox expired — press Enter to restart", type: "error" as const },
+];
+
 function SandboxSlide() {
     const step = useStep();
     const showHooks = step >= 1;
@@ -38,7 +42,7 @@ function SandboxSlide() {
         (e: KeyboardEvent) => {
             if (
                 e.key === "Enter" &&
-                (status === "idle" || status === "done")
+                (status === "idle" || status === "done" || status === "expired")
             ) {
                 e.preventDefault();
                 start();
@@ -89,18 +93,20 @@ function SandboxSlide() {
     const timerLabel = (() => {
         if (status === "idle" || status === "full") return null;
         if (status === "connecting") return "connecting…";
+        if (status === "expired") return "expired";
         return `${elapsed.toFixed(1)}s`;
     })();
 
     const timerColor =
         status === "done"
             ? "text-green-400"
-            : status === "error" || status === "full"
+            : status === "error" || status === "full" || status === "expired"
               ? "text-red-400"
               : "text-(--slide-fg-muted)";
 
     const displayLines = (() => {
         if (status === "full") return fullLines;
+        if (status === "expired") return expiredLines;
         if (status === "idle" && lines.length === 0) return idleLines;
         return lines;
     })();
@@ -141,9 +147,11 @@ function SandboxSlide() {
                         ) : (
                             <div className="flex h-full items-center justify-center">
                                 <span className="text-sm text-(--slide-fg-muted)">
-                                    {status === "idle" || status === "full"
-                                        ? ""
-                                        : "Waiting for preview…"}
+                                    {status === "expired"
+                                        ? "Sandbox expired — press Enter to restart"
+                                        : status === "idle" || status === "full"
+                                          ? ""
+                                          : "Waiting for preview…"}
                                 </span>
                             </div>
                         )}

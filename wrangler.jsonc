@@ -6,7 +6,7 @@
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "personal-site",
     "main": "./dist/_worker.js/index.js",
-    "compatibility_date": "2025-05-31",
+    "compatibility_date": "2026-02-13",
     "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
     "assets": {
         "binding": "ASSETS",

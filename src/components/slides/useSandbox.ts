@@ -194,6 +194,7 @@ export function useSandbox({
             addLine("Restoring session…", "info");
           } else if (msg.session.stage === "done") {
             setStatus("done");
+            addLine("Previous session complete — press Enter to re-run", "info");
           }
           break;
         }
