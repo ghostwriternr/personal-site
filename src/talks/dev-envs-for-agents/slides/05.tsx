@@ -1,4 +1,5 @@
 import Slide from "../../../components/slides/Slide";
+import { StepCircle } from "../../../components/slides/diagrams";
 import { useStep } from "../../../components/slides/useStep";
 
 const layers = [
@@ -29,31 +30,41 @@ function LayerDiagramSlide() {
 
     return (
         <Slide>
-            <div className="flex w-full max-w-3xl flex-col gap-3">
-                {layers.map((layer, i) => (
-                    <div
-                        key={layer.name}
-                        className="flex items-baseline gap-4 border-l-2 py-3 pl-5 transition-all duration-300"
-                        style={{
-                            borderColor:
-                                i <= step
-                                    ? "var(--slide-accent-light)"
-                                    : "transparent",
-                            opacity: i <= step ? 1 : 0,
-                            transform:
-                                i <= step
-                                    ? "translateX(0)"
-                                    : "translateX(-12px)",
-                        }}
-                    >
-                        <span className="font-lufga shrink-0 text-2xl font-light text-(--slide-fg)">
-                            {layer.name}
-                        </span>
-                        <span className="text-base text-(--slide-fg-muted)">
-                            {layer.detail}
-                        </span>
-                    </div>
-                ))}
+            <div className="flex flex-col">
+                {layers.map((layer, i) => {
+                    const active = i <= step;
+                    return (
+                        <div key={layer.name} className="flex gap-8">
+                            <div className="flex flex-col items-center">
+                                <StepCircle active={active} />
+                                {i < layers.length - 1 && (
+                                    <div
+                                        className="w-px flex-1 transition-opacity duration-300"
+                                        style={{
+                                            borderRight: "1px dashed",
+                                            borderColor: active ? "var(--slide-border)" : "transparent",
+                                            opacity: active ? 1 : 0,
+                                        }}
+                                    />
+                                )}
+                            </div>
+                            <div
+                                className="flex flex-col gap-1 pb-6 pt-2 transition-all duration-300"
+                                style={{
+                                    opacity: active ? 1 : 0,
+                                    transform: active ? "translateY(0)" : "translateY(8px)",
+                                }}
+                            >
+                                <span className="font-lufga text-xl font-medium text-(--slide-fg)">
+                                    {layer.name}
+                                </span>
+                                <span className="max-w-lg text-base text-(--slide-fg-muted)">
+                                    {layer.detail}
+                                </span>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </Slide>
     );
