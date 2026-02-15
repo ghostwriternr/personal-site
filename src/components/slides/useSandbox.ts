@@ -13,7 +13,6 @@ type SandboxStatus =
 
 interface UseSandboxOptions {
   url: string;
-  prompt: string;
   sessionKey?: string;
 }
 
@@ -22,7 +21,9 @@ interface UseSandboxResult {
   previewUrl: string | null;
   status: SandboxStatus;
   elapsed: number;
-  start: () => void;
+  hasStoredSession: boolean;
+  start: (prompt: string) => void;
+  restore: () => void;
 }
 
 const SESSION_STORAGE_PREFIX = "sandbox-session:";
@@ -47,65 +48,25 @@ function stepLineType(step: string): TerminalLine["type"] {
   return "output";
 }
 
-interface WelcomeMessage {
-  type: "welcome";
-  socketId: string;
-  role: "driver" | "viewer";
-  session: { sessionId: string; stage: string; previewUrl?: string };
-}
-interface PromptMessage {
-  type: "prompt";
-}
-interface StatusMessage {
-  type: "status";
-  step: string;
-  message: string;
-}
-interface PreviewMessage {
-  type: "preview";
-  url: string;
-}
-interface DoneMessage {
-  type: "done";
-  sessionId: string;
-  url?: string;
-}
-interface RestoredMessage {
-  type: "restored";
-  sessionId: string;
-  url?: string;
-}
-interface ErrorMessage {
-  type: "error";
-  message: string;
-}
-interface FullMessage {
-  type: "full";
-  active: number;
-}
-interface RoleMessage {
-  type: "role";
-  driverSocketId: string;
-}
-interface ExpiredMessage {
-  type: "expired";
-}
-
 type ServerMessage =
-  | WelcomeMessage
-  | PromptMessage
-  | StatusMessage
-  | PreviewMessage
-  | DoneMessage
-  | RestoredMessage
-  | ErrorMessage
-  | FullMessage
-  | RoleMessage
-  | ExpiredMessage;
+  | {
+      type: "welcome";
+      sessionId: string;
+      stage: string;
+      previewUrl?: string;
+      epoch: number;
+    }
+  | { type: "ready" }
+  | { type: "status"; step: string; message: string; epoch: number }
+  | { type: "preview"; url: string; epoch: number }
+  | { type: "done"; sessionId: string; url?: string; epoch: number }
+  | { type: "restored"; sessionId: string; url?: string; epoch: number }
+  | { type: "error"; message: string; epoch?: number }
+  | { type: "full"; active: number }
+  | { type: "expired" };
 
 export function useSandbox({
   url,
-  prompt,
   sessionKey = "default",
 }: UseSandboxOptions): UseSandboxResult {
   const [lines, setLines] = useState<TerminalLine[]>([]);
@@ -116,14 +77,15 @@ export function useSandbox({
   const wsRef = useRef<WebSocket | null>(null);
   const rafRef = useRef(0);
   const startTimeRef = useRef(0);
-  const waitingForPromptRef = useRef(false);
-  const roleRef = useRef<"driver" | "viewer">("viewer");
+  const epochRef = useRef(0);
+  const pendingPromptRef = useRef<string | null>(null);
 
   const stopTimer = useCallback(() => {
     cancelAnimationFrame(rafRef.current);
   }, []);
 
   const startTimer = useCallback(() => {
+    cancelAnimationFrame(rafRef.current); // Prevent double-RAF loops
     startTimeRef.current = performance.now();
     const tick = () => {
       setElapsed((performance.now() - startTimeRef.current) / 1000);
@@ -148,11 +110,11 @@ export function useSandbox({
 
   const connect = useCallback(() => {
     wsRef.current?.close();
+    wsRef.current = null;
 
     setStatus("connecting");
-    setLines([]);
-    setPreviewUrl(null);
     setElapsed(0);
+    // Do NOT setLines([]) here — lines are set by start() before calling connect()
 
     const existingSession = getStoredSession(sessionKey);
     const wsUrl = new URL(url);
@@ -168,6 +130,9 @@ export function useSandbox({
     });
 
     ws.addEventListener("message", (event) => {
+      // Stale socket guard: if wsRef moved on, this socket is dead to us
+      if (wsRef.current !== ws) return;
+
       let msg: ServerMessage;
       try {
         msg = JSON.parse(event.data as string);
@@ -175,39 +140,48 @@ export function useSandbox({
         return;
       }
 
+      // Epoch filtering for operation messages: drop if epoch < our current max
+      if ("epoch" in msg && msg.epoch !== undefined) {
+        if (msg.epoch < epochRef.current) return;
+        epochRef.current = msg.epoch;
+      }
+
       switch (msg.type) {
         case "welcome": {
-          roleRef.current = msg.role;
-          storeSession(sessionKey, msg.session.sessionId);
+          storeSession(sessionKey, msg.sessionId);
 
-          if (msg.session.previewUrl) {
-            setPreviewUrl(msg.session.previewUrl);
+          if (msg.previewUrl) {
+            setPreviewUrl(msg.previewUrl);
           }
 
-          if (msg.session.stage === "running") {
+          if (msg.stage === "running") {
             setStatus("running");
             startTimer();
             addLine("Session in progress…", "info");
-          } else if (msg.session.stage === "restoring") {
+          } else if (msg.stage === "restoring") {
             setStatus("restoring");
             startTimer();
             addLine("Restoring session…", "info");
-          } else if (msg.session.stage === "done") {
+          } else if (msg.stage === "done") {
             setStatus("done");
-            addLine("Previous session complete — press Enter to re-run", "info");
+            addLine("Session restored", "success");
           }
+          // stage "idle" → wait for "ready" (follows immediately if no manifest)
           break;
         }
 
-        case "prompt": {
-          // waitingForPromptRef bridges the gap between start() (called before
-          // the WS is open) and the server's prompt message (arriving later).
-          // Without it the user would have to press Enter twice.
-          if (waitingForPromptRef.current) {
-            waitingForPromptRef.current = false;
-            ws.send(JSON.stringify({ type: "start", prompt }));
+        case "ready": {
+          const pending = pendingPromptRef.current;
+          if (pending) {
+            pendingPromptRef.current = null;
+            ws.send(JSON.stringify({ type: "start", prompt: pending }));
           } else {
-            setStatus("idle");
+            // No pending prompt — transition to input-ready state
+            setStatus((prev) => {
+              if (prev === "connecting" || prev === "error") return "idle";
+              if (prev === "restoring") return "done";
+              return prev;
+            });
           }
           break;
         }
@@ -238,12 +212,13 @@ export function useSandbox({
         case "restored": {
           if (msg.url) setPreviewUrl(msg.url);
           addLine("Session restored", "success");
-          setStatus("done");
+          // Don't set status here — wait for "ready" which follows immediately
           stopTimer();
           break;
         }
 
         case "error": {
+          pendingPromptRef.current = null;
           addLine(`Error: ${msg.message}`, "error");
           setStatus("error");
           stopTimer();
@@ -260,48 +235,65 @@ export function useSandbox({
         }
 
         case "expired": {
+          pendingPromptRef.current = null;
           setPreviewUrl(null);
           setStatus("expired");
           addLine("Sandbox expired", "info");
+          stopTimer();
           break;
         }
-
-        case "role":
-          break;
       }
     });
 
     ws.addEventListener("close", () => {
-      wsRef.current = null;
+      if (wsRef.current === ws) {
+        wsRef.current = null;
+      }
     });
 
     ws.addEventListener("error", () => {
+      if (wsRef.current !== ws) return;
+      pendingPromptRef.current = null;
       setStatus("error");
       addLine("Connection failed", "error");
       stopTimer();
     });
-  }, [url, prompt, sessionKey, addLine, startTimer, stopTimer]);
+  }, [url, sessionKey, addLine, startTimer, stopTimer]);
 
-  const start = useCallback(() => {
-    const ws = wsRef.current;
+  const hasStoredSession = Boolean(getStoredSession(sessionKey));
 
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
-      waitingForPromptRef.current = true;
-      setLines([{ text: `sandbox "${prompt}"`, type: "command" }]);
-      startTimer();
-      connect();
-      return;
-    }
+  const restore = useCallback(() => {
+    // Connect without a pending prompt — server restores from R2,
+    // sends ready, client lands in "done" state with preview
+    pendingPromptRef.current = null;
+    setLines([]);
+    startTimer();
+    connect();
+  }, [connect, startTimer]);
 
-    if (roleRef.current === "driver") {
-      waitingForPromptRef.current = false;
+  const start = useCallback(
+    (prompt: string) => {
+      const ws = wsRef.current;
+
+      if (!ws || ws.readyState !== WebSocket.OPEN) {
+        // No open connection — save prompt, show command, connect
+        pendingPromptRef.current = prompt;
+        setLines([{ text: `sandbox "${prompt}"`, type: "command" }]);
+        startTimer();
+        connect();
+        return;
+      }
+
+      // WS is open — send start directly (re-run from done/idle state)
+      pendingPromptRef.current = null;
       setLines([{ text: `sandbox "${prompt}"`, type: "command" }]);
       setStatus("running");
       setPreviewUrl(null);
       startTimer();
       ws.send(JSON.stringify({ type: "start", prompt }));
-    }
-  }, [prompt, connect, startTimer]);
+    },
+    [connect, startTimer],
+  );
 
-  return { lines, previewUrl, status, elapsed, start };
+  return { lines, previewUrl, status, elapsed, hasStoredSession, start, restore };
 }

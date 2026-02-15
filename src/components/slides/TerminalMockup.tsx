@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import DotGrid from "./DotGrid";
 
 export interface TerminalLine {
@@ -13,6 +13,9 @@ interface TerminalMockupProps {
     animate?: boolean;
     baseDelay?: number;
     className?: string;
+    onSubmit?: (value: string) => void;
+    onEnter?: () => void;
+    inputPlaceholder?: string;
 }
 
 const lineColor: Record<NonNullable<TerminalLine["type"]>, string> = {
@@ -30,6 +33,9 @@ export default function TerminalMockup({
     animate = false,
     baseDelay = 400,
     className = "",
+    onSubmit,
+    onEnter,
+    inputPlaceholder,
 }: TerminalMockupProps) {
     const [visibleCount, setVisibleCount] = useState(
         animate ? 0 : lines.length
@@ -38,6 +44,8 @@ export default function TerminalMockup({
         () => `dots-${title.replace(/\W/g, "")}`,
         [title]
     );
+    const inputRef = useRef<HTMLInputElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!animate) {
@@ -57,6 +65,19 @@ export default function TerminalMockup({
         return () => timeouts.forEach(clearTimeout);
     }, [animate, lines, baseDelay]);
 
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (el && lines.length > 0) {
+            el.scrollTop = el.scrollHeight;
+        }
+    }, [lines]);
+
+    useEffect(() => {
+        if ((onSubmit || onEnter) && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [onSubmit, onEnter]);
+
     return (
         <div
             className={`flex flex-col overflow-hidden rounded-xl border border-(--slide-border) bg-(--slide-bg) ${className}`}
@@ -72,7 +93,10 @@ export default function TerminalMockup({
                 </div>
             </div>
 
-            <div className="flex-1 overflow-auto bg-(--slide-bg) p-5 font-mono text-sm leading-relaxed">
+            <div
+                ref={scrollRef}
+                className="flex-1 overflow-auto bg-(--slide-bg) p-5 font-mono text-sm leading-relaxed"
+            >
                 {lines.map((line) => (
                     <div
                         key={line.text}
@@ -90,6 +114,31 @@ export default function TerminalMockup({
                 ))}
                 {animate && visibleCount < lines.length && (
                     <span className="inline-block h-4 w-2 animate-pulse bg-(--slide-fg-muted)" />
+                )}
+                {(onSubmit || onEnter) && (
+                    <div className="flex items-center whitespace-pre-wrap text-(--slide-accent-light)">
+                        <span className="mr-2 text-(--slide-fg-muted) select-none">
+                            $
+                        </span>
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            placeholder={inputPlaceholder}
+                            className="flex-1 bg-transparent font-mono text-sm text-(--slide-accent-light) placeholder:text-(--slide-fg-muted)/40 outline-none border-none"
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    e.stopPropagation();
+                                    const value = e.currentTarget.value.trim();
+                                    if (value && onSubmit) {
+                                        onSubmit(value);
+                                        e.currentTarget.value = "";
+                                    } else if (!value && onEnter) {
+                                        onEnter();
+                                    }
+                                }
+                            }}
+                        />
+                    </div>
                 )}
             </div>
         </div>

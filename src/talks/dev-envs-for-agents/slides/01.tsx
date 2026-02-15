@@ -3,34 +3,33 @@ import Slide from "../../../components/slides/Slide";
 import { useStep } from "../../../components/slides/useStep";
 import TerminalMockup from "../../../components/slides/TerminalMockup";
 import BrowserMockup from "../../../components/slides/BrowserMockup";
-import { ArrowFatUp, KeyReturn } from "@phosphor-icons/react";
+import { ArrowFatUp } from "@phosphor-icons/react";
 import { useSandbox } from "../../../components/slides/useSandbox";
 import { useSlideActions } from "../../../components/slides/useSlideActions";
 
 const WS_URL = "wss://goose-pond-editor.ghostwriternr.me/ws/session";
-const PROMPT = "make the goose follow my cursor";
-
-const idleLines = [
-    { text: "press Enter to start", type: "info" as const },
-];
 
 const fullLines = [
     { text: "service at capacity — try again shortly", type: "error" as const },
 ];
 
-const expiredLines = [
-    { text: "sandbox expired — press Enter to restart", type: "error" as const },
-];
+function extractPrompt(input: string): string {
+    const quoted = input.match(/^sandbox\s+"(.+)"$/);
+    if (quoted) return quoted[1];
+    const unquoted = input.match(/^sandbox\s+(.+)$/);
+    if (unquoted) return unquoted[1];
+    return input;
+}
 
 function SandboxSlide() {
     const step = useStep();
     const showHooks = step >= 1;
     const iframeRef = useRef<HTMLIFrameElement>(null);
-    const { lines, previewUrl, status, elapsed, start } = useSandbox({
-        url: WS_URL,
-        prompt: PROMPT,
-        sessionKey: "goose-pond",
-    });
+    const { lines, previewUrl, status, elapsed, hasStoredSession, start, restore } =
+        useSandbox({
+            url: WS_URL,
+            sessionKey: "goose-pond",
+        });
 
     useEffect(() => {
         if (status === "done" && iframeRef.current) {
@@ -38,23 +37,32 @@ function SandboxSlide() {
         }
     }, [status]);
 
-    const handleKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (
-                e.key === "Enter" &&
-                (status === "idle" || status === "done" || status === "expired")
-            ) {
-                e.preventDefault();
-                start();
-            }
-            if (e.key === "r" && e.shiftKey) {
-                e.preventDefault();
-                localStorage.removeItem("sandbox-session:goose-pond");
-                window.location.reload();
-            }
+    const canInput =
+        status === "idle" ||
+        status === "done" ||
+        status === "expired" ||
+        status === "error";
+
+    const handleTerminalSubmit = useCallback(
+        (input: string) => {
+            start(extractPrompt(input));
         },
-        [status, start],
+        [start],
     );
+
+    const handleTerminalEnter = useCallback(() => {
+        if (hasStoredSession) {
+            restore();
+        }
+    }, [hasStoredSession, restore]);
+
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === "r" && e.shiftKey) {
+            e.preventDefault();
+            localStorage.removeItem("sandbox-session:goose-pond");
+            window.location.reload();
+        }
+    }, []);
 
     useEffect(() => {
         window.addEventListener("keydown", handleKeyDown);
@@ -64,15 +72,6 @@ function SandboxSlide() {
     useSlideActions(
         useMemo(
             () => [
-                {
-                    id: "start",
-                    label: (
-                        <>
-                            <KeyReturn size={14} /> start
-                        </>
-                    ),
-                    onClick: start,
-                },
                 {
                     id: "reset",
                     label: (
@@ -86,7 +85,7 @@ function SandboxSlide() {
                     },
                 },
             ],
-            [start],
+            [],
         ),
     );
 
@@ -104,10 +103,18 @@ function SandboxSlide() {
               ? "text-red-400"
               : "text-(--slide-fg-muted)";
 
+    const restoreHint =
+        hasStoredSession && status === "idle" && lines.length === 0;
+
     const displayLines = (() => {
         if (status === "full") return fullLines;
-        if (status === "expired") return expiredLines;
-        if (status === "idle" && lines.length === 0) return idleLines;
+        if (restoreHint)
+            return [
+                {
+                    text: "Previous session found — press Enter to restore",
+                    type: "info" as const,
+                },
+            ];
         return lines;
     })();
 
@@ -132,6 +139,9 @@ function SandboxSlide() {
                         title="~/sandbox"
                         lines={displayLines}
                         className="h-full w-1/2"
+                        onSubmit={canInput ? handleTerminalSubmit : undefined}
+                        onEnter={canInput ? handleTerminalEnter : undefined}
+                        inputPlaceholder='sandbox "make the goose follow my cursor"'
                     />
                     <BrowserMockup
                         url={previewUrl ?? "about:blank"}
@@ -148,7 +158,7 @@ function SandboxSlide() {
                             <div className="flex h-full items-center justify-center">
                                 <span className="text-sm text-(--slide-fg-muted)">
                                     {status === "expired"
-                                        ? "Sandbox expired — press Enter to restart"
+                                        ? "Sandbox expired"
                                         : status === "idle" || status === "full"
                                           ? ""
                                           : "Waiting for preview…"}
