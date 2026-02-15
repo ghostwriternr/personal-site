@@ -1,66 +1,70 @@
 import Slide from "../../../components/slides/Slide";
-import { useStep } from "../../../components/slides/useStep";
+import TerminalMockup from "../../../components/slides/TerminalMockup";
+import BrowserMockup from "../../../components/slides/BrowserMockup";
+import type { TerminalLine } from "../../../components/slides/TerminalMockup";
 
-const annotations = [
+const terminalLines: TerminalLine[] = [
+    { text: "npx tsx demo.ts", type: "command", delay: 600 },
+    { text: "", type: "output", delay: 300 },
     {
-        code: `const sandbox = getSandbox(env.Sandbox, 'demo-session');`,
-        label: "A fresh Linux environment, completely isolated",
+        text: "Creating sandbox 'demo-session'…",
+        type: "output",
+        delay: 800,
+    },
+    { text: "Sandbox ready (2.3s)", type: "success", delay: 1200 },
+    { text: "Writing app.js…", type: "output", delay: 600 },
+    {
+        text: "Running npm install… ok",
+        type: "output",
+        delay: 1000,
     },
     {
-        code: `await sandbox.files.write('app.js', code);`,
-        label: "Files written to a filesystem only this environment can see",
+        text: "Running npm start… ok (port 5173)",
+        type: "output",
+        delay: 800,
     },
+    { text: "Exposing port 5173…", type: "info", delay: 600 },
+    { text: "", type: "output", delay: 300 },
     {
-        code: `await sandbox.commands.run('npm install');`,
-        label: "Commands ran in a real bash session",
-    },
-    {
-        code: `const { url } = await sandbox.exposePort(5173, { hostname });`,
-        label: "Routed from the internet — there's no localhost here",
+        text: "Preview ready: https://preview-7f3a.example.dev",
+        type: "success",
+        delay: 1000,
     },
 ];
 
-function AnnotatedCodeSlide() {
-    const step = useStep();
-
+export default function SDKDemoSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-4">
-                {annotations.map((a, i) => {
-                    const active = i === step;
-                    const visible = i <= step;
-
-                    return (
-                        <div
-                            key={i}
-                            className="flex items-center gap-6 transition-all duration-300"
-                            style={{
-                                opacity: visible ? (active ? 1 : 0.4) : 0,
-                                transform: visible
-                                    ? "translateX(0)"
-                                    : "translateX(-12px)",
-                            }}
-                        >
-                            <code className="shrink-0 font-mono text-sm text-(--slide-fg)">
-                                {a.code}
-                            </code>
-                            <span
-                                className="shrink-0 text-sm transition-opacity duration-300"
-                                style={{
-                                    color: "var(--slide-accent-light)",
-                                    opacity: active ? 1 : 0,
-                                }}
-                            >
-                                ← {a.label}
-                            </span>
+            <div className="flex h-full w-full items-center gap-4 px-8">
+                <TerminalMockup
+                    title="~/demo"
+                    lines={terminalLines}
+                    animate
+                    className="h-[420px] w-[65%]"
+                />
+                <BrowserMockup
+                    url="https://preview-7f3a.example.dev"
+                    className="h-[420px] w-[35%]"
+                >
+                    <div className="flex h-full flex-col items-center justify-center gap-4 p-6">
+                        <span className="font-lufga text-lg text-(--slide-fg)">
+                            My App
+                        </span>
+                        <div className="flex w-full max-w-[200px] items-center gap-2">
+                            <div className="h-8 flex-1 rounded border border-(--slide-border) bg-(--slide-bg-active) px-2" />
+                            <div className="h-8 rounded bg-(--slide-accent) px-3 py-1">
+                                <span className="text-xs font-medium text-(--slide-fg)">
+                                    Add
+                                </span>
+                            </div>
                         </div>
-                    );
-                })}
+                        <div className="flex w-full max-w-[200px] flex-col gap-1.5">
+                            <div className="h-2 w-3/4 rounded bg-(--slide-bg-active)" />
+                            <div className="h-2 w-1/2 rounded bg-(--slide-bg-active)" />
+                        </div>
+                    </div>
+                </BrowserMockup>
             </div>
         </Slide>
     );
 }
-
-AnnotatedCodeSlide.steps = 4;
-
-export default AnnotatedCodeSlide;
