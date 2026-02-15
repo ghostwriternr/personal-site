@@ -3,6 +3,8 @@ import type { ComponentType } from "react";
 export type SlideComponent = ComponentType & {
     /** Number of incremental steps within this slide (default: 1) */
     steps?: number;
+    /** Hide the dashed edge lines on the slide background */
+    edgeToEdge?: boolean;
 };
 
 export interface TalkMeta {

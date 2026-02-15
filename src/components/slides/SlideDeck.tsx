@@ -53,7 +53,7 @@ const DASH_H =
     "linear-gradient(to right, var(--slide-border) 50%, transparent 50%)";
 const EDGE_INSET = 16;
 
-function SlideBackground() {
+function SlideBackground({ hideEdges }: { hideEdges?: boolean }) {
     return (
         <div
             className="pointer-events-none absolute inset-0 -z-10"
@@ -66,7 +66,7 @@ function SlideBackground() {
                     inset: EDGE_INSET,
                 }}
             />
-            {[EDGE_INSET, CANVAS_WIDTH - EDGE_INSET].map((x) => (
+            {!hideEdges && [EDGE_INSET, CANVAS_WIDTH - EDGE_INSET].map((x) => (
                 <div
                     key={`v-${x}`}
                     className="absolute top-0 h-full w-px"
@@ -78,7 +78,7 @@ function SlideBackground() {
                     }}
                 />
             ))}
-            {[EDGE_INSET, CANVAS_HEIGHT - EDGE_INSET].map((y) => (
+            {!hideEdges && [EDGE_INSET, CANVAS_HEIGHT - EDGE_INSET].map((y) => (
                 <div
                     key={`h-${y}`}
                     className="absolute left-0 h-px w-full"
@@ -210,7 +210,7 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
                 }}
                 className="relative text-(--slide-fg)"
             >
-                <SlideBackground />
+                <SlideBackground hideEdges={CurrentSlide.edgeToEdge} />
                 <SlideActionsContext.Provider value={slideActions}>
                     <StepContext.Provider value={currentStep}>
                         <CurrentSlide />
