@@ -25,11 +25,18 @@ function SandboxSlide() {
     const step = useStep();
     const showHooks = step >= 1;
     const iframeRef = useRef<HTMLIFrameElement>(null);
-    const { lines, previewUrl, status, elapsed, hasStoredSession, start, restore } =
-        useSandbox({
-            url: WS_URL,
-            sessionKey: "goose-pond",
-        });
+    const {
+        lines,
+        previewUrl,
+        status,
+        elapsed,
+        hasStoredSession,
+        start,
+        restore,
+    } = useSandbox({
+        url: WS_URL,
+        sessionKey: "goose-pond",
+    });
 
     useEffect(() => {
         if (status === "done" && iframeRef.current) {
@@ -47,7 +54,7 @@ function SandboxSlide() {
         (input: string) => {
             start(extractPrompt(input));
         },
-        [start],
+        [start]
     );
 
     const handleTerminalEnter = useCallback(() => {
@@ -85,8 +92,8 @@ function SandboxSlide() {
                     },
                 },
             ],
-            [],
-        ),
+            []
+        )
     );
 
     const timerLabel = (() => {
@@ -121,7 +128,7 @@ function SandboxSlide() {
     const paneHeight = showHooks ? "h-[320px]" : "h-[420px]";
 
     return (
-        <Slide>
+        <Slide hideGoose>
             {timerLabel && (
                 <div className="absolute bottom-6 left-6 z-10">
                     <span
@@ -175,12 +182,9 @@ function SandboxSlide() {
                         <p className="font-lufga text-base leading-relaxed text-(--slide-fg-muted)">
                             That preview URL had to find its way from the
                             internet to a specific port in a specific
-                            environment.
-                        </p>
-                        <p className="font-lufga text-base leading-relaxed text-(--slide-fg-muted)">
-                            And if the user closes the tab and comes back
-                            tomorrow… the agent expects to pick up where it left
-                            off.
+                            environment. And if the user closes the tab and
+                            comes back tomorrow… the agent expects to pick up
+                            where it left off.
                         </p>
                     </div>
                 )}
