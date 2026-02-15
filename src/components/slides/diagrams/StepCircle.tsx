@@ -9,7 +9,7 @@ export function StepCircle({
     active = false,
     accentColor = "var(--slide-accent)",
 }: StepCircleProps) {
-    const borderColor = active ? accentColor : "var(--slide-fg-muted)";
+    const borderColor = active ? accentColor : "var(--slide-border)";
 
     return (
         <DashedBorder

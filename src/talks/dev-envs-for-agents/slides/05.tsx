@@ -49,7 +49,7 @@ function LayerDiagramSlide() {
                                 )}
                             </div>
                             <div
-                                className="flex flex-col gap-1 pb-6 pt-2 transition-all duration-300"
+                                className="flex flex-col gap-1 pb-6 pt-[6px] transition-all duration-300"
                                 style={{
                                     opacity: active ? 1 : 0,
                                     transform: active ? "translateY(0)" : "translateY(8px)",
