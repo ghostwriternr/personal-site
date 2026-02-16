@@ -1,58 +1,44 @@
 import Slide from "../../../components/slides/Slide";
+import { DataTable } from "../../../components/slides/diagrams";
 
-const rows = [
-    { label: "Kernel", containers: "Shared", microvms: "Own (~125ms boot)", fullvms: "Own (10-30s boot)" },
-    { label: "Memory overhead", containers: "<1 MB", microvms: "~5 MB", fullvms: "100 MB+" },
-    { label: "Density", containers: "~50/machine", microvms: "~5/machine", fullvms: "1-2/machine" },
-    { label: "Attack surface", containers: "Host kernel", microvms: "~50k lines (Rust)", fullvms: "Full hypervisor" },
-    { label: "Untrusted code", containers: "❌", microvms: "✅", fullvms: "✅" },
-];
+const accent = "text-(--slide-accent-light)";
 
 export default function IsolationSpectrumSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-8">
-                <div className="grid grid-cols-4 gap-y-4 gap-x-6">
-                    <div />
-                    <span className="font-lufga text-xl font-medium text-(--slide-fg-muted)">
-                        Containers
-                    </span>
-                    <span className="font-lufga text-xl font-medium text-(--slide-accent-light)">
-                        MicroVMs
-                    </span>
-                    <span className="font-lufga text-xl font-medium text-(--slide-fg-muted)">
-                        Full VMs
-                    </span>
-
-                    {rows.map((row) => (
-                        <>
-                            <span
-                                key={`${row.label}-label`}
-                                className="text-sm text-(--slide-fg-muted)"
-                            >
-                                {row.label}
-                            </span>
-                            <span
-                                key={`${row.label}-containers`}
-                                className="font-mono text-sm text-(--slide-fg)"
-                            >
-                                {row.containers}
-                            </span>
-                            <span
-                                key={`${row.label}-microvms`}
-                                className="font-mono text-sm text-(--slide-accent-light)"
-                            >
-                                {row.microvms}
-                            </span>
-                            <span
-                                key={`${row.label}-fullvms`}
-                                className="font-mono text-sm text-(--slide-fg)"
-                            >
-                                {row.fullvms}
-                            </span>
-                        </>
-                    ))}
-                </div>
+            <div className="w-full max-w-4xl">
+                <DataTable columns={3}>
+                    <DataTable.Header>
+                        <span>Namespaces only</span>
+                        <span className={accent}>MicroVM</span>
+                        <span>Full VM</span>
+                    </DataTable.Header>
+                    <DataTable.Row label="Kernel">
+                        <span>Shared</span>
+                        <span className={accent}>Own</span>
+                        <span>Own</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Memory overhead">
+                        <span>&lt;1 MB</span>
+                        <span className={accent}>~5 MB</span>
+                        <span>100 MB+</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Startup time">
+                        <span>&lt;500ms</span>
+                        <span className={accent}>~125ms</span>
+                        <span>5-30s</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Attack surface">
+                        <span>All host syscalls</span>
+                        <span className={accent}>5 emulated devices</span>
+                        <span>100+ emulated devices</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Untrusted code">
+                        <span>No</span>
+                        <span className={accent}>Yes</span>
+                        <span>Yes</span>
+                    </DataTable.Row>
+                </DataTable>
             </div>
         </Slide>
     );
