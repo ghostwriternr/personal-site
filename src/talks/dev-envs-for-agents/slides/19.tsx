@@ -1,35 +1,58 @@
 import Slide from "../../../components/slides/Slide";
 
-const sdkLines = [
-    `const sandbox = getSandbox(env.Sandbox, 'demo-session');`,
-    ``,
-    `await sandbox.files.write('app.js', code);`,
-    `await sandbox.commands.run('npm install');`,
-    `await sandbox.commands.run('npm start');`,
-    `const { url } = await sandbox.exposePort(5173, { hostname });`,
+const strategies = [
+    {
+        label: "Ephemeral",
+        detail: "Clean slate every time",
+    },
+    {
+        label: "Sync to storage",
+        detail: "You choose what survives",
+    },
+    {
+        label: "Snapshots",
+        detail: "Freeze & resume instantly",
+    },
+    {
+        label: "Durable machines",
+        detail: "Always on, always stateful",
+    },
 ];
 
-export default function SDKRevealSlide() {
+export default function PersistenceSpectrumSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-3xl flex-col gap-8">
-                <p className="font-mono text-sm text-(--slide-fg-muted) opacity-40">
-                    $ agent-run --fresh --task "build a tiny web app" --preview
+            <div className="flex w-full max-w-4xl flex-col gap-10">
+                <p className="font-lufga text-3xl font-light text-(--slide-fg)">
+                    Persistence
                 </p>
 
-                <div className="rounded-xl border border-(--slide-border) bg-(--slide-bg-surface) p-6">
-                    <pre className="font-mono text-base leading-relaxed">
-                        {sdkLines.map((line, i) => (
-                            <div key={i} className="text-(--slide-fg)">
-                                {line || "\u00A0"}
-                            </div>
-                        ))}
-                    </pre>
+                <div className="flex items-start">
+                    {strategies.map((s) => (
+                        <div
+                            key={s.label}
+                            className="flex flex-1 flex-col items-center gap-2"
+                        >
+                            <span className="font-lufga text-lg text-(--slide-accent-light)">
+                                {s.label}
+                            </span>
+                            <span className="text-center text-xs text-(--slide-fg-muted)">
+                                {s.detail}
+                            </span>
+                        </div>
+                    ))}
                 </div>
 
-                <p className="font-lufga text-center text-lg font-light text-(--slide-fg-muted)">
-                    Six lines. That's the entire interface.
-                </p>
+                <div className="flex items-center gap-3">
+                    <span className="shrink-0 text-xs text-(--slide-fg-muted)">
+                        Nothing persists
+                    </span>
+                    <div className="h-px flex-1 bg-(--slide-border)" />
+                    <div className="h-2 w-2 rotate-45 border-t border-r border-(--slide-fg-muted)" />
+                    <span className="shrink-0 text-xs text-(--slide-fg-muted)">
+                        Everything persists
+                    </span>
+                </div>
             </div>
         </Slide>
     );

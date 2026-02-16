@@ -1,40 +1,21 @@
 import Slide from "../../../components/slides/Slide";
-import { useStep } from "../../../components/slides/useStep";
+import { Blockquote } from "../../../components/slides/diagrams";
+import { ManusLogo } from "../../../components/slides/logos";
 
-const approaches = [
-    { label: "From scratch", time: "~32s", width: "100%" },
-    { label: "Pre-built image", time: "~2s", width: "6.25%" },
-    { label: "Snapshot restore", time: "~200ms", width: "1.5%" },
-    { label: "Warm pool", time: "~0ms", width: "0.5%" },
-];
-
-function ColdStartMathSlide() {
-    const step = useStep();
-
+export default function ColdStartHookSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-8">
-                {approaches.map((a, i) => (
-                    <div
-                        key={a.label}
-                        className="flex flex-col gap-2 transition-opacity duration-500"
-                        style={{ opacity: i <= step ? 1 : 0 }}
-                    >
-                        <div className="flex items-baseline justify-between">
-                            <span className="font-lufga text-lg font-medium">{a.label}</span>
-                            <span className="font-mono text-(--slide-fg-muted)">{a.time}</span>
-                        </div>
-                        <div
-                            className="h-3 rounded-sm bg-(--slide-accent-light)"
-                            style={{ width: a.width, minWidth: 4 }}
-                        />
-                    </div>
-                ))}
+            <div className="flex w-full max-w-4xl flex-col gap-10">
+                <Blockquote
+                    quote="Manus doesn't just run some pieces of code. It uses 27 different tools, and it needs a full virtual computer."
+                    person={{
+                        name: "Tao Zhang",
+                        title: "Co-founder, Manus",
+                    }}
+                    source="From a published E2B case study"
+                    icon={<ManusLogo className="size-24 text-(--slide-fg-muted)" />}
+                />
             </div>
         </Slide>
     );
 }
-
-ColdStartMathSlide.steps = 4;
-
-export default ColdStartMathSlide;

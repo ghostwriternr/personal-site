@@ -1,21 +1,15 @@
 import Slide from "../../../components/slides/Slide";
 
-export default function ClosingSlide() {
+export default function BillionSlide() {
     return (
         <Slide>
-            <div className="flex flex-col items-center gap-8">
-                <span className="font-mono text-2xl text-(--slide-accent-light)">
-                    @ghostwriternr
+            <div className="flex flex-col items-center gap-6">
+                <span className="font-mono text-8xl font-bold text-(--slide-accent-light)">
+                    1 billion
                 </span>
-                <div className="flex flex-col items-center gap-3">
-                    <span className="font-mono text-sm text-(--slide-fg-muted)">
-                        developers.cloudflare.com/containers
-                    </span>
-                    <span className="text-sm text-(--slide-fg-muted)">
-                        Craig Dennis: "Using Sandboxes to Safely Execute
-                        Untrusted Code" (workshop)
-                    </span>
-                </div>
+                <p className="font-lufga text-xl font-light text-(--slide-fg-muted)">
+                    Lines of code accepted daily (Cursor alone)
+                </p>
             </div>
         </Slide>
     );
