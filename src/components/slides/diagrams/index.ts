@@ -5,5 +5,6 @@ export { StaticDiagram } from "./StaticDiagram";
 export { CardGrid } from "./CardGrid";
 export { CornerSquares, getItemCornerSquares } from "./CornerSquares";
 export { DataTable } from "./DataTable";
+export { Blockquote } from "./Blockquote";
 export { DashedBorder } from "./DashedBorder";
 export { StepCircle } from "./StepCircle";

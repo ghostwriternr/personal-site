@@ -1,40 +1,20 @@
 import Slide from "../../../components/slides/Slide";
+import { Blockquote } from "../../../components/slides/diagrams";
+import { ManusLogo } from "../../../components/slides/logos";
 
-export default function ColdStartSlide() {
+export default function ColdStartHookSlide() {
     return (
         <Slide>
             <div className="flex w-full max-w-4xl flex-col gap-10">
-                <p className="font-lufga text-3xl font-light text-(--slide-fg)">
-                    Cold Start
-                </p>
-
-                <div className="flex items-end gap-12 px-8">
-                    <div className="flex flex-col items-center gap-3">
-                        <span className="font-mono text-2xl font-bold text-(--slide-accent-light)">
-                            25ms
-                        </span>
-                        <div
-                            className="w-24 rounded-t bg-(--slide-accent-light)"
-                            style={{ height: 8 }}
-                        />
-                        <span className="text-xs text-(--slide-fg-muted)">
-                            Snapshot resume
-                        </span>
-                    </div>
-
-                    <div className="flex flex-col items-center gap-3">
-                        <span className="font-mono text-2xl font-bold text-(--slide-fg)">
-                            3s+
-                        </span>
-                        <div
-                            className="w-24 rounded-t bg-(--slide-fg-muted)"
-                            style={{ height: 240 }}
-                        />
-                        <span className="text-xs text-(--slide-fg-muted)">
-                            Traditional boot
-                        </span>
-                    </div>
-                </div>
+                <Blockquote
+                    quote="Manus doesn't just run some pieces of code. It uses 27 different tools, and it needs a full virtual computer."
+                    person={{
+                        name: "Tao Zhang",
+                        title: "Co-founder, Manus",
+                    }}
+                    source="From a published E2B case study"
+                    icon={<ManusLogo className="size-24 text-(--slide-fg-muted)" />}
+                />
             </div>
         </Slide>
     );
