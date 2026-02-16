@@ -179,7 +179,7 @@ function SandboxSlide() {
                         <p className="font-lufga text-lg leading-relaxed text-(--slide-fg)">
                             There's no localhost here.
                         </p>
-                        <p className="font-lufga text-base leading-relaxed text-(--slide-fg-muted)">
+                        <p className="font-lufga leading-relaxed text-(--slide-fg-muted)">
                             That preview URL had to find its way from the
                             internet to a specific port in a specific
                             environment. And if the user closes the tab and

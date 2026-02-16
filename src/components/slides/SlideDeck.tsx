@@ -208,7 +208,7 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
                     transform: `scale(${scale})`,
                     transformOrigin: "center center",
                 }}
-                className="relative text-(--slide-fg)"
+                className="relative text-lg text-(--slide-fg)"
             >
                 <SlideBackground hideEdges={CurrentSlide.edgeToEdge} />
                 <SlideActionsContext.Provider value={slideActions}>
