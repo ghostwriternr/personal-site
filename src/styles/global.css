@@ -278,12 +278,10 @@ html[data-theme="dark"] .icon:hover {
         background-color: rgba(255, 255, 255, 0.05);
     }
 
-    @keyframes icon-zap {
-        0%, 100% { opacity: 1; filter: brightness(1); }
-        8% { opacity: 0.3; filter: brightness(2.5); }
-        16% { opacity: 1; filter: brightness(1); }
-        24% { opacity: 0.5; filter: brightness(1.8); }
-        32% { opacity: 1; filter: brightness(1); }
+    @keyframes icon-blink {
+        0%, 40% { opacity: 0.8; }
+        50%, 90% { opacity: 0; }
+        100% { opacity: 0.8; }
     }
     @keyframes icon-spin {
         from { transform: rotate(0deg); }

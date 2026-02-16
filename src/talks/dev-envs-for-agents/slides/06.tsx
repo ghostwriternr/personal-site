@@ -1,7 +1,6 @@
 import {
     Cube,
     Database,
-    Lightning,
     Plugs,
     PlugsConnected,
 } from "@phosphor-icons/react";
@@ -12,6 +11,23 @@ import { useStep } from "../../../components/slides/useStep";
 const ICON_SIZE = 64;
 
 const decisions = [
+    {
+        title: "Runtime",
+        render: (
+            <div className="flex items-end gap-1.5" style={{ fontSize: 36, fontWeight: 300, lineHeight: 1 }}>
+                <span style={{ opacity: 0.5 }}>&gt;</span>
+                <div
+                    style={{
+                        width: 14,
+                        height: 30,
+                        backgroundColor: "currentColor",
+                        borderRadius: 2,
+                        animation: "icon-blink 2.5s ease-in-out infinite",
+                    }}
+                />
+            </div>
+        ),
+    },
     {
         title: "Isolation",
         render: (() => {
@@ -45,14 +61,6 @@ const decisions = [
                 </div>
             );
         })(),
-    },
-    {
-        title: "Cold Start",
-        render: (
-            <div style={{ animation: "icon-zap 2s ease-in-out infinite" }}>
-                <Lightning size={ICON_SIZE} weight="thin" />
-            </div>
-        ),
     },
     {
         title: "Networking",
