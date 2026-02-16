@@ -1,12 +1,12 @@
 import {
     Cube,
+    Database,
     Lightning,
     Plugs,
     PlugsConnected,
-    Database,
 } from "@phosphor-icons/react";
 import Slide from "../../../components/slides/Slide";
-import { CornerSquares } from "../../../components/slides/diagrams";
+import { CardGrid } from "../../../components/slides/diagrams";
 import { useStep } from "../../../components/slides/useStep";
 
 const ICON_SIZE = 64;
@@ -90,44 +90,27 @@ function FourDecisionsSlide() {
 
     return (
         <Slide hideGoose edgeToEdge>
-            <div className="relative h-full w-full" style={{ border: "1px solid var(--slide-border)" }}>
-                <CornerSquares size="md" />
-                <div className="grid h-full w-full grid-cols-2 grid-rows-2">
-                    {decisions.map((item, i) => {
-                        const active = i <= step;
-                        return (
-                            <div
-                                key={item.title}
-                                className="flex flex-col transition-opacity duration-500"
-                                style={{
-                                    borderRight: i % 2 === 0 ? "1px solid var(--slide-border)" : undefined,
-                                    borderBottom: i < 2 ? "1px solid var(--slide-border)" : undefined,
-                                    opacity: active ? 1 : 0,
-                                }}
-                            >
-                                <div
-                                    className="flex flex-1 items-center justify-center"
-                                    style={{
-                                        backgroundColor: "var(--slide-bg-surface)",
-                                        borderBottom: "1px solid var(--slide-border)",
-                                        color: "var(--slide-accent)",
-                                    }}
-                                >
-                                    {item.render}
-                                </div>
-                                <div className="flex items-center justify-center p-5">
-                                    <span
-                                        className="font-lufga text-xl font-medium"
-                                        style={{ color: "var(--slide-fg)" }}
-                                    >
-                                        {item.title}
-                                    </span>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
+            <CardGrid columns={2} rows={2} activeCount={step + 1} className="h-full w-full">
+                {decisions.map((item) => (
+                    <div key={item.title} className="flex h-full flex-col">
+                        <div
+                            className="flex flex-1 items-center justify-center"
+                            style={{
+                                backgroundColor: "var(--slide-bg-surface)",
+                                borderBottom: "1px solid var(--slide-border)",
+                                color: "var(--slide-accent)",
+                            }}
+                        >
+                            {item.render}
+                        </div>
+                        <div className="flex items-center justify-center p-5">
+                            <span className="font-lufga text-xl font-medium">
+                                {item.title}
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </CardGrid>
         </Slide>
     );
 }

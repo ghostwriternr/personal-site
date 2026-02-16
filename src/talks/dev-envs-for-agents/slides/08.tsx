@@ -1,61 +1,57 @@
 import Slide from "../../../components/slides/Slide";
 
-const points = [
-    {
-        label: "Containers",
-        detail: "Share host kernel",
-        sub: "Fast, lightweight",
-    },
-    {
-        label: "MicroVMs",
-        detail: "Own kernel, own network",
-        sub: "Container-like speed, VM-like boundaries",
-    },
-    {
-        label: "Full VMs",
-        detail: "Gold standard isolation",
-        sub: "10+ seconds to boot",
-    },
+const rows = [
+    { label: "Kernel", containers: "Shared", microvms: "Own (~125ms boot)", fullvms: "Own (10-30s boot)" },
+    { label: "Memory overhead", containers: "<1 MB", microvms: "~5 MB", fullvms: "100 MB+" },
+    { label: "Density", containers: "~50/machine", microvms: "~5/machine", fullvms: "1-2/machine" },
+    { label: "Attack surface", containers: "Host kernel", microvms: "~50k lines (Rust)", fullvms: "Full hypervisor" },
+    { label: "Untrusted code", containers: "❌", microvms: "✅", fullvms: "✅" },
 ];
 
 export default function IsolationSpectrumSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-10">
-                <p className="font-lufga text-3xl font-light text-(--slide-fg)">
-                    Isolation
-                </p>
+            <div className="flex w-full max-w-4xl flex-col gap-8">
+                <div className="grid grid-cols-4 gap-y-4 gap-x-6">
+                    <div />
+                    <span className="font-lufga text-xl font-medium text-(--slide-fg-muted)">
+                        Containers
+                    </span>
+                    <span className="font-lufga text-xl font-medium text-(--slide-accent-light)">
+                        MicroVMs
+                    </span>
+                    <span className="font-lufga text-xl font-medium text-(--slide-fg-muted)">
+                        Full VMs
+                    </span>
 
-                <div className="flex items-start">
-                    {points.map((point, i) => (
-                        <div
-                            key={point.label}
-                            className="flex flex-1 flex-col items-center gap-3"
-                        >
-                            <div className="flex flex-col items-center gap-1">
-                                <span className="font-lufga text-xl font-light text-(--slide-accent-light)">
-                                    {point.label}
-                                </span>
-                                <span className="text-sm text-(--slide-fg)">
-                                    {point.detail}
-                                </span>
-                                <span className="text-xs text-(--slide-fg-muted)">
-                                    {point.sub}
-                                </span>
-                            </div>
-                        </div>
+                    {rows.map((row) => (
+                        <>
+                            <span
+                                key={`${row.label}-label`}
+                                className="text-sm text-(--slide-fg-muted)"
+                            >
+                                {row.label}
+                            </span>
+                            <span
+                                key={`${row.label}-containers`}
+                                className="font-mono text-sm text-(--slide-fg)"
+                            >
+                                {row.containers}
+                            </span>
+                            <span
+                                key={`${row.label}-microvms`}
+                                className="font-mono text-sm text-(--slide-accent-light)"
+                            >
+                                {row.microvms}
+                            </span>
+                            <span
+                                key={`${row.label}-fullvms`}
+                                className="font-mono text-sm text-(--slide-fg)"
+                            >
+                                {row.fullvms}
+                            </span>
+                        </>
                     ))}
-                </div>
-
-                <div className="flex items-center gap-3">
-                    <span className="shrink-0 text-xs text-(--slide-fg-muted)">
-                        Faster / lighter
-                    </span>
-                    <div className="h-px flex-1 bg-(--slide-border)" />
-                    <div className="h-2 w-2 rotate-45 border-t border-r border-(--slide-fg-muted)" />
-                    <span className="shrink-0 text-xs text-(--slide-fg-muted)">
-                        Stronger isolation
-                    </span>
                 </div>
             </div>
         </Slide>
