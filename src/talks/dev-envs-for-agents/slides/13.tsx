@@ -7,7 +7,7 @@ export default function UseCaseMapSlide() {
             <div className="flex w-full max-w-5xl flex-col gap-8">
                 <DataTable columns={2}>
                     <DataTable.Header>
-                        <span>Tolerance</span>
+                        <span>Latency budget</span>
                         <span>Techniques</span>
                     </DataTable.Header>
                     <DataTable.Row label="Code interpreters">
@@ -20,15 +20,15 @@ export default function UseCaseMapSlide() {
                     </DataTable.Row>
                     <DataTable.Row label="Vibe coding">
                         <span>2-3s creation, sub-second resume</span>
-                        <span>Templates + snapshots + persistence</span>
+                        <span>Pre-built images + snapshots + volumes</span>
                     </DataTable.Row>
                     <DataTable.Row label="RL training / evals">
                         <span>Aggregate throughput</span>
-                        <span>Pre-built images + fast teardown</span>
+                        <span>Pre-built images + warm pools</span>
                     </DataTable.Row>
                     <DataTable.Row label="CI / code review">
                         <span>Predictable &gt; fast</span>
-                        <span>Pre-built images + pre-warming</span>
+                        <span>Pre-built images + warm pools</span>
                     </DataTable.Row>
                 </DataTable>
             </div>
