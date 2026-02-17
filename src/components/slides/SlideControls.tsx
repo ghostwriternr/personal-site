@@ -20,7 +20,7 @@ export default function SlideControls({
     slideActions = [],
 }: SlideControlsProps) {
     return (
-        <div className="absolute right-0 bottom-0 left-0 flex items-center justify-between p-4 opacity-0 transition-opacity duration-200 hover:opacity-100">
+        <div className="absolute right-0 bottom-0 left-0 flex items-center justify-between p-4 opacity-0 transition-opacity duration-200 hover:opacity-100 [@media(hover:none)]:opacity-100">
             <div className="flex items-center gap-2">
                 {exitHref && (
                     <a

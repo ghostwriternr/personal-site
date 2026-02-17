@@ -180,6 +180,37 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
     }, [next, prev, toggleFullscreen, exitHref]);
 
     useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        let startX = 0;
+        let startY = 0;
+
+        const handleTouchStart = (e: TouchEvent) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        };
+
+        const handleTouchEnd = (e: TouchEvent) => {
+            const dx = e.changedTouches[0].clientX - startX;
+            const dy = e.changedTouches[0].clientY - startY;
+
+            // Only trigger if horizontal movement is dominant and exceeds threshold
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                if (dx < 0) next();
+                else prev();
+            }
+        };
+
+        el.addEventListener("touchstart", handleTouchStart, { passive: true });
+        el.addEventListener("touchend", handleTouchEnd, { passive: true });
+        return () => {
+            el.removeEventListener("touchstart", handleTouchStart);
+            el.removeEventListener("touchend", handleTouchEnd);
+        };
+    }, [next, prev]);
+
+    useEffect(() => {
         const handleHashChange = () => {
             const num = parseInt(window.location.hash.replace("#", ""), 10);
             if (num >= 1 && num <= slides.length) {
