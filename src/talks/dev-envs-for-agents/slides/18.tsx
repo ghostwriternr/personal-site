@@ -1,0 +1,37 @@
+import Slide from "../../../components/slides/Slide";
+import { DataTable } from "../../../components/slides/diagrams";
+
+export default function UseCaseMapSlide() {
+    return (
+        <Slide>
+            <div className="flex w-full max-w-5xl flex-col gap-8">
+                <DataTable columns={2}>
+                    <DataTable.Header>
+                        <span>Latency budget</span>
+                        <span>Techniques</span>
+                    </DataTable.Header>
+                    <DataTable.Row label="Code interpreters">
+                        <span>Sub-second</span>
+                        <span>Pre-built image + warm pool</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Coding agents">
+                        <span>2-3s first start, fast resume</span>
+                        <span>Pre-built image + snapshots</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Vibe coding">
+                        <span>2-3s creation, sub-second resume</span>
+                        <span>Pre-built images + snapshots + volumes</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="RL training / evals">
+                        <span>Aggregate throughput</span>
+                        <span>Pre-built images + warm pools</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="CI / code review">
+                        <span>Predictable &gt; fast</span>
+                        <span>Pre-built images + warm pools</span>
+                    </DataTable.Row>
+                </DataTable>
+            </div>
+        </Slide>
+    );
+}

@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PresentationLayout from "../../layouts/PresentationLayout.astro";
+import TalkLoader from "../../components/slides/TalkLoader";
+import { site } from "../../content/site";
+import type { TalkMeta } from "../../components/slides/types";
+
+const talkMetas = import.meta.glob<{ meta: TalkMeta }>(
+    "../../talks/*/index.tsx",
+    { eager: true },
+);
+
+const slug = Astro.params.slug;
+const metaMod = talkMetas[`../../talks/${slug}/index.tsx`];
+
+if (!metaMod) {
+    return Astro.redirect("/404");
+}
+
+const { meta } = metaMod;
+const isPresenting = Astro.url.searchParams.has("present");
+---
+
+{
+    isPresenting ? (
+        <PresentationLayout
+            title={meta.title}
+            description={meta.description}
+        >
+            <TalkLoader client:load slug={slug!} />
+        </PresentationLayout>
+    ) : (
+        <BaseLayout
+            title={`${meta.title} | ${site.title}`}
+            description={meta.description}
+        >
+            <main class="col-span-12 px-2 xl:-mt-6 xl:px-6">
+                <div class="w-full">
+                    <div class="mb-4">
+                        <h1 class="text-heading-xl text-primary">
+                            {meta.title}
+                        </h1>
+                        <div class="mt-1 flex items-center justify-between">
+                            {meta.event && (
+                                <p class="text-body-sm text-[var(--color-subtext)]">
+                                    {meta.event} &middot; {meta.date}
+                                </p>
+                            )}
+                            <a
+                                href={`/talks/${slug}/?present`}
+                                class="text-secondary text-body-sm hover:text-[var(--color-muted)]"
+                            >
+                                Present &rarr;
+                            </a>
+                        </div>
+                    </div>
+                    <div class="aspect-video overflow-hidden rounded-lg border-2 border-[var(--color-tertiary)]">
+                        <TalkLoader client:load slug={slug!} />
+                    </div>
+                </div>
+            </main>
+        </BaseLayout>
+    )
+}

@@ -107,6 +107,16 @@ ${poems.map((poem) => `- [${poem.title}](${baseUrl}/poetry/${poem.id}/)`).join("
 `;
 }
 
+export function generateTalksIndexMarkdown(
+    baseUrl: string,
+    talks: { slug: string; title: string; description: string }[]
+): string {
+    return `# Talks by ${site.title}
+
+${talks.map((talk) => `- [${talk.title}](${baseUrl}/talks/${talk.slug}/): ${talk.description}`).join("\n")}
+`;
+}
+
 /**
  * Generate 404 content in markdown
  */

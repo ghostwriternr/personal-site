@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import cloudflare from "@astrojs/cloudflare";
+import react from "@astrojs/react";
 
 import expressiveCode from "astro-expressive-code";
 
@@ -16,6 +17,7 @@ export default defineConfig({
         defaultStrategy: "viewport",
     },
     integrations: [
+        react(),
         expressiveCode({
             themes: ["everforest-light", "rose-pine-moon"],
             themeCssSelector: (theme) => {
