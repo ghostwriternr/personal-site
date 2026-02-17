@@ -4,6 +4,7 @@ import { HANDLE_STYLE } from "../constants";
 export interface DashedIconNodeData extends Record<string, unknown> {
     icon: React.ReactNode;
     color: string;
+    label?: string;
     sourceEdge?: "top" | "bottom" | "left" | "right";
     targetEdge?: "top" | "bottom" | "left" | "right";
 }
@@ -23,6 +24,14 @@ export function DashedIconNode({
 
     return (
         <>
+            {data.label && (
+                <div
+                    className="absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-sm font-medium"
+                    style={{ color: data.color }}
+                >
+                    {data.label}
+                </div>
+            )}
             <div
                 className="flex items-center justify-center rounded-sm p-3"
                 style={{

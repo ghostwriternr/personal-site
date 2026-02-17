@@ -1,66 +1,112 @@
 import Slide from "../../../components/slides/Slide";
+import CodeBlock from "../../../components/slides/CodeBlock";
+import { CornerSquares } from "../../../components/slides/diagrams";
 import { useStep } from "../../../components/slides/useStep";
 
-const annotations = [
+const decisions = [
     {
-        code: `const sandbox = getSandbox(env.Sandbox, 'demo-session');`,
-        label: "A fresh Linux environment, completely isolated",
+        label: "Isolation",
+        description:
+            "Each session gets its own VM — own kernel, own filesystem.",
+        code: `const sandbox = getSandbox(env.Sandbox, sessionId);`,
+        fileName: "index.ts",
     },
     {
-        code: `await sandbox.files.write('app.js', code);`,
-        label: "Files written to a filesystem only this environment can see",
+        label: "Runtime",
+        description: "Background processes, file I/O, real bash sessions.",
+        code: `const server = await sandbox.startProcess("npx vite --host");
+await server.waitForPort(5173);
+
+const source = await sandbox.readFile("src/App.tsx");
+await sandbox.writeFile("src/App.tsx", modified);`,
+        fileName: "sandbox.ts",
     },
     {
-        code: `await sandbox.commands.run('npm install');`,
-        label: "Commands ran in a real bash session",
-    },
-    {
+        label: "Networking",
+        description:
+            "One call turns an internal port into a public URL.",
         code: `const { url } = await sandbox.exposePort(5173, { hostname });`,
-        label: "Routed from the internet — there's no localhost here",
+        fileName: "sandbox.ts",
+    },
+    {
+        label: "Persistence",
+        description:
+            "Modified files saved to storage — the user comes back, the work is there.",
+        code: `await env.DIFFS.put(
+  \`sessions/\${sessionId}/App.tsx\`,
+  source,
+);`,
+        fileName: "sandbox.ts",
     },
 ];
 
 function AnnotatedCodeSlide() {
     const step = useStep();
+    const active = Math.min(step, decisions.length - 1);
+    const current = decisions[active];
 
     return (
-        <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-4">
-                {annotations.map((a, i) => {
-                    const active = i === step;
-                    const visible = i <= step;
-
-                    return (
-                        <div
-                            key={i}
-                            className="flex items-center gap-6 transition-all duration-300"
-                            style={{
-                                opacity: visible ? (active ? 1 : 0.4) : 0,
-                                transform: visible
-                                    ? "translateX(0)"
-                                    : "translateX(-12px)",
-                            }}
+        <Slide hideGoose edgeToEdge>
+            <div className="relative flex h-full w-full flex-col border border-(--slide-border)">
+                <CornerSquares />
+                <div className="grid h-full grid-cols-[1.6fr_1fr]">
+                    <div className="relative flex items-center border-r border-(--slide-border) p-6">
+                        <CodeBlock
+                            title={current.fileName}
+                            className="w-full"
                         >
-                            <code className="shrink-0 font-mono text-sm text-(--slide-fg)">
-                                {a.code}
-                            </code>
-                            <span
-                                className="shrink-0 text-sm transition-opacity duration-300"
-                                style={{
-                                    color: "var(--slide-accent-light)",
-                                    opacity: active ? 1 : 0,
-                                }}
-                            >
-                                ← {a.label}
-                            </span>
-                        </div>
-                    );
-                })}
+                            {current.code}
+                        </CodeBlock>
+                    </div>
+
+                    <div className="flex h-full flex-col">
+                        {decisions.map((d, i) => {
+                            const isActive = i === active;
+                            return (
+                                <div
+                                    key={d.label}
+                                    className="relative flex flex-1 flex-col justify-center gap-1.5 border-b border-(--slide-border) px-6 transition-colors duration-300 last:border-b-0"
+                                    style={{
+                                        backgroundColor: isActive
+                                            ? "var(--slide-bg-active)"
+                                            : "transparent",
+                                    }}
+                                >
+                                    <div
+                                        className="absolute top-0 bottom-0 left-0 w-1 transition-opacity duration-300"
+                                        style={{
+                                            backgroundColor:
+                                                "var(--slide-accent)",
+                                            opacity: isActive ? 1 : 0,
+                                        }}
+                                    />
+                                    <p
+                                        className="font-lufga text-base font-medium transition-opacity duration-300"
+                                        style={{
+                                            opacity: isActive ? 1 : 0.5,
+                                        }}
+                                    >
+                                        {d.label}
+                                    </p>
+                                    <p
+                                        className="text-sm leading-relaxed text-(--slide-fg-muted) transition-opacity duration-300"
+                                        style={{
+                                            opacity: isActive ? 1 : 0.4,
+                                        }}
+                                    >
+                                        {d.description}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         </Slide>
     );
 }
 
 AnnotatedCodeSlide.steps = 4;
+AnnotatedCodeSlide.edgeToEdge = true;
 
 export default AnnotatedCodeSlide;

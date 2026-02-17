@@ -24,7 +24,7 @@ export function IconGroupNode({
                 <CornerSquares size="sm" color={data.color} />
                 {data.label && (
                     <div
-                        className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-base font-medium"
+                        className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-sm font-medium"
                         style={{ color: data.color }}
                     >
                         {data.label}
