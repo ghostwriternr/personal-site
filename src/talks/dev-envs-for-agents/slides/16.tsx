@@ -1,21 +1,40 @@
 import Slide from "../../../components/slides/Slide";
-import { Blockquote } from "../../../components/slides/diagrams";
-import { ManusLogo } from "../../../components/slides/logos";
+import { CardGrid } from "../../../components/slides/diagrams";
+import { decisions } from "./05";
 
-export default function ColdStartHookSlide() {
+function DecisionsPersistenceSlide() {
     return (
-        <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-10">
-                <Blockquote
-                    quote="Manus doesn't just run some pieces of code. It uses 27 different tools, and it needs a full virtual computer."
-                    person={{
-                        name: "Tao Zhang",
-                        title: "Co-founder, Manus",
-                    }}
-                    source="From a published E2B case study"
-                    icon={<ManusLogo className="size-24 text-(--slide-fg-muted)" />}
-                />
-            </div>
+        <Slide hideGoose edgeToEdge>
+            <CardGrid
+                columns={2}
+                rows={2}
+                activeCount={4}
+                className="h-full w-full"
+            >
+                {decisions.map((item) => (
+                    <div key={item.title} className="flex h-full flex-col">
+                        <div
+                            className="flex flex-1 items-center justify-center"
+                            style={{
+                                backgroundColor: "var(--slide-bg-surface)",
+                                borderBottom: "1px solid var(--slide-border)",
+                                color: "var(--slide-accent)",
+                            }}
+                        >
+                            {item.render}
+                        </div>
+                        <div className="flex items-center justify-center p-5">
+                            <span className="font-lufga text-xl font-medium">
+                                {item.title}
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </CardGrid>
         </Slide>
     );
 }
+
+DecisionsPersistenceSlide.edgeToEdge = true;
+
+export default DecisionsPersistenceSlide;

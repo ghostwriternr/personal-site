@@ -1,45 +1,55 @@
+import { ChatCircleDots, FileMagnifyingGlass, Package } from "@phosphor-icons/react";
 import Slide from "../../../components/slides/Slide";
-import { DataTable } from "../../../components/slides/diagrams";
+import { CardGrid } from "../../../components/slides/diagrams";
+import { useStep } from "../../../components/slides/useStep";
 
-const accent = "text-(--slide-accent-light)";
+const ICON_SIZE = 36;
 
-export default function IsolationSpectrumSlide() {
+const items = [
+    {
+        icon: Package,
+        title: "You don't know what packages your agent installed.",
+    },
+    {
+        icon: ChatCircleDots,
+        title: "You don't know what your user told it to build.",
+    },
+    {
+        icon: FileMagnifyingGlass,
+        title: "You don't know what your agent read before it wrote that code.",
+    },
+];
+
+function IsolationProblemSlide() {
+    const step = useStep();
+
     return (
-        <Slide>
-            <div className="w-full max-w-4xl">
-                <DataTable columns={3}>
-                    <DataTable.Header>
-                        <span>Namespaces only</span>
-                        <span className={accent}>MicroVM</span>
-                        <span>Full VM</span>
-                    </DataTable.Header>
-                    <DataTable.Row label="Kernel">
-                        <span>Shared</span>
-                        <span className={accent}>Own</span>
-                        <span>Own</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="Memory overhead">
-                        <span>&lt;1 MB</span>
-                        <span className={accent}>~5 MB</span>
-                        <span>100 MB+</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="Startup time">
-                        <span>&lt;500ms</span>
-                        <span className={accent}>~125ms</span>
-                        <span>5-30s</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="Attack surface">
-                        <span>All host syscalls</span>
-                        <span className={accent}>5 emulated devices</span>
-                        <span>100+ emulated devices</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="Untrusted code">
-                        <span>No</span>
-                        <span className={accent}>Yes</span>
-                        <span>Yes</span>
-                    </DataTable.Row>
-                </DataTable>
+        <Slide hideGoose edgeToEdge>
+            <div className="flex h-full w-full flex-col items-center justify-center gap-10">
+                <p className="font-lufga text-3xl font-light">
+                    Isolation
+                </p>
+                <div className="w-full max-w-5xl">
+                    <CardGrid columns={3} activeCount={step + 1}>
+                        {items.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <div key={item.title} className="p-8">
+                                    <Icon size={ICON_SIZE} weight="thin" />
+                                    <h3 className="font-lufga pt-4 text-xl font-medium leading-relaxed">
+                                        {item.title}
+                                    </h3>
+                                </div>
+                            );
+                        })}
+                    </CardGrid>
+                </div>
             </div>
         </Slide>
     );
 }
+
+IsolationProblemSlide.steps = 3;
+IsolationProblemSlide.edgeToEdge = true;
+
+export default IsolationProblemSlide;

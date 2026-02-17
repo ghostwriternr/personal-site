@@ -1,77 +1,51 @@
-import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
-import { Camera, HardDrive, Package, Stack } from "@phosphor-icons/react";
 import Slide from "../../../components/slides/Slide";
-import { DashedBorder } from "../../../components/slides/diagrams";
+import { CornerSquares } from "../../../components/slides/diagrams";
 import { useStep } from "../../../components/slides/useStep";
 
-const techniques: { icon: PhosphorIcon; title: string; desc: string }[] = [
-    {
-        icon: Package,
-        title: "Pre-built images",
-        desc: "Bake dependencies into the image at build time. npm install happens once, not per sandbox.",
-    },
-    {
-        icon: HardDrive,
-        title: "Volumes",
-        desc: "Mount persistent storage into ephemeral containers. Workspace, node_modules, and cloned repos survive restarts.",
-    },
-    {
-        icon: Camera,
-        title: "Snapshots",
-        desc: "Freeze disk and memory after the app is ready. Next start restores from the snapshot instead of booting fresh.",
-    },
-    {
-        icon: Stack,
-        title: "Warm pools",
-        desc: "Pre-create sandboxes before they're needed. When an agent asks for one, it's already running.",
-    },
-];
-
-function TechniquesSlide() {
+function ColdStartReframeSlide() {
     const step = useStep();
 
     return (
         <Slide hideGoose>
-            <DashedBorder
-                className="w-full max-w-4xl p-1"
-                borderRadius={12}
-                dashLength={6}
-                gapLength={6}
-                borderColor="var(--slide-fg-muted)"
-            >
-                <div
-                    className="grid grid-cols-2 overflow-hidden rounded-lg border border-(--slide-border)"
-                >
-                    {techniques.map((t, i) => {
-                        const Icon = t.icon;
-                        const isRight = i % 2 === 1;
-                        const isBottom = i >= 2;
-                        return (
-                            <div
-                                key={t.title}
-                                className="flex flex-col gap-1 p-8 transition-opacity duration-500"
-                                style={{
-                                    borderLeft: isRight ? "1px solid var(--slide-border)" : undefined,
-                                    borderTop: isBottom ? "1px solid var(--slide-border)" : undefined,
-                                    opacity: i <= step ? 1 : 0,
-                                }}
-                            >
-                                <div className="flex items-center gap-2">
-                                    <Icon size={20} weight="regular" />
-                                    <h3 className="font-lufga text-lg font-medium">{t.title}</h3>
-                                </div>
-                                <p className="mt-2 leading-relaxed text-(--slide-fg-muted)">
-                                    {t.desc}
-                                </p>
-                            </div>
-                        );
-                    })}
+            <div className="grid w-full max-w-5xl grid-cols-[1fr_1.2fr] gap-0">
+                {/* Left column */}
+                <div className="relative row-span-2 border border-(--slide-border) p-8">
+                    <CornerSquares />
+                    <p className="font-lufga text-4xl leading-snug font-light">
+                        How you think about persistence affects cold starts.
+                    </p>
                 </div>
-            </DashedBorder>
+
+                <div
+                    className="relative border border-(--slide-border) border-l-0 p-8 transition-opacity duration-500"
+                    style={{ opacity: step >= 1 ? 1 : 0 }}
+                >
+                    <CornerSquares corners={{ topLeft: false, bottomLeft: false }} />
+                    <h3 className="font-lufga text-xl font-medium">
+                        What survives
+                    </h3>
+                    <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
+                        When the sandbox stops, what's still there? The OS image, installed dependencies, cloned repos, runtime state — each layer is a choice.
+                    </p>
+                </div>
+
+                <div
+                    className="relative border border-(--slide-border) border-l-0 border-t-0 p-8 transition-opacity duration-500"
+                    style={{ opacity: step >= 2 ? 1 : 0 }}
+                >
+                    <CornerSquares corners={{ topRight: false }} />
+                    <h3 className="font-lufga text-xl font-medium">
+                        How fast it resumes
+                    </h3>
+                    <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
+                        Cold start time is a direct consequence. The more you persist, the less you rebuild. The less you rebuild, the faster you resume.
+                    </p>
+                </div>
+            </div>
         </Slide>
     );
 }
 
-TechniquesSlide.steps = 4;
+ColdStartReframeSlide.steps = 3;
 
-export default TechniquesSlide;
+export default ColdStartReframeSlide;

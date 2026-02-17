@@ -1,27 +1,11 @@
 import Slide from "../../../components/slides/Slide";
-import CodeBlock from "../../../components/slides/CodeBlock";
 
-const sdkCode = `const sandbox = getSandbox(env.Sandbox, sessionId);
-
-const server = await sandbox.startProcess("npx vite --host");
-await server.waitForPort(5173);
-
-const { url } = await sandbox.exposePort(5173, { hostname });
-
-const source = await sandbox.readFile("src/App.tsx");
-const modified = await generateCode(prompt, source);
-await sandbox.writeFile("src/App.tsx", modified);`;
-
-export default function SDKRevealSlide() {
+export default function CloudflareTransitionSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-3xl flex-col gap-8">
-                <p className="font-mono text-sm text-(--slide-fg-muted) opacity-40">
-                    $ sandbox "make the goose follow my cursor"
-                </p>
-
-                <CodeBlock title="sandbox.ts">{sdkCode}</CodeBlock>
-            </div>
+            <p className="font-lufga text-center text-4xl leading-tight font-light text-(--slide-fg)">
+                Let's look under the hood.
+            </p>
         </Slide>
     );
 }

@@ -1,40 +1,45 @@
 import Slide from "../../../components/slides/Slide";
-import { CardGrid } from "../../../components/slides/diagrams";
-import { decisions } from "./05";
+import { DataTable } from "../../../components/slides/diagrams";
 
-function DecisionsNetworkingSlide() {
+const accent = "text-(--slide-accent-light)";
+
+export default function IsolationSpectrumSlide() {
     return (
-        <Slide hideGoose edgeToEdge>
-            <CardGrid
-                columns={2}
-                rows={2}
-                activeCount={3}
-                className="h-full w-full"
-            >
-                {decisions.map((item) => (
-                    <div key={item.title} className="flex h-full flex-col">
-                        <div
-                            className="flex flex-1 items-center justify-center"
-                            style={{
-                                backgroundColor: "var(--slide-bg-surface)",
-                                borderBottom: "1px solid var(--slide-border)",
-                                color: "var(--slide-accent)",
-                            }}
-                        >
-                            {item.render}
-                        </div>
-                        <div className="flex items-center justify-center p-5">
-                            <span className="font-lufga text-xl font-medium">
-                                {item.title}
-                            </span>
-                        </div>
-                    </div>
-                ))}
-            </CardGrid>
+        <Slide>
+            <div className="w-full max-w-4xl">
+                <DataTable columns={3}>
+                    <DataTable.Header>
+                        <span>Namespaces only</span>
+                        <span className={accent}>MicroVM</span>
+                        <span>Full VM</span>
+                    </DataTable.Header>
+                    <DataTable.Row label="Kernel">
+                        <span>Shared</span>
+                        <span className={accent}>Own</span>
+                        <span>Own</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Memory overhead">
+                        <span>&lt;1 MB</span>
+                        <span className={accent}>~5 MB</span>
+                        <span>100 MB+</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Startup time">
+                        <span>&lt;500ms</span>
+                        <span className={accent}>~125ms</span>
+                        <span>5-30s</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Attack surface">
+                        <span>All host syscalls</span>
+                        <span className={accent}>5 emulated devices</span>
+                        <span>100+ emulated devices</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Untrusted code">
+                        <span>No</span>
+                        <span className={accent}>Yes</span>
+                        <span>Yes</span>
+                    </DataTable.Row>
+                </DataTable>
+            </div>
         </Slide>
     );
 }
-
-DecisionsNetworkingSlide.edgeToEdge = true;
-
-export default DecisionsNetworkingSlide;

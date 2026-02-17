@@ -1,37 +1,40 @@
 import Slide from "../../../components/slides/Slide";
-import { DataTable } from "../../../components/slides/diagrams";
+import { useStep } from "../../../components/slides/useStep";
 
-export default function UseCaseMapSlide() {
+const approaches = [
+    { label: "From scratch", time: "~32s", width: "100%" },
+    { label: "Pre-built image", time: "~2s", width: "6.25%" },
+    { label: "Snapshot restore", time: "~200ms", width: "1.5%" },
+    { label: "Warm pool", time: "~0ms", width: "0.5%" },
+];
+
+function ColdStartMathSlide() {
+    const step = useStep();
+
     return (
         <Slide>
-            <div className="flex w-full max-w-5xl flex-col gap-8">
-                <DataTable columns={2}>
-                    <DataTable.Header>
-                        <span>Latency budget</span>
-                        <span>Techniques</span>
-                    </DataTable.Header>
-                    <DataTable.Row label="Code interpreters">
-                        <span>Sub-second</span>
-                        <span>Pre-built image + warm pool</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="Coding agents">
-                        <span>2-3s first start, fast resume</span>
-                        <span>Pre-built image + snapshots</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="Vibe coding">
-                        <span>2-3s creation, sub-second resume</span>
-                        <span>Pre-built images + snapshots + volumes</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="RL training / evals">
-                        <span>Aggregate throughput</span>
-                        <span>Pre-built images + warm pools</span>
-                    </DataTable.Row>
-                    <DataTable.Row label="CI / code review">
-                        <span>Predictable &gt; fast</span>
-                        <span>Pre-built images + warm pools</span>
-                    </DataTable.Row>
-                </DataTable>
+            <div className="flex w-full max-w-4xl flex-col gap-8">
+                {approaches.map((a, i) => (
+                    <div
+                        key={a.label}
+                        className="flex flex-col gap-2 transition-opacity duration-500"
+                        style={{ opacity: i <= step ? 1 : 0 }}
+                    >
+                        <div className="flex items-baseline justify-between">
+                            <span className="font-lufga text-lg font-medium">{a.label}</span>
+                            <span className="font-mono text-(--slide-fg-muted)">{a.time}</span>
+                        </div>
+                        <div
+                            className="h-3 rounded-sm bg-(--slide-accent-light)"
+                            style={{ width: a.width, minWidth: 4 }}
+                        />
+                    </div>
+                ))}
             </div>
         </Slide>
     );
 }
+
+ColdStartMathSlide.steps = 4;
+
+export default ColdStartMathSlide;
