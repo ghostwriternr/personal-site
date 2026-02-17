@@ -17,7 +17,7 @@ env.SANDBOX.get("migrate-v1", () => ({
 export default function UntrustedCodeSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-3xl flex-col gap-8">
+            <div className="flex w-full max-w-4xl flex-col gap-8">
                 <p className="font-lufga text-4xl leading-snug font-light text-balance">
                     What if every application could run untrusted code?
                 </p>

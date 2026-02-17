@@ -141,7 +141,7 @@ export default function PrismHighlighter({
                         overflow: "auto",
                         fontFamily:
                             "ui-monospace, SFMono-Regular, 'SF Mono', Monaco, Consolas, monospace",
-                        fontSize: "14px",
+                        fontSize: "16px",
                         lineHeight: "1.6",
                     }}
                 >
