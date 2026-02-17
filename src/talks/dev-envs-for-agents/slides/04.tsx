@@ -75,5 +75,12 @@ function LayerDiagramSlide() {
 }
 
 LayerDiagramSlide.steps = 5;
+LayerDiagramSlide.notes = `Every one of those layers is a design decision with real tradeoffs.
+
+[1] A fresh Linux environment — its own VM, own kernel, own network stack.
+[2] A container inside it — Ubuntu 22.04, Python 3.11, Node.js 20, Git.
+[3] Bash sessions and filesystem — working directory, env vars, installed packages.
+[4] Port routing — npm start runs on port 5173 inside the container.
+[5] Persistence — files, packages, state — still there tomorrow.`;
 
 export default LayerDiagramSlide;

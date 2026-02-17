@@ -19,10 +19,11 @@ if (!metaMod) {
 
 const { meta } = metaMod;
 const isPresenting = Astro.url.searchParams.has("present");
+const isPresenter = Astro.url.searchParams.has("presenter");
 ---
 
 {
-    isPresenting ? (
+    isPresenting || isPresenter ? (
         <PresentationLayout
             title={meta.title}
             description={meta.description}

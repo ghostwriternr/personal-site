@@ -36,5 +36,6 @@ function DecisionsIsolationSlide() {
 }
 
 DecisionsIsolationSlide.edgeToEdge = true;
+DecisionsIsolationSlide.notes = `Second decision: Isolation. How do you contain what you just gave the agent?`;
 
 export default DecisionsIsolationSlide;

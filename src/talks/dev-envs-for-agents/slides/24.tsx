@@ -23,8 +23,7 @@ await sandbox.writeFile("src/App.tsx", modified);`,
     },
     {
         label: "Networking",
-        description:
-            "One call turns an internal port into a public URL.",
+        description: "One call turns an internal port into a public URL.",
         code: `const { url } = await sandbox.exposePort(5173, { hostname });`,
         fileName: "sandbox.ts",
     },
@@ -51,10 +50,7 @@ function AnnotatedCodeSlide() {
                 <CornerSquares />
                 <div className="grid h-full grid-cols-[1.6fr_1fr]">
                     <div className="relative flex items-center border-r border-(--slide-border) p-6">
-                        <CodeBlock
-                            title={current.fileName}
-                            className="w-full"
-                        >
+                        <CodeBlock title={current.fileName} className="w-full">
                             {current.code}
                         </CodeBlock>
                     </div>
@@ -108,5 +104,14 @@ function AnnotatedCodeSlide() {
 
 AnnotatedCodeSlide.steps = 4;
 AnnotatedCodeSlide.edgeToEdge = true;
+AnnotatedCodeSlide.notes = `Each of these lines maps to one of the four decisions.
+
+[1] Isolation: getSandbox provisions an isolated environment — its own VM, own kernel, own filesystem.
+
+[2] Runtime: startProcess, readFile, writeFile — background processes, file I/O, real bash sessions.
+
+[3] Networking: exposePort creates the preview URL — routing from the internet to a specific port.
+
+[4] Persistence: modified files saved to storage — the user comes back, the work is there.`;
 
 export default AnnotatedCodeSlide;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SlideDeck from "./SlideDeck";
+import PresenterDeck from "./PresenterDeck";
 import type { TalkModule } from "./types";
 
 const talkModules = import.meta.glob<TalkModule>("../../talks/*/index.tsx");
@@ -20,9 +21,24 @@ export default function TalkLoader({ slug }: TalkLoaderProps) {
 
     if (!talk) return null;
 
-    const isPresenting =
-        typeof window !== "undefined" &&
-        new URLSearchParams(window.location.search).has("present");
+    const searchParams =
+        typeof window !== "undefined"
+            ? new URLSearchParams(window.location.search)
+            : new URLSearchParams();
+
+    const isPresenting = searchParams.has("present");
+    const isPresenter = searchParams.has("presenter");
+
+    if (isPresenter) {
+        return (
+            <PresenterDeck
+                slides={talk.slides}
+                theme={talk.theme}
+                talkSlug={slug}
+            />
+        );
+    }
+
     const exitHref = isPresenting ? `/talks/${slug}/` : undefined;
 
     return (
@@ -30,6 +46,7 @@ export default function TalkLoader({ slug }: TalkLoaderProps) {
             slides={talk.slides}
             theme={talk.theme}
             exitHref={exitHref}
+            talkSlug={slug}
         />
     );
 }

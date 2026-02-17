@@ -5,6 +5,8 @@ export type SlideComponent = ComponentType & {
     steps?: number;
     /** Hide the dashed edge lines on the slide background */
     edgeToEdge?: boolean;
+    /** Speaker notes for presenter view */
+    notes?: string;
 };
 
 export interface TalkMeta {

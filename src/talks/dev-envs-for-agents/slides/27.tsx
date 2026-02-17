@@ -14,7 +14,7 @@ env.SANDBOX.get("migrate-v1", () => ({
   env: { DATABASE: scopedTenantDB },
 }));`;
 
-export default function UntrustedCodeSlide() {
+function UntrustedCodeSlide() {
     return (
         <Slide>
             <div className="flex w-full max-w-4xl flex-col gap-8">
@@ -29,3 +29,11 @@ export default function UntrustedCodeSlide() {
         </Slide>
     );
 }
+
+UntrustedCodeSlide.notes = `Here's the bigger picture. What if every application could run untrusted code?
+
+An agent writes a database migration. Your app runs it sandboxed — scoped permissions, isolated environment. No containers, no VMs. V8 isolates. Milliseconds.
+
+Sandboxes aren't just for agents running code. They're for any application that needs to run code it didn't write.`;
+
+export default UntrustedCodeSlide;

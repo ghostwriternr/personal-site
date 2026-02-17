@@ -12,7 +12,7 @@ const source = await sandbox.readFile("src/App.tsx");
 const modified = await generateCode(prompt, source);
 await sandbox.writeFile("src/App.tsx", modified);`;
 
-export default function SDKRevealSlide() {
+function SDKRevealSlide() {
     return (
         <Slide>
             <div className="flex w-full max-w-3xl flex-col gap-8">
@@ -25,3 +25,11 @@ export default function SDKRevealSlide() {
         </Slide>
     );
 }
+
+SDKRevealSlide.notes = `Remember that sandbox command from the opening? Here's what's underneath.
+
+Get a sandbox. Start a process. Wait for the port. Expose it. Read files, write files.
+
+That's the entire interface. All the complexity we talked about — runtime, isolation, networking, persistence — is below this line.`;
+
+export default SDKRevealSlide;

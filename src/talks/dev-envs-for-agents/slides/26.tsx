@@ -2,7 +2,7 @@ import Slide from "../../../components/slides/Slide";
 import { Blockquote } from "../../../components/slides/diagrams";
 import { CursorLogo, ClaudeLogo } from "../../../components/slides/logos";
 
-export default function ScaleSlide() {
+function ScaleSlide() {
     return (
         <Slide>
             <div className="flex w-full max-w-4xl flex-col gap-10">
@@ -14,7 +14,9 @@ export default function ScaleSlide() {
                         title: "Co-founder, Cursor",
                     }}
                     source="Apr 2025"
-                    icon={<CursorLogo className="size-16 text-(--slide-fg-muted)" />}
+                    icon={
+                        <CursorLogo className="size-16 text-(--slide-fg-muted)" />
+                    }
                 />
                 <div className="h-px w-full max-w-[640px] bg-(--slide-fg)/10" />
                 <Blockquote
@@ -25,9 +27,19 @@ export default function ScaleSlide() {
                         title: "Semiconductor research firm",
                     }}
                     source="Feb 2026"
-                    icon={<ClaudeLogo className="size-16 text-(--slide-fg-muted)" />}
+                    icon={
+                        <ClaudeLogo className="size-16 text-(--slide-fg-muted)" />
+                    }
                 />
             </div>
         </Slide>
     );
 }
+
+ScaleSlide.notes = `A billion lines of code accepted daily. Just Cursor. The entire world produces just a few billion lines a day.
+
+4% of all public GitHub commits are authored by Claude Code. At current trajectory, 20%+ of all daily commits by end of 2026.
+
+This is the new dev infrastructure. Hundreds of millions of sandbox sessions across the industry.`;
+
+export default ScaleSlide;

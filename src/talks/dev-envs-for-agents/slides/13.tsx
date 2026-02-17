@@ -36,5 +36,6 @@ function DecisionsNetworkingSlide() {
 }
 
 DecisionsNetworkingSlide.edgeToEdge = true;
+DecisionsNetworkingSlide.notes = `Third decision: Networking. How does traffic reach your sandbox?`;
 
 export default DecisionsNetworkingSlide;

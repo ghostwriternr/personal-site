@@ -1,6 +1,6 @@
 import Slide from "../../../components/slides/Slide";
 
-export default function NetworkingAddressingSlide() {
+function NetworkingAddressingSlide() {
     return (
         <Slide>
             <div className="flex flex-col items-center gap-10">
@@ -15,3 +15,9 @@ export default function NetworkingAddressingSlide() {
         </Slide>
     );
 }
+
+NetworkingAddressingSlide.notes = `The agent runs npm start and expects localhost:3000. But there is no localhost. The environment is running somewhere else entirely.
+
+You have thousands of ephemeral sandboxes — no static IPs, no DNS records. A request from the internet needs to find the right one. That's an addressing problem unique to this kind of infrastructure.`;
+
+export default NetworkingAddressingSlide;

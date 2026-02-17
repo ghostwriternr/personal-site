@@ -3,7 +3,7 @@ import { DataTable } from "../../../components/slides/diagrams";
 
 const accent = "text-(--slide-accent-light)";
 
-export default function IsolationSpectrumSlide() {
+function IsolationSpectrumSlide() {
     return (
         <Slide>
             <div className="w-full max-w-4xl">
@@ -43,3 +43,11 @@ export default function IsolationSpectrumSlide() {
         </Slide>
     );
 }
+
+IsolationSpectrumSlide.notes = `You're always running containers. The question is what you put around them.
+
+Namespaces alone — shared kernel, minimal overhead, but every syscall is an attack surface. MicroVMs — own kernel, ~5MB overhead, 125ms startup, only 5 emulated devices. Full VMs — maximum isolation but 100MB+ overhead and 5-30 second startup.
+
+For untrusted code, you need either microVMs or full VMs. The microVM sweet spot is why Firecracker exists.`;
+
+export default IsolationSpectrumSlide;

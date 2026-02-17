@@ -40,7 +40,11 @@ function buildNodes(): Node[] {
         id: "group",
         type: "iconGroup",
         position: { x: groupX, y: groupMidY },
-        data: { icons, color: ACCENT, label: "https://5173-lg6przaj-lg6przaj.goose-pond-editor.ghostwriternr.me" },
+        data: {
+            icons,
+            color: ACCENT,
+            label: "https://5173-lg6przaj-lg6przaj.goose-pond-editor.ghostwriternr.me",
+        },
         draggable: false,
     };
 
@@ -67,12 +71,24 @@ const edgeStyle = EDGE_STYLE;
 
 function buildEdges(): Edge[] {
     return [
-        { id: "e-in", source: "in", target: "group", animated: true, style: edgeStyle },
-        { id: "e-out", source: "group", target: "out", animated: true, style: edgeStyle },
+        {
+            id: "e-in",
+            source: "in",
+            target: "group",
+            animated: true,
+            style: edgeStyle,
+        },
+        {
+            id: "e-out",
+            source: "group",
+            target: "out",
+            animated: true,
+            style: edgeStyle,
+        },
     ];
 }
 
-export default function PreviewIsComputerSlide() {
+function PreviewIsComputerSlide() {
     const nodes = useMemo(() => buildNodes(), []);
     const edges = useMemo(() => buildEdges(), []);
 
@@ -84,7 +100,10 @@ export default function PreviewIsComputerSlide() {
                         nodes={nodes}
                         edges={edges}
                         nodeTypes={nodeTypes}
-                        defaultEdgeOptions={{ style: EDGE_STYLE, animated: true }}
+                        defaultEdgeOptions={{
+                            style: EDGE_STYLE,
+                            animated: true,
+                        }}
                         fitViewOptions={{ padding: 0.05 }}
                     />
                 </div>
@@ -95,3 +114,9 @@ export default function PreviewIsComputerSlide() {
         </Slide>
     );
 }
+
+PreviewIsComputerSlide.notes = `Let's break this down. What had to happen to make that link work?
+
+That preview link is a computer. A real one — shell, filesystem, network stack, running processes. All reachable through a single URL.`;
+
+export default PreviewIsComputerSlide;

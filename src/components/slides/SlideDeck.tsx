@@ -6,6 +6,7 @@ import {
     SlideActionsContext,
     useSlideActionsProvider,
 } from "./useSlideActions";
+import { useSlideBroadcast } from "./useSlideBroadcast";
 import type { SlideComponent, TalkTheme } from "./types";
 
 export const CANVAS_WIDTH = 1280;
@@ -15,6 +16,7 @@ interface SlideDeckProps {
     slides: SlideComponent[];
     theme: TalkTheme;
     exitHref?: string;
+    talkSlug?: string;
 }
 
 function getInitialSlide(total: number): number {
@@ -66,30 +68,32 @@ function SlideBackground({ hideEdges }: { hideEdges?: boolean }) {
                     inset: EDGE_INSET,
                 }}
             />
-            {!hideEdges && [EDGE_INSET, CANVAS_WIDTH - EDGE_INSET].map((x) => (
-                <div
-                    key={`v-${x}`}
-                    className="absolute top-0 h-full w-px"
-                    style={{
-                        left: x,
-                        backgroundImage: DASH_V,
-                        backgroundSize: "1px 24px",
-                        backgroundRepeat: "repeat-y",
-                    }}
-                />
-            ))}
-            {!hideEdges && [EDGE_INSET, CANVAS_HEIGHT - EDGE_INSET].map((y) => (
-                <div
-                    key={`h-${y}`}
-                    className="absolute left-0 h-px w-full"
-                    style={{
-                        top: y,
-                        backgroundImage: DASH_H,
-                        backgroundSize: "24px 1px",
-                        backgroundRepeat: "repeat-x",
-                    }}
-                />
-            ))}
+            {!hideEdges &&
+                [EDGE_INSET, CANVAS_WIDTH - EDGE_INSET].map((x) => (
+                    <div
+                        key={`v-${x}`}
+                        className="absolute top-0 h-full w-px"
+                        style={{
+                            left: x,
+                            backgroundImage: DASH_V,
+                            backgroundSize: "1px 24px",
+                            backgroundRepeat: "repeat-y",
+                        }}
+                    />
+                ))}
+            {!hideEdges &&
+                [EDGE_INSET, CANVAS_HEIGHT - EDGE_INSET].map((y) => (
+                    <div
+                        key={`h-${y}`}
+                        className="absolute left-0 h-px w-full"
+                        style={{
+                            top: y,
+                            backgroundImage: DASH_H,
+                            backgroundSize: "24px 1px",
+                            backgroundRepeat: "repeat-x",
+                        }}
+                    />
+                ))}
         </div>
     );
 }
@@ -98,7 +102,12 @@ function stepsFor(slide: SlideComponent): number {
     return slide.steps ?? 1;
 }
 
-export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
+export default function SlideDeck({
+    slides,
+    theme,
+    exitHref,
+    talkSlug,
+}: SlideDeckProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentSlide, setCurrentSlide] = useState(() =>
         getInitialSlide(slides.length)
@@ -106,34 +115,55 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
     const [currentStep, setCurrentStep] = useState(0);
     const scale = useScale(containerRef);
 
+    const handleBroadcastNavigate = useCallback(
+        (slide: number, step: number) => {
+            if (slide >= 0 && slide < slides.length) {
+                setCurrentSlide(slide);
+                setCurrentStep(step);
+                window.history.replaceState(null, "", `#${slide + 1}`);
+            }
+        },
+        [slides.length]
+    );
+
+    const { broadcast } = useSlideBroadcast({
+        channelName: talkSlug ? `talk-sync:${talkSlug}` : "talk-sync:default",
+        onNavigate: handleBroadcastNavigate,
+    });
+
     const goTo = useCallback(
         (index: number, step = 0) => {
             if (index >= 0 && index < slides.length) {
                 setCurrentSlide(index);
                 setCurrentStep(step);
                 window.history.replaceState(null, "", `#${index + 1}`);
+                broadcast(index, step);
             }
         },
-        [slides.length]
+        [slides.length, broadcast]
     );
 
     const next = useCallback(() => {
         const totalSteps = stepsFor(slides[currentSlide]);
         if (currentStep < totalSteps - 1) {
-            setCurrentStep(currentStep + 1);
+            const newStep = currentStep + 1;
+            setCurrentStep(newStep);
+            broadcast(currentSlide, newStep);
         } else {
             goTo(currentSlide + 1, 0);
         }
-    }, [currentSlide, currentStep, slides, goTo]);
+    }, [currentSlide, currentStep, slides, goTo, broadcast]);
 
     const prev = useCallback(() => {
         if (currentStep > 0) {
-            setCurrentStep(currentStep - 1);
+            const newStep = currentStep - 1;
+            setCurrentStep(newStep);
+            broadcast(currentSlide, newStep);
         } else if (currentSlide > 0) {
             const prevSteps = stepsFor(slides[currentSlide - 1]);
             goTo(currentSlide - 1, prevSteps - 1);
         }
-    }, [currentSlide, currentStep, slides, goTo]);
+    }, [currentSlide, currentStep, slides, goTo, broadcast]);
 
     const toggleFullscreen = useCallback(() => {
         if (!document.fullscreenElement) {
@@ -165,6 +195,17 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
                     e.preventDefault();
                     toggleFullscreen();
                     break;
+                case "p":
+                    if (
+                        e.target instanceof HTMLInputElement ||
+                        e.target instanceof HTMLTextAreaElement
+                    )
+                        break;
+                    if (talkSlug) {
+                        e.preventDefault();
+                        window.open(`/talks/${talkSlug}/?presenter`, "_blank");
+                    }
+                    break;
                 case "Escape":
                     if (document.fullscreenElement) {
                         document.exitFullscreen();
@@ -177,7 +218,7 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [next, prev, toggleFullscreen, exitHref]);
+    }, [next, prev, toggleFullscreen, exitHref, talkSlug]);
 
     useEffect(() => {
         const handleHashChange = () => {
@@ -225,6 +266,9 @@ export default function SlideDeck({ slides, theme, exitHref }: SlideDeckProps) {
                 onToggleFullscreen={toggleFullscreen}
                 exitHref={exitHref}
                 slideActions={slideActions.actions}
+                presenterHref={
+                    talkSlug ? `/talks/${talkSlug}/?presenter` : undefined
+                }
             />
         </div>
     );

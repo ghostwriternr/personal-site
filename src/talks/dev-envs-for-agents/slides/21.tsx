@@ -1,7 +1,7 @@
 import Slide from "../../../components/slides/Slide";
 import { DataTable } from "../../../components/slides/diagrams";
 
-export default function UseCaseMapSlide() {
+function UseCaseMapSlide() {
     return (
         <Slide>
             <div className="flex w-full max-w-5xl flex-col gap-8">
@@ -35,3 +35,11 @@ export default function UseCaseMapSlide() {
         </Slide>
     );
 }
+
+UseCaseMapSlide.notes = `Different use cases have different cold start tolerance.
+
+Code interpreters need sub-second — warm pools and pre-built images. Coding agents can tolerate 2-3s first start but need fast resume — snapshots. Vibe coding apps need sub-second resume — snapshots plus volumes. RL training cares about aggregate throughput, not individual latency.
+
+The audience self-identifies with their use case and walks away knowing which primitives matter for them.`;
+
+export default UseCaseMapSlide;

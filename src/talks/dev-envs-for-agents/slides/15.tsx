@@ -94,7 +94,7 @@ function buildEdges(): Edge[] {
     return [...browserToDos, ...dosToContainers];
 }
 
-export default function NetworkingExposureSlide() {
+function NetworkingExposureSlide() {
     const nodes = useMemo(() => buildNodes(), []);
     const edges = useMemo(() => buildEdges(), []);
 
@@ -121,3 +121,11 @@ export default function NetworkingExposureSlide() {
         </Slide>
     );
 }
+
+NetworkingExposureSlide.notes = `OK, so you can find the right sandbox. But the agent started a dev server on port 3000. The user needs a URL.
+
+That URL has to route from the public internet, to a specific port, inside a specific sandbox. Every request needs a routing layer to find the right sandbox and the right port inside it.
+
+Turning an internal service into something reachable from the internet — that's the primitive your platform needs to provide.`;
+
+export default NetworkingExposureSlide;

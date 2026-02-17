@@ -194,5 +194,8 @@ function SandboxSlide() {
 }
 
 SandboxSlide.steps = 2;
+SandboxSlide.notes = `Fresh session. No pre-warmed server. Watch.
+
+[Step 2] There's no localhost here. That preview URL had to find its way from the internet to a specific port in a specific environment. And if the user closes the tab and comes back tomorrow… the agent expects to pick up where it left off.`;
 
 export default SandboxSlide;

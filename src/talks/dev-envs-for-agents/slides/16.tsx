@@ -36,5 +36,6 @@ function DecisionsPersistenceSlide() {
 }
 
 DecisionsPersistenceSlide.edgeToEdge = true;
+DecisionsPersistenceSlide.notes = `Fourth decision: Persistence. What survives when the sandbox stops?`;
 
 export default DecisionsPersistenceSlide;

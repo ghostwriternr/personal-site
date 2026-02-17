@@ -1,6 +1,6 @@
 import Slide from "../../../components/slides/Slide";
 
-export default function ClosingCallbackSlide() {
+function ClosingCallbackSlide() {
     return (
         <Slide>
             <p className="font-lufga max-w-4xl text-center text-5xl leading-tight font-light text-(--slide-fg)">
@@ -14,3 +14,11 @@ export default function ClosingCallbackSlide() {
         </Slide>
     );
 }
+
+ClosingCallbackSlide.notes = `Remember the opening? One command, one link, no localhost.
+
+Now you know what's behind it — four decisions, each with real tradeoffs. Runtime, isolation, networking, persistence.
+
+Whether you build this yourself or use a platform, these are the decisions you'll make.`;
+
+export default ClosingCallbackSlide;

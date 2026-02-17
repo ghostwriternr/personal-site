@@ -97,7 +97,7 @@ function buildNodes(): Node[] {
                 targetEdge: "left" as const,
             },
             draggable: false,
-        }),
+        })
     );
 
     // --- Column 4: microVM groups + Sandbox icon groups (x: 520) ---
@@ -141,16 +141,14 @@ function buildNodes(): Node[] {
                     },
                     {
                         key: "files",
-                        element: (
-                            <FolderOpen size={SMALL_ICON} weight="thin" />
-                        ),
+                        element: <FolderOpen size={SMALL_ICON} weight="thin" />,
                     },
                 ],
                 color: ORANGE,
                 label: "Sandbox",
             },
             draggable: false,
-        }),
+        })
     );
 
     // --- Column 5: Storage (x: 850) ---
@@ -232,7 +230,7 @@ function buildEdges(): Edge[] {
     ];
 }
 
-export default function ArchitectureSlide() {
+function ArchitectureSlide() {
     const nodes = useMemo(() => buildNodes(), []);
     const edges = useMemo(() => buildEdges(), []);
 
@@ -259,3 +257,13 @@ export default function ArchitectureSlide() {
         </Slide>
     );
 }
+
+ArchitectureSlide.notes = `Here's how Cloudflare does it.
+
+Clients — agents, browsers — hit the edge. A Worker routes requests to the right Durable Object. Each DO manages a sandbox's lifecycle — it's globally addressable, handles sleep and wake.
+
+The container runs inside a Firecracker microVM — that's the isolation boundary. Own kernel, own network, own filesystem.
+
+Storage handles persistence — workspace files, diffs, state.`;
+
+export default ArchitectureSlide;

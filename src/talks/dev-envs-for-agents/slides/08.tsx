@@ -36,7 +36,7 @@ const capabilities: { icon: PhosphorIcon; title: string; desc: string }[] = [
     },
 ];
 
-export default function NonTrivialSlide() {
+function NonTrivialSlide() {
     return (
         <Slide>
             <div className="flex flex-col items-center gap-10">
@@ -72,3 +72,11 @@ export default function NonTrivialSlide() {
         </Slide>
     );
 }
+
+NonTrivialSlide.notes = `But a sandbox that agents can actually develop software in needs more.
+
+Background processes — the agent starts a dev server and keeps working. Streaming — the agent reacts to output as it happens, not after. Continuity — cd and npm install carry over between commands. An interactive terminal. Rich outputs beyond stdout.
+
+These are what turn "code execution" into "software development."`;
+
+export default NonTrivialSlide;

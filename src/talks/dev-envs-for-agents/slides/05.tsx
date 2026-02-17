@@ -144,5 +144,8 @@ function FourDecisionsSlide() {
 }
 
 FourDecisionsSlide.edgeToEdge = true;
+FourDecisionsSlide.notes = `Here are the four decisions that matter. Runtime, isolation, networking, persistence.
+
+This talk is how to design those four decisions. Not as a product pitch — as design thinking.`;
 
 export default FourDecisionsSlide;

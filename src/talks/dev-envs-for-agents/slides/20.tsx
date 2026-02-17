@@ -21,8 +21,12 @@ function ColdStartMathSlide() {
                         style={{ opacity: i <= step ? 1 : 0 }}
                     >
                         <div className="flex items-baseline justify-between">
-                            <span className="font-lufga text-lg font-medium">{a.label}</span>
-                            <span className="font-mono text-(--slide-fg-muted)">{a.time}</span>
+                            <span className="font-lufga text-lg font-medium">
+                                {a.label}
+                            </span>
+                            <span className="font-mono text-(--slide-fg-muted)">
+                                {a.time}
+                            </span>
                         </div>
                         <div
                             className="h-3 rounded-sm bg-(--slide-accent-light)"
@@ -36,5 +40,16 @@ function ColdStartMathSlide() {
 }
 
 ColdStartMathSlide.steps = 4;
+ColdStartMathSlide.notes = `Same workload, four approaches.
+
+[1] From scratch: 32 seconds. 125ms boot, 2s image, 30s npm install.
+
+[2] Pre-built image: 2 seconds. Dependencies baked in.
+
+[3] Snapshot restore: 200ms. Frozen state.
+
+[4] Warm pool: effectively zero. Already running.
+
+The infra boot — that 125ms — is a sliver. The application readiness gap is the whole story.`;
 
 export default ColdStartMathSlide;

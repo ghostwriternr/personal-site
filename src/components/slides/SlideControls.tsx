@@ -8,6 +8,7 @@ interface SlideControlsProps {
     onToggleFullscreen: () => void;
     exitHref?: string;
     slideActions?: SlideAction[];
+    presenterHref?: string;
 }
 
 export default function SlideControls({
@@ -18,6 +19,7 @@ export default function SlideControls({
     onToggleFullscreen,
     exitHref,
     slideActions = [],
+    presenterHref,
 }: SlideControlsProps) {
     return (
         <div className="absolute right-0 bottom-0 left-0 flex items-center justify-between p-4 opacity-0 transition-opacity duration-200 hover:opacity-100">
@@ -44,7 +46,7 @@ export default function SlideControls({
                         key={action.id}
                         type="button"
                         onClick={action.onClick}
-                        className="flex items-center gap-1 rounded px-2 py-1 font-mono text-xs text-(--slide-fg-muted) hover:text-(--slide-fg) transition-colors"
+                        className="flex items-center gap-1 rounded px-2 py-1 font-mono text-xs text-(--slide-fg-muted) transition-colors hover:text-(--slide-fg)"
                     >
                         {action.label}
                     </button>
@@ -54,6 +56,17 @@ export default function SlideControls({
                 {currentSlide + 1} / {totalSlides}
             </span>
             <div className="flex gap-2">
+                {presenterHref && (
+                    <a
+                        href={presenterHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded px-3 py-1 text-(--slide-fg-muted) hover:text-(--slide-fg)"
+                        title="Open presenter view (P)"
+                    >
+                        &#x1F4DD;
+                    </a>
+                )}
                 <button
                     type="button"
                     onClick={onToggleFullscreen}

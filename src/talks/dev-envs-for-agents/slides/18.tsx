@@ -17,20 +17,24 @@ function ColdStartReframeSlide() {
                 </div>
 
                 <div
-                    className="relative border border-(--slide-border) border-l-0 p-8 transition-opacity duration-500"
+                    className="relative border border-l-0 border-(--slide-border) p-8 transition-opacity duration-500"
                     style={{ opacity: step >= 1 ? 1 : 0 }}
                 >
-                    <CornerSquares corners={{ topLeft: false, bottomLeft: false }} />
+                    <CornerSquares
+                        corners={{ topLeft: false, bottomLeft: false }}
+                    />
                     <h3 className="font-lufga text-xl font-medium">
                         What survives
                     </h3>
                     <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
-                        When the sandbox stops, what's still there? The OS image, installed dependencies, cloned repos, runtime state — each layer is a choice.
+                        When the sandbox stops, what's still there? The OS
+                        image, installed dependencies, cloned repos, runtime
+                        state — each layer is a choice.
                     </p>
                 </div>
 
                 <div
-                    className="relative border border-(--slide-border) border-l-0 border-t-0 p-8 transition-opacity duration-500"
+                    className="relative border border-t-0 border-l-0 border-(--slide-border) p-8 transition-opacity duration-500"
                     style={{ opacity: step >= 2 ? 1 : 0 }}
                 >
                     <CornerSquares corners={{ topRight: false }} />
@@ -38,7 +42,9 @@ function ColdStartReframeSlide() {
                         How fast it resumes
                     </h3>
                     <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
-                        Cold start time is a direct consequence. The more you persist, the less you rebuild. The less you rebuild, the faster you resume.
+                        Cold start time is a direct consequence. The more you
+                        persist, the less you rebuild. The less you rebuild, the
+                        faster you resume.
                     </p>
                 </div>
             </div>
@@ -47,5 +53,12 @@ function ColdStartReframeSlide() {
 }
 
 ColdStartReframeSlide.steps = 3;
+ColdStartReframeSlide.notes = `How you think about persistence affects cold starts. They're the same problem viewed from different angles.
+
+[Step 2] What survives: when the sandbox stops, what's still there? The OS image, installed dependencies, cloned repos, runtime state — each layer is a choice.
+
+[Step 3] How fast it resumes: cold start time is a direct consequence. The more you persist, the less you rebuild. The less you rebuild, the faster you resume.
+
+The best cold start is no cold start at all.`;
 
 export default ColdStartReframeSlide;

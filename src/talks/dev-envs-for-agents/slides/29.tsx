@@ -2,7 +2,7 @@ import { GithubLogo, XLogo } from "@phosphor-icons/react";
 import Slide from "../../../components/slides/Slide";
 import bioPhoto from "../../../assets/bio.jpeg";
 
-export default function ClosingSlide() {
+function ClosingSlide() {
     return (
         <Slide>
             <div className="flex w-full max-w-4xl items-center gap-16">
@@ -22,7 +22,9 @@ export default function ClosingSlide() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-1 text-(--slide-fg-muted)">
-                        <span className="text-2xl">Systems Engineer at Cloudflare</span>
+                        <span className="text-2xl">
+                            Systems Engineer at Cloudflare
+                        </span>
                         <span className="text-2xl">Sandboxes whisperer</span>
                         <span className="text-2xl">Pixel art enthusiast</span>
                         <span className="text-2xl">Recovering founder</span>
@@ -32,8 +34,8 @@ export default function ClosingSlide() {
                             sandbox.cloudflare.com
                         </span>
                         <span className="text-base text-(--slide-fg-muted)">
-                            Craig Dennis: "Using Sandboxes to Safely
-                            Execute Untrusted Code"
+                            Craig Dennis: "Using Sandboxes to Safely Execute
+                            Untrusted Code"
                         </span>
                     </div>
                 </div>
@@ -48,3 +50,11 @@ export default function ClosingSlide() {
         </Slide>
     );
 }
+
+ClosingSlide.notes = `Thanks for listening.
+
+If you want to go deeper, Craig Dennis is running a hands-on workshop — "Using Sandboxes to Safely Execute Untrusted Code."
+
+Docs are at sandbox.cloudflare.com. Find me on Twitter or GitHub.`;
+
+export default ClosingSlide;

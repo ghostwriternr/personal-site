@@ -1,6 +1,6 @@
 import Slide from "../../../components/slides/Slide";
 
-export default function RuntimeStatementSlide() {
+function RuntimeStatementSlide() {
     return (
         <Slide>
             <div className="flex flex-col items-center gap-8">
@@ -14,3 +14,11 @@ export default function RuntimeStatementSlide() {
         </Slide>
     );
 }
+
+RuntimeStatementSlide.notes = `First question — and it's the most fundamental one: what does the agent actually get to work with?
+
+You could give it a REPL — eval() and pray. A restricted container — some tools, some access. Or full Linux — apt-get, pip, git, npm, compilers, dev servers, background processes. A real computer.
+
+Agents need the same tools developers need. But the less your sandbox does, the more your agent has to.`;
+
+export default RuntimeStatementSlide;

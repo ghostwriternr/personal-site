@@ -2,7 +2,7 @@ import Slide from "../../../components/slides/Slide";
 import { Blockquote } from "../../../components/slides/diagrams";
 import { DeepMindLogo } from "../../../components/slides/logos";
 
-export default function IsolationHookSlide() {
+function IsolationHookSlide() {
     return (
         <Slide>
             <div className="flex w-full max-w-4xl flex-col gap-10">
@@ -21,3 +21,9 @@ export default function IsolationHookSlide() {
         </Slide>
     );
 }
+
+IsolationHookSlide.notes = `The great paradox of agents. The very thing that makes them useful — accomplishing a range of tasks — involves giving away control.
+
+You're running code you didn't write, from instructions you didn't give, on behalf of users you don't know.`;
+
+export default IsolationHookSlide;

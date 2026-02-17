@@ -9,7 +9,7 @@ const items: { icon: PhosphorIcon; label: string }[] = [
     { icon: Package, label: "Install packages" },
 ];
 
-export default function TableStakesSlide() {
+function TableStakesSlide() {
     return (
         <Slide>
             <div className="flex flex-col items-center gap-10">
@@ -40,3 +40,9 @@ export default function TableStakesSlide() {
         </Slide>
     );
 }
+
+TableStakesSlide.notes = `If you choose full Linux, the obvious capabilities are: run commands, read and write files, clone repos, install packages.
+
+Every sandbox gives you this. Table stakes.`;
+
+export default TableStakesSlide;
