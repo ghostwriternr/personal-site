@@ -27,12 +27,12 @@ const capabilities: { icon: PhosphorIcon; title: string; desc: string }[] = [
     {
         icon: TerminalWindow,
         title: "Terminal / PTY",
-        desc: "Interactive bidirectional shell over WebSocket, not just exec/response.",
+        desc: "Embed a live bash session directly in your app — think xterm in the browser.",
     },
     {
         icon: ChartBar,
-        title: "Rich outputs",
-        desc: "Structured data from code execution — charts, tables, images — not just stdout.",
+        title: "Code interpreter",
+        desc: "Execute code directly — return charts, tables, images, not just stdout.",
     },
 ];
 
@@ -47,7 +47,10 @@ export default function NonTrivialSlide() {
                     {capabilities.map((cap) => {
                         const Icon = cap.icon;
                         return (
-                            <div key={cap.title} className="flex items-start gap-4">
+                            <div
+                                key={cap.title}
+                                className="flex items-start gap-4"
+                            >
                                 <Icon
                                     size={24}
                                     weight="light"
