@@ -1,44 +1,40 @@
 import Slide from "../../../components/slides/Slide";
+import { useStep } from "../../../components/slides/useStep";
 
-export default function NoLocalhostSlide() {
+const approaches = [
+    { label: "From scratch", time: "~32s", width: "100%" },
+    { label: "Pre-built image", time: "~2s", width: "6.25%" },
+    { label: "Snapshot restore", time: "~200ms", width: "1.5%" },
+    { label: "Warm pool", time: "~0ms", width: "0.5%" },
+];
+
+function ColdStartMathSlide() {
+    const step = useStep();
+
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-10">
-                <p className="font-lufga text-3xl font-light text-(--slide-fg)">
-                    Networking
-                </p>
-
-                <div className="flex items-center gap-6 px-8">
-                    <div className="flex flex-col items-center gap-2 rounded-xl border border-(--slide-border) bg-(--slide-bg-surface) px-8 py-6">
-                        <span className="font-lufga text-lg text-(--slide-fg)">
-                            Agent
-                        </span>
-                        <span className="font-mono text-xs text-(--slide-fg-muted)">
-                            npm start
-                        </span>
+            <div className="flex w-full max-w-4xl flex-col gap-8">
+                {approaches.map((a, i) => (
+                    <div
+                        key={a.label}
+                        className="flex flex-col gap-2 transition-opacity duration-500"
+                        style={{ opacity: i <= step ? 1 : 0 }}
+                    >
+                        <div className="flex items-baseline justify-between">
+                            <span className="font-lufga text-lg font-medium">{a.label}</span>
+                            <span className="font-mono text-(--slide-fg-muted)">{a.time}</span>
+                        </div>
+                        <div
+                            className="h-3 rounded-sm bg-(--slide-accent-light)"
+                            style={{ width: a.width, minWidth: 4 }}
+                        />
                     </div>
-
-                    <div className="relative flex-1">
-                        <div className="h-px w-full bg-(--slide-border)" />
-                        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-12 font-mono text-3xl font-bold text-red-400">
-                            ✕
-                        </span>
-                    </div>
-
-                    <div className="flex flex-col items-center gap-2 rounded-xl border border-(--slide-border) bg-(--slide-bg-surface) px-8 py-6">
-                        <span className="font-lufga text-lg text-(--slide-fg)">
-                            Environment
-                        </span>
-                        <span className="font-mono text-xs text-(--slide-fg-muted)">
-                            :5173
-                        </span>
-                    </div>
-                </div>
-
-                <p className="font-lufga text-center text-4xl font-light text-(--slide-accent-light)">
-                    There is no localhost.
-                </p>
+                ))}
             </div>
         </Slide>
     );
 }
+
+ColdStartMathSlide.steps = 4;
+
+export default ColdStartMathSlide;

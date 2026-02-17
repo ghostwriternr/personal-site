@@ -1,20 +1,15 @@
 import Slide from "../../../components/slides/Slide";
-import { Blockquote } from "../../../components/slides/diagrams";
-import { ManusLogo } from "../../../components/slides/logos";
 
-export default function ColdStartHookSlide() {
+export default function NetworkingAddressingSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-10">
-                <Blockquote
-                    quote="Manus doesn't just run some pieces of code. It uses 27 different tools, and it needs a full virtual computer."
-                    person={{
-                        name: "Tao Zhang",
-                        title: "Co-founder, Manus",
-                    }}
-                    source="From a published E2B case study"
-                    icon={<ManusLogo className="size-24 text-(--slide-fg-muted)" />}
-                />
+            <div className="flex flex-col items-center gap-10">
+                <p className="font-mono text-lg text-(--slide-fg-muted)">
+                    https://5173-lg6przaj-lg6przaj.goose-pond-editor.ghostwriternr.me
+                </p>
+                <p className="font-lufga text-center text-5xl leading-tight font-light">
+                    That URL has to find one sandbox out of thousands.
+                </p>
             </div>
         </Slide>
     );

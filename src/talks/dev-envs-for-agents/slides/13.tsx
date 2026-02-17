@@ -1,51 +1,123 @@
+import { useMemo } from "react";
+import type { Edge, Node } from "@xyflow/react";
 import Slide from "../../../components/slides/Slide";
-import { CornerSquares } from "../../../components/slides/diagrams";
-import { useStep } from "../../../components/slides/useStep";
+import {
+    BrowserNode,
+    DashedIconNode,
+    EDGE_STYLE,
+    StaticDiagram,
+} from "../../../components/slides/diagrams";
+import type { DashedIconNodeData } from "../../../components/slides/diagrams";
+import {
+    ContainerIcon,
+    DurableObjectIcon,
+} from "../../../components/slides/logos";
 
-function ColdStartReframeSlide() {
-    const step = useStep();
+const DO_COLOR = "#0A95FF";
+const CONTAINER_COLOR = "#f14602";
+const ICON_SIZE = 28;
+
+const nodeTypes = {
+    browser: BrowserNode,
+    dashedIcon: DashedIconNode,
+};
+
+function buildNodes(): Node[] {
+    const browserX = 0;
+    const browserY = 40;
+
+    const doX = 440;
+    const doSpacing = 120;
+    const doStartY = 0;
+
+    const containerX = 660;
+
+    const browser: Node = {
+        id: "browser",
+        type: "browser",
+        position: { x: browserX, y: browserY },
+        data: {},
+        draggable: false,
+    };
+
+    const dos: Node<DashedIconNodeData>[] = [0, 1, 2].map((i) => ({
+        id: `do-${i}`,
+        type: "dashedIcon",
+        position: { x: doX, y: doStartY + i * doSpacing },
+        data: {
+            icon: <DurableObjectIcon width={ICON_SIZE} height={ICON_SIZE} />,
+            color: DO_COLOR,
+            targetEdge: "left" as const,
+            sourceEdge: "right" as const,
+        },
+        draggable: false,
+    }));
+
+    const containers: Node<DashedIconNodeData>[] = [0, 1, 2].map((i) => ({
+        id: `container-${i}`,
+        type: "dashedIcon",
+        position: { x: containerX, y: doStartY + i * doSpacing },
+        data: {
+            icon: <ContainerIcon width={ICON_SIZE} height={ICON_SIZE} />,
+            color: CONTAINER_COLOR,
+            targetEdge: "left" as const,
+            sourceEdge: "right" as const,
+        },
+        draggable: false,
+    }));
+
+    return [browser, ...dos, ...containers];
+}
+
+function buildEdges(): Edge[] {
+    const baseStyle = {
+        ...EDGE_STYLE,
+        strokeWidth: 1.5,
+    };
+
+    const browserToDos: Edge[] = [0, 1, 2].map((i) => ({
+        id: `browser-do-${i}`,
+        source: "browser",
+        target: `do-${i}`,
+        animated: true,
+        style: { ...baseStyle, stroke: DO_COLOR, opacity: 0.5 },
+    }));
+
+    const dosToContainers: Edge[] = [0, 1, 2].map((i) => ({
+        id: `do-container-${i}`,
+        source: `do-${i}`,
+        target: `container-${i}`,
+        animated: true,
+        style: { ...baseStyle, stroke: CONTAINER_COLOR, opacity: 0.5 },
+    }));
+
+    return [...browserToDos, ...dosToContainers];
+}
+
+export default function NetworkingExposureSlide() {
+    const nodes = useMemo(() => buildNodes(), []);
+    const edges = useMemo(() => buildEdges(), []);
 
     return (
-        <Slide hideGoose>
-            <div className="grid w-full max-w-5xl grid-cols-[1fr_1.2fr] gap-0">
-                {/* Left column */}
-                <div className="relative row-span-2 border border-(--slide-border) p-8">
-                    <CornerSquares />
-                    <p className="font-lufga text-4xl leading-snug font-light">
-                        What we call "cold start" is actually two problems.
-                    </p>
+        <Slide>
+            <div className="flex flex-col items-center gap-6">
+                <div className="relative h-[380px] w-[900px]">
+                    <StaticDiagram
+                        nodes={nodes}
+                        edges={edges}
+                        nodeTypes={nodeTypes}
+                        defaultEdgeOptions={{
+                            style: EDGE_STYLE,
+                            animated: true,
+                        }}
+                        fitViewOptions={{ padding: 0.1 }}
+                    />
                 </div>
-
-                <div
-                    className="relative border border-(--slide-border) border-l-0 p-8 transition-opacity duration-500"
-                    style={{ opacity: step >= 1 ? 1 : 0 }}
-                >
-                    <CornerSquares corners={{ topLeft: false, bottomLeft: false }} />
-                    <h3 className="font-lufga text-xl font-medium">
-                        Infrastructure boot
-                    </h3>
-                    <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
-                        Time until the VM exists and has a kernel. MicroVMs boot in ~125ms. This is the platform's job, and it's largely solved.
-                    </p>
-                </div>
-
-                <div
-                    className="relative border border-(--slide-border) border-l-0 border-t-0 p-8 transition-opacity duration-500"
-                    style={{ opacity: step >= 2 ? 1 : 0 }}
-                >
-                    <CornerSquares corners={{ topRight: false }} />
-                    <h3 className="font-lufga text-xl font-medium">
-                        Application readiness
-                    </h3>
-                    <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
-                        Time until the agent can actually work. The right OS image, dependencies installed, repo cloned, env vars configured. This is where 125ms becomes 30 seconds.
-                    </p>
-                </div>
+                <p className="font-lufga max-w-2xl text-center text-xl font-light text-(--slide-fg-muted)">
+                    Every platform needs a layer that maps a URL to the right
+                    sandbox and the right port.
+                </p>
             </div>
         </Slide>
     );
 }
-
-ColdStartReframeSlide.steps = 3;
-
-export default ColdStartReframeSlide;
