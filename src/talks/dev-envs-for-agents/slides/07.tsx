@@ -41,8 +41,8 @@ function TableStakesSlide() {
     );
 }
 
-TableStakesSlide.notes = `If you choose full Linux, the obvious capabilities are: run commands, read and write files, clone repos, install packages.
+TableStakesSlide.notes = `With full Linux, the baseline is obvious: run commands, read and write files, clone repos, install packages.
 
-Every sandbox gives you this. Table stakes.`;
+Every sandbox starts here. Table stakes.`;
 
 export default TableStakesSlide;

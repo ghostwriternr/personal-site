@@ -36,6 +36,6 @@ function DecisionsPersistenceSlide() {
 }
 
 DecisionsPersistenceSlide.edgeToEdge = true;
-DecisionsPersistenceSlide.notes = `Fourth decision: Persistence. What survives when the sandbox stops?`;
+DecisionsPersistenceSlide.notes = `Fourth: persistence. The agent built something. The user left. When they come back tomorrow, the work needs to be there — or you need to be explicit that it won't be. And that decision dominates cold start.`;
 
 export default DecisionsPersistenceSlide;

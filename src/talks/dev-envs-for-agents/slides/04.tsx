@@ -75,12 +75,14 @@ function LayerDiagramSlide() {
 }
 
 LayerDiagramSlide.steps = 5;
-LayerDiagramSlide.notes = `Every one of those layers is a design decision with real tradeoffs.
+LayerDiagramSlide.notes = `Start with the isolation boundary — a microVM. Its own kernel, own network stack. No shared kernel attack surface with anything else running on the same machine.
 
-[1] A fresh Linux environment — its own VM, own kernel, own network stack.
-[2] A container inside it — Ubuntu 22.04, Python 3.11, Node.js 20, Git.
-[3] Bash sessions and filesystem — working directory, env vars, installed packages.
-[4] Port routing — npm start runs on port 5173 inside the container.
-[5] Persistence — files, packages, state — still there tomorrow.`;
+[1] Inside it, a container. Ubuntu 22.04, Python 3.11, Node.js 20, Git. The environment the agent actually works in.
+
+[2] Bash sessions and a filesystem. The agent runs commands, reads and writes files, installs packages.
+
+[3] Networking. The agent runs npm start on port 5173 inside that container. Getting traffic there from the public internet is not obvious.
+
+[4] And persistence. Files, installed packages, working directory — still there when the agent picks up the next day. Five layers. Each one is a decision.`;
 
 export default LayerDiagramSlide;

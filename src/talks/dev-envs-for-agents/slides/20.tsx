@@ -40,16 +40,14 @@ function ColdStartMathSlide() {
 }
 
 ColdStartMathSlide.steps = 4;
-ColdStartMathSlide.notes = `Same workload, four approaches.
+ColdStartMathSlide.notes = `Same workload. Four approaches. Treat the numbers as illustrative — the order-of-magnitude differences are the point. From scratch: 32 seconds. Most of that is application readiness — install, build, start. Not infrastructure boot.
 
-[1] From scratch: 32 seconds. 125ms boot, 2s image, 30s npm install.
+[1] Pre-built image: 2 seconds. Dependencies baked in.
 
-[2] Pre-built image: 2 seconds. Dependencies baked in.
+[2] Snapshot restore: 200ms. Restore frozen state instead of booting.
 
-[3] Snapshot restore: 200ms. Frozen state.
+[3] Warm pool: effectively zero. Already running before the request arrived.
 
-[4] Warm pool: effectively zero. Already running.
-
-The infra boot — that 125ms — is a sliver. The application readiness gap is the whole story.`;
+The infra boot is a sliver. The application readiness gap is the whole story.`;
 
 export default ColdStartMathSlide;

@@ -30,10 +30,12 @@ function UntrustedCodeSlide() {
     );
 }
 
-UntrustedCodeSlide.notes = `Here's the bigger picture. What if every application could run untrusted code?
+UntrustedCodeSlide.notes = `This is where it goes next.
 
-An agent writes a database migration. Your app runs it sandboxed — scoped permissions, isolated environment. No containers, no VMs. V8 isolates. Milliseconds.
+For a full dev environment you want a kernel boundary. For short untrusted snippets you want isolate-speed with capability scoping. Different workload, same security idea, different layer.
 
-Sandboxes aren't just for agents running code. They're for any application that needs to run code it didn't write.`;
+An agent writes a database migration. Your application runs it — scoped to a specific tenant's database, with tight limits on CPU, memory, and outbound access. No containers, no VMs. V8 isolates. Milliseconds.
+
+Sandboxes aren't just where agents run code. They're how any application handles code it didn't write. Plugins, user scripts, LLM-generated logic. Same design problem, at application scale.`;
 
 export default UntrustedCodeSlide;

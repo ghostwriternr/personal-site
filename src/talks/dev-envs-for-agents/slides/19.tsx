@@ -77,16 +77,12 @@ function TechniquesSlide() {
 }
 
 TechniquesSlide.steps = 4;
-TechniquesSlide.notes = `Four primitives that close the application readiness gap. Each has real tradeoffs.
+TechniquesSlide.notes = `First: pre-built images. Bake dependencies into the image at build time. npm install happens once, not per sandbox.
 
-[1] Pre-built images — bake deps into the image at build time. npm install happens once, not per sandbox.
+[1] Volumes — mount persistent storage into ephemeral containers. Workspace, cloned repos, and dependency directories survive restarts.
 
-[2] Volumes — mount persistent storage into ephemeral containers. Workspace and node_modules survive restarts.
+[2] Snapshots — freeze disk and memory after the app is ready. Next start restores from the snapshot instead of booting fresh.
 
-[3] Snapshots — freeze disk and memory after the app is ready. Next start restores from the snapshot instead of booting fresh.
-
-[4] Warm pools — pre-create sandboxes before they're needed. When an agent asks for one, it's already running.
-
-These aren't mutually exclusive — production systems combine them.`;
+[3] Warm pools — pre-create sandboxes before they're needed. When an agent asks for one, it's already running. Production systems combine all four.`;
 
 export default TechniquesSlide;

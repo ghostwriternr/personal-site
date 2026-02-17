@@ -26,10 +26,10 @@ function SDKRevealSlide() {
     );
 }
 
-SDKRevealSlide.notes = `Remember that sandbox command from the opening? Here's what's underneath.
+SDKRevealSlide.notes = `That command from the opening — this is what's underneath it.
 
-Get a sandbox. Start a process. Wait for the port. Expose it. Read files, write files.
+Get a sandbox. Start a process. Wait for the port. Expose it. Read a file, write a file. A handful of calls. All the complexity we talked about — isolation boundary, runtime primitives, port routing, persistent storage — is below this.
 
-That's the entire interface. All the complexity we talked about — runtime, isolation, networking, persistence — is below this line.`;
+The API stays small. The complexity stays below it.`;
 
 export default SDKRevealSlide;

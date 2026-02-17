@@ -36,10 +36,10 @@ function UseCaseMapSlide() {
     );
 }
 
-UseCaseMapSlide.notes = `Different use cases have different cold start tolerance.
+UseCaseMapSlide.notes = `Different use cases have different tolerances.
 
-Code interpreters need sub-second — warm pools and pre-built images. Coding agents can tolerate 2-3s first start but need fast resume — snapshots. Vibe coding apps need sub-second resume — snapshots plus volumes. RL training cares about aggregate throughput, not individual latency.
+Code interpreters need sub-second — pre-built images plus warm pools. Coding agents can tolerate 2-3s first start but resume needs to be fast — snapshots. Vibe coding same, plus volumes for the workspace. RL training cares about aggregate throughput, not individual latency — burst fast and tear down. CI wants predictable over fast — same image every time.
 
-The audience self-identifies with their use case and walks away knowing which primitives matter for them.`;
+Snapshots and volumes buy latency, but they add cleanup, quota management, and state-leak risk. Use them where resume matters. Pick your use case. The techniques follow from it.`;
 
 export default UseCaseMapSlide;

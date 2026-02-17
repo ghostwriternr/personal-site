@@ -104,14 +104,12 @@ function AnnotatedCodeSlide() {
 
 AnnotatedCodeSlide.steps = 4;
 AnnotatedCodeSlide.edgeToEdge = true;
-AnnotatedCodeSlide.notes = `Each of these lines maps to one of the four decisions.
+AnnotatedCodeSlide.notes = `Isolation: getSandbox provisions an isolated environment — its own VM, own kernel, own filesystem. Each session ID maps to exactly one sandbox.
 
-[1] Isolation: getSandbox provisions an isolated environment — its own VM, own kernel, own filesystem.
+[1] Runtime: startProcess, readFile, writeFile — background processes, real filesystem, real bash sessions. The primitives we talked about.
 
-[2] Runtime: startProcess, readFile, writeFile — background processes, file I/O, real bash sessions.
+[2] Networking: exposePort creates the preview URL — one call routes from the public internet to a specific port inside that sandbox.
 
-[3] Networking: exposePort creates the preview URL — routing from the internet to a specific port.
-
-[4] Persistence: modified files saved to storage — the user comes back, the work is there.`;
+[3] Persistence: we persist the workspace state — the pre-change file, the diff, whatever your use case needs. The sandbox can sleep and wake; the stored state outlives it.`;
 
 export default AnnotatedCodeSlide;

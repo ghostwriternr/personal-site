@@ -15,10 +15,8 @@ function RuntimeStatementSlide() {
     );
 }
 
-RuntimeStatementSlide.notes = `First question — and it's the most fundamental one: what does the agent actually get to work with?
+RuntimeStatementSlide.notes = `First question — the most fundamental one: what does the agent actually get to work with?
 
-You could give it a REPL — eval() and pray. A restricted container — some tools, some access. Or full Linux — apt-get, pip, git, npm, compilers, dev servers, background processes. A real computer.
-
-Agents need the same tools developers need. But the less your sandbox does, the more your agent has to.`;
+You could give it a REPL. A restricted container — some tools, some access. Or full Linux — apt-get, pip, git, npm, compilers, dev servers, background processes. A real computer.`;
 
 export default RuntimeStatementSlide;

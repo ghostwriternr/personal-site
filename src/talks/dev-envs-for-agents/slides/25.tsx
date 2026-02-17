@@ -258,12 +258,12 @@ function ArchitectureSlide() {
     );
 }
 
-ArchitectureSlide.notes = `Here's how Cloudflare does it.
+ArchitectureSlide.notes = `Agents and browsers hit the edge. A Worker handles your routing logic — auth, session lookup, whatever your application needs.
 
-Clients — agents, browsers — hit the edge. A Worker routes requests to the right Durable Object. Each DO manages a sandbox's lifecycle — it's globally addressable, handles sleep and wake.
+The Worker routes to Durable Objects. Each DO manages a sandbox's lifecycle — globally addressable, handles sleep and wake, serializes concurrency for one session. That's where we solve the addressing problem.
 
-The container runs inside a Firecracker microVM — that's the isolation boundary. Own kernel, own network, own filesystem.
+Each DO manages a sandbox running in a Firecracker microVM. Kernel boundary, own network stack, own filesystem.
 
-Storage handles persistence — workspace files, diffs, state.`;
+Storage is separate — workspace files, diffs, state. The sandbox can be torn down and recreated; the data outlives it.`;
 
 export default ArchitectureSlide;

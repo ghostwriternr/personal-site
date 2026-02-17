@@ -115,8 +115,8 @@ function PreviewIsComputerSlide() {
     );
 }
 
-PreviewIsComputerSlide.notes = `Let's break this down. What had to happen to make that link work?
+PreviewIsComputerSlide.notes = `Let's break down what had to happen to make that link work.
 
-That preview link is a computer. A real one — shell, filesystem, network stack, running processes. All reachable through a single URL.`;
+A shell. A filesystem. A network stack. Running processes. The URL is just the address.`;
 
 export default PreviewIsComputerSlide;

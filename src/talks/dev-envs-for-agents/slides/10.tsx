@@ -22,8 +22,6 @@ function IsolationHookSlide() {
     );
 }
 
-IsolationHookSlide.notes = `The great paradox of agents. The very thing that makes them useful — accomplishing a range of tasks — involves giving away control.
-
-You're running code you didn't write, from instructions you didn't give, on behalf of users you don't know.`;
+IsolationHookSlide.notes = `You're running code you didn't write. Executing instructions from a user you don't control. The attack surface isn't just the code — it's everything the agent can reach.`;
 
 export default IsolationHookSlide;

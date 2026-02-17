@@ -15,10 +15,10 @@ function ClosingCallbackSlide() {
     );
 }
 
-ClosingCallbackSlide.notes = `Remember the opening? One command, one link, no localhost.
+ClosingCallbackSlide.notes = `One command, one link, no localhost. That's where we started.
 
-Now you know what's behind it — four decisions, each with real tradeoffs. Runtime, isolation, networking, persistence.
+Behind it: four decisions, each with real tradeoffs. Runtime — what the agent gets. Isolation — what wraps it. Networking — how traffic finds it. Persistence — what survives.
 
-Whether you build this yourself or use a platform, these are the decisions you'll make.`;
+These decisions exist whether you build or buy. Knowing the tradeoffs is the job. Thanks.`;
 
 export default ClosingCallbackSlide;

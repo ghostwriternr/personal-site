@@ -1,38 +1,38 @@
 import {
-    ArrowsClockwise,
-    ChartBar,
+    ArrowsClockwiseIcon,
+    ChartBarIcon,
     type Icon as PhosphorIcon,
-    Spinner,
-    TerminalWindow,
-    WaveformSlash,
+    SpinnerIcon,
+    TerminalWindowIcon,
+    WaveformSlashIcon,
 } from "@phosphor-icons/react";
 import Slide from "../../../components/slides/Slide";
 
 const capabilities: { icon: PhosphorIcon; title: string; desc: string }[] = [
     {
-        icon: Spinner,
+        icon: SpinnerIcon,
         title: "Background processes",
-        desc: "Run concurrent long-lived services, not just sequential commands.",
+        desc: "Run and manage concurrent long-lived services.",
     },
     {
-        icon: WaveformSlash,
+        icon: WaveformSlashIcon,
         title: "Streaming",
-        desc: "Real-time output as it happens, not buffered after completion.",
+        desc: "Real-time logs from all commands & processes, as it happens.",
     },
     {
-        icon: ArrowsClockwise,
+        icon: ArrowsClockwiseIcon,
         title: "Continuity",
         desc: "Sessions where cd, env vars, and installed packages persist across commands.",
     },
     {
-        icon: TerminalWindow,
+        icon: TerminalWindowIcon,
         title: "Terminal / PTY",
         desc: "Embed a live bash session directly in your app — think xterm in the browser.",
     },
     {
-        icon: ChartBar,
+        icon: ChartBarIcon,
         title: "Code interpreter",
-        desc: "Execute code directly — return charts, tables, images, not just stdout.",
+        desc: "Execute code directly — return raw stdout, as well as charts, tables, images.",
     },
 ];
 
@@ -73,10 +73,10 @@ function NonTrivialSlide() {
     );
 }
 
-NonTrivialSlide.notes = `But a sandbox that agents can actually develop software in needs more.
+NonTrivialSlide.notes = `What actually separates a code runner from a dev environment is the next layer.
 
-Background processes — the agent starts a dev server and keeps working. Streaming — the agent reacts to output as it happens, not after. Continuity — cd and npm install carry over between commands. An interactive terminal. Rich outputs beyond stdout.
+Background processes — the agent starts a dev server and keeps working in parallel. Streaming — it reacts to output as it happens, not after the command exits. Continuity — cd and npm install carry over; the agent isn't starting from scratch on every command. A real PTY — not just exec/response, but a live shell session you can embed in a UI. And a code interpreter — execute code and get back not just stdout, but charts, tables, images.
 
-These are what turn "code execution" into "software development."`;
+The difference between a code runner and a dev environment is this list.`;
 
 export default NonTrivialSlide;

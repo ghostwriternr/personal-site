@@ -53,12 +53,10 @@ function ColdStartReframeSlide() {
 }
 
 ColdStartReframeSlide.steps = 3;
-ColdStartReframeSlide.notes = `How you think about persistence affects cold starts. They're the same problem viewed from different angles.
+ColdStartReframeSlide.notes = `Persistence and cold start aren't separate problems. They're the same problem from different angles.
 
-[Step 2] What survives: when the sandbox stops, what's still there? The OS image, installed dependencies, cloned repos, runtime state — each layer is a choice.
+[1] What survives: when the sandbox stops, what's still there? The OS image, installed dependencies, cloned repos, runtime state — each layer is a choice. Git checkout and dependency cache are usually the first wins; full runtime state is the expensive end.
 
-[Step 3] How fast it resumes: cold start time is a direct consequence. The more you persist, the less you rebuild. The less you rebuild, the faster you resume.
-
-The best cold start is no cold start at all.`;
+[2] How fast it resumes: cold start time is a direct consequence. The more you persist, the less you rebuild. The less you rebuild, the faster you resume. The best cold start is no cold start at all.`;
 
 export default ColdStartReframeSlide;

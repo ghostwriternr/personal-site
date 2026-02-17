@@ -36,10 +36,10 @@ function ScaleSlide() {
     );
 }
 
-ScaleSlide.notes = `A billion lines of code accepted daily. Just Cursor. The entire world produces just a few billion lines a day.
+ScaleSlide.notes = `Cursor's cofounder said almost a billion lines of accepted code per day. The entire world produces a few billion lines a day total.
 
-4% of all public GitHub commits are authored by Claude Code. At current trajectory, 20%+ of all daily commits by end of 2026.
+SemiAnalysis estimates 4% of all public GitHub commits are authored by Claude Code. At this trajectory, 20%+ by end of 2026.
 
-This is the new dev infrastructure. Hundreds of millions of sandbox sessions across the industry.`;
+Regardless of the exact numbers, the direction is clear. Code generation is now a first-class execution workload. Every generated line runs somewhere.`;
 
 export default ScaleSlide;

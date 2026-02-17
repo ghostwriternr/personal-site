@@ -10,6 +10,6 @@ function CloudflareTransitionSlide() {
     );
 }
 
-CloudflareTransitionSlide.notes = `I want to show you how we thought about these decisions at Cloudflare. Not as a product pitch — as a design walkthrough. One way to approach these four problems.`;
+CloudflareTransitionSlide.notes = `I've built agents. Now I build the sandbox platform at Cloudflare. Let's walk the four decisions through a concrete implementation.`;
 
 export default CloudflareTransitionSlide;

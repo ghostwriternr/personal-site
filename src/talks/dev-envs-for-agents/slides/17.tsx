@@ -22,10 +22,8 @@ function ColdStartHookSlide() {
     );
 }
 
-ColdStartHookSlide.notes = `Manus — one of the most capable general-purpose agents out there. 27 tools, needs a full virtual computer.
+ColdStartHookSlide.notes = `A concrete example from a published case study. Tool-rich agents need a full virtual computer — not a single process, not a locked-down container.
 
-They tried Docker first. 10-20 seconds to spawn each environment. They abandoned it.
-
-Cold start isn't a nice-to-have — it's a deal-breaker. And persistence is how you solve it.`;
+When your agent has 27 tools and orchestrates long-running sessions, the environment it gets has to match. And that means cold start is a deal-breaker.`;
 
 export default ColdStartHookSlide;

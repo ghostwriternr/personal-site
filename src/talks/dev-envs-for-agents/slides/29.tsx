@@ -51,10 +51,6 @@ function ClosingSlide() {
     );
 }
 
-ClosingSlide.notes = `Thanks for listening.
-
-If you want to go deeper, Craig Dennis is running a hands-on workshop — "Using Sandboxes to Safely Execute Untrusted Code."
-
-Docs are at sandbox.cloudflare.com. Find me on Twitter or GitHub.`;
+ClosingSlide.notes = `If you want to go hands-on, Craig Dennis is running a workshop — "Using Sandboxes to Safely Execute Untrusted Code." Docs are at sandbox.cloudflare.com. Find me on GitHub or X at @ghostwriternr.`;
 
 export default ClosingSlide;

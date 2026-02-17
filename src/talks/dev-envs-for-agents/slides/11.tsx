@@ -53,8 +53,12 @@ function IsolationProblemSlide() {
 
 IsolationProblemSlide.steps = 3;
 IsolationProblemSlide.edgeToEdge = true;
-IsolationProblemSlide.notes = `Think about it. You don't know what packages your agent installed. You don't know what your user told it to build. You don't know what your agent read before it wrote that code.
+IsolationProblemSlide.notes = `You don't know what packages your agent installed. It ran npm install or pip install — maybe something it hallucinated, maybe something it was prompted to install by injected content in a file it read.
 
-All three of these are reasons you need real isolation — not just for security, but for predictability.`;
+[1] You don't know what your user told it to build. The user's message shaped every decision the agent made. You didn't review it. You don't control it.
+
+[2] You don't know what your agent read before it wrote that code. A file in the repo, a webpage it fetched, a previous turn in the conversation. Any of it could have shaped the output.
+
+This is why isolation isn't optional — and why the mechanism matters.`;
 
 export default IsolationProblemSlide;

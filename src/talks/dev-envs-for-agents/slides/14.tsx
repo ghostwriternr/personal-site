@@ -16,8 +16,8 @@ function NetworkingAddressingSlide() {
     );
 }
 
-NetworkingAddressingSlide.notes = `The agent runs npm start and expects localhost:3000. But there is no localhost. The environment is running somewhere else entirely.
+NetworkingAddressingSlide.notes = `The agent runs npm start and expects localhost:3000. There is no localhost. The environment is one sandbox, on one machine, in one of 330 cities.
 
-You have thousands of ephemeral sandboxes — no static IPs, no DNS records. A request from the internet needs to find the right one. That's an addressing problem unique to this kind of infrastructure.`;
+No stable IP per sandbox. No pre-provisioned DNS per sandbox. Addressing is mapping an incoming hostname or token to a sandbox identity — fast, and without leaking cross-tenant information. That's the addressing problem.`;
 
 export default NetworkingAddressingSlide;

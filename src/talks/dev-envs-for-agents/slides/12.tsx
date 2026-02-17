@@ -44,10 +44,14 @@ function IsolationSpectrumSlide() {
     );
 }
 
-IsolationSpectrumSlide.notes = `You're always running containers. The question is what you put around them.
+IsolationSpectrumSlide.notes = `In all three cases, there's a container somewhere. The question is what boundary wraps it.
 
-Namespaces alone — shared kernel, minimal overhead, but every syscall is an attack surface. MicroVMs — own kernel, ~5MB overhead, 125ms startup, only 5 emulated devices. Full VMs — maximum isolation but 100MB+ overhead and 5-30 second startup.
+Namespaces alone — shared kernel with the host. Fast, lightweight, but every syscall from every sandbox hits the same kernel. Fine for your own code. Not for arbitrary agent-generated code.
 
-For untrusted code, you need either microVMs or full VMs. The microVM sweet spot is why Firecracker exists.`;
+Full VMs — genuine isolation, but 100MB of overhead and 5-30 second cold boot times. Impractical at sandbox scale.
+
+MicroVMs are the middle path. ~5MB overhead, 125ms startup, own kernel per sandbox. Firecracker — built by AWS for Lambda, ~50k lines of Rust — was designed specifically for this: hardware-level isolation without the full VM overhead.
+
+The highlighted column is where you want to be for untrusted code.`;
 
 export default IsolationSpectrumSlide;
