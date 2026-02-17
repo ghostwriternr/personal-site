@@ -1,28 +1,30 @@
 import Slide from "../../../components/slides/Slide";
+import CodeBlock from "../../../components/slides/CodeBlock";
 
-const lines = [
-    "Every major AI lab.",
-    'Every "vibe coding" tool.',
-    "Every agent framework.",
-];
+const code = `// Agent writes the migration
+const migration = \`
+  export default async function run(env) {
+    await env.DATABASE.exec("ALTER TABLE users ADD COLUMN preferences JSONB");
+  }
+\`;
 
-export default function IndustryConvergenceSlide() {
+// Your app runs it sandboxed
+env.SANDBOX.get("migrate-v1", () => ({
+  modules: { "migrate.js": migration },
+  env: { DATABASE: scopedTenantDB },
+}));`;
+
+export default function UntrustedCodeSlide() {
     return (
         <Slide>
-            <div className="flex flex-col gap-8">
-                <p className="font-lufga text-lg text-(--slide-fg-muted)">
-                    Who's building this:
+            <div className="flex w-full max-w-3xl flex-col gap-8">
+                <p className="font-lufga text-4xl leading-snug font-light text-balance">
+                    What if every application could run untrusted code?
                 </p>
-                <div className="flex flex-col gap-4">
-                    {lines.map((line) => (
-                        <p
-                            key={line}
-                            className="font-lufga text-3xl font-light text-(--slide-fg)"
-                        >
-                            {line}
-                        </p>
-                    ))}
-                </div>
+                <CodeBlock language="javascript">{code}</CodeBlock>
+                <p className="font-mono text-sm text-(--slide-fg-muted) opacity-60">
+                    No containers. No VMs. V8 isolates. Milliseconds.
+                </p>
             </div>
         </Slide>
     );
