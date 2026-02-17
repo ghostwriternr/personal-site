@@ -1,3 +1,4 @@
+import { Presentation } from "@phosphor-icons/react";
 import type { SlideAction } from "./useSlideActions";
 
 interface SlideControlsProps {
@@ -61,10 +62,10 @@ export default function SlideControls({
                         href={presenterHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded px-3 py-1 text-(--slide-fg-muted) hover:text-(--slide-fg)"
+                        className="flex items-center rounded px-3 py-1 text-(--slide-fg-muted) hover:text-(--slide-fg)"
                         title="Open presenter view (P)"
                     >
-                        &#x1F4DD;
+                        <Presentation size={18} weight="bold" />
                     </a>
                 )}
                 <button
