@@ -12,7 +12,7 @@ function ColdStartReframeSlide() {
                 <div className="relative row-span-2 border border-(--slide-border) p-8">
                     <CornerSquares />
                     <p className="font-lufga text-4xl leading-snug font-light">
-                        What we call "cold start" is actually two problems.
+                        How you think about persistence affects cold starts.
                     </p>
                 </div>
 
@@ -22,10 +22,10 @@ function ColdStartReframeSlide() {
                 >
                     <CornerSquares corners={{ topLeft: false, bottomLeft: false }} />
                     <h3 className="font-lufga text-xl font-medium">
-                        Infrastructure boot
+                        What survives
                     </h3>
                     <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
-                        Time until the VM exists and has a kernel. MicroVMs boot in ~125ms. This is the platform's job, and it's largely solved.
+                        When the sandbox stops, what's still there? The OS image, installed dependencies, cloned repos, runtime state — each layer is a choice.
                     </p>
                 </div>
 
@@ -35,10 +35,10 @@ function ColdStartReframeSlide() {
                 >
                     <CornerSquares corners={{ topRight: false }} />
                     <h3 className="font-lufga text-xl font-medium">
-                        Application readiness
+                        How fast it resumes
                     </h3>
                     <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
-                        Time until the agent can actually work. The right OS image, dependencies installed, repo cloned, env vars configured. This is where 125ms becomes 30 seconds.
+                        Cold start time is a direct consequence. The more you persist, the less you rebuild. The less you rebuild, the faster you resume.
                     </p>
                 </div>
             </div>
