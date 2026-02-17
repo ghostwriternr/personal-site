@@ -4,8 +4,8 @@ import { useStep } from "../../../components/slides/useStep";
 
 const layers = [
     {
-        name: "A fresh Linux environment",
-        detail: "Its own VM — own kernel, own network stack",
+        name: "A MicroVM",
+        detail: "Its own kernel, own network stack, full isolation",
     },
     {
         name: "A container inside it",
@@ -13,15 +13,15 @@ const layers = [
     },
     {
         name: "Bash sessions & filesystem",
-        detail: "Working directory, env vars, installed packages, files",
+        detail: "A shell into the container — where the agent actually works",
     },
     {
-        name: "Port routing",
+        name: "Networking",
         detail: "npm start runs on port 5173 inside the container",
     },
     {
         name: "Persistence",
-        detail: "Files, packages, state — still there tomorrow",
+        detail: "Files, packages, state — all survive between sessions",
     },
 ];
 
@@ -42,17 +42,21 @@ function LayerDiagramSlide() {
                                         className="w-px flex-1 transition-opacity duration-300"
                                         style={{
                                             borderRight: "1px dashed",
-                                            borderColor: active ? "var(--slide-border)" : "transparent",
+                                            borderColor: active
+                                                ? "var(--slide-border)"
+                                                : "transparent",
                                             opacity: active ? 1 : 0,
                                         }}
                                     />
                                 )}
                             </div>
                             <div
-                                className="flex flex-col gap-1 pb-6 pt-[6px] transition-all duration-300"
+                                className="flex flex-col gap-1 pt-[6px] pb-6 transition-all duration-300"
                                 style={{
                                     opacity: active ? 1 : 0,
-                                    transform: active ? "translateY(0)" : "translateY(8px)",
+                                    transform: active
+                                        ? "translateY(0)"
+                                        : "translateY(8px)",
                                 }}
                             >
                                 <span className="font-lufga text-xl font-medium text-(--slide-fg)">

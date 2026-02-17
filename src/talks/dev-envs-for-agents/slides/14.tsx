@@ -1,20 +1,122 @@
+import { useMemo } from "react";
+import type { Edge, Node } from "@xyflow/react";
 import Slide from "../../../components/slides/Slide";
-import { Blockquote } from "../../../components/slides/diagrams";
-import { ManusLogo } from "../../../components/slides/logos";
+import {
+    BrowserNode,
+    DashedIconNode,
+    EDGE_STYLE,
+    StaticDiagram,
+} from "../../../components/slides/diagrams";
+import type { DashedIconNodeData } from "../../../components/slides/diagrams";
+import {
+    ContainerIcon,
+    DurableObjectIcon,
+} from "../../../components/slides/logos";
 
-export default function ColdStartHookSlide() {
+const DO_COLOR = "#0A95FF";
+const CONTAINER_COLOR = "#f14602";
+const ICON_SIZE = 28;
+
+const nodeTypes = {
+    browser: BrowserNode,
+    dashedIcon: DashedIconNode,
+};
+
+function buildNodes(): Node[] {
+    const browserX = 0;
+    const browserY = 40;
+
+    const doX = 440;
+    const doSpacing = 120;
+    const doStartY = 0;
+
+    const containerX = 660;
+
+    const browser: Node = {
+        id: "browser",
+        type: "browser",
+        position: { x: browserX, y: browserY },
+        data: {},
+        draggable: false,
+    };
+
+    const dos: Node<DashedIconNodeData>[] = [0, 1, 2].map((i) => ({
+        id: `do-${i}`,
+        type: "dashedIcon",
+        position: { x: doX, y: doStartY + i * doSpacing },
+        data: {
+            icon: <DurableObjectIcon width={ICON_SIZE} height={ICON_SIZE} />,
+            color: DO_COLOR,
+            targetEdge: "left" as const,
+            sourceEdge: "right" as const,
+        },
+        draggable: false,
+    }));
+
+    const containers: Node<DashedIconNodeData>[] = [0, 1, 2].map((i) => ({
+        id: `container-${i}`,
+        type: "dashedIcon",
+        position: { x: containerX, y: doStartY + i * doSpacing },
+        data: {
+            icon: <ContainerIcon width={ICON_SIZE} height={ICON_SIZE} />,
+            color: CONTAINER_COLOR,
+            targetEdge: "left" as const,
+            sourceEdge: "right" as const,
+        },
+        draggable: false,
+    }));
+
+    return [browser, ...dos, ...containers];
+}
+
+function buildEdges(): Edge[] {
+    const baseStyle = {
+        ...EDGE_STYLE,
+        strokeWidth: 1.5,
+    };
+
+    const browserToDos: Edge[] = [0, 1, 2].map((i) => ({
+        id: `browser-do-${i}`,
+        source: "browser",
+        target: `do-${i}`,
+        animated: true,
+        style: { ...baseStyle, stroke: DO_COLOR, opacity: 0.5 },
+    }));
+
+    const dosToContainers: Edge[] = [0, 1, 2].map((i) => ({
+        id: `do-container-${i}`,
+        source: `do-${i}`,
+        target: `container-${i}`,
+        animated: true,
+        style: { ...baseStyle, stroke: CONTAINER_COLOR, opacity: 0.5 },
+    }));
+
+    return [...browserToDos, ...dosToContainers];
+}
+
+export default function NetworkingExposureSlide() {
+    const nodes = useMemo(() => buildNodes(), []);
+    const edges = useMemo(() => buildEdges(), []);
+
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-10">
-                <Blockquote
-                    quote="Manus doesn't just run some pieces of code. It uses 27 different tools, and it needs a full virtual computer."
-                    person={{
-                        name: "Tao Zhang",
-                        title: "Co-founder, Manus",
-                    }}
-                    source="From a published E2B case study"
-                    icon={<ManusLogo className="size-24 text-(--slide-fg-muted)" />}
-                />
+            <div className="flex flex-col items-center gap-6">
+                <div className="relative h-[380px] w-[900px]">
+                    <StaticDiagram
+                        nodes={nodes}
+                        edges={edges}
+                        nodeTypes={nodeTypes}
+                        defaultEdgeOptions={{
+                            style: EDGE_STYLE,
+                            animated: true,
+                        }}
+                        fitViewOptions={{ padding: 0.1 }}
+                    />
+                </div>
+                <p className="font-lufga max-w-2xl text-center text-xl font-light text-(--slide-fg-muted)">
+                    Every platform needs a layer that maps a URL to the right
+                    sandbox and the right port.
+                </p>
             </div>
         </Slide>
     );

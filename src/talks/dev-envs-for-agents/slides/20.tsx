@@ -1,26 +1,36 @@
 import Slide from "../../../components/slides/Slide";
-import CodeBlock from "../../../components/slides/CodeBlock";
+import { DataTable } from "../../../components/slides/diagrams";
 
-const sdkCode = `const sandbox = getSandbox(env.Sandbox, sessionId);
-
-const server = await sandbox.startProcess("npx vite --host");
-await server.waitForPort(5173);
-
-const { url } = await sandbox.exposePort(5173, { hostname });
-
-const source = await sandbox.readFile("src/App.tsx");
-const modified = await generateCode(prompt, source);
-await sandbox.writeFile("src/App.tsx", modified);`;
-
-export default function SDKRevealSlide() {
+export default function UseCaseMapSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-3xl flex-col gap-8">
-                <p className="font-mono text-sm text-(--slide-fg-muted) opacity-40">
-                    $ sandbox "make the goose follow my cursor"
-                </p>
-
-                <CodeBlock title="sandbox.ts">{sdkCode}</CodeBlock>
+            <div className="flex w-full max-w-5xl flex-col gap-8">
+                <DataTable columns={2}>
+                    <DataTable.Header>
+                        <span>Latency budget</span>
+                        <span>Techniques</span>
+                    </DataTable.Header>
+                    <DataTable.Row label="Code interpreters">
+                        <span>Sub-second</span>
+                        <span>Pre-built image + warm pool</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Coding agents">
+                        <span>2-3s first start, fast resume</span>
+                        <span>Pre-built image + snapshots</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Vibe coding">
+                        <span>2-3s creation, sub-second resume</span>
+                        <span>Pre-built images + snapshots + volumes</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="RL training / evals">
+                        <span>Aggregate throughput</span>
+                        <span>Pre-built images + warm pools</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="CI / code review">
+                        <span>Predictable &gt; fast</span>
+                        <span>Pre-built images + warm pools</span>
+                    </DataTable.Row>
+                </DataTable>
             </div>
         </Slide>
     );

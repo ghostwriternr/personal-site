@@ -1,49 +1,30 @@
-import { GithubLogo, XLogo } from "@phosphor-icons/react";
 import Slide from "../../../components/slides/Slide";
-import bioPhoto from "../../../assets/bio.jpeg";
+import CodeBlock from "../../../components/slides/CodeBlock";
 
-export default function ClosingSlide() {
+const code = `// Agent writes the migration
+const migration = \`
+  export default async function run(env) {
+    await env.DATABASE.exec("ALTER TABLE users ADD COLUMN preferences JSONB");
+  }
+\`;
+
+// Your app runs it sandboxed
+env.SANDBOX.get("migrate-v1", () => ({
+  modules: { "migrate.js": migration },
+  env: { DATABASE: scopedTenantDB },
+}));`;
+
+export default function UntrustedCodeSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl items-center gap-16">
-                <div className="flex flex-1 flex-col gap-6">
-                    <div className="flex flex-col gap-2">
-                        <h2 className="font-lufga text-5xl font-light text-(--slide-fg)">
-                            Naresh Ramesh
-                        </h2>
-                        <div className="flex items-center gap-4">
-                            <span className="font-mono text-lg text-(--slide-accent-light)">
-                                @ghostwriternr
-                            </span>
-                            <div className="flex items-center gap-3 text-(--slide-fg-muted)">
-                                <XLogo className="size-5" weight="fill" />
-                                <GithubLogo className="size-5" weight="fill" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-1 text-(--slide-fg-muted)">
-                        <span className="text-2xl">Systems Engineer at Cloudflare</span>
-                        <span className="text-2xl">Sandboxes whisperer</span>
-                        <span className="text-2xl">Pixel art enthusiast</span>
-                        <span className="text-2xl">Recovering founder</span>
-                    </div>
-                    <div className="mt-2 flex flex-col gap-2">
-                        <span className="font-mono text-base text-(--slide-fg-muted)">
-                            sandbox.cloudflare.com
-                        </span>
-                        <span className="text-base text-(--slide-fg-muted)">
-                            Craig Dennis: "Using Sandboxes to Safely
-                            Execute Untrusted Code"
-                        </span>
-                    </div>
-                </div>
-                <div className="shrink-0">
-                    <img
-                        src={bioPhoto.src}
-                        alt="Naresh Ramesh"
-                        className="size-64 rounded-xl object-cover"
-                    />
-                </div>
+            <div className="flex w-full max-w-4xl flex-col gap-8">
+                <p className="font-lufga text-4xl leading-snug font-light text-balance">
+                    What if every application could run untrusted code?
+                </p>
+                <CodeBlock language="javascript">{code}</CodeBlock>
+                <p className="font-mono text-sm text-(--slide-fg-muted) opacity-60">
+                    No containers. No VMs. V8 isolates. Milliseconds.
+                </p>
             </div>
         </Slide>
     );

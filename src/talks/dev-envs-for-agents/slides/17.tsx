@@ -1,40 +1,51 @@
 import Slide from "../../../components/slides/Slide";
+import { CornerSquares } from "../../../components/slides/diagrams";
 import { useStep } from "../../../components/slides/useStep";
 
-const approaches = [
-    { label: "From scratch", time: "~32s", width: "100%" },
-    { label: "Pre-built image", time: "~2s", width: "6.25%" },
-    { label: "Snapshot restore", time: "~200ms", width: "1.5%" },
-    { label: "Warm pool", time: "~0ms", width: "0.5%" },
-];
-
-function ColdStartMathSlide() {
+function ColdStartReframeSlide() {
     const step = useStep();
 
     return (
-        <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-8">
-                {approaches.map((a, i) => (
-                    <div
-                        key={a.label}
-                        className="flex flex-col gap-2 transition-opacity duration-500"
-                        style={{ opacity: i <= step ? 1 : 0 }}
-                    >
-                        <div className="flex items-baseline justify-between">
-                            <span className="font-lufga text-lg font-medium">{a.label}</span>
-                            <span className="font-mono text-(--slide-fg-muted)">{a.time}</span>
-                        </div>
-                        <div
-                            className="h-3 rounded-sm bg-(--slide-accent-light)"
-                            style={{ width: a.width, minWidth: 4 }}
-                        />
-                    </div>
-                ))}
+        <Slide hideGoose>
+            <div className="grid w-full max-w-5xl grid-cols-[1fr_1.2fr] gap-0">
+                {/* Left column */}
+                <div className="relative row-span-2 border border-(--slide-border) p-8">
+                    <CornerSquares />
+                    <p className="font-lufga text-4xl leading-snug font-light">
+                        How you think about persistence affects cold starts.
+                    </p>
+                </div>
+
+                <div
+                    className="relative border border-(--slide-border) border-l-0 p-8 transition-opacity duration-500"
+                    style={{ opacity: step >= 1 ? 1 : 0 }}
+                >
+                    <CornerSquares corners={{ topLeft: false, bottomLeft: false }} />
+                    <h3 className="font-lufga text-xl font-medium">
+                        What survives
+                    </h3>
+                    <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
+                        When the sandbox stops, what's still there? The OS image, installed dependencies, cloned repos, runtime state — each layer is a choice.
+                    </p>
+                </div>
+
+                <div
+                    className="relative border border-(--slide-border) border-l-0 border-t-0 p-8 transition-opacity duration-500"
+                    style={{ opacity: step >= 2 ? 1 : 0 }}
+                >
+                    <CornerSquares corners={{ topRight: false }} />
+                    <h3 className="font-lufga text-xl font-medium">
+                        How fast it resumes
+                    </h3>
+                    <p className="mt-3 leading-relaxed text-(--slide-fg-muted)">
+                        Cold start time is a direct consequence. The more you persist, the less you rebuild. The less you rebuild, the faster you resume.
+                    </p>
+                </div>
             </div>
         </Slide>
     );
 }
 
-ColdStartMathSlide.steps = 4;
+ColdStartReframeSlide.steps = 3;
 
-export default ColdStartMathSlide;
+export default ColdStartReframeSlide;
