@@ -1,88 +1,53 @@
-import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
-import { Camera, HardDrive, Package, Stack } from "@phosphor-icons/react";
 import Slide from "../../../components/slides/Slide";
-import { DashedBorder } from "../../../components/slides/diagrams";
 import { useStep } from "../../../components/slides/useStep";
 
-const techniques: { icon: PhosphorIcon; title: string; desc: string }[] = [
-    {
-        icon: Package,
-        title: "Pre-built images",
-        desc: "Bake dependencies into the image at build time. npm install happens once, not per sandbox.",
-    },
-    {
-        icon: HardDrive,
-        title: "Volumes",
-        desc: "Mount persistent storage into ephemeral containers. Workspace, node_modules, and cloned repos survive restarts.",
-    },
-    {
-        icon: Camera,
-        title: "Snapshots",
-        desc: "Freeze disk and memory after the app is ready. Next start restores from the snapshot instead of booting fresh.",
-    },
-    {
-        icon: Stack,
-        title: "Warm pools",
-        desc: "Pre-create sandboxes before they're needed. When an agent asks for one, it's already running.",
-    },
+const approaches = [
+    { label: "From scratch", time: "~32s", width: "100%" },
+    { label: "Pre-built image", time: "~2s", width: "6.25%" },
+    { label: "Snapshot restore", time: "~200ms", width: "1.5%" },
+    { label: "Warm pool", time: "~0ms", width: "0.5%" },
 ];
 
-function TechniquesSlide() {
+function ColdStartMathSlide() {
     const step = useStep();
 
     return (
-        <Slide hideGoose>
-            <DashedBorder
-                className="w-full max-w-4xl p-1"
-                borderRadius={12}
-                dashLength={6}
-                gapLength={6}
-                borderColor="var(--slide-fg-muted)"
-            >
-                <div className="grid grid-cols-2 overflow-hidden rounded-lg border border-(--slide-border)">
-                    {techniques.map((t, i) => {
-                        const Icon = t.icon;
-                        const isRight = i % 2 === 1;
-                        const isBottom = i >= 2;
-                        return (
-                            <div
-                                key={t.title}
-                                className="flex flex-col gap-1 p-8 transition-opacity duration-500"
-                                style={{
-                                    borderLeft: isRight
-                                        ? "1px solid var(--slide-border)"
-                                        : undefined,
-                                    borderTop: isBottom
-                                        ? "1px solid var(--slide-border)"
-                                        : undefined,
-                                    opacity: i <= step ? 1 : 0,
-                                }}
-                            >
-                                <div className="flex items-center gap-2">
-                                    <Icon size={20} weight="regular" />
-                                    <h3 className="font-lufga text-lg font-medium">
-                                        {t.title}
-                                    </h3>
-                                </div>
-                                <p className="mt-2 leading-relaxed text-(--slide-fg-muted)">
-                                    {t.desc}
-                                </p>
-                            </div>
-                        );
-                    })}
-                </div>
-            </DashedBorder>
+        <Slide>
+            <div className="flex w-full max-w-4xl flex-col gap-8">
+                {approaches.map((a, i) => (
+                    <div
+                        key={a.label}
+                        className="flex flex-col gap-2 transition-opacity duration-500"
+                        style={{ opacity: i <= step ? 1 : 0 }}
+                    >
+                        <div className="flex items-baseline justify-between">
+                            <span className="font-lufga text-lg font-medium">
+                                {a.label}
+                            </span>
+                            <span className="font-mono text-(--slide-fg-muted)">
+                                {a.time}
+                            </span>
+                        </div>
+                        <div
+                            className="h-3 rounded-sm bg-(--slide-accent-light)"
+                            style={{ width: a.width, minWidth: 4 }}
+                        />
+                    </div>
+                ))}
+            </div>
         </Slide>
     );
 }
 
-TechniquesSlide.steps = 4;
-TechniquesSlide.notes = `First: pre-built images. Bake dependencies into the image at build time. npm install happens once, not per sandbox.
+ColdStartMathSlide.steps = 4;
+ColdStartMathSlide.notes = `Same workload, same sandbox. The numbers are illustrative — it's the order-of-magnitude jumps that matter. From scratch, 32 seconds. The VM booted in 125ms. The rest was npm install, git clone, server start.
 
-[1] Volumes — mount persistent storage into ephemeral containers. Workspace, cloned repos, and dependency directories survive restarts.
+[1] Pre-built image cuts it to 2 seconds. You skipped the install step entirely — it was baked into the image at build time. That one change is a 16x improvement.
 
-[2] Snapshots — freeze disk and memory after the app is ready. Next start restores from the snapshot instead of booting fresh.
+[2] Snapshot restore: 200ms. You're not booting at all — you're restoring frozen disk and memory state. The server is already running when the sandbox wakes up.
 
-[3] Warm pools — pre-create sandboxes before they're needed. When an agent asks for one, it's already running. Production systems combine all four.`;
+[3] Warm pool: effectively zero. The sandbox was created before anyone asked for it. The request just claims one from the pool.
 
-export default TechniquesSlide;
+Look at the bars. The infrastructure boot — the VM, the kernel — is a sliver in every case. The application readiness gap is the entire problem, and it's the part you have control over.`;
+
+export default ColdStartMathSlide;

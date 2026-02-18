@@ -122,7 +122,7 @@ function NetworkingExposureSlide() {
     );
 }
 
-NetworkingExposureSlide.notes = `Walk through the diagram. Request arrives at the edge. The routing layer parses the hostname, resolves it to a specific sandbox on a specific machine, and opens a TCP tunnel to the container on the right port. The container is listening on an internal address — 10.0.0.1 or similar. It never has a public IP.
+NetworkingExposureSlide.notes = `Request arrives at the edge. The routing layer parses the hostname, resolves it to a specific sandbox on a specific machine, and opens a TCP tunnel to the container on the right port. The container is listening on an internal address. It never has a public IP.
 
 The routing layer sits in the middle of every request. That's what enforces that user A's URL only reaches user A's sandbox — it's just a lookup, and the lookup is scoped to the session token in the subdomain.
 

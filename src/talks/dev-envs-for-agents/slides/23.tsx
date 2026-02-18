@@ -1,15 +1,31 @@
 import Slide from "../../../components/slides/Slide";
+import CodeBlock from "../../../components/slides/CodeBlock";
 
-function CloudflareTransitionSlide() {
+const sdkCode = `const sandbox = getSandbox(env.Sandbox, sessionId);
+
+const server = await sandbox.startProcess("npx vite --host");
+await server.waitForPort(5173);
+
+const { url } = await sandbox.exposePort(5173, { hostname });
+
+const source = await sandbox.readFile("src/App.tsx");
+const modified = await generateCode(prompt, source);
+await sandbox.writeFile("src/App.tsx", modified);`;
+
+function SDKRevealSlide() {
     return (
         <Slide>
-            <p className="font-lufga text-center text-4xl leading-tight font-light text-(--slide-fg)">
-                Let's look under the hood.
-            </p>
+            <div className="flex w-full max-w-3xl flex-col gap-8">
+                <p className="font-mono text-sm text-(--slide-fg-muted) opacity-40">
+                    $ sandbox "make the goose follow my cursor"
+                </p>
+
+                <CodeBlock title="sandbox.ts">{sdkCode}</CodeBlock>
+            </div>
         </Slide>
     );
 }
 
-CloudflareTransitionSlide.notes = `I've built agents. Now I build the sandbox platform at Cloudflare. Let's walk the four decisions through a concrete implementation.`;
+SDKRevealSlide.notes = `That command from the opening — this is what's underneath it. Eight lines. Everything we've been talking about is behind these calls.`;
 
-export default CloudflareTransitionSlide;
+export default SDKRevealSlide;

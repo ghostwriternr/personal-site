@@ -1,45 +1,40 @@
 import Slide from "../../../components/slides/Slide";
-import { Blockquote } from "../../../components/slides/diagrams";
-import { CursorLogo, ClaudeLogo } from "../../../components/slides/logos";
+import CodeBlock from "../../../components/slides/CodeBlock";
 
-function ScaleSlide() {
+const code = `// Agent writes the migration
+const migration = \`
+  export default async function run(env) {
+    await env.DATABASE.exec("ALTER TABLE users ADD COLUMN preferences JSONB");
+  }
+\`;
+
+// Your app runs it sandboxed
+env.SANDBOX.get("migrate-v1", () => ({
+  modules: { "migrate.js": migration },
+  env: { DATABASE: scopedTenantDB },
+}));`;
+
+function UntrustedCodeSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-10">
-                <Blockquote
-                    compact
-                    quote="Cursor writes almost 1 billion lines of accepted code a day. The entire world produces just a few billion lines a day."
-                    person={{
-                        name: "Aman Sanger",
-                        title: "Co-founder, Cursor",
-                    }}
-                    source="Apr 2025"
-                    icon={
-                        <CursorLogo className="size-16 text-(--slide-fg-muted)" />
-                    }
-                />
-                <div className="h-px w-full max-w-[640px] bg-(--slide-fg)/10" />
-                <Blockquote
-                    compact
-                    quote="4% of all public GitHub commits are authored by Claude Code. At the current trajectory, it'll be 20%+ of all daily commits by end of 2026."
-                    person={{
-                        name: "SemiAnalysis",
-                        title: "Semiconductor research firm",
-                    }}
-                    source="Feb 2026"
-                    icon={
-                        <ClaudeLogo className="size-16 text-(--slide-fg-muted)" />
-                    }
-                />
+            <div className="flex w-full max-w-4xl flex-col gap-8">
+                <p className="font-lufga text-4xl leading-snug font-light text-balance">
+                    Same sandbox capabilities, without the microVM.
+                </p>
+                <CodeBlock language="javascript">{code}</CodeBlock>
+                <p className="font-mono text-base text-(--slide-fg-muted) opacity-60">
+                    No containers. No VMs. Lightweight V8-based sandboxes.
+                    Milliseconds.
+                </p>
             </div>
         </Slide>
     );
 }
 
-ScaleSlide.notes = `Cursor's cofounder said almost a billion lines of accepted code per day. The entire world produces a few billion lines a day total.
+UntrustedCodeSlide.notes = `Everything we've talked about so far assumes the agent needs a full dev environment — bash, npm, git, a dev server. MicroVMs are the right tool for that.
 
-SemiAnalysis estimates 4% of all public GitHub commits are authored by Claude Code. At this trajectory, 20%+ by end of 2026.
+But there's another class of workload. Your application needs to run a piece of code it didn't write — a plugin, a user script, an LLM-generated function. Maybe thousands of times a second. You can't spin up a VM for each one.
 
-Regardless of the exact numbers, the direction is clear. Code generation is now a first-class execution workload. Every generated line runs somewhere.`;
+We're building the same sandbox API on top of V8. Same idea — scope what the code can access, limit resources, isolate it. But startup is milliseconds and you can run thousands concurrently on a single machine. The example is an agent-generated migration scoped to one tenant's DB.`;
 
-export default ScaleSlide;
+export default UntrustedCodeSlide;

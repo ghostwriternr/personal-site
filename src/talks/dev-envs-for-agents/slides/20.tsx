@@ -1,53 +1,47 @@
 import Slide from "../../../components/slides/Slide";
-import { useStep } from "../../../components/slides/useStep";
+import { DataTable } from "../../../components/slides/diagrams";
 
-const approaches = [
-    { label: "From scratch", time: "~32s", width: "100%" },
-    { label: "Pre-built image", time: "~2s", width: "6.25%" },
-    { label: "Snapshot restore", time: "~200ms", width: "1.5%" },
-    { label: "Warm pool", time: "~0ms", width: "0.5%" },
-];
-
-function ColdStartMathSlide() {
-    const step = useStep();
-
+function UseCaseMapSlide() {
     return (
         <Slide>
-            <div className="flex w-full max-w-4xl flex-col gap-8">
-                {approaches.map((a, i) => (
-                    <div
-                        key={a.label}
-                        className="flex flex-col gap-2 transition-opacity duration-500"
-                        style={{ opacity: i <= step ? 1 : 0 }}
-                    >
-                        <div className="flex items-baseline justify-between">
-                            <span className="font-lufga text-lg font-medium">
-                                {a.label}
-                            </span>
-                            <span className="font-mono text-(--slide-fg-muted)">
-                                {a.time}
-                            </span>
-                        </div>
-                        <div
-                            className="h-3 rounded-sm bg-(--slide-accent-light)"
-                            style={{ width: a.width, minWidth: 4 }}
-                        />
-                    </div>
-                ))}
+            <div className="flex w-full max-w-5xl flex-col gap-8">
+                <DataTable columns={2}>
+                    <DataTable.Header>
+                        <span>Latency budget</span>
+                        <span>Techniques</span>
+                    </DataTable.Header>
+                    <DataTable.Row label="Code interpreters">
+                        <span>Sub-second</span>
+                        <span>Pre-built image + warm pool</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Coding agents">
+                        <span>2-3s first start, fast resume</span>
+                        <span>Pre-built image + snapshots</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="Vibe coding">
+                        <span>2-3s creation, sub-second resume</span>
+                        <span>Pre-built images + snapshots + volumes</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="RL training / evals">
+                        <span>Aggregate throughput</span>
+                        <span>Pre-built images + warm pools</span>
+                    </DataTable.Row>
+                    <DataTable.Row label="CI / code review">
+                        <span>Predictable &gt; fast</span>
+                        <span>Pre-built images + warm pools</span>
+                    </DataTable.Row>
+                </DataTable>
             </div>
         </Slide>
     );
 }
 
-ColdStartMathSlide.steps = 4;
-ColdStartMathSlide.notes = `Same workload. Four approaches. Treat the numbers as illustrative — the order-of-magnitude differences are the point. From scratch: 32 seconds. Most of that is application readiness — install, build, start. Not infrastructure boot.
+UseCaseMapSlide.notes = `Code interpreters are embedded in chat UIs. The user typed a question, the model generated code, and now you're executing it. If that takes more than a second, it feels like the chat is broken. Warm pools are basically mandatory.
 
-[1] Pre-built image: 2 seconds. Dependencies baked in.
+Coding agents are different — the user kicked off a task and is waiting. 2-3 seconds for first start is fine, they expect setup. But when they come back the next day, resume has to be instant. That's where snapshots earn their complexity.
 
-[2] Snapshot restore: 200ms. Restore frozen state instead of booting.
+RL training flips the equation entirely. You're spawning thousands of sandboxes in parallel, each running one candidate solution, scoring it, and tearing down. Individual latency doesn't matter — aggregate throughput is everything. You care about how fast you can churn through a batch.
 
-[3] Warm pool: effectively zero. Already running before the request arrived.
+CI just wants the same environment every time. The image is the contract. Rebuilding it on a cron means cold start is predictable, and predictable beats fast when you're debugging a flaky test.`;
 
-The infra boot is a sliver. The application readiness gap is the whole story.`;
-
-export default ColdStartMathSlide;
+export default UseCaseMapSlide;

@@ -1,115 +1,267 @@
+import { useMemo } from "react";
+import {
+    Globe,
+    Terminal,
+    FolderOpen,
+    Robot,
+    HardDrive,
+    Database,
+} from "@phosphor-icons/react";
+import type { Edge, Node } from "@xyflow/react";
 import Slide from "../../../components/slides/Slide";
-import CodeBlock from "../../../components/slides/CodeBlock";
-import { CornerSquares } from "../../../components/slides/diagrams";
-import { useStep } from "../../../components/slides/useStep";
+import {
+    DashedIconNode,
+    EDGE_STYLE,
+    GroupNode,
+    IconGroupNode,
+    StaticDiagram,
+} from "../../../components/slides/diagrams";
+import type {
+    DashedIconNodeData,
+    GroupNodeData,
+    IconGroupNodeData,
+} from "../../../components/slides/diagrams";
+import {
+    DurableObjectIcon,
+    WorkerIcon,
+} from "../../../components/slides/logos";
 
-const decisions = [
-    {
-        label: "Isolation",
-        description:
-            "Each session gets its own VM — own kernel, own filesystem.",
-        code: `const sandbox = getSandbox(env.Sandbox, sessionId);`,
-        fileName: "index.ts",
-    },
-    {
-        label: "Runtime",
-        description: "Background processes, file I/O, real bash sessions.",
-        code: `const server = await sandbox.startProcess("npx vite --host");
-await server.waitForPort(5173);
+const BLUE = "#0A95FF";
+const ORANGE = "#f14602";
+const WARM = "#f0e3de";
+const PINK = "#e574bc";
+const ICON_SIZE = 24;
+const SMALL_ICON = 20;
 
-const source = await sandbox.readFile("src/App.tsx");
-await sandbox.writeFile("src/App.tsx", modified);`,
-        fileName: "sandbox.ts",
-    },
-    {
-        label: "Networking",
-        description: "One call turns an internal port into a public URL.",
-        code: `const { url } = await sandbox.exposePort(5173, { hostname });`,
-        fileName: "sandbox.ts",
-    },
-    {
-        label: "Persistence",
-        description:
-            "Modified files saved to storage — the user comes back, the work is there.",
-        code: `await env.DIFFS.put(
-  \`sessions/\${sessionId}/App.tsx\`,
-  source,
-);`,
-        fileName: "sandbox.ts",
-    },
-];
+const nodeTypes = {
+    dashedIcon: DashedIconNode,
+    groupNode: GroupNode,
+    iconGroup: IconGroupNode,
+};
 
-function AnnotatedCodeSlide() {
-    const step = useStep();
-    const active = Math.min(step, decisions.length - 1);
-    const current = decisions[active];
+function buildNodes(): Node[] {
+    // --- Column 1: Clients (x: 0) ---
+    const clients: Node<DashedIconNodeData>[] = [
+        { y: 55, icon: <Robot size={ICON_SIZE} weight="thin" />, color: WARM },
+        { y: 170, icon: <Robot size={ICON_SIZE} weight="thin" />, color: WARM },
+        {
+            y: 285,
+            icon: <Globe size={ICON_SIZE} weight="thin" />,
+            color: BLUE,
+        },
+    ].map(({ y, icon, color }, i) => ({
+        id: `client-${i}`,
+        type: "dashedIcon",
+        position: { x: 0, y },
+        data: {
+            icon,
+            color,
+            sourceEdge: "right" as const,
+            targetEdge: "left" as const,
+        },
+        draggable: false,
+    }));
+
+    // --- Column 2: Worker (x: 170) ---
+    const worker: Node<DashedIconNodeData> = {
+        id: "worker",
+        type: "dashedIcon",
+        position: { x: 170, y: 155 },
+        data: {
+            icon: <WorkerIcon width={ICON_SIZE} height={ICON_SIZE} />,
+            color: ORANGE,
+            label: "Worker",
+            sourceEdge: "right" as const,
+            targetEdge: "left" as const,
+        },
+        draggable: false,
+    };
+
+    // --- Column 3: Durable Objects (x: 360) ---
+    const doPositions = [
+        { x: 360, y: 82 },
+        { x: 360, y: 267 },
+    ];
+    const durableObjects: Node<DashedIconNodeData>[] = doPositions.map(
+        (pos, i) => ({
+            id: `do-${i}`,
+            type: "dashedIcon",
+            position: pos,
+            data: {
+                icon: (
+                    <DurableObjectIcon width={ICON_SIZE} height={ICON_SIZE} />
+                ),
+                color: BLUE,
+                label: "Durable Object",
+                sourceEdge: "right" as const,
+                targetEdge: "left" as const,
+            },
+            draggable: false,
+        })
+    );
+
+    // --- Column 4: microVM groups + Sandbox icon groups (x: 520) ---
+    const vmGroupPositions = [
+        { x: 510, y: 15 },
+        { x: 510, y: 200 },
+    ];
+    const microVMs: Node<GroupNodeData>[] = vmGroupPositions.map((pos, i) => ({
+        id: `vm-${i}`,
+        type: "groupNode",
+        position: pos,
+        data: {
+            label: "microVM",
+            borderColor: `${WARM}50`,
+            bgColor: `${WARM}06`,
+            width: 240,
+            height: 140,
+        },
+        draggable: false,
+        zIndex: -1,
+    }));
+
+    const sandboxPositions = [
+        { x: 530, y: 58 },
+        { x: 530, y: 243 },
+    ];
+    const sandboxes: Node<IconGroupNodeData>[] = sandboxPositions.map(
+        (pos, i) => ({
+            id: `sandbox-${i}`,
+            type: "iconGroup",
+            position: pos,
+            data: {
+                icons: [
+                    {
+                        key: "terminal",
+                        element: <Terminal size={SMALL_ICON} weight="thin" />,
+                    },
+                    {
+                        key: "port",
+                        element: <Globe size={SMALL_ICON} weight="thin" />,
+                    },
+                    {
+                        key: "files",
+                        element: <FolderOpen size={SMALL_ICON} weight="thin" />,
+                    },
+                ],
+                color: ORANGE,
+                label: "Sandbox",
+            },
+            draggable: false,
+        })
+    );
+
+    // --- Column 5: Storage (x: 850) ---
+    const storage: Node<IconGroupNodeData> = {
+        id: "storage",
+        type: "iconGroup",
+        position: { x: 850, y: 165 },
+        data: {
+            icons: [
+                {
+                    key: "kv",
+                    element: <Database size={SMALL_ICON} weight="thin" />,
+                },
+                {
+                    key: "do-storage",
+                    element: <HardDrive size={SMALL_ICON} weight="thin" />,
+                },
+            ],
+            color: PINK,
+            label: "Storage",
+        },
+        draggable: false,
+    };
+
+    return [
+        ...clients,
+        worker,
+        ...durableObjects,
+        ...microVMs,
+        ...sandboxes,
+        storage,
+    ];
+}
+
+function buildEdges(): Edge[] {
+    const base = { strokeWidth: 1.5 };
+
+    // Clients → Worker
+    const clientToWorker: Edge[] = [0, 1, 2].map((i) => ({
+        id: `client-${i}-worker`,
+        source: `client-${i}`,
+        target: "worker",
+        animated: true,
+        style: { ...base, stroke: WARM, opacity: 0.25 },
+    }));
+
+    // Worker → DOs
+    const workerToDo: Edge[] = [0, 1].map((i) => ({
+        id: `worker-do-${i}`,
+        source: "worker",
+        target: `do-${i}`,
+        animated: true,
+        style: { ...base, stroke: BLUE, opacity: 0.4 },
+    }));
+
+    // DOs → Sandboxes
+    const doToSandbox: Edge[] = [0, 1].map((i) => ({
+        id: `do-${i}-sandbox-${i}`,
+        source: `do-${i}`,
+        target: `sandbox-${i}`,
+        animated: true,
+        style: { ...base, stroke: ORANGE, opacity: 0.4 },
+    }));
+
+    // Sandboxes → Storage
+    const sandboxToStorage: Edge[] = [0, 1].map((i) => ({
+        id: `sandbox-${i}-storage`,
+        source: `sandbox-${i}`,
+        target: "storage",
+        animated: true,
+        style: { ...base, stroke: PINK, opacity: 0.25 },
+    }));
+
+    return [
+        ...clientToWorker,
+        ...workerToDo,
+        ...doToSandbox,
+        ...sandboxToStorage,
+    ];
+}
+
+function ArchitectureSlide() {
+    const nodes = useMemo(() => buildNodes(), []);
+    const edges = useMemo(() => buildEdges(), []);
 
     return (
-        <Slide hideGoose edgeToEdge>
-            <div className="relative flex h-full w-full flex-col border border-(--slide-border)">
-                <CornerSquares />
-                <div className="grid h-full grid-cols-[1.6fr_1fr]">
-                    <div className="relative flex items-center border-r border-(--slide-border) p-6">
-                        <CodeBlock title={current.fileName} className="w-full">
-                            {current.code}
-                        </CodeBlock>
-                    </div>
-
-                    <div className="flex h-full flex-col">
-                        {decisions.map((d, i) => {
-                            const isActive = i === active;
-                            return (
-                                <div
-                                    key={d.label}
-                                    className="relative flex flex-1 flex-col justify-center gap-1.5 border-b border-(--slide-border) px-6 transition-colors duration-300 last:border-b-0"
-                                    style={{
-                                        backgroundColor: isActive
-                                            ? "var(--slide-bg-active)"
-                                            : "transparent",
-                                    }}
-                                >
-                                    <div
-                                        className="absolute top-0 bottom-0 left-0 w-1 transition-opacity duration-300"
-                                        style={{
-                                            backgroundColor:
-                                                "var(--slide-accent)",
-                                            opacity: isActive ? 1 : 0,
-                                        }}
-                                    />
-                                    <p
-                                        className="font-lufga text-lg font-medium transition-opacity duration-300"
-                                        style={{
-                                            opacity: isActive ? 1 : 0.5,
-                                        }}
-                                    >
-                                        {d.label}
-                                    </p>
-                                    <p
-                                        className="text-base leading-relaxed text-(--slide-fg-muted) transition-opacity duration-300"
-                                        style={{
-                                            opacity: isActive ? 1 : 0.4,
-                                        }}
-                                    >
-                                        {d.description}
-                                    </p>
-                                </div>
-                            );
-                        })}
-                    </div>
+        <Slide>
+            <div className="flex flex-col items-center gap-6">
+                <div className="relative h-[420px] w-[1050px]">
+                    <StaticDiagram
+                        nodes={nodes}
+                        edges={edges}
+                        nodeTypes={nodeTypes}
+                        defaultEdgeOptions={{
+                            style: EDGE_STYLE,
+                            animated: true,
+                        }}
+                        fitViewOptions={{ padding: 0.08 }}
+                    />
                 </div>
+                <p className="font-lufga max-w-2xl text-center text-xl font-light text-(--slide-fg-muted)">
+                    Your Worker routes requests to Durable Objects. Each one
+                    manages a sandbox in its own microVM.
+                </p>
             </div>
         </Slide>
     );
 }
 
-AnnotatedCodeSlide.steps = 4;
-AnnotatedCodeSlide.edgeToEdge = true;
-AnnotatedCodeSlide.notes = `Isolation: getSandbox provisions an isolated environment — its own VM, own kernel, own filesystem. Each session ID maps to exactly one sandbox.
+ArchitectureSlide.notes = `Agents and browsers hit the edge. A Worker runs your application logic — auth, session lookup, routing. That's code you write.
 
-[1] Runtime: startProcess, readFile, writeFile — background processes, real filesystem, real bash sessions. The primitives we talked about.
+The Worker routes to a Durable Object. The DO is the stable identity from the networking section — it's how a URL finds a sandbox without stable IPs or DNS. It also serializes concurrent requests to the same session, so two tabs don't race each other.
 
-[2] Networking: exposePort creates the preview URL — one call routes from the public internet to a specific port inside that sandbox.
+The DO manages a sandbox inside a microVM. And storage sits off to the side — separate from the sandbox lifecycle. That's the full path from request to code execution.`;
 
-[3] Persistence: we persist the workspace state — the pre-change file, the diff, whatever your use case needs. The sandbox can sleep and wake; the stored state outlives it.`;
-
-export default AnnotatedCodeSlide;
+export default ArchitectureSlide;
