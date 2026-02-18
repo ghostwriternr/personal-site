@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef, useMemo } from "react";
+import { useEffect, useCallback, useRef, useMemo, useState } from "react";
 import Slide from "../../../components/slides/Slide";
 import { useStep } from "../../../components/slides/useStep";
 import TerminalMockup from "../../../components/slides/TerminalMockup";
@@ -8,6 +8,7 @@ import { useSandbox } from "../../../components/slides/useSandbox";
 import { useSlideActions } from "../../../components/slides/useSlideActions";
 
 const WS_URL = "wss://goose-pond-editor.ghostwriternr.me/ws/session";
+const INITIAL_URL = "https://goose-pond.ghostwriternr.me/";
 
 const fullLines = [
     { text: "service at capacity — try again shortly", type: "error" as const },
@@ -25,6 +26,7 @@ function SandboxSlide() {
     const step = useStep();
     const showHooks = step >= 1;
     const iframeRef = useRef<HTMLIFrameElement>(null);
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
     const {
         lines,
         previewUrl,
@@ -43,6 +45,10 @@ function SandboxSlide() {
             iframeRef.current.src += "";
         }
     }, [status]);
+
+    useEffect(() => {
+        if (previewUrl) setActiveTabIndex(1);
+    }, [previewUrl]);
 
     const canInput =
         status === "idle" ||
@@ -151,28 +157,39 @@ function SandboxSlide() {
                         inputPlaceholder='sandbox "make the goose follow my cursor"'
                     />
                     <BrowserMockup
-                        url={previewUrl ?? "about:blank"}
                         className="h-full w-1/2"
-                    >
-                        {previewUrl ? (
-                            <iframe
-                                ref={iframeRef}
-                                src={previewUrl}
-                                className="h-full w-full border-0"
-                                title="Sandbox preview"
-                            />
-                        ) : (
-                            <div className="flex h-full items-center justify-center">
-                                <span className="text-sm text-(--slide-fg-muted)">
-                                    {status === "expired"
-                                        ? "Sandbox expired"
-                                        : status === "idle" || status === "full"
-                                          ? ""
-                                          : "Waiting for preview…"}
-                                </span>
-                            </div>
-                        )}
-                    </BrowserMockup>
+                        activeTabIndex={activeTabIndex}
+                        onTabChange={setActiveTabIndex}
+                        tabs={[
+                            {
+                                url: INITIAL_URL,
+                                title: "goose-pond",
+                                content: (
+                                    <iframe
+                                        src={INITIAL_URL}
+                                        className="h-full w-full border-0"
+                                        title="Goose Pond"
+                                    />
+                                ),
+                            },
+                            ...(previewUrl
+                                ? [
+                                      {
+                                          url: previewUrl,
+                                          title: "Preview",
+                                          content: (
+                                              <iframe
+                                                  ref={iframeRef}
+                                                  src={previewUrl}
+                                                  className="h-full w-full border-0"
+                                                  title="Sandbox preview"
+                                              />
+                                          ),
+                                      },
+                                  ]
+                                : []),
+                        ]}
+                    />
                 </div>
                 {showHooks && (
                     <div className="flex max-w-3xl flex-col gap-3 text-center">
@@ -180,11 +197,11 @@ function SandboxSlide() {
                             There's no localhost here.
                         </p>
                         <p className="font-lufga leading-relaxed text-(--slide-fg-muted)">
-                            That preview URL had to find its way from the
-                            internet to a specific port in a specific
-                            environment. And if the user closes the tab and
-                            comes back tomorrow… the agent expects to pick up
-                            where it left off.
+                            The agent, and that preview URL we use to look at
+                            it's work, had to find its way from the internet to
+                            a specific port in a specific environment. And if
+                            the user closes the tab and comes back tomorrow… the
+                            agent expects to pick up where it left off.
                         </p>
                     </div>
                 )}
