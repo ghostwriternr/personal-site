@@ -53,7 +53,7 @@ function IsolationProblemSlide() {
 
 IsolationProblemSlide.steps = 3;
 IsolationProblemSlide.edgeToEdge = true;
-IsolationProblemSlide.notes = `You don't know what packages your agent installed. It ran npm install or pip install — maybe something it hallucinated, maybe something it was prompted to install by injected content in a file it read.
+IsolationProblemSlide.notes = `You don't know what packages your agent installed. It ran npm install or pip install — maybe something it was prompted to install by injected content in a file it read.
 
 [1] You don't know what your user told it to build. The user's message shaped every decision the agent made. You didn't review it. You don't control it.
 

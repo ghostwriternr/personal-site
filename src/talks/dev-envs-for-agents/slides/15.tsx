@@ -122,10 +122,10 @@ function NetworkingExposureSlide() {
     );
 }
 
-NetworkingExposureSlide.notes = `The agent started a dev server on port 3000. The user needs a public URL.
+NetworkingExposureSlide.notes = `Walk through the diagram. Request arrives at the edge. The routing layer parses the hostname, resolves it to a specific sandbox on a specific machine, and opens a TCP tunnel to the container on the right port. The container is listening on an internal address — 10.0.0.1 or similar. It never has a public IP.
 
-Exposure is mapping that URL to a specific sandbox and a specific port inside it. The routing layer connects them. That layer also enforces auth and per-sandbox ACLs — because a preview URL is otherwise a clean data-exfil path.
+The routing layer sits in the middle of every request. That's what enforces that user A's URL only reaches user A's sandbox — it's just a lookup, and the lookup is scoped to the session token in the subdomain.
 
-Turning an ephemeral internal service into something reachable from the internet — that's the primitive your platform has to give you.`;
+From the developer's side: you say "expose port 5173", you get a URL back. The whole path above is wired up for you.`;
 
 export default NetworkingExposureSlide;

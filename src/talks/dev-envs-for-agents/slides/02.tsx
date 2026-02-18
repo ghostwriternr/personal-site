@@ -115,8 +115,6 @@ function PreviewIsComputerSlide() {
     );
 }
 
-PreviewIsComputerSlide.notes = `Let's break down what had to happen to make that link work.
-
-A shell. A filesystem. A network stack. Running processes. The URL is just the address.`;
+PreviewIsComputerSlide.notes = `Let's break down what had to happen to make that link work. The URL is just the address.`;
 
 export default PreviewIsComputerSlide;

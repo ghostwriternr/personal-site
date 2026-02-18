@@ -17,6 +17,6 @@ function RuntimeStatementSlide() {
 
 RuntimeStatementSlide.notes = `First question — the most fundamental one: what does the agent actually get to work with?
 
-You could give it a REPL. A restricted container — some tools, some access. Or full Linux — apt-get, pip, git, npm, compilers, dev servers, background processes. A real computer.`;
+You could give it a REPL (REP-ul). A restricted container — some tools, some access. Or full Linux. A real computer.`;
 
 export default RuntimeStatementSlide;

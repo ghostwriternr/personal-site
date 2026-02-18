@@ -18,8 +18,8 @@ function ThesisSlide() {
     );
 }
 
-ThesisSlide.notes = `Every agent needs a computer. And designing that computer — making it fast, isolated, networked, persistent — is a design problem with real tradeoffs.
+ThesisSlide.notes = `Every agent needs a computer. And designing that computer is a design problem with real tradeoffs.
 
-I'm Naresh. I built coding agents that topped SWE-bench. Now I build the sandboxed environments they run in. Four decisions: runtime, isolation, networking, persistence.`;
+I'm Naresh. In my past life, I worked on coding agents that twice topped SWE-bench. Now I build the sandboxed environments they run in.`;
 
 export default ThesisSlide;

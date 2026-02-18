@@ -36,8 +36,6 @@ function DecisionsIsolationSlide() {
 }
 
 DecisionsIsolationSlide.edgeToEdge = true;
-DecisionsIsolationSlide.notes = `Runtime tells you what the agent gets to work with. Isolation is the next question: how do you contain it?
-
-Because once you give an agent full Linux — real shell, real network, real filesystem — you've also given it real blast radius.`;
+DecisionsIsolationSlide.notes = `Runtime tells you what the agent gets to work with. Isolation is the next question: how do you contain it?`;
 
 export default DecisionsIsolationSlide;

@@ -36,6 +36,6 @@ function DecisionsNetworkingSlide() {
 }
 
 DecisionsNetworkingSlide.edgeToEdge = true;
-DecisionsNetworkingSlide.notes = `Third: networking. We've covered runtime and isolation. Now: how does the browser find the right sandbox? Networking is two primitives — addressing and exposure.`;
+DecisionsNetworkingSlide.notes = `Third: networking. We've covered runtime and isolation. Now: how does the browser find the right sandbox?`;
 
 export default DecisionsNetworkingSlide;

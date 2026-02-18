@@ -75,8 +75,6 @@ function NonTrivialSlide() {
 
 NonTrivialSlide.notes = `What actually separates a code runner from a dev environment is the next layer.
 
-Background processes — the agent starts a dev server and keeps working in parallel. Streaming — it reacts to output as it happens, not after the command exits. Continuity — cd and npm install carry over; the agent isn't starting from scratch on every command. A real PTY — not just exec/response, but a live shell session you can embed in a UI. And a code interpreter — execute code and get back not just stdout, but charts, tables, images.
-
-The difference between a code runner and a dev environment is this list.`;
+Background processes — the agent starts a dev server and keeps working in parallel. Streaming — it reacts to output as it happens, not after the command exits. Continuity — cd and npm install carry over; the agent isn't starting from scratch on every command. A real PTY — not just exec/response, but a live shell session you can embed in a UI. And a code interpreter — execute code and get back not just stdout, but charts, tables, images.`;
 
 export default NonTrivialSlide;
