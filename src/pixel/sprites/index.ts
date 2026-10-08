@@ -1,6 +1,6 @@
 import { validateSprite } from "../render";
 import type { Sprite } from "../types";
-import { tiny } from "./cats";
+import { chandu, tiny, yoda } from "./cats";
 import {
     chennaiCentral,
     gopuram,
@@ -24,6 +24,8 @@ import { auto, bus } from "./vehicles";
 export const sprites: Sprite[] = [
     tiny,
     paperBall,
+    yoda,
+    chandu,
     marina,
     lighthouse,
     lighthouseBeam,
