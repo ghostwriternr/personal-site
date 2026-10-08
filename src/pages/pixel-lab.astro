@@ -4,6 +4,7 @@
  * Shows every sprite at actual size on each surface, every frame zoomed
  * with a grid, and every animation.
  */
+import Skyline from "../components/pixel/Skyline.astro";
 import Sprite from "../components/pixel/Sprite.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { palette, themeSlots, type PaletteColor } from "../pixel/palette";
@@ -14,7 +15,9 @@ if (!import.meta.env.DEV) {
     return new Response(null, { status: 404 });
 }
 
-const ZOOM = 14;
+/** CSS pixels per cell for zoomed views: scene pieces are much larger. */
+const zoomFor = (sprite: (typeof sprites)[number]) =>
+    sprite.tier === "scene" ? 6 : 14;
 
 const surfaces = [
     { name: "Light canvas", theme: "light", background: "hsl(35 100% 74%)" },
@@ -74,7 +77,10 @@ function roomFor(
                             </div>
                             <code class="text-caption-md text-text">
                                 {name}
-                                {themeSlots.includes(name) && " (theme slot)"}
+                                {themeSlots.includes(name)
+                                    ? " (theme slot)"
+                                    : palette[name].startsWith("color-mix") &&
+                                      " (dims at night)"}
                             </code>
                         </div>
                     ))
@@ -82,8 +88,33 @@ function roomFor(
             </div>
         </section>
 
+        <section class="flex flex-col gap-4">
+            <h2 class="text-heading-lg text-primary">Chennai → London strip</h2>
+            <p class="text-body-sm text-secondary">
+                As it sits at the bottom of the home and about pages. Resize the
+                window to see landmarks drop out.
+            </p>
+            {
+                canvases.map((surface) => (
+                    <figure class="flex flex-col gap-1">
+                        <div
+                            data-theme={surface.theme}
+                            class="rounded-md pt-8"
+                            style={`background:${surface.background}`}
+                        >
+                            <Skyline />
+                        </div>
+                        <figcaption class="text-caption-md text-secondary">
+                            {surface.name}
+                        </figcaption>
+                    </figure>
+                ))
+            }
+        </section>
+
         {
             sprites.map((sprite) => {
+                const ZOOM = zoomFor(sprite);
                 const { width, height } = frameSize(sprite);
                 // Generated scene frames (named with "__") play in animations only.
                 const frames = Object.keys(sprite.frames).filter(

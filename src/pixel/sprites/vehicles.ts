@@ -1,0 +1,123 @@
+import type { Sprite } from "../types";
+import { propKey } from "./props";
+
+const vehicleKey = {
+    ...propKey,
+    x: "canopy",
+    y: "autoYellow",
+    Y: "autoYellowShade",
+    i: "glassDark",
+    c: "stucco",
+    u: "bridgeBlue",
+    t: "tyre",
+    W: "mist",
+    L: "lamp",
+    r: "busRed",
+    R: "busRedShade",
+} as const;
+
+/** A Chennai auto, facing right: black canopy, yellow body, open sides. Headlight lit at night. */
+export const auto: Sprite = {
+    id: "auto",
+    name: "Auto rickshaw",
+    tier: "character",
+    scale: 3,
+    key: vehicleKey,
+    frames: {
+        drive: [
+            "....kkkkkkkkkkk.....",
+            "..kkxxxxxxxxxxxkk...",
+            ".kxxxxxxxxxxxxxxxk..",
+            ".kxk........cckiik..",
+            ".kxk........cckiiik.",
+            ".kxkkk......uukyyyk.",
+            ".kxkxxk.....uukyyyLk",
+            ".kyyyyykkkkkyyyyyyk.",
+            ".kyyyyyyyyyyyyyyyyk.",
+            ".kYYYYYYYYYYYYYYYYk.",
+            "..kkWtkkkkkkkkWtkkk.",
+            "...kttk......kttk...",
+            "....kk........kk....",
+        ],
+        drive2: [
+            "....kkkkkkkkkkk.....",
+            "..kkxxxxxxxxxxxkk...",
+            ".kxxxxxxxxxxxxxxxk..",
+            ".kxk........cckiik..",
+            ".kxk........cckiiik.",
+            ".kxkkk......uukyyyk.",
+            ".kxkxxk.....uukyyyLk",
+            ".kyyyyykkkkkyyyyyyk.",
+            ".kyyyyyyyyyyyyyyyyk.",
+            ".kYYYYYYYYYYYYYYYYk.",
+            "..kkttkkkkkkkkttkkk.",
+            "...ktWk......ktWk...",
+            "....kk........kk....",
+        ],
+    },
+    animations: {
+        idle: [
+            ["drive", 120],
+            ["drive2", 120],
+        ],
+    },
+};
+
+/** A New Routemaster, facing left. Its windows light up at night. */
+export const bus: Sprite = {
+    id: "london-bus",
+    name: "London bus",
+    tier: "character",
+    scale: 3,
+    key: vehicleKey,
+    frames: {
+        drive: [
+            "...kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk...",
+            ".kkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrkk.",
+            "kLLLrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrk",
+            "kLLLrrLLLLLLrLLLLLrLLLLLrLLLLLLLrrrk",
+            "kLLLrrLLLLLLrLLLLLrLLLLLrLLLLLLLrrrk",
+            "kLLLrrLLLLLLrLLLLLrLLLLLrLLLLLLLrrrk",
+            "kLLLrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrk",
+            "kRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRk",
+            "kLLLrrrrrLLrrrrrrrrrrrrrrrrrLLrrrrrk",
+            "kLLLxxrrLLrrLLLLLrxxrLLLLrxxrLLrrrrk",
+            "kLLLxxrrLLrrLLLLLrxxrLLLLrxxrLLrrrrk",
+            "kLLLxxrLLrrrLLLLLrxxrLLLLrxxrrLLrrrk",
+            "kLLLxxrLLrrrLLLLLrxxrLLLLrxxrrLLrrrk",
+            "kLLLxxrrrrrrrrrrrrxxrrrrrrxxrrrrrrrk",
+            "kLLLxxrrrrrrrrrrrrxxrrrrrrxxrrrrrrrk",
+            "krRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRrk",
+            ".kkkkkktWtkkkkkkkkkkkkkkkkktWtkkkkk.",
+            "......ktttk...............ktttk.....",
+            ".......kkk.................kkk......",
+        ],
+        drive2: [
+            "...kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk...",
+            ".kkrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrkk.",
+            "kLLLrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrk",
+            "kLLLrrLLLLLLrLLLLLrLLLLLrLLLLLLLrrrk",
+            "kLLLrrLLLLLLrLLLLLrLLLLLrLLLLLLLrrrk",
+            "kLLLrrLLLLLLrLLLLLrLLLLLrLLLLLLLrrrk",
+            "kLLLrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrk",
+            "kRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRk",
+            "kLLLrrrrrLLrrrrrrrrrrrrrrrrrLLrrrrrk",
+            "kLLLxxrrLLrrLLLLLrxxrLLLLrxxrLLrrrrk",
+            "kLLLxxrrLLrrLLLLLrxxrLLLLrxxrLLrrrrk",
+            "kLLLxxrLLrrrLLLLLrxxrLLLLrxxrrLLrrrk",
+            "kLLLxxrLLrrrLLLLLrxxrLLLLrxxrrLLrrrk",
+            "kLLLxxrrrrrrrrrrrrxxrrrrrrxxrrrrrrrk",
+            "kLLLxxrrrrrrrrrrrrxxrrrrrrxxrrrrrrrk",
+            "krRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRrk",
+            ".kkkkkktttkkkkkkkkkkkkkkkkktttkkkkk.",
+            "......ktWtk...............ktWtk.....",
+            ".......kkk.................kkk......",
+        ],
+    },
+    animations: {
+        idle: [
+            ["drive", 160],
+            ["drive2", 160],
+        ],
+    },
+};

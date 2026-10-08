@@ -1,0 +1,209 @@
+---
+/**
+ * The Chennai → London strip: Marina beach, the lighthouse, Kapaleeshwarar
+ * temple and Chennai Central on the left; Big Ben, the London Eye, Tower
+ * Bridge and the Shard on the right; one road running between them. It sits
+ * on the bottom edge of the content panel.
+ *
+ * - At night the buildings dim, their lights come on, and the lighthouse
+ *   beam sweeps round, lighting the gopuram's crown when it is beside it.
+ * - Both clocks show the real time in Chennai and London.
+ * - The Eye turns slowly, once every 90 seconds.
+ * - An auto and a bus drive past once, when the strip scrolls into view.
+ * - Landmarks drop out on narrow screens, and below `md` the whole strip
+ *   draws at 2px per cell instead of 3.
+ */
+import { clockHands, timeIn } from "../../pixel/clock";
+import { palette } from "../../pixel/palette";
+import {
+    chennaiCentral,
+    gopuram,
+    gopuramLight,
+    lighthouse,
+    lighthouseBeam,
+    lighthouseBeamBlocked,
+    marina,
+} from "../../pixel/sprites/chennai";
+import {
+    bigBen,
+    londonEye,
+    londonEyeWheel,
+    shard,
+    towerBridge,
+} from "../../pixel/sprites/london";
+import { auto, bus } from "../../pixel/sprites/vehicles";
+import Sprite from "./Sprite.astro";
+
+interface Props {
+    class?: string;
+}
+const { class: className = "" } = Astro.props;
+
+const colors = [
+    `--px-skyline-road:${palette.asphalt}`,
+    `--px-skyline-kerb:${palette.kerb}`,
+    `--px-skyline-mark:${palette.stucco}`,
+].join(";");
+
+/** Clock dials: where each 7×7 dial sits on its tower, in cells. */
+const clocks = {
+    chennai: { timeZone: "Asia/Kolkata", x: 23, y: 10 },
+    london: { timeZone: "Europe/London", x: 3, y: 10 },
+};
+const handsFor = (timeZone: string) => {
+    const { hours, minutes } = timeIn(timeZone);
+    return clockHands(hours, minutes);
+};
+---
+
+<div class:list={["px-skyline", className]} style={colors} aria-hidden="true">
+    <div class="px-skyline-road"></div>
+    <div class="px-skyline-city">
+        <Sprite sprite={marina} />
+        <div class="px-skyline-lighthouse relative">
+            <Sprite sprite={lighthouse} class="block" />
+            {
+                /* The beam is blocked by the gopuram only while the gopuram shows. */
+            }
+            <div class="px-skyline-beam px-skyline-with-gopuram">
+                <Sprite sprite={lighthouseBeamBlocked} class="block" />
+            </div>
+            <div class="px-skyline-beam px-skyline-without-gopuram">
+                <Sprite sprite={lighthouseBeam} class="block" />
+            </div>
+        </div>
+        <div class="px-skyline-gopuram relative">
+            <Sprite sprite={gopuram} class="block" />
+            <Sprite sprite={gopuramLight} class="absolute top-0 left-0" />
+        </div>
+        <div class="relative">
+            <Sprite sprite={chennaiCentral} class="block" />
+            <svg
+                class="px-clock"
+                data-time-zone={clocks.chennai.timeZone}
+                viewBox="0 0 7 7"
+                shape-rendering="crispEdges"
+                style={`left:${clocks.chennai.x * 3}px;top:${clocks.chennai.y * 3}px;fill:${palette.slate}`}
+            >
+                {
+                    handsFor(clocks.chennai.timeZone).map(([x, y]) => (
+                        <rect x={x} y={y} width="1" height="1" />
+                    ))
+                }
+            </svg>
+        </div>
+    </div>
+    <div class="px-skyline-city">
+        <div class="relative">
+            <Sprite sprite={bigBen} class="block" />
+            <svg
+                class="px-clock"
+                data-time-zone={clocks.london.timeZone}
+                viewBox="0 0 7 7"
+                shape-rendering="crispEdges"
+                style={`left:${clocks.london.x * 3}px;top:${clocks.london.y * 3}px;fill:${palette.slate}`}
+            >
+                {
+                    handsFor(clocks.london.timeZone).map(([x, y]) => (
+                        <rect x={x} y={y} width="1" height="1" />
+                    ))
+                }
+            </svg>
+        </div>
+        <div class="relative hidden sm:block md:hidden lg:block">
+            <Sprite sprite={londonEye} class="block" />
+            <Sprite sprite={londonEyeWheel} class="absolute inset-0" />
+        </div>
+        <div class="hidden sm:block">
+            <Sprite sprite={towerBridge} class="block" />
+        </div>
+        <Sprite sprite={shard} />
+    </div>
+    <div
+        class="px-vehicle px-vehicle-far"
+        data-direction="left"
+        data-speed="34"
+    >
+        <Sprite sprite={bus} class="block" />
+    </div>
+    <div class="px-vehicle" data-direction="right" data-speed="44">
+        <Sprite sprite={auto} class="block" />
+    </div>
+</div>
+
+<script>
+    import { clockHands, timeIn } from "../../pixel/clock";
+
+    const CELL = 3;
+
+    function setClocks() {
+        for (const clock of document.querySelectorAll<SVGElement>(
+            ".px-clock"
+        )) {
+            const { hours, minutes } = timeIn(clock.dataset.timeZone!);
+            clock.innerHTML = clockHands(hours, minutes)
+                .map(
+                    ([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`
+                )
+                .join("");
+        }
+    }
+
+    /** Keep the clocks right, updating on each new minute. */
+    function startClocks() {
+        setClocks();
+        const untilNextMinute = 60_000 - (Date.now() % 60_000);
+        setTimeout(() => {
+            setClocks();
+            setInterval(setClocks, 60_000);
+        }, untilNextMinute);
+    }
+
+    /**
+     * Drive each vehicle across the strip once, one whole cell at a time.
+     * The auto heads for London; the bus follows a moment later towards
+     * Chennai.
+     */
+    function drive(strip: HTMLElement) {
+        const width = strip.offsetWidth;
+        strip.querySelectorAll<HTMLElement>(".px-vehicle").forEach((v, i) => {
+            const length = v.offsetWidth;
+            const cells = Math.ceil((width + length) / CELL);
+            const right = v.dataset.direction === "right";
+            const from = right ? -length : width;
+            const to = from + (right ? 1 : -1) * cells * CELL;
+            v.style.opacity = "1";
+            v.animate(
+                [
+                    { transform: `translateX(${from}px)` },
+                    { transform: `translateX(${to}px)` },
+                ],
+                {
+                    duration: (cells / Number(v.dataset.speed)) * 1000,
+                    delay: i === 0 ? 2200 : 0,
+                    easing: `steps(${cells})`,
+                    fill: "both",
+                }
+            ).finished.then(() => (v.style.opacity = "0"));
+        });
+    }
+
+    startClocks();
+
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        for (const strip of document.querySelectorAll<HTMLElement>(
+            ".px-skyline"
+        )) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    if (entries.some((entry) => entry.isIntersecting)) {
+                        observer.disconnect();
+                        drive(strip);
+                    }
+                },
+                { threshold: 0.6 }
+            );
+            observer.observe(strip);
+        }
+    }
+</script>

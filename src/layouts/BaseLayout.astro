@@ -1,13 +1,21 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Navigation from "../components/Navigation.astro";
+import Skyline from "../components/pixel/Skyline.astro";
 
 interface Props {
     title: string;
     description: string;
     class?: string;
+    /** Show the Chennai → London strip at the bottom of the page. */
+    skyline?: boolean;
 }
-const { title, description, class: className = "" } = Astro.props;
+const {
+    title,
+    description,
+    class: className = "",
+    skyline = false,
+} = Astro.props;
 ---
 
 <html
@@ -27,13 +35,18 @@ const { title, description, class: className = "" } = Astro.props;
         <!-- Bottom and right inset only on desktop (xl) where we want the borders -->
         <div class="frame-rounded pointer-events-none fixed top-[10px] bottom-0 left-0 right-0 z-0 bg-theme-background xl:right-[10px] xl:bottom-[10px]"></div>
         <main class="relative z-10">
-            <div class={`min-h-screen ${className}`}>
+            <div class={`flex min-h-screen flex-col ${className}`}>
                 <Navigation />
                 <div
-                    class="mx-auto grid max-w-screen-2xl grid-cols-12 px-4 pt-20 pb-12 md:px-8 lg:px-12 xl:pt-12 xl:pr-8 xl:pl-28"
+                    class="mx-auto grid w-full max-w-screen-2xl grid-cols-12 px-4 pt-20 pb-12 md:px-8 lg:px-12 xl:pt-12 xl:pr-8 xl:pl-28"
                 >
                     <slot />
                 </div>
+                {
+                    skyline && (
+                        <Skyline class="mt-auto xl:mr-[10px] xl:mb-[10px] xl:ml-24" />
+                    )
+                }
             </div>
         </main>
     </body>

@@ -6,17 +6,153 @@
 :root,
 [data-theme="light"] {
     --px-ink: hsl(264 50% 12%);
+    --px-night: hsl(264 51% 10%);
+    --px-night-amount: 0%;
+    --px-lamp: #4a3a40;
+    --px-glow: #fbf7ef;
+    --px-beam: transparent;
+    --px-beam-faint: transparent;
+    --px-ochre-lit: transparent;
+    --px-shard-tip: #9cc1d6;
+    --px-shard-tip-shade: #5e88a5;
+    --px-shard-crown: #9cc1d6;
+    --px-shard-crown-shade: #5e88a5;
+    --px-shard-window: #9cc1d6;
+    --px-shard-window-shade: #5e88a5;
 }
 
 html[data-theme="dark"],
 [data-theme="dark"] {
     --px-ink: hsl(20 45% 13%);
+    --px-night-amount: 50%;
+    --px-lamp: #ffd36b;
+    --px-glow: #ffe9a8;
+    --px-beam: rgb(255 240 190 / 0.7);
+    --px-beam-faint: rgb(255 240 190 / 0.28);
+    --px-ochre-lit: #e9a35e;
+    --px-shard-tip: #f2fbff;
+    --px-shard-tip-shade: #d4eeff;
+    --px-shard-crown: #78d6ff;
+    --px-shard-crown-shade: #b08cff;
+    --px-shard-window: #ffe2a0;
+    --px-shard-window-shade: #d9b878;
 }
 
 .px-sprite {
     display: inline-block;
     flex: none;
     overflow: visible;
+}
+
+/*
+ * The Chennai → London strip (src/components/pixel/Skyline.astro). Lengths
+ * are whole cells at 3px: the road is 4 cells (a kerb, then asphalt with a
+ * dashed centre line) and runs the full width, the Marina included, like
+ * Beach Road. Pieces stand on the kerb, 8 cells apart in Chennai and 4 in
+ * London.
+ */
+.px-skyline {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.px-skyline-road {
+    position: absolute;
+    inset: auto 0 0;
+    height: 12px;
+    background:
+        linear-gradient(
+                to right,
+                var(--px-skyline-mark) 0 12px,
+                transparent 12px 24px
+            )
+            0 6px / 24px 3px repeat-x,
+        linear-gradient(
+            var(--px-skyline-kerb) 0 3px,
+            var(--px-skyline-road) 3px
+        );
+}
+
+.px-skyline-city {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    padding-bottom: 12px;
+}
+
+.px-skyline-city + .px-skyline-city {
+    gap: 12px;
+    padding-right: 12px;
+}
+
+.px-skyline-lighthouse {
+    margin-left: -54px;
+}
+
+/* The beam overlay starts 24 cells left of the lighthouse, level with its top. */
+.px-skyline-beam {
+    position: absolute;
+    top: 0;
+    left: -72px;
+}
+
+/*
+ * The gopuram and the blocked beam must stay in step, so they are hidden
+ * with opacity, which keeps their animations running, rather than
+ * display: none, which would restart them. (Visibility would not work:
+ * each frame sets its own.) The gopuram shows from sm to md and from lg.
+ */
+@media (max-width: 639px), (min-width: 768px) and (max-width: 1023px) {
+    .px-skyline-gopuram {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .px-skyline-with-gopuram {
+        opacity: 0;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 767px), (min-width: 1024px) {
+    .px-skyline-without-gopuram {
+        opacity: 0;
+    }
+}
+
+.px-clock {
+    position: absolute;
+    width: 21px;
+    height: 21px;
+}
+
+/* Vehicles stay hidden until the script drives them across. */
+.px-vehicle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.px-vehicle-far {
+    bottom: 3px;
+}
+
+@media (max-width: 767px) {
+    .px-skyline {
+        zoom: 0.666667;
+    }
+}
+
+/* Match the content panel's rounded corner (see .frame-rounded). */
+@media (pointer: fine) and (min-width: 1280px) {
+    .px-skyline {
+        border-bottom-right-radius: 0.75rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
