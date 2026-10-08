@@ -30,10 +30,14 @@ const { target } = Astro.props;
 
 <script>
     import { flyAway, land } from "../../pixel/crane-flight";
+    import {
+        onScrollFrame,
+        READ,
+        readingProgress,
+        stageAt,
+    } from "../../pixel/reading-progress";
 
     const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-    /** Reading counts as done a little before the very end. */
-    const DONE = 0.98;
 
     for (const root of document.querySelectorAll<HTMLElement>(
         "[data-crane-progress]"
@@ -50,28 +54,12 @@ const { target } = Astro.props;
         let flown = false;
         let flying: Animation | undefined;
 
-        const progress = () => {
-            const { top, height } = article.getBoundingClientRect();
-            const scrollable = height - innerHeight;
-            if (scrollable <= 0) return 1;
-            return Math.min(Math.max(-top / scrollable, 0), 1);
-        };
         const show = (fold: number) => {
             folds.forEach((el, i) => (el.hidden = i !== fold));
             shown = fold;
             const ready = fold === last && !reducedMotion.matches;
             root.style.pointerEvents = ready ? "auto" : "";
             root.style.cursor = ready ? "pointer" : "";
-        };
-        const update = () => {
-            const p = progress();
-            if (p < DONE && flown) {
-                land(flight, flying);
-                flown = false;
-            }
-            if (flown) return;
-            const fold = p >= DONE ? last : Math.floor((p / DONE) * last);
-            if (fold !== shown || folds[fold].hidden) show(fold);
         };
 
         root.addEventListener("click", () => {
@@ -83,17 +71,15 @@ const { target } = Astro.props;
             flying = flyAway(flight);
         });
 
-        let queued = false;
-        const onScroll = () => {
-            if (queued) return;
-            queued = true;
-            requestAnimationFrame(() => {
-                queued = false;
-                update();
-            });
-        };
-        addEventListener("scroll", onScroll, { passive: true });
-        addEventListener("resize", onScroll, { passive: true });
-        update();
+        onScrollFrame(() => {
+            const p = readingProgress(article);
+            if (p < READ && flown) {
+                land(flight, flying);
+                flown = false;
+            }
+            if (flown) return;
+            const fold = stageAt(p, folds.length);
+            if (fold !== shown || folds[fold].hidden) show(fold);
+        });
     }
 </script>
