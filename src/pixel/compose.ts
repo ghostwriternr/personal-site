@@ -7,6 +7,25 @@ export function flip(frame: Frame): Frame {
     return frame.map((row) => [...row].reverse().join(""));
 }
 
+/**
+ * Mirror an animation left to right about the resting frame's box, so a cat
+ * that runs off right runs off left instead. `facing` names each side pose's
+ * mirrored frame; poses not in it (front views) are kept as they are and
+ * only placed mirrored.
+ */
+export function mirrorSteps(
+    steps: readonly AnimationStep[],
+    frames: Readonly<Record<string, Frame>>,
+    facing: Readonly<Record<string, string>>,
+    restWidth: number
+): AnimationStep[] {
+    return steps.map(([name, ms, [dx, dy] = [0, 0]]) => [
+        facing[name] ?? name,
+        ms,
+        [restWidth - dx - frames[name][0].length, dy],
+    ]);
+}
+
 /** A frame placed on a stage: `x` cells from the left, `lift` cells off the ground. */
 export interface Placement {
     frame: Frame;

@@ -5,7 +5,7 @@ import { site } from "../content/site";
 import { getCollection } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import FrameCat from "../components/pixel/FrameCat.astro";
-import { chandu, tiny, yoda } from "../pixel/sprites/cats";
+import { chandu, tiny, yoda, yodaPostReach } from "../pixel/sprites/cats";
 
 const posts = (await getCollection("blog")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -19,13 +19,24 @@ const posts = (await getCollection("blog")).sort(
         <div class="mx-auto w-full max-w-4xl">
             <Intro />
         <div class="relative mt-20 md:mt-14">
-            <!-- All three cats, together on the list's top line, off to one side -->
+            <!-- All three cats, together on the list's top line, Yoda's scratch post at its end -->
             <div
-                class="absolute bottom-full left-[38%] flex items-end gap-4"
+                class="absolute right-0 bottom-full flex items-end gap-6"
+                style={`padding-right:${yodaPostReach * yoda.scale}px`}
             >
-                <FrameCat cat={yoda} awake="day" />
-                <FrameCat cat={chandu} awake="day" />
-                <FrameCat cat={tiny} awake="night" />
+                <FrameCat cat={chandu} awake="day" plays={["strollLeft"]} />
+                <FrameCat
+                    cat={tiny}
+                    awake="night"
+                    plays={["fetch", "tailChase", "zoomiesLeft"]}
+                />
+                <FrameCat
+                    cat={yoda}
+                    awake="day"
+                    idle="idleByPost"
+                    sleep="sleepByPost"
+                    plays={["scratch"]}
+                />
             </div>
             {
                 posts.map((post, idx) => (

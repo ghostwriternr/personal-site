@@ -1,8 +1,11 @@
 ---
 /**
- * A cat living on the site frame: sitting through her idle loop while she's
- * awake, curled up asleep otherwise. The theme is the time of day, so a cat
- * awake by day sleeps in dark mode, and the other way round. Decorative.
+ * A cat living on the site: going through her idle loop while she's awake,
+ * curled up asleep otherwise. The theme is the time of day, so a cat awake by
+ * day sleeps in dark mode, and the other way round. Decorative.
+ *
+ * While she's awake, clicking her plays the next of `plays`, then she goes
+ * back to her idle. Animations that share her idle's stage line up with it.
  */
 import type { Sprite as SpriteData } from "../../pixel/types";
 import Sprite from "./Sprite.astro";
@@ -10,26 +13,103 @@ import Sprite from "./Sprite.astro";
 interface Props {
     cat: SpriteData;
     awake: "day" | "night";
+    /** Her animation while awake. */
+    idle?: string;
+    /** Her animation while asleep. */
+    sleep?: string;
+    /** Animations to play in turn, one per click while awake. */
+    plays?: string[];
     /** CSS pixels per cell. Defaults to the sprite's scale. */
     scale?: number;
     class?: string;
 }
 
-const { cat, awake, scale, class: className = "" } = Astro.props;
+const {
+    cat,
+    awake,
+    idle = "idle",
+    sleep = "sleep",
+    plays = [],
+    scale,
+    class: className = "",
+} = Astro.props;
 const [awakeClass, asleepClass] =
     awake === "day"
         ? ["px-by-day", "px-at-night"]
         : ["px-at-night", "px-by-day"];
+const playable = plays.map((name) => {
+    const steps = cat.animations?.[name];
+    if (!steps) {
+        throw new Error(`Sprite "${cat.id}" has no animation "${name}".`);
+    }
+    return { name, ms: steps.reduce((sum, [, ms]) => sum + ms, 0) };
+});
 ---
 
 <div
     class:list={[
-        "pointer-events-none flex items-end justify-center",
+        "relative flex items-end justify-center",
+        playable.length === 0 && "pointer-events-none",
         className,
     ]}
     aria-hidden="true"
     data-frame-cat={cat.id}
 >
-    <Sprite sprite={cat} animation="idle" scale={scale} class={awakeClass} />
-    <Sprite sprite={cat} animation="sleep" scale={scale} class={asleepClass} />
+    <Sprite
+        sprite={cat}
+        animation={idle}
+        scale={scale}
+        class={`px-cat-awake ${awakeClass} ${playable.length ? "cursor-pointer" : ""}`}
+    />
+    <Sprite sprite={cat} animation={sleep} scale={scale} class={asleepClass} />
+    {
+        playable.map(({ name, ms }) => (
+            <div
+                class="pointer-events-none absolute bottom-0 left-0 z-10"
+                data-play={name}
+                data-ms={ms}
+                hidden
+            >
+                <Sprite sprite={cat} animation={name} scale={scale} />
+            </div>
+        ))
+    }
 </div>
+
+<script>
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+    for (const cat of document.querySelectorAll<HTMLElement>(
+        "[data-frame-cat]"
+    )) {
+        const plays = [...cat.querySelectorAll<HTMLElement>("[data-play]")];
+        const idle = cat.querySelector<SVGElement>(".px-cat-awake");
+        if (plays.length === 0 || !idle) continue;
+
+        let timer = 0;
+        let next = 0;
+        const stop = () => {
+            clearTimeout(timer);
+            timer = 0;
+            for (const play of plays) play.hidden = true;
+            idle.style.opacity = "";
+        };
+        cat.addEventListener("click", () => {
+            const awake = getComputedStyle(idle).display !== "none";
+            if (timer || reducedMotion.matches || !awake) return;
+            const chosen = plays[next];
+            next = (next + 1) % plays.length;
+            // Fade her idle out rather than hide it: it keeps her box, and
+            // its frames set their own visibility.
+            idle.style.opacity = "0";
+            // Unhiding starts the play's animations from their first frame.
+            chosen.hidden = false;
+            timer = window.setTimeout(stop, Number(chosen.dataset.ms));
+        });
+        // Night falls, or day breaks: she stops whatever she's doing.
+        new MutationObserver(stop).observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["data-theme"],
+        });
+    }
+</script>

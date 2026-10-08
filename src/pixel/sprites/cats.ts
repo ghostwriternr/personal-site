@@ -1,4 +1,10 @@
-import { choreograph, flip, type Beat, type Placement } from "../compose";
+import {
+    choreograph,
+    flip,
+    mirrorSteps,
+    type Beat,
+    type Placement,
+} from "../compose";
 import type { AnimationStep, Frame, Sprite } from "../types";
 import { dustFrames, paperBallFrames, propKey } from "./props";
 
@@ -481,6 +487,29 @@ const zoomies: AnimationStep[] = [
     ["sit", 900],
 ];
 
+/** Zoomies the other way: she bolts left, tears back right past where she started, and skids home. */
+const zoomiesLeft = mirrorSteps(
+    zoomies,
+    {
+        sit,
+        ears,
+        blink,
+        stalk,
+        gallopOut,
+        gallopIn,
+        gallopOutL: gallopOut,
+        gallopInL: gallopIn,
+    },
+    {
+        gallopOut: "gallopOutL",
+        gallopIn: "gallopInL",
+        gallopOutL: "gallopOut",
+        gallopInL: "gallopIn",
+        stalk: "stalkL",
+    },
+    sit[0].length
+);
+
 /** Asleep, curled like a shrimp: head tipped and tucked in, nose buried in her tail, a paw under her chin. All three cats sleep like this. */
 const sleep: Frame = [
     ".....kkkkkk.kok....",
@@ -538,6 +567,7 @@ export const tiny: Sprite = {
         gallopIn,
         gallopOutL: flip(gallopOut),
         gallopInL: flip(gallopIn),
+        stalkL: flip(stalk),
         curl,
         curl2,
         caughtTail,
@@ -554,6 +584,7 @@ export const tiny: Sprite = {
         fetch: fetch.steps,
         tailChase: tailChase.steps,
         zoomies,
+        zoomiesLeft,
         /** How she might feel on the site: mostly calm, then sudden play. */
         life: [
             ...idle,
@@ -882,6 +913,8 @@ const scratchPost: Frame = [
 
 /** Where the post stands, in cells from where she sits. */
 const POST_X = 30;
+/** How far past her sitting box her post reaches, in cells. */
+export const yodaPostReach = POST_X + scratchPost[0].length - yodaSit[0].length;
 const withPost = (beat: Omit<Beat, "props">): Beat => ({
     ...beat,
     props: [{ frame: scratchPost, x: POST_X }],
@@ -965,6 +998,7 @@ const scratchBeats: Beat[] = [
     withPost({ pose: yodaBlink, ms: 160 }),
     withPost({ pose: yodaSit, ms: 800 }),
 ];
+const yodaByPost = choreograph("byPost", idleBeats);
 const yodaScratching = choreograph("scratch", scratchBeats);
 /** One scene, so idle and scratch share a stage and the post never shifts between them. */
 const yodaLife = choreograph("life", [...idleBeats, ...scratchBeats]);
@@ -1004,6 +1038,13 @@ const yodaSleeping: AnimationStep[] = [
     ["sleep", 2200],
     ["sleepIn", 1800],
 ];
+/** Asleep where she sits, beside her post. */
+const yodaAsleepByPost = choreograph(
+    "asleepByPost",
+    yodaSleeping.map(([name, ms]) =>
+        withPost({ pose: name === "sleep" ? yodaSleep : yodaSleepIn, ms })
+    )
+);
 
 /** Seven years old, calico, playful. Olive-yellow eyes. She loves her scratch post. */
 export const yoda: Sprite = {
@@ -1023,14 +1064,18 @@ export const yoda: Sprite = {
         scratchDrag: yodaScratchDrag,
         scratch2: yodaScratch2,
         scratch2Drag: yodaScratch2Drag,
+        ...yodaByPost.frames,
         ...yodaScratching.frames,
         ...yodaLife.frames,
+        ...yodaAsleepByPost.frames,
         sleep: yodaSleep,
         sleepIn: yodaSleepIn,
     },
     animations: {
         idle: yodaIdle,
         sleep: yodaSleeping,
+        idleByPost: yodaByPost.steps,
+        sleepByPost: yodaAsleepByPost.steps,
         scratch: yodaScratching.steps,
         life: yodaLife.steps,
     },
@@ -1258,6 +1303,21 @@ function walk(from: number, to: number, ms = 200): AnimationStep[] {
 
 const STRETCH_AT = WALK_X + 20;
 
+const chanduFrames: Record<string, Frame> = {
+    sit: chanduSit,
+    blink: chanduBlink,
+    walk0: chanduWalk0,
+    walk1: chanduWalk1,
+    walk2: chanduWalk2,
+    walk3: chanduWalk3,
+    walkL0: flip(chanduWalk0),
+    walkL1: flip(chanduWalk1),
+    walkL2: flip(chanduWalk2),
+    walkL3: flip(chanduWalk3),
+    stretch: chanduStretch,
+    stretch2: chanduStretch2,
+};
+
 /**
  * Stroll: she gets up and strolls across the room, stops for a big stretch,
  * front then back, and strolls back to sit down again.
@@ -1274,6 +1334,31 @@ const stroll: AnimationStep[] = [
     ["blink", 500],
     ["sit", 900],
 ];
+
+/** Her side poses facing the other way. */
+const chanduFacingLeft: Record<string, string> = {
+    walk0: "walkL0",
+    walk1: "walkL1",
+    walk2: "walkL2",
+    walk3: "walkL3",
+    walkL0: "walk0",
+    walkL1: "walk1",
+    walkL2: "walk2",
+    walkL3: "walk3",
+    stretch: "stretchL",
+    stretch2: "stretch2L",
+};
+
+/**
+ * The same stroll, mirrored: off to her left and back. She still sits facing
+ * you, so her front poses stay as they are.
+ */
+const strollLeft = mirrorSteps(
+    stroll,
+    chanduFrames,
+    chanduFacingLeft,
+    chanduSit[0].length
+);
 
 /** Asleep, curled like a shrimp, pale inner ears, ringed tail over her nose. */
 const chanduSleep: Frame = [
@@ -1319,19 +1404,10 @@ export const chandu: Sprite = {
     scale: 3,
     key: chanduKey,
     frames: {
-        sit: chanduSit,
-        blink: chanduBlink,
+        ...chanduFrames,
         ears: chanduEars,
-        walk0: chanduWalk0,
-        walk1: chanduWalk1,
-        walk2: chanduWalk2,
-        walk3: chanduWalk3,
-        walkL0: flip(chanduWalk0),
-        walkL1: flip(chanduWalk1),
-        walkL2: flip(chanduWalk2),
-        walkL3: flip(chanduWalk3),
-        stretch: chanduStretch,
-        stretch2: chanduStretch2,
+        stretchL: flip(chanduStretch),
+        stretch2L: flip(chanduStretch2),
         sleep: chanduSleep,
         sleepIn: chanduSleepIn,
     },
@@ -1339,6 +1415,7 @@ export const chandu: Sprite = {
         idle: chanduIdle,
         sleep: chanduSleeping,
         stroll,
+        strollLeft,
         life: [...chanduIdle, ...stroll],
     },
 };
