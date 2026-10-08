@@ -1,0 +1,27 @@
+/*
+ * Pixel art theme slots. Palette colours that change with the theme
+ * (see src/pixel/palette.ts). Defined on any [data-theme] element, not just
+ * <html>, so the pixel lab can show both themes side by side.
+ */
+:root,
+[data-theme="light"] {
+    --px-ink: hsl(264 50% 12%);
+}
+
+html[data-theme="dark"],
+[data-theme="dark"] {
+    --px-ink: hsl(20 45% 13%);
+}
+
+.px-sprite {
+    display: inline-block;
+    flex: none;
+    overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .px-sprite .px-frame,
+    .px-sprite .px-move {
+        animation: none !important;
+    }
+}

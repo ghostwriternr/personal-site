@@ -1,0 +1,203 @@
+---
+/**
+ * Pixel lab: the art-direction page for pixel art sprites. Dev only.
+ * Shows every sprite at actual size on each surface, every frame zoomed
+ * with a grid, and every animation.
+ */
+import Sprite from "../components/pixel/Sprite.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { palette, themeSlots, type PaletteColor } from "../pixel/palette";
+import { animationBounds, frameSize } from "../pixel/render";
+import { sprites } from "../pixel/sprites";
+
+if (!import.meta.env.DEV) {
+    return new Response(null, { status: 404 });
+}
+
+const ZOOM = 14;
+
+const surfaces = [
+    { name: "Light canvas", theme: "light", background: "hsl(35 100% 74%)" },
+    { name: "Light frame", theme: "light", background: "hsl(35 100% 60%)" },
+    { name: "Dark canvas", theme: "dark", background: "hsl(264 51% 10%)" },
+    { name: "Dark frame", theme: "dark", background: "hsl(264 52% 20%)" },
+] as const;
+const canvases = [surfaces[0], surfaces[2]];
+
+const colors = Object.keys(palette) as PaletteColor[];
+
+/** Padding (CSS) that fits an animation's movement around the sprite. */
+function roomFor(
+    sprite: (typeof sprites)[number],
+    animation: string | undefined,
+    scale: number
+): string {
+    const steps = animation ? sprite.animations?.[animation] : undefined;
+    const b = steps
+        ? animationBounds(sprite, steps)
+        : { left: 0, right: 0, top: 0, bottom: 0 };
+    const px = (cells: number) => `${16 + cells * scale}px`;
+    return `padding:${px(b.top)} ${px(b.right)} ${px(b.bottom)} ${px(b.left)}`;
+}
+---
+
+<BaseLayout title="Pixel lab" description="Art direction for pixel art.">
+    <div class="col-span-12 flex flex-col gap-16 pb-24">
+        <header class="flex flex-col gap-2">
+            <h1 class="text-display-md text-primary">Pixel lab</h1>
+            <p class="text-body-md text-secondary max-w-2xl">
+                Every sprite at actual size on each surface, every frame zoomed
+                with a grid, and every animation. Only available in the dev
+                server.
+            </p>
+        </header>
+
+        <section class="flex flex-col gap-4">
+            <h2 class="text-heading-md text-primary">Palette</h2>
+            <div class="flex flex-wrap gap-6">
+                {
+                    colors.map((name) => (
+                        <div class="flex flex-col items-start gap-1">
+                            <div class="flex">
+                                {canvases.map((surface) => (
+                                    <div
+                                        data-theme={surface.theme}
+                                        class="p-2"
+                                        style={`background:${surface.background}`}
+                                    >
+                                        <div
+                                            class="size-8"
+                                            style={`background:${palette[name]}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            <code class="text-caption-md text-text">
+                                {name}
+                                {themeSlots.includes(name) && " (theme slot)"}
+                            </code>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        {
+            sprites.map((sprite) => {
+                const { width, height } = frameSize(sprite);
+                // Generated scene frames (named with "__") play in animations only.
+                const frames = Object.keys(sprite.frames).filter(
+                    (name) => !name.includes("__")
+                );
+                const preview = sprite.animations?.life ? "life" : undefined;
+                const animations = Object.keys(sprite.animations ?? {});
+                return (
+                    <section class="flex flex-col gap-8" id={sprite.id}>
+                        <div>
+                            <h2 class="text-heading-lg text-primary">
+                                {sprite.name}
+                            </h2>
+                            <p class="text-body-sm text-secondary font-mono">
+                                {sprite.id} · {sprite.tier} · {width}×{height}{" "}
+                                cells · {sprite.scale}px per cell ·{" "}
+                                {width * sprite.scale}×{height * sprite.scale}px
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <h3 class="text-heading-sm text-primary">
+                                Actual size
+                            </h3>
+                            <div class="flex flex-wrap gap-4">
+                                {surfaces.map((surface) => (
+                                    <figure class="flex flex-col gap-1">
+                                        <div
+                                            data-theme={surface.theme}
+                                            class="flex items-end rounded-md"
+                                            style={`background:${surface.background};${roomFor(sprite, preview, sprite.scale)}`}
+                                        >
+                                            <Sprite
+                                                sprite={sprite}
+                                                animation={preview}
+                                            />
+                                        </div>
+                                        <figcaption class="text-caption-md text-secondary">
+                                            {surface.name}
+                                        </figcaption>
+                                    </figure>
+                                ))}
+                            </div>
+                        </div>
+
+                        {animations.length > 0 && (
+                            <div class="flex flex-col gap-3">
+                                <h3 class="text-heading-sm text-primary">
+                                    Animations, zoomed
+                                </h3>
+                                <div class="flex flex-wrap gap-6">
+                                    {animations.flatMap((animation) =>
+                                        canvases.map((surface) => (
+                                            <figure class="flex flex-col gap-1">
+                                                <div
+                                                    data-theme={surface.theme}
+                                                    class="rounded-md p-4"
+                                                    style={`background:${surface.background};${roomFor(sprite, animation, ZOOM / 2)}`}
+                                                >
+                                                    <Sprite
+                                                        sprite={sprite}
+                                                        animation={animation}
+                                                        scale={ZOOM / 2}
+                                                    />
+                                                </div>
+                                                <figcaption class="text-caption-md text-secondary">
+                                                    {animation} ·{" "}
+                                                    {surface.name.toLowerCase()}
+                                                </figcaption>
+                                            </figure>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        <div class="flex flex-col gap-3">
+                            <h3 class="text-heading-sm text-primary">
+                                Frames, zoomed with grid
+                            </h3>
+                            {canvases.map((surface) => (
+                                <div class="flex flex-wrap gap-6">
+                                    {frames.map((frame) => (
+                                        <figure class="flex flex-col gap-1">
+                                            <div
+                                                data-theme={surface.theme}
+                                                class="relative rounded-md p-4"
+                                                style={`background:${surface.background}`}
+                                            >
+                                                <div class="relative">
+                                                    <Sprite
+                                                        sprite={sprite}
+                                                        frame={frame}
+                                                        scale={ZOOM}
+                                                        class="block"
+                                                    />
+                                                    <div
+                                                        class="pointer-events-none absolute inset-0"
+                                                        style={`background-image:linear-gradient(to right, rgb(0 0 0 / 0.12) 1px, transparent 1px),linear-gradient(to bottom, rgb(0 0 0 / 0.12) 1px, transparent 1px);background-size:${ZOOM}px ${ZOOM}px`}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <figcaption class="text-caption-md text-secondary">
+                                                {frame} ·{" "}
+                                                {surface.name.toLowerCase()}
+                                            </figcaption>
+                                        </figure>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                );
+            })
+        }
+    </div>
+</BaseLayout>

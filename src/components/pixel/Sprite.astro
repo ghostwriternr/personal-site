@@ -1,0 +1,109 @@
+---
+/**
+ * Renders a pixel art sprite as inline SVG. Plays the sprite's `idle`
+ * animation by default; pass `animation={false}` for the resting frame or
+ * `frame` to show one frame. Decorative unless `label` is given.
+ */
+import {
+    animationCss,
+    colorRuns,
+    frameSize,
+    frameTop,
+} from "../../pixel/render";
+import type { Sprite } from "../../pixel/types";
+
+interface Props {
+    sprite: Sprite;
+    /** Animation name, or false for a still frame. Defaults to `idle` when present. */
+    animation?: string | false;
+    /** Show this frame, still. Overrides `animation`. */
+    frame?: string;
+    /** CSS pixels per cell. Defaults to the sprite's scale. */
+    scale?: number;
+    label?: string;
+    class?: string;
+}
+
+const {
+    sprite,
+    frame: stillFrame,
+    scale = sprite.scale,
+    label,
+    class: className = "",
+} = Astro.props;
+const frameNames = Object.keys(sprite.frames);
+const animationName =
+    stillFrame !== undefined
+        ? false
+        : (Astro.props.animation ?? (sprite.animations?.idle ? "idle" : false));
+const steps = animationName ? sprite.animations?.[animationName] : undefined;
+if (animationName && !steps) {
+    throw new Error(
+        `Sprite "${sprite.id}" has no animation "${animationName}".`
+    );
+}
+
+const { width, height } = frameSize(sprite);
+const restFrame = stillFrame ?? (steps ? steps[0][0] : frameNames[0]);
+const animated = steps
+    ? animationCss(`px-${sprite.id}-${animationName}`, steps)
+    : undefined;
+// Render only the frames this sprite can show.
+const shown = animated ? [...animated.keyframes.keys()] : [restFrame];
+const frames = shown.map((name) => {
+    const keyframe = animated?.keyframes.get(name);
+    return {
+        name,
+        style: [
+            name === restFrame ? "" : "visibility:hidden",
+            keyframe
+                ? `animation:${keyframe} ${animated!.total}ms step-end infinite`
+                : "",
+        ]
+            .filter(Boolean)
+            .join(";"),
+        top: frameTop(sprite, sprite.frames[name]),
+        colors: colorRuns(sprite, sprite.frames[name]),
+    };
+});
+---
+
+<svg
+    class:list={["px-sprite", className]}
+    width={width * scale}
+    height={height * scale}
+    viewBox={`0 0 ${width} ${height}`}
+    shape-rendering="crispEdges"
+    data-sprite={sprite.id}
+    data-animation={animationName || undefined}
+    {...label
+        ? { role: "img", "aria-label": label }
+        : { "aria-hidden": "true" }}
+>
+    {animated && <style set:html={animated.css} />}
+    <g
+        class="px-move"
+        style={animated?.moveKeyframe
+            ? `animation:${animated.moveKeyframe} ${animated.total}ms step-end infinite`
+            : undefined}
+    >
+        {
+            frames.map(({ name, style, top, colors }) => (
+                <g
+                    class="px-frame"
+                    data-frame={name}
+                    style={style || undefined}
+                    transform={top ? `translate(0 ${top})` : undefined}
+                >
+                    {colors.map(({ color, runs }) => (
+                        <g style={`fill:${color}`}>
+                            {runs.map(({ x, y, width }) => (
+                                <rect x={x} y={y} width={width} height="1" />
+                            ))}
+                        </g>
+                    ))}
+                </g>
+            ))
+        }
+    </g>
+</svg>

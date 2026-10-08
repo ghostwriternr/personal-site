@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @import "./typography.css";
+@import "./pixel.css";
 
 /* Prevent layout shift from scrollbar appearing/disappearing */
 /* overflow-y: scroll ensures scrollbar is always present */
