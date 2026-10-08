@@ -204,12 +204,16 @@ function roomFor(
                                                 class="relative rounded-md p-4"
                                                 style={`background:${surface.background}`}
                                             >
-                                                <div class="relative">
+                                                {/* Sized to this frame, which can be bigger than the resting frame that sizes the sprite's box. */}
+                                                <div
+                                                    class="relative"
+                                                    style={`width:${sprite.frames[frame][0].length * ZOOM}px;height:${sprite.frames[frame].length * ZOOM}px`}
+                                                >
                                                     <Sprite
                                                         sprite={sprite}
                                                         frame={frame}
                                                         scale={ZOOM}
-                                                        class="block"
+                                                        class="absolute bottom-0 left-0"
                                                     />
                                                     <div
                                                         class="pointer-events-none absolute inset-0"
