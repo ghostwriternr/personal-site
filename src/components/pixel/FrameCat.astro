@@ -1,0 +1,35 @@
+---
+/**
+ * A cat living on the site frame: sitting through her idle loop while she's
+ * awake, curled up asleep otherwise. The theme is the time of day, so a cat
+ * awake by day sleeps in dark mode, and the other way round. Decorative.
+ */
+import type { Sprite as SpriteData } from "../../pixel/types";
+import Sprite from "./Sprite.astro";
+
+interface Props {
+    cat: SpriteData;
+    awake: "day" | "night";
+    /** CSS pixels per cell. Defaults to the sprite's scale. */
+    scale?: number;
+    class?: string;
+}
+
+const { cat, awake, scale, class: className = "" } = Astro.props;
+const [awakeClass, asleepClass] =
+    awake === "day"
+        ? ["px-by-day", "px-at-night"]
+        : ["px-at-night", "px-by-day"];
+---
+
+<div
+    class:list={[
+        "pointer-events-none flex items-end justify-center",
+        className,
+    ]}
+    aria-hidden="true"
+    data-frame-cat={cat.id}
+>
+    <Sprite sprite={cat} animation="idle" scale={scale} class={awakeClass} />
+    <Sprite sprite={cat} animation="sleep" scale={scale} class={asleepClass} />
+</div>

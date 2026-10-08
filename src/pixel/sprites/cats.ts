@@ -893,22 +893,30 @@ const standX = POST_X - 21;
 /** The scratching frames include the post. */
 const scratchX = POST_X - 21;
 
-const idleBeats: Beat[] = (
-    [
-        [yodaSit, 2400],
-        [yodaBlink, 140],
-        [yodaSit, 1800],
-        [yodaEars, 120],
-        [yodaSit, 120],
-        [yodaEars, 120],
-        [yodaSit, 1600],
-        [yodaFlick, 200],
-        [yodaSit, 200],
-        [yodaFlick, 200],
-        [yodaSit, 1400],
-    ] as const
-).map(([pose, ms]) => withPost({ pose, ms }));
-const yodaIdle = choreograph("idle", idleBeats);
+/** Sitting: a blink, an ear twitch, tail flicks. */
+const yodaIdle: AnimationStep[] = [
+    ["sit", 2400],
+    ["blink", 140],
+    ["sit", 1800],
+    ["ears", 120],
+    ["sit", 120],
+    ["ears", 120],
+    ["sit", 1600],
+    ["flick", 200],
+    ["sit", 200],
+    ["flick", 200],
+    ["sit", 1400],
+];
+const yodaSitting: Record<string, Frame> = {
+    sit: yodaSit,
+    blink: yodaBlink,
+    ears: yodaEars,
+    flick: yodaFlick,
+};
+/** Her idle beside her post, leading into the scratch scene. */
+const idleBeats: Beat[] = yodaIdle.map(([name, ms]) =>
+    withPost({ pose: yodaSitting[name], ms })
+);
 
 /** Walk from `from` to `to` (cells), two cells a step. */
 const trot = (from: number, to: number): Beat[] => {
@@ -1015,14 +1023,13 @@ export const yoda: Sprite = {
         scratchDrag: yodaScratchDrag,
         scratch2: yodaScratch2,
         scratch2Drag: yodaScratch2Drag,
-        ...yodaIdle.frames,
         ...yodaScratching.frames,
         ...yodaLife.frames,
         sleep: yodaSleep,
         sleepIn: yodaSleepIn,
     },
     animations: {
-        idle: yodaIdle.steps,
+        idle: yodaIdle,
         sleep: yodaSleeping,
         scratch: yodaScratching.steps,
         life: yodaLife.steps,

@@ -4,6 +4,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../content/site";
 import { getCollection } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
+import FrameCat from "../components/pixel/FrameCat.astro";
+import { chandu, tiny, yoda } from "../pixel/sprites/cats";
 
 const posts = (await getCollection("blog")).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -16,12 +18,20 @@ const posts = (await getCollection("blog")).sort(
     >
         <div class="mx-auto w-full max-w-4xl">
             <Intro />
-        <div class="mt-8">
+        <div class="relative mt-20 md:mt-14">
+            <!-- All three cats, together on the list's top line, off to one side -->
+            <div
+                class="absolute bottom-full left-[38%] flex items-end gap-4"
+            >
+                <FrameCat cat={yoda} awake="day" />
+                <FrameCat cat={chandu} awake="day" />
+                <FrameCat cat={tiny} awake="night" />
+            </div>
             {
                 posts.map((post, idx) => (
                     <a
                         href={`/posts/${post.id}/`}
-                        class="group hover:bg-theme-accent animate-fade-in-up border-tertiary hover:border-tertiary -mt-[2px] block border-y-2 py-4 first:mt-0 first:border-t-transparent last:border-b-transparent hover:-mx-4 hover:px-4"
+                        class="group hover:bg-theme-accent animate-fade-in-up border-tertiary hover:border-tertiary -mt-[2px] block border-y-2 py-4 first:mt-0 hover:-mx-4 hover:px-4"
                         style={`animation-delay: ${idx * 25}ms;`}
                     >
                         <div class="flex flex-col justify-between sm:flex-row sm:items-center">

@@ -44,6 +44,12 @@ html[data-theme="dark"],
     overflow: visible;
 }
 
+/* The theme is the time of day: cats awake by day show in light, by night in dark. */
+html:not([data-theme="dark"]) .px-at-night,
+html[data-theme="dark"] .px-by-day {
+    display: none;
+}
+
 /*
  * The Chennai → London strip (src/components/pixel/Skyline.astro). Lengths
  * are whole cells at 3px: the road is 4 cells (a kerb, then asphalt with a
