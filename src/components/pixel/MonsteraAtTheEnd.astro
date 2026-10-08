@@ -1,0 +1,17 @@
+---
+/**
+ * Naresh's monstera, grown, at the end of a poem, for windows too narrow
+ * for `MonsteraProgress` in the corner. It stands on the line it's placed
+ * on (its container's top edge), right-aligned; tapping it unfurls new
+ * leaves.
+ */
+import MonsteraGrowth from "./MonsteraGrowth.astro";
+---
+
+<div
+    class="absolute right-0 bottom-full xl:hidden"
+    aria-hidden="true"
+    data-monstera-at
+>
+    <MonsteraGrowth />
+</div>

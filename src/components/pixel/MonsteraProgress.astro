@@ -1,0 +1,24 @@
+---
+/**
+ * Reading progress for a poem, in the panel's bottom-right corner, where
+ * the crane sits on blog posts: Naresh's monstera, growing from a pot of
+ * soil to a plant up its moss pole as you read. Scrolling back shrinks it,
+ * so it always shows where you are. Only on wide windows, where the margin
+ * holds it clear of the text; narrower windows get `MonsteraAtTheEnd`.
+ */
+import MonsteraGrowth from "./MonsteraGrowth.astro";
+
+interface Props {
+    /** The element whose reading progress to show. */
+    target: string;
+}
+const { target } = Astro.props;
+---
+
+<div
+    class="pointer-events-none fixed right-[42px] bottom-[42px] z-[55] hidden xl:block"
+    aria-hidden="true"
+    data-monstera-at
+>
+    <MonsteraGrowth progress={target} />
+</div>

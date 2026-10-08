@@ -1,0 +1,140 @@
+---
+/**
+ * Naresh's monstera, in one box: every stage and grown frame stacked on
+ * the pot, one shown at a time, plus the unfurling plays swapped in on a
+ * click. Given `progress` (a selector), it grows through its stages as that
+ * element is read; without it, it's grown from the start. Once grown,
+ * each click unfurls one more leaf up the pole, up to four; the extra leaves
+ * stay for the visit. Decorative.
+ *
+ * The box is the grown plant's size, so all of it is the click target; its
+ * extra leaves reach up above the box.
+ */
+import {
+    monstera,
+    monsteraExtraLeaves,
+    monsteraStages,
+} from "../../pixel/sprites/monstera";
+import Sprite from "./Sprite.astro";
+
+interface Props {
+    progress?: string;
+}
+const { progress } = Astro.props;
+const extras = Array.from({ length: monsteraExtraLeaves }, (_, i) => i + 1);
+const statics = [
+    ...monsteraStages.map((name) => ({ name, stage: true })),
+    ...extras.map((n) => ({ name: `grown${n}`, stage: false })),
+];
+const grown = monstera.frames.grown;
+const plays = extras.map((n) => {
+    const steps = monstera.animations![`unfurl${n}`];
+    return {
+        name: `unfurl${n}`,
+        ms: steps.reduce((sum, [, ms]) => sum + ms, 0),
+    };
+});
+const shown = progress ? "pot" : "grown";
+---
+
+<div
+    class="relative"
+    style={`width:${grown[0].length * monstera.scale}px;height:${grown.length * monstera.scale}px`}
+    data-monstera={progress ?? ""}
+>
+    {
+        statics.map(({ name, stage }) => (
+            <div
+                class="absolute bottom-0 left-0 flex"
+                data-stage={stage ? name : undefined}
+                data-grown={stage ? undefined : name}
+                hidden={name !== shown}
+            >
+                <Sprite sprite={monstera} frame={name} />
+            </div>
+        ))
+    }
+    {
+        plays.map(({ name, ms }) => (
+            <div
+                class="absolute bottom-0 left-0 flex"
+                data-play={name}
+                data-ms={ms}
+                hidden
+            >
+                <Sprite sprite={monstera} animation={name} />
+            </div>
+        ))
+    }
+</div>
+
+<script>
+    import {
+        onScrollFrame,
+        readingProgress,
+        stageAt,
+    } from "../../pixel/reading-progress";
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+    for (const root of document.querySelectorAll<HTMLElement>(
+        "[data-monstera]"
+    )) {
+        const stages = [...root.querySelectorAll<HTMLElement>("[data-stage]")];
+        const grown = [...root.querySelectorAll<HTMLElement>("[data-grown]")];
+        const plays = [...root.querySelectorAll<HTMLElement>("[data-play]")];
+        const article = root.dataset.monstera
+            ? document.querySelector(root.dataset.monstera)
+            : null;
+        const last = stages.length - 1;
+        /** The click target: the corner's fixed wrapper, or the plant itself. */
+        const target = root.closest<HTMLElement>("[data-monstera-at]") ?? root;
+
+        let stage = article ? 0 : last;
+        let extra = 0;
+        let playing = false;
+
+        const render = () => {
+            const isGrown = stage === last;
+            stages.forEach(
+                (el, i) =>
+                    (el.hidden =
+                        playing || i !== stage || (isGrown && extra > 0))
+            );
+            grown.forEach(
+                (el, i) => (el.hidden = playing || !isGrown || i !== extra - 1)
+            );
+            const ready =
+                isGrown && extra < plays.length && !reducedMotion.matches;
+            target.style.pointerEvents = ready ? "auto" : "";
+            target.style.cursor = ready ? "pointer" : "";
+        };
+
+        target.addEventListener("click", () => {
+            if (playing || stage !== last || extra >= plays.length) return;
+            if (reducedMotion.matches) return;
+            const play = plays[extra];
+            playing = true;
+            render();
+            // Unhiding starts the unfurling from its first frame.
+            play.hidden = false;
+            setTimeout(() => {
+                play.hidden = true;
+                playing = false;
+                extra += 1;
+                render();
+            }, Number(play.dataset.ms));
+        });
+
+        if (article) {
+            onScrollFrame(() => {
+                if (playing) return;
+                const next = stageAt(readingProgress(article), stages.length);
+                if (next === stage) return;
+                stage = next;
+                render();
+            });
+        }
+        render();
+    }
+</script>

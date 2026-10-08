@@ -18,6 +18,7 @@ import {
     towerBridge,
 } from "./london";
 import { crane, craneFlight } from "./crane";
+import { monstera } from "./monstera";
 import { paperBall } from "./props";
 import {
     cloud,
@@ -51,6 +52,7 @@ export const sprites: Sprite[] = [
     bus,
     crane,
     craneFlight,
+    monstera,
     starFaint,
     star,
     starSmall,

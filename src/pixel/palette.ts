@@ -56,6 +56,28 @@ export const palette = {
     sisalShade: "#b8935f",
     carpet: "#8a6a8f",
 
+    // Naresh's monstera
+    terracotta: "#c8663e",
+    terracottaShade: "#9a4a2a",
+    terracottaRim: "#de8a5e",
+    soil: "#4a3428",
+    moss: "#7a6a45",
+    mossShade: "#5a4d30",
+    mossGreen: "#4f7a3a",
+    leaf: "#3f8f4a",
+    leafVein: "#2c6a37",
+    leafLight: "#6fb36a",
+    leafDark: "#2f7a3f",
+    leafDarkVein: "#1f5a2c",
+    leafDarkLight: "#4f9a55",
+    leafFresh: "#55a852",
+    leafFreshVein: "#3a8040",
+    leafFreshLight: "#8cc873",
+    /** A new leaf, just unfurled, before it darkens. */
+    leafNew: "#a9d46a",
+    leafNewVein: "#7fae4a",
+    leafNewLight: "#c8e68a",
+
     // The sky in the page margins
     starlight: "#efe2c4",
     starDim: "#5a4a7e",
