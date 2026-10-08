@@ -481,6 +481,46 @@ const zoomies: AnimationStep[] = [
     ["sit", 900],
 ];
 
+/** Asleep, curled like a shrimp: head tipped and tucked in, nose buried in her tail, a paw under her chin. All three cats sleep like this. */
+const sleep: Frame = [
+    ".......kkkkkk..kok....",
+    ".....kkodoodokkppk....",
+    "...kkooodoodokookk....",
+    "..koodooodookoddookkk.",
+    ".kooodoooookoooodooook",
+    "koodoooooookoooookkopk",
+    "kodoooooookokookooook.",
+    "koooooooookookkooookk.",
+    "koooooooookoookkkkkkk.",
+    "koooooooooocckoodookk.",
+    ".kddddddddkkkkkooodok.",
+    "..kkodoodoodoodoookk..",
+    "....kkkkkkkkkkkkkk....",
+];
+
+/** Breathing in: her back rises. */
+const sleepIn: Frame = [
+    "......kkooookk.kok....",
+    ".....koodoodookppk....",
+    "...kkooodoodokookk....",
+    "..koodooodookoddookkk.",
+    ".kooodoooookoooodooook",
+    "koodoooooookoooookkopk",
+    "kodoooooookokookooook.",
+    "koooooooookookkooookk.",
+    "koooooooookoookkkkkkk.",
+    "koooooooooocckoodookk.",
+    ".kddddddddkkkkkooodok.",
+    "..kkodoodoodoodoookk..",
+    "....kkkkkkkkkkkkkk....",
+];
+
+/** Asleep, breathing slowly. */
+const sleeping: AnimationStep[] = [
+    ["sleep", 2200],
+    ["sleepIn", 1800],
+];
+
 /** Very lean, 4 years old, very playful. Olive eyes. */
 export const tiny: Sprite = {
     id: "tiny",
@@ -509,9 +549,12 @@ export const tiny: Sprite = {
         curlBack,
         ...fetch.frames,
         ...tailChase.frames,
+        sleep,
+        sleepIn,
     },
     animations: {
         idle,
+        sleep: sleeping,
         fetch: fetch.steps,
         tailChase: tailChase.steps,
         zoomies,
@@ -922,6 +965,46 @@ const yodaScratching = choreograph("scratch", scratchBeats);
 /** One scene, so idle and scratch share a stage and the post never shifts between them. */
 const yodaLife = choreograph("life", [...idleBeats, ...scratchBeats]);
 
+/** Asleep, curled like a shrimp, her orange cheek and white blaze showing, black ear and far cheek tucked away; her tail's white tip over her nose. */
+const yodaSleep: Frame = [
+    ".......kkkkkk..kok....",
+    ".....kkbbbbbbkkppk....",
+    "...kkobbbbbbbkookk....",
+    "..kooobbbbbbkowwbbkkk.",
+    ".koooobbbbbkooowwbbbbk",
+    "kooooobbbbbkooowwkkbpk",
+    "kooooobbbbkokookwbbbk.",
+    "kooooooobbkookkowbbkk.",
+    "kooooooobbkoookkkkkkk.",
+    "kwwwwwwwwwwwwkwwbbbkk.",
+    ".keeeeeeeekkkkkbbbbbk.",
+    "..kkbbbbbbooobbbbbkk..",
+    "....kkkkkkkkkkkkkk....",
+];
+
+/** Breathing in: her back rises. */
+const yodaSleepIn: Frame = [
+    "......kkbbbbkk.kok....",
+    ".....kbbbbbbbbkppk....",
+    "...kkobbbbbbbkookk....",
+    "..kooobbbbbbkowwbbkkk.",
+    ".koooobbbbbkooowwbbbbk",
+    "kooooobbbbbkooowwkkbpk",
+    "kooooobbbbkokookwbbbk.",
+    "kooooooobbkookkowbbkk.",
+    "kooooooobbkoookkkkkkk.",
+    "kwwwwwwwwwwwwkwwbbbkk.",
+    ".keeeeeeeekkkkkbbbbbk.",
+    "..kkbbbbbbooobbbbbkk..",
+    "....kkkkkkkkkkkkkk....",
+];
+
+/** Asleep, breathing slowly. */
+const yodaSleeping: AnimationStep[] = [
+    ["sleep", 2200],
+    ["sleepIn", 1800],
+];
+
 /** Seven years old, calico, playful. Olive-yellow eyes. She loves her scratch post. */
 export const yoda: Sprite = {
     id: "yoda",
@@ -943,9 +1026,12 @@ export const yoda: Sprite = {
         ...yodaIdle.frames,
         ...yodaScratching.frames,
         ...yodaLife.frames,
+        sleep: yodaSleep,
+        sleepIn: yodaSleepIn,
     },
     animations: {
         idle: yodaIdle.steps,
+        sleep: yodaSleeping,
         scratch: yodaScratching.steps,
         life: yodaLife.steps,
     },
@@ -1190,6 +1276,46 @@ const stroll: AnimationStep[] = [
     ["sit", 900],
 ];
 
+/** Asleep, curled like a shrimp, pale inner ears, ringed tail over her nose. */
+const chanduSleep: Frame = [
+    ".......kkkkkk..kok....",
+    ".....kkodoodokkcck....",
+    "...kkooodoodokookk....",
+    "..koodooodookoddookkk.",
+    ".kooodoooookoooodooook",
+    "koodoooooookoooookkock",
+    "kodoooooookokookooook.",
+    "koooooooookookkooookk.",
+    "koooooooookoookkkkkkk.",
+    "koooooooooocckoodookk.",
+    ".kddddddddkkkkkooodok.",
+    "..kkodoodoodoodoookk..",
+    "....kkkkkkkkkkkkkk....",
+];
+
+/** Breathing in: her back rises. */
+const chanduSleepIn: Frame = [
+    "......kkooookk.kok....",
+    ".....koodoodookcck....",
+    "...kkooodoodokookk....",
+    "..koodooodookoddookkk.",
+    ".kooodoooookoooodooook",
+    "koodoooooookoooookkock",
+    "kodoooooookokookooook.",
+    "koooooooookookkooookk.",
+    "koooooooookoookkkkkkk.",
+    "koooooooooocckoodookk.",
+    ".kddddddddkkkkkooodok.",
+    "..kkodoodoodoodoookk..",
+    "....kkkkkkkkkkkkkk....",
+];
+
+/** Asleep, breathing slowly. */
+const chanduSleeping: AnimationStep[] = [
+    ["sleep", 2200],
+    ["sleepIn", 1800],
+];
+
 /** Ten years old, mackerel tabby, very calm. She strolls round the house and does big stretches. */
 export const chandu: Sprite = {
     id: "chandu",
@@ -1211,9 +1337,12 @@ export const chandu: Sprite = {
         walkL3: flip(chanduWalk3),
         stretch: chanduStretch,
         stretch2: chanduStretch2,
+        sleep: chanduSleep,
+        sleepIn: chanduSleepIn,
     },
     animations: {
         idle: chanduIdle,
+        sleep: chanduSleeping,
         stroll,
         life: [...chanduIdle, ...stroll],
     },
