@@ -2,6 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import CraneAtTheEnd from "../components/pixel/CraneAtTheEnd.astro";
+import CraneProgress from "../components/pixel/CraneProgress.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
     prevPost?: CollectionEntry<"blog"> | null;
@@ -41,7 +43,8 @@ const { title, description, pubDate, updatedDate, prevPost, nextPost } = Astro.p
             </article>
 
             {(prevPost || nextPost) && (
-                <nav class="post-nav mt-12 flex justify-between gap-6 border-t border-[var(--color-tertiary)] pt-8">
+                <nav class="post-nav relative mt-16 flex justify-between gap-6 border-t border-[var(--color-tertiary)] pt-8 xl:mt-12">
+                    <CraneAtTheEnd />
                     {prevPost && (
                         <a href={`/posts/${prevPost.id}/`} class="prev block text-subtle hover:text-secondary">
                             <span class="text-caption-md block">Previous</span>
@@ -58,6 +61,7 @@ const { title, description, pubDate, updatedDate, prevPost, nextPost } = Astro.p
             )}
         </div>
     </main>
+    <CraneProgress target=".content-body" />
 </BaseLayout>
 
 <style>

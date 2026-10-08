@@ -1,0 +1,99 @@
+---
+/**
+ * Reading progress for a blog post, in the panel's bottom-right corner: a
+ * square of origami paper folded one step further as you read the article,
+ * until it's a finished crane at the end. Scrolling back unfolds it, so it
+ * always shows where you are.
+ *
+ * Clicking the finished crane makes her fly off, up behind the frame: an
+ * easter egg, like the cats. While you stay at the end the corner is empty;
+ * scroll away and the folds show your place again. Decorative: the
+ * scrollbar carries the same information. Only on wide windows, where the
+ * margin holds her clear of the text; narrower windows get `CraneAtTheEnd`.
+ */
+import CraneFolds from "./CraneFolds.astro";
+
+interface Props {
+    /** The element whose reading progress to show. */
+    target: string;
+}
+const { target } = Astro.props;
+---
+
+<div
+    class="pointer-events-none fixed right-[42px] bottom-[42px] z-[55] hidden xl:block"
+    aria-hidden="true"
+    data-crane-progress={target}
+>
+    <CraneFolds />
+</div>
+
+<script>
+    import { flyAway, land } from "../../pixel/crane-flight";
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    /** Reading counts as done a little before the very end. */
+    const DONE = 0.98;
+
+    for (const root of document.querySelectorAll<HTMLElement>(
+        "[data-crane-progress]"
+    )) {
+        const article = document.querySelector<HTMLElement>(
+            root.dataset.craneProgress!
+        );
+        const folds = [...root.querySelectorAll<HTMLElement>("[data-fold]")];
+        const flight = root.querySelector<HTMLElement>("[data-flight]")!;
+        if (!article || folds.length === 0) continue;
+        const last = folds.length - 1;
+
+        let shown = 0;
+        let flown = false;
+        let flying: Animation | undefined;
+
+        const progress = () => {
+            const { top, height } = article.getBoundingClientRect();
+            const scrollable = height - innerHeight;
+            if (scrollable <= 0) return 1;
+            return Math.min(Math.max(-top / scrollable, 0), 1);
+        };
+        const show = (fold: number) => {
+            folds.forEach((el, i) => (el.hidden = i !== fold));
+            shown = fold;
+            const ready = fold === last && !reducedMotion.matches;
+            root.style.pointerEvents = ready ? "auto" : "";
+            root.style.cursor = ready ? "pointer" : "";
+        };
+        const update = () => {
+            const p = progress();
+            if (p < DONE && flown) {
+                land(flight, flying);
+                flown = false;
+            }
+            if (flown) return;
+            const fold = p >= DONE ? last : Math.floor((p / DONE) * last);
+            if (fold !== shown || folds[fold].hidden) show(fold);
+        };
+
+        root.addEventListener("click", () => {
+            if (flown || shown !== last || reducedMotion.matches) return;
+            flown = true;
+            folds[last].hidden = true;
+            root.style.pointerEvents = "";
+            root.style.cursor = "";
+            flying = flyAway(flight);
+        });
+
+        let queued = false;
+        const onScroll = () => {
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(() => {
+                queued = false;
+                update();
+            });
+        };
+        addEventListener("scroll", onScroll, { passive: true });
+        addEventListener("resize", onScroll, { passive: true });
+        update();
+    }
+</script>

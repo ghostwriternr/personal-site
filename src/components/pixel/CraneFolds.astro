@@ -1,0 +1,55 @@
+---
+/**
+ * The crane's folds stacked in one box, centred on her and resting on its
+ * floor, with her flight ready to swap in. Scripts show one fold at a time
+ * (`data-fold`) and fly the finished crane (`data-flight`). The box is the
+ * finished crane's size, so all of her is the click target.
+ */
+import { crane, craneFlight } from "../../pixel/sprites/crane";
+import Sprite from "./Sprite.astro";
+
+interface Props {
+    /** Show only the finished crane. */
+    finishedOnly?: boolean;
+}
+const { finishedOnly = false } = Astro.props;
+const { scale } = crane;
+const finished = crane.frames.crane;
+const width = finished[0].length;
+const names = Object.keys(crane.frames);
+const folds = (finishedOnly ? ["crane"] : names).map((name) => ({
+    name,
+    // Whole cells, so the pixels stay crisp.
+    left: Math.floor((width - crane.frames[name][0].length) / 2) * scale,
+}));
+// The flight frames are taller, wings reaching below her body: line their
+// top up with the finished crane's.
+const flightDrop =
+    (craneFlight.frames.wingsUp.length - finished.length) * craneFlight.scale;
+---
+
+<div
+    class="relative"
+    style={`width:${width * scale}px;height:${finished.length * scale}px`}
+>
+    {
+        folds.map(({ name, left }, i) => (
+            <div
+                class="absolute bottom-0 flex"
+                style={`left:${left}px`}
+                data-fold={i}
+                hidden={!finishedOnly && i > 0}
+            >
+                <Sprite sprite={crane} frame={name} />
+            </div>
+        ))
+    }
+    <div
+        class="absolute left-0"
+        style={`bottom:-${flightDrop}px`}
+        data-flight
+        hidden
+    >
+        <Sprite sprite={craneFlight} />
+    </div>
+</div>

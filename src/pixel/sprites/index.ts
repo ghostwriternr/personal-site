@@ -17,6 +17,7 @@ import {
     shard,
     towerBridge,
 } from "./london";
+import { crane, craneFlight } from "./crane";
 import { paperBall } from "./props";
 import {
     cloud,
@@ -48,6 +49,8 @@ export const sprites: Sprite[] = [
     shard,
     auto,
     bus,
+    crane,
+    craneFlight,
     starFaint,
     star,
     starSmall,

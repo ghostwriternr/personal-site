@@ -1,0 +1,44 @@
+---
+/**
+ * The finished paper crane at the end of a blog post, for windows too
+ * narrow for `CraneProgress` in the corner. She stands on the line she's
+ * placed on (her container's top edge), right-aligned; tapping her makes her
+ * fly off. Once she's scrolled out of sight she's back, ready to fly again.
+ */
+import CraneFolds from "./CraneFolds.astro";
+---
+
+<div
+    class="absolute right-0 bottom-full cursor-pointer xl:hidden"
+    aria-hidden="true"
+    data-crane-end
+>
+    <CraneFolds finishedOnly />
+</div>
+
+<script>
+    import { flyAway, land } from "../../pixel/crane-flight";
+
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+    for (const root of document.querySelectorAll<HTMLElement>(
+        "[data-crane-end]"
+    )) {
+        const crane = root.querySelector<HTMLElement>("[data-fold]")!;
+        const flight = root.querySelector<HTMLElement>("[data-flight]")!;
+        let flying: Animation | undefined;
+        if (reducedMotion.matches) root.style.cursor = "";
+
+        root.addEventListener("click", () => {
+            if (flying || reducedMotion.matches) return;
+            crane.hidden = true;
+            flying = flyAway(flight);
+        });
+        new IntersectionObserver(([entry]) => {
+            if (!flying || entry.isIntersecting) return;
+            land(flight, flying);
+            flying = undefined;
+            crane.hidden = false;
+        }).observe(root);
+    }
+</script>
