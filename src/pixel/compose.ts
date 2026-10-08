@@ -57,15 +57,25 @@ export interface Beat {
  * Turn a scene's beats into frames and animation steps. Each beat becomes a
  * frame (identical beats share one) named `${name}__${n}`; the pixel lab
  * hides these generated frames from its frame list.
+ *
+ * Every frame shares the scene's stage origin, so each step has the same
+ * offset and positions live in the frames themselves. A per-step offset
+ * would be a transform animation, which the browser can run out of step
+ * with the frame swaps, making props jitter as the actor moves.
  */
 export function choreograph(
     name: string,
     beats: readonly Beat[]
 ): { frames: Record<string, Frame>; steps: AnimationStep[] } {
+    const staged = beats.map(({ pose, x = 0, lift = 0, props = [] }) =>
+        stack([{ frame: pose, x, lift }, ...props])
+    );
+    const origin = Math.min(...staged.map(({ left }) => left));
     const frames: Record<string, Frame> = {};
     const names = new Map<string, string>();
-    const steps = beats.map(({ ms, pose, x = 0, lift = 0, props = [] }) => {
-        const { frame, left } = stack([{ frame: pose, x, lift }, ...props]);
+    const steps = staged.map(({ frame: stagedFrame, left }, i) => {
+        const pad = TRANSPARENT.repeat(left - origin);
+        const frame = stagedFrame.map((row) => pad + row);
         const id = frame.join("\n");
         let frameName = names.get(id);
         if (!frameName) {
@@ -73,7 +83,7 @@ export function choreograph(
             names.set(id, frameName);
             frames[frameName] = frame;
         }
-        return [frameName, ms, [left, 0]] as const;
+        return [frameName, beats[i].ms, [origin, 0]] as const;
     });
     return { frames, steps };
 }

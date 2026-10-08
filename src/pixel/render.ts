@@ -105,7 +105,9 @@ export function colorRuns(sprite: Sprite, frame: Frame): ColorRuns {
 
 /**
  * CSS keyframes that show each frame of an animation only during its steps,
- * plus a keyframe that moves the sprite when any step has an offset.
+ * plus a keyframe that moves the sprite when its steps' offsets differ. When
+ * every step shares one offset, it comes back as `offset` to apply as a
+ * static transform instead.
  */
 export function animationCss(
     keyframePrefix: string,
@@ -115,6 +117,7 @@ export function animationCss(
     total: number;
     keyframes: Map<string, string>;
     moveKeyframe?: string;
+    offset?: readonly [number, number];
 } {
     const total = steps.reduce((sum, [, ms]) => sum + ms, 0);
     const pct = (at: number) => `${+((at / total) * 100).toFixed(4)}%`;
@@ -140,10 +143,15 @@ export function animationCss(
         }
         css += `@keyframes ${name}{${stops.join("")}}`;
     }
-    const moved = steps.some(
-        ([, , offset]) => offset && (offset[0] || offset[1])
+    const offsets = new Set(
+        steps.map(([, , [dx, dy] = [0, 0]]) => `${dx},${dy}`)
     );
-    if (!moved) return { css, total, keyframes };
+    if (offsets.size === 1) {
+        const [dx, dy] = steps[0][2] ?? [0, 0];
+        return dx || dy
+            ? { css, total, keyframes, offset: [dx, dy] }
+            : { css, total, keyframes };
+    }
     const moveKeyframe = `${keyframePrefix}-move`;
     css += `@keyframes ${moveKeyframe}{${moves.join("")}}`;
     return { css, total, keyframes, moveKeyframe };

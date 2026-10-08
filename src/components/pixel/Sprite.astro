@@ -96,6 +96,9 @@ const frames = shown.map((name) => {
         style={animated?.moveKeyframe
             ? `animation:${animated.moveKeyframe} ${animated.total}ms step-end infinite`
             : undefined}
+        transform={animated?.offset
+            ? `translate(${animated.offset[0]} ${animated.offset[1]})`
+            : undefined}
     >
         {
             frames.map(({ name, style, top, colors }) => (
