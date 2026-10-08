@@ -63,7 +63,17 @@ const frames = shown.map((name) => {
             .filter(Boolean)
             .join(";"),
         top: frameTop(sprite, sprite.frames[name]),
-        colors: colorRuns(sprite, sprite.frames[name]),
+        // One path per colour: each run is a 1-cell-tall rectangle.
+        colors: colorRuns(sprite, sprite.frames[name]).map(
+            ({ color, runs }) => ({
+                color,
+                path: runs
+                    .map(
+                        ({ x, y, width }) => `M${x} ${y}h${width}v1h-${width}z`
+                    )
+                    .join(""),
+            })
+        ),
     };
 });
 ---
@@ -95,12 +105,8 @@ const frames = shown.map((name) => {
                     style={style || undefined}
                     transform={top ? `translate(0 ${top})` : undefined}
                 >
-                    {colors.map(({ color, runs }) => (
-                        <g style={`fill:${color}`}>
-                            {runs.map(({ x, y, width }) => (
-                                <rect x={x} y={y} width={width} height="1" />
-                            ))}
-                        </g>
+                    {colors.map(({ color, path }) => (
+                        <path style={`fill:${color}`} d={path} />
                     ))}
                 </g>
             ))
