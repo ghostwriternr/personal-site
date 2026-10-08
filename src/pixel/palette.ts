@@ -56,6 +56,12 @@ export const palette = {
     sisalShade: "#b8935f",
     carpet: "#8a6a8f",
 
+    // The sky in the page margins
+    starlight: "#efe2c4",
+    starDim: "#5a4a7e",
+    cloud: "#ffe3b0",
+    cloudShade: "#ffd690",
+
     // Props
     paper: "#fbf7ef",
     paperShade: "#c9bfae",

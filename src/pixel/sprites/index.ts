@@ -18,6 +18,14 @@ import {
     towerBridge,
 } from "./london";
 import { paperBall } from "./props";
+import {
+    cloud,
+    cloudSmall,
+    star,
+    starBright,
+    starFaint,
+    starSmall,
+} from "./sky";
 import { auto, bus } from "./vehicles";
 
 /** Every sprite, in the order the pixel lab shows them. */
@@ -40,6 +48,12 @@ export const sprites: Sprite[] = [
     shard,
     auto,
     bus,
+    starFaint,
+    star,
+    starSmall,
+    starBright,
+    cloud,
+    cloudSmall,
 ];
 
 sprites.forEach(validateSprite);

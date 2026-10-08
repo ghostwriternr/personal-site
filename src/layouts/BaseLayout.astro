@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Navigation from "../components/Navigation.astro";
 import Skyline from "../components/pixel/Skyline.astro";
+import MarginSky from "../components/pixel/MarginSky.astro";
 
 interface Props {
     title: string;
@@ -34,6 +35,7 @@ const {
         <!-- The html background (accent color) shows through as the "frame" -->
         <!-- Bottom and right inset only on desktop (xl) where we want the borders -->
         <div class="frame-rounded pointer-events-none fixed top-[10px] bottom-0 left-0 right-0 z-0 bg-theme-background xl:right-[10px] xl:bottom-[10px]"></div>
+        <MarginSky />
         <main class="relative z-10">
             <div class={`flex min-h-screen flex-col ${className}`}>
                 <Navigation />

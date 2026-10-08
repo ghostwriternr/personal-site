@@ -1,0 +1,70 @@
+---
+/**
+ * A still sky in the page margins: stars at night, two clouds by day. The
+ * theme is the time of day. It shows only where the margins are wide enough
+ * to hold it (xl and up), stays clear of the text column, and is fixed to
+ * the window behind the content, so it reads as sky through the frame.
+ * Nothing in it moves.
+ *
+ * Positions are measured from the window's left or right edge; the
+ * narrowest margins, at 1280px, are about 200px each side of the text.
+ */
+import type { Sprite as SpriteData } from "../../pixel/types";
+import {
+    cloud,
+    cloudSmall,
+    star,
+    starBright,
+    starFaint,
+    starSmall,
+} from "../../pixel/sprites/sky";
+import Sprite from "./Sprite.astro";
+
+interface Piece {
+    sprite: SpriteData;
+    /** `left` or `right` CSS offset, and `top` as a share of the window. */
+    left?: string;
+    right?: string;
+    top: string;
+}
+
+const stars: Piece[] = [
+    { sprite: starFaint, left: "150px", top: "22%" },
+    { sprite: starSmall, left: "232px", top: "39%" },
+    { sprite: starFaint, left: "128px", top: "61%" },
+    { sprite: star, left: "206px", top: "79%" },
+    { sprite: starBright, right: "118px", top: "13%" },
+    { sprite: starFaint, right: "58px", top: "29%" },
+    { sprite: starSmall, right: "168px", top: "51%" },
+    { sprite: starFaint, right: "86px", top: "70%" },
+    { sprite: star, right: "146px", top: "88%" },
+];
+const clouds: Piece[] = [
+    { sprite: cloud, left: "138px", top: "30%" },
+    { sprite: cloudSmall, right: "74px", top: "62%" },
+];
+const at = ({ left, right, top }: Piece) =>
+    [left && `left:${left}`, right && `right:${right}`, `top:${top}`]
+        .filter(Boolean)
+        .join(";");
+---
+
+<div
+    class="pointer-events-none fixed top-[10px] right-[10px] bottom-[10px] left-0 z-[1] hidden xl:block"
+    aria-hidden="true"
+>
+    {
+        stars.map((piece) => (
+            <div class="px-at-night absolute flex" style={at(piece)}>
+                <Sprite sprite={piece.sprite} />
+            </div>
+        ))
+    }
+    {
+        clouds.map((piece) => (
+            <div class="px-by-day absolute flex" style={at(piece)}>
+                <Sprite sprite={piece.sprite} />
+            </div>
+        ))
+    }
+</div>
